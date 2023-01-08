@@ -5,11 +5,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
-import App from './App'
 import ContactPage from './pages/ContactPage';
-import Root from "./routes/root";
+import MainPage from "./pages/MainPage";
 
 import './index.css'
+import './App.css';
 
 
 
@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <RouterProvider router={createBrowserRouter([
       {
         path: "/",
-        element: <Root />,
+        element: <MainPage />,
         errorElement: <ErrorPage />,
         children: [
           {
