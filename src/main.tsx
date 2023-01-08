@@ -20,11 +20,12 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         path: "/",
         element: <Root />,
         errorElement: <ErrorPage />,
-      },
-      {
-        path: "contacts/:contactId",
-        element: <ContactPage />,
-      },
-    ])} />
+        children: [
+          {
+            path: "contacts/:contactId",
+            element: <ContactPage />,
+          },
+        ],
+      }])} />
   </React.StrictMode>,
 )
