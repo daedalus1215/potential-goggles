@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
 import ContactPage from './pages/ContactPage';
-import MainPage from "./pages/MainPage";
+import MainPage, { loader } from "./pages/MainPage";
 
 import './index.css'
 import './App.css';
@@ -20,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         path: "/",
         element: <MainPage />,
         errorElement: <ErrorPage />,
+        loader: loader,
         children: [
           {
             path: "contacts/:contactId",
