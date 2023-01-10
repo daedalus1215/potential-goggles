@@ -4,7 +4,7 @@ import {
     Outlet,
     useLoaderData
 } from "react-router-dom";
-import { createContact, getContacts } from "../contacts";
+import { Contact, createContact, getContacts } from "../contacts";
 
 export async function mainLoader() {
     const contacts = await getContacts();
@@ -17,7 +17,7 @@ export async function action() {
 }
 
 export default function MainPage() {
-    const { contacts } = useLoaderData();
+    const { contacts } = useLoaderData() as { contacts: Contact[] };
 
     return (
         <>

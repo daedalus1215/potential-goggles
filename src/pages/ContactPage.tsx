@@ -1,5 +1,5 @@
 import { Form, useLoaderData } from "react-router-dom";
-import { Contact, getContact, getContacts } from "../contacts";
+import { Contact, createContact, getContact } from "../contacts";
 
 interface Params {
     params: {
@@ -9,6 +9,11 @@ interface Params {
 
 export async function contactLoader({params}:Params) {
     const contact = await getContact(params.contactId);
+    return { contact };
+}
+
+export async function action() {
+    const contact = await createContact();
     return { contact };
 }
 
@@ -59,7 +64,8 @@ export default function ContactPage() {
                 {contact.notes && <p>{contact.notes}</p>}
 
                 <div>
-                    <Form action="edit">
+                    <Form
+                     action="edit">
                         <button type="submit">Edit</button>
                     </Form>
                     <Form

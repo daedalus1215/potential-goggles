@@ -9,10 +9,10 @@ export interface Contact {
     favorite: true;
 };
 
-export const getContacts = (): Contact[] => ([{
+const data = [{
     id: 'dsd',
-    first: "Your",
-    last: "Name",
+    first: "smiley",
+    last: "smelly",
     avatar: "https://placekitten.com/g/200/200",
     twitter: "your_handle",
     notes: "Some notes",
@@ -20,23 +20,27 @@ export const getContacts = (): Contact[] => ([{
 },
 {
     id: 'd2sd',
-    first: "Your",
-    last: "Name",
+    first: "Ysdsour",
+    last: "Namsdase",
     avatar: "https://placekitten.com/g/200/200",
     twitter: "your_handle",
     notes: "Some notes",
     favorite: true,
-}]);
+}] as Contact[];
 
-export const createContact = () => ({
-    id: 'd2sd',
-    first: "Your",
-    last: "Name",
-    avatar: "https://placekitten.com/g/200/200",
-    twitter: "your_handle",
-    notes: "Some notes",
-    favorite: true,
-});
+export const getContacts = (): Contact[] => data;
+
+export const createContact = () => {
+    data.push({
+        id: 'd2sdw',
+        first: "Yddour",
+        last: "Naddsme",
+        avatar: "https://placekitten.com/g/200/200",
+        twitter: "your_handle",
+        notes: "Some notes",
+        favorite: true,
+    });
+};
 
 
 export const getContact = (index: string): Contact => getContacts()
