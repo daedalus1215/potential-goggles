@@ -1,12 +1,20 @@
 import { Form, useLoaderData } from "react-router-dom";
-import { getContact } from "../contacts";
+import { Contact, getContact, getContacts } from "../contacts";
 
-export async function contactLoader({ params }): any {
-    return getContact(params.contactId);
+interface Params {
+    params: {
+        contactId: string
+    };
 }
 
-export default function Contact() {
-    const contact = useLoaderData();
+export async function contactLoader({params}:Params) {
+    const contact = await getContact(params.contactId);
+    return { contact };
+}
+
+export default function ContactPage() {
+    const { contact } = useLoaderData() as { contact: Contact };
+    console.log('contact', contact)
     // const contact = {
     //     first: "Your",
     //     last: "Name",
@@ -20,8 +28,8 @@ export default function Contact() {
         <div id="contact">
             <div>
                 <img
-                    key={contact.avatar}
-                    src={contact.avatar || null}
+                    key={contact?.avatar || ''}
+                    src={contact?.avatar || ''}
                 />
             </div>
 
@@ -75,7 +83,7 @@ export default function Contact() {
     );
 }
 
-function Favorite({ contact }) {
+function Favorite({ contact }: { contact: Contact }) {
     // yes, this is a `let` for later
     let favorite = contact.favorite;
     return (

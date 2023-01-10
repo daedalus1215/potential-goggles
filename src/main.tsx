@@ -25,8 +25,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         children: [
           {
             path: "contacts/:contactId",
-            element: <ContactPage />,
-            loader: contactLoader
+            loader: contactLoader,
+            element: <ContactPage />
           },
         ],
       }])} />
