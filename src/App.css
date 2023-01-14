@@ -1,5 +1,5 @@
 body {
-  background-color: #ddd;
+  background-color: #eee;
   font-size: 14px;
 }
 
@@ -9,28 +9,39 @@ body {
   width: 100%;
 }
 
+/* Sidebar */
 .sidebar {
-  flex: 1;
+  flex: 3;
   background-color: #aaa;
   margin: 0;
   height: 100vh;
   padding: 1em;
 }
 
+.search {
+  background-color: #eee;
+  border: none;
+  height: 30px;
+  border-radius: 8px;
+  display: inline;
+
+}
+
 .detail {
-  flex: 9;
+  flex: 7;
   padding: 0;
-  background-color: #ddd;
+  background-color: #eee;
   margin: 0;
   margin-top: 2em;
 }
 
 /* Contact Page */
+
 .avatar {
   margin-left: 3em;
 }
 
-.avatar > img {
+.avatar>img {
   border-radius: 24px;
 }
 
@@ -46,33 +57,60 @@ body {
 
 .contactTitle {
   font-size: 2rem;
-  text-transform:lowercase;
+  font-weight: 600;
   color: #222;
-}
-
-.twitter {
-  display: block;
-  font-size: 1.5rem;
-  margin: 0;
-  padding: 0;
-  text-align: left;
 }
 
 .favoriteForm {
   display: inline;
 }
 
-.favorite { 
-      /* width: 0px; */
-      font-size: 1.5rem;
-      margin: 0px;
-      /* height: 0px; */
-      padding: 0;
-      text-align: center;
-      background-color: #ddd;
-      color: yellow;
-      border-radius: 0px;
-      align-content: center;
+.favorite {
+  /* width: 0px; */
+  font-size: 1.5rem;
+  margin: 0px;
+  /* height: 0px; */
+  padding: 0;
+  text-align: center;
+  background-color: #eee;
+  color: #fff00f;
+  border-radius: 0px;
+  align-content: center;
+}
+
+.twitter {
+  display: block;
+  font-size: 1.5rem;
+  margin: 10px 0;
+  padding: 0;
+  text-align: left;
+}
+
+.notes {
+  color: black;
+  font-size: 1.1rem;
+  text-align: left;
+  margin: 20px 0;
+}
+
+.formEdit {
+  display: inline;
+  margin: 0 10px 0 0;
+}
+
+.formDelete {
+  display: inline;
+}
+
+.button {
+  background-color: #eee;
+  border: solid 1px #aaa;
+  color: #222;
+  box-shadow: #aaa .5px .5px .5px .5px;
+}
+
+.contactButtons {
+  text-align: left;
 }
 
 .logo {
@@ -89,21 +127,6 @@ body {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
 
 .card {
   padding: 2em;
