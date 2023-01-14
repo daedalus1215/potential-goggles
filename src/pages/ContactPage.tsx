@@ -19,15 +19,6 @@ export async function action() {
 
 export default function ContactPage() {
     const { contact } = useLoaderData() as { contact: Contact };
-    console.log('contact', contact)
-    // const contact = {
-    //     first: "Your",
-    //     last: "Name",
-    //     avatar: "https://placekitten.com/g/200/200",
-    //     twitter: "your_handle",
-    //     notes: "Some notes",
-    //     favorite: true,
-    // };
 
     return (
         <div id="contact" className="contact">
@@ -61,16 +52,18 @@ export default function ContactPage() {
                     </p>
                 )}
 
-                {contact.notes && <p>{contact.notes}</p>}
+                {contact.notes && <p className="notes">{contact.notes}</p>}
 
-                <div>
+                <div className="contactButtons">
                     <Form
-                        action="edit">
-                        <button type="submit">Edit</button>
+                        action="edit"
+                        className="formEdit">
+                        <button type="submit" className="button">Edit</button>
                     </Form>
                     <Form
                         method="post"
                         action="destroy"
+                        className="formDelete"
                         onSubmit={(event) => {
                             if (
                                 !confirm(
@@ -81,7 +74,7 @@ export default function ContactPage() {
                             }
                         }}
                     >
-                        <button type="submit">Delete</button>
+                        <button type="submit" className="button">Delete</button>
                     </Form>
                 </div>
             </div>
