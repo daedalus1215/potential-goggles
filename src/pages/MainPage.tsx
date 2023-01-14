@@ -21,14 +21,14 @@ export default function MainPage() {
 
     return (
         <>
-            <div id="sidebar">
-                <h1>React Router Contacts</h1>
-                <div>
+            <div id="sidebar" className="sidebar">
+                <div className="title">React Router Contacts</div>
+                <div className="form">
                     <Form method="post">
                         <button type="submit">New</button>
                     </Form>
                 </div>
-                <nav>
+                <nav className="navbar">
                     {contacts.length ? (
                         <ul>
                             {contacts.map((contact: any) => (
@@ -53,7 +53,7 @@ export default function MainPage() {
                     )}
                 </nav>
             </div>
-            <div id="detail">
+            <div id="detail" className="detail">
                 <div id="detail">
                     <Outlet />
                 </div>

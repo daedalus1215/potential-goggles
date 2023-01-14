@@ -14,7 +14,7 @@ const data = [{
     first: "smiley",
     last: "smelly",
     avatar: "https://placekitten.com/g/200/200",
-    twitter: "your_handle",
+    twitter: "twitter handle",
     notes: "Some notes",
     favorite: true,
 },
@@ -23,7 +23,7 @@ const data = [{
     first: "Ysdsour",
     last: "Namsdase",
     avatar: "https://placekitten.com/g/200/200",
-    twitter: "your_handle",
+    twitter: "twitter handle",
     notes: "Some notes",
     favorite: true,
 }] as Contact[];

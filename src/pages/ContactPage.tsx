@@ -7,7 +7,7 @@ interface Params {
     };
 }
 
-export async function contactLoader({params}:Params) {
+export async function contactLoader({ params }: Params) {
     const contact = await getContact(params.contactId);
     return { contact };
 }
@@ -30,16 +30,16 @@ export default function ContactPage() {
     // };
 
     return (
-        <div id="contact">
-            <div>
+        <div id="contact" className="contact">
+            <div className="avatar">
                 <img
-                    key={contact?.avatar || ''}
-                    src={contact?.avatar || ''}
+                    key={contact.avatar || ''}
+                    src={contact.avatar || ''}
                 />
             </div>
 
-            <div>
-                <h1>
+            <div className="contactRight">
+                <div className="contactTitle">
                     {contact.first || contact.last ? (
                         <>
                             {contact.first} {contact.last}
@@ -48,10 +48,10 @@ export default function ContactPage() {
                         <i>No Name</i>
                     )}{" "}
                     <Favorite contact={contact} />
-                </h1>
+                </div>
 
                 {contact.twitter && (
-                    <p>
+                    <p className="twitter">
                         <a
                             target="_blank"
                             href={`https://twitter.com/${contact.twitter}`}
@@ -65,7 +65,7 @@ export default function ContactPage() {
 
                 <div>
                     <Form
-                     action="edit">
+                        action="edit">
                         <button type="submit">Edit</button>
                     </Form>
                     <Form
@@ -93,9 +93,10 @@ function Favorite({ contact }: { contact: Contact }) {
     // yes, this is a `let` for later
     let favorite = contact.favorite;
     return (
-        <Form method="post">
+        <Form method="post" className="favoriteForm">
             <button
                 name="favorite"
+                className="favorite"
                 value={favorite ? "false" : "true"}
                 aria-label={
                     favorite
