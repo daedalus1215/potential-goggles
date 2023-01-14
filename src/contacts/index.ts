@@ -11,10 +11,10 @@ export interface Contact {
 
 const data = [{
     id: 'dsd',
-    first: "smiley",
-    last: "smelly",
+    first: "Jeremy",
+    last: "Holmes",
     avatar: "https://placekitten.com/g/200/200",
-    twitter: "twitter handle",
+    twitter: "@jHolmes",
     notes: "Some notes",
     favorite: true,
 },
