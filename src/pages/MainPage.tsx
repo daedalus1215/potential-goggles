@@ -22,10 +22,12 @@ export default function MainPage() {
     return (
         <>
             <div id="sidebar" className="sidebar">
-                <div className="title">React Router Contacts</div>
-                <div className="form">
+                <div  className="formSearch">
+                    <input className="search" placeholder="Search"></input>
+                </div>
+                <div>
                     <Form method="post">
-                        <button type="submit">New</button>
+                        <button type="submit" className="button">New</button>
                     </Form>
                 </div>
                 <nav className="navbar">
