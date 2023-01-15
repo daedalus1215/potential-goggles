@@ -11,12 +11,48 @@ body {
 
 /* Sidebar */
 .sidebar {
-  flex: 3;
+  flex: 2;
   background-color: #aaa;
   margin: 0;
   height: 100vh;
   padding: 1em;
+  display: flex;
+  flex-direction: column;
 }
+
+.top {
+  display: flex;
+  flex-direction: row;
+}
+
+.formSearch {
+  background-color: #eee;
+  width: 200px;
+  border: none;
+  height: 36px;
+  border-radius: 8px;
+  display: inline;
+  margin-right: 5px;
+}
+
+li {
+  text-align: justify;
+  list-style: none;
+}
+
+.searchIcon {
+  color: #aaa;
+  vertical-align: text-bottom;
+  margin: 0 10px 0 -20px;
+  padding: 0;
+}
+
+
+input.search:focus-visible {
+  outline: none;
+  color: #222;
+}
+
 
 .search {
   background-color: #eee;
@@ -27,8 +63,12 @@ body {
 
 }
 
+.newForm {
+  display: inline;
+}
+
 .detail {
-  flex: 7;
+  flex: 8;
   padding: 0;
   background-color: #eee;
   margin: 0;
@@ -73,7 +113,7 @@ body {
   padding: 0;
   text-align: center;
   background-color: #eee;
-  color: #fff00f;
+  color: #991;
   border-radius: 0px;
   align-content: center;
 }
