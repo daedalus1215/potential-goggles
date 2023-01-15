@@ -5,6 +5,7 @@ import {
     useLoaderData
 } from "react-router-dom";
 import { Contact, createContact, getContacts } from "../contacts";
+import cn from 'classname';
 
 export async function mainLoader() {
     const contacts = await getContacts();
@@ -22,11 +23,12 @@ export default function MainPage() {
     return (
         <>
             <div id="sidebar" className="sidebar">
-                <div  className="formSearch">
-                    <input className="search" placeholder="Search"></input>
-                </div>
-                <div>
-                    <Form method="post">
+                <div className="top">
+                    <div className="formSearch">
+                        <i className={cn("bi-search", "searchIcon")}></i>
+                        <input className="search" placeholder="Search"></input>
+                    </div>
+                    <Form method="post" className="newForm">
                         <button type="submit" className="button">New</button>
                     </Form>
                 </div>
