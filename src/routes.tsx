@@ -10,6 +10,7 @@ import MainPage, { action, mainLoader } from "./pages/MainPage";
 
 import './index.css'
 import './App.css';
+import EditContactPage from './pages/EditContactPage';
 
 
 
@@ -28,6 +29,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             loader: contactLoader,
             element: <ContactPage />
           },
+          {
+            path: "contacts/:contactId/edit",
+            element: <EditContactPage />,
+            loader: contactLoader,
+          }
         ],
       }])} />
   </React.StrictMode>,
