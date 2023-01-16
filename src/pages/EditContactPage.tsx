@@ -6,56 +6,82 @@ const EditContactPage: React.FC = () => {
   const contact = useLoaderData() as Contact;
 
   return (
-    <Form method="post" id="contact-form">
-      <p>
-        <span>Name</span>
-        <input
-          placeholder="First"
-          aria-label="First name"
-          type="text"
-          name="first"
-          defaultValue={contact.first}
-        />
-        <input
-          placeholder="Last"
-          aria-label="Last name"
-          type="text"
-          name="last"
-          defaultValue={contact.last}
-        />
-      </p>
-      <label>
-        <span>Twitter</span>
-        <input
-          type="text"
-          name="twitter"
-          placeholder="@jack"
-          defaultValue={contact.twitter}
-        />
-      </label>
-      <label>
-        <span>Avatar URL</span>
-        <input
-          placeholder="https://example.com/avatar.jpg"
-          aria-label="Avatar URL"
-          type="text"
-          name="avatar"
-          defaultValue={contact.avatar}
-        />
-      </label>
-      <label>
-        <span>Notes</span>
+    <Form method="post" id="contact-form" className="contactForm">
+      <div className="row">
+        <p className="label">Name</p>
+        <p className="names">
+          <input
+            placeholder="First"
+            aria-label="First name"
+            type="text"
+            className="firstName"
+            name="first"
+            defaultValue={contact.first}
+          />
+          <input
+            placeholder="Last"
+            aria-label="Last name"
+            className="lastName"
+            type="text"
+            name="last"
+            defaultValue={contact.last}
+          />
+        </p>
+      </div>
+      <div className='row'>
+        <p className='label'>
+          <span>Twitter</span>
+        </p>
+        <p className="twitter">
+          <input
+            type="text"
+            name="twitter"
+            className="twitter"
+            placeholder="@jack"
+            defaultValue={contact.twitter}
+          />
+        </p>
+      </div>
+
+      <div className='row'>
+        <p className="label">
+          Avatar URL
+        </p>
+        <p className="twitter">
+          <input
+            placeholder="https://example.com/avatar.jpg"
+            aria-label="Avatar URL"
+            type="text"
+            className="twitter"
+            name="avatar"
+            defaultValue={contact.avatar}
+          />
+        </p>
+      </div>
+
+
+
+      <div className='row'>
+        <p className="label">
+          Notes
+        </p>
         <textarea
           name="notes"
           defaultValue={contact.notes}
           rows={6}
         />
-      </label>
-      <p>
-        <button type="submit">Save</button>
-        <button type="button">Cancel</button>
-      </p>
-    </Form>
+      </div>
+
+
+      <div className='row'>
+        <p className="label">
+        </p>
+        <p className="editContactPageButtons">
+          <button type="submit" className="editContactPgeSubmit">Save</button>
+          <button type="button">Cancel</button>
+        </p>
+      </div>
+    </Form >
   );
 }
 
