@@ -9,16 +9,16 @@ interface Params {
 
 export async function contactLoader({ params }: Params) {
     const contact = await getContact(params.contactId);
-    return { contact };
+    return contact;
 }
 
 export async function action() {
     const contact = await createContact();
-    return { contact };
+    return contact;
 }
 
 export default function ContactPage() {
-    const { contact } = useLoaderData() as { contact: Contact };
+    const contact = useLoaderData() as Contact;
 
     return (
         <div id="contact" className="contact">
