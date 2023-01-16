@@ -73,6 +73,7 @@ input.search:focus-visible {
   background-color: #eee;
   margin: 0;
   margin-top: 2em;
+  width: 600px;
 }
 
 /* Contact Page */
@@ -142,6 +143,7 @@ input.search:focus-visible {
   display: inline;
 }
 
+
 .button {
   background-color: #eee;
   border: solid 1px #aaa;
@@ -174,4 +176,58 @@ input.search:focus-visible {
 
 .read-the-docs {
   color: #888;
+}
+
+
+/* EditContactPage */
+.contactForm {
+  width: 600px;
+}
+
+.row {
+  display: flex;
+}
+
+input {
+  height: 30px;
+  border-radius: 8px;
+}
+
+.label {
+  height: 30px;
+  /* padding: 8px 0; */
+  margin-right: 100px;
+  margin-left: 100px;
+  font-size: 1rem;
+}
+
+.names {
+  flex: 8;
+  display: flex;
+}
+
+.firstName {
+  margin-right: 1em;
+  flex: 5;
+}
+
+.lastName {
+  flex: 5;
+}
+
+.twitter{
+  width: 100%;
+  font-size: 1rem;
+}
+
+textarea {
+  width: 100%;
+}
+
+.editContactPageButtons {
+  margin-left: 3em;
+}
+
+.editContactPgeSubmit {
+  margin-right: 10px;
 }
