@@ -1,7 +1,8 @@
 import {
     Form,
-    Link,
+    NavLink,
     Outlet,
+    useNavigation,
     useLoaderData
 } from "react-router-dom";
 import { Contact, createContact, getContacts } from "../contacts";
@@ -19,6 +20,7 @@ export async function action() {
 
 export default function MainPage() {
     const { contacts } = useLoaderData() as { contacts: Contact[] };
+    const navigation = useNavigation();
 
     return (
         <>
@@ -37,7 +39,9 @@ export default function MainPage() {
                         <ul>
                             {contacts.map((contact: any) => (
                                 <li key={contact.id}>
-                                    <Link to={`contacts/${contact.id}`}>
+                                    <NavLink
+                                        to={`contacts/${contact.id}`}
+                                        className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""}>
                                         {contact.first || contact.last ? (
                                             <>
                                                 {contact.first} {contact.last}
@@ -46,7 +50,7 @@ export default function MainPage() {
                                             <i>No Name</i>
                                         )}{" "}
                                         {contact.favorite && <span>★</span>}
-                                    </Link>
+                                    </NavLink>
                                 </li>
                             ))}
                         </ul>
@@ -57,7 +61,7 @@ export default function MainPage() {
                     )}
                 </nav>
             </div>
-            <div id="detail" className="detail">
+            <div id="detail" className={cn("detail", navigation.state === "loading" ? "loading" : "")}>
                 <Outlet />
             </div>
         </>
