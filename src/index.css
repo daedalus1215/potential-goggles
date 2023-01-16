@@ -22,7 +22,18 @@ a {
 }
 
 a:hover {
-  color: #535bf2;
+  background-color: #3943f6;
+  color: #ddd;
+}
+
+.active {
+  background-color: #535bf2;
+  color: #ddd;
+}
+
+.isPending {
+  background-color: #535bf2;
+  color: #ddd;
 }
 
 body {
@@ -69,4 +80,3 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
