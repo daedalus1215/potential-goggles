@@ -58,9 +58,7 @@ export default function MainPage() {
                 </nav>
             </div>
             <div id="detail" className="detail">
-                <div id="detail">
-                    <Outlet />
-                </div>
+                <Outlet />
             </div>
         </>
     );
