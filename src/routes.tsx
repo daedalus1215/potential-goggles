@@ -38,6 +38,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           {
             path: "contacts/:contactId/destroy",
             action: destroy,
+            errorElement: <div>Oops! There was an error.</div>,
           },
         ],
       }])} />
