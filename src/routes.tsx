@@ -12,6 +12,7 @@ import './index.css'
 import './App.css';
 import EditContactPage from './pages/EditContactPage';
 import { destroy } from './actions';
+import IndexPage from './pages/IndexPage';
 
 
 
@@ -25,6 +26,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         loader: mainLoader,
         action: action,
         children: [
+          {index:  true, element: <IndexPage />},
           {
             path: "contacts/:contactId",
             loader: contactLoader,
