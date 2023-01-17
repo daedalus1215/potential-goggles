@@ -1,9 +1,10 @@
 import React from 'react';
-import { Form, useLoaderData } from "react-router-dom";
+import { Form, useLoaderData, useNavigate } from "react-router-dom";
 import { Contact } from '../contacts';
 
 const EditContactPage: React.FC = () => {
   const contact = useLoaderData() as Contact;
+  const navigate = useNavigate();
 
   return (
     <Form method="post" id="contact-form" className="contactForm">
@@ -77,8 +78,18 @@ const EditContactPage: React.FC = () => {
         <p className="label">
         </p>
         <p className="editContactPageButtons">
-          <button type="submit" className="editContactPgeSubmit">Save</button>
-          <button type="button">Cancel</button>
+          <button
+            type="submit"
+            className="editContactPgeSubmit">
+            Save
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              navigate(-1);
+            }}>
+            Cancel
+          </button>
         </p>
       </div>
     </Form >
