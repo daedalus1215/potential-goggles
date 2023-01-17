@@ -26,10 +26,19 @@ export default function MainPage() {
         <>
             <div id="sidebar" className="sidebar">
                 <div className="top">
-                    <div className="formSearch">
+                    <form id="search-form" role="search" className="formSearch">
                         <i className={cn("bi-search", "searchIcon")}></i>
-                        <input className="search" placeholder="Search"></input>
-                    </div>
+                        {/* <input className="search" placeholder="Search"></input> */}
+
+                        <input
+                            id="q"
+                            aria-label="Search contacts"
+                            placeholder="Search"
+                            type="search"
+                            className="search"
+                            name="q"
+                        />
+                    </form>
                     <Form method="post" className="newForm">
                         <button type="submit" className="button">New</button>
                     </Form>
