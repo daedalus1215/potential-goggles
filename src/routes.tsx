@@ -11,6 +11,7 @@ import MainPage, { action, mainLoader } from "./pages/MainPage";
 import './index.css'
 import './App.css';
 import EditContactPage from './pages/EditContactPage';
+import { destroy } from './actions';
 
 
 
@@ -33,7 +34,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             path: "contacts/:contactId/edit",
             element: <EditContactPage />,
             loader: contactLoader,
-          }
+          },
+          {
+            path: "contacts/:contactId/destroy",
+            action: destroy,
+          },
         ],
       }])} />
   </React.StrictMode>,
