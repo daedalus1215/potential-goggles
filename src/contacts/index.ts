@@ -9,7 +9,13 @@ export interface Contact {
     favorite: true;
 };
 
-const data = [{
+export interface Params {
+    params: {
+        contactId: string
+    };
+}
+
+let data = [{
     id: 'dsd',
     first: "Jeremy",
     last: "Holmes",
@@ -41,6 +47,10 @@ export const createContact = () => {
         favorite: true,
     });
 };
+
+export const deleteContact = (id: string) => {
+    data = data.filter(contact => contact.id !== id);
+}
 
 
 export const getContact = (index: string): Contact => getContacts()
