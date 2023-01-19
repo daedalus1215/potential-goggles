@@ -1,6 +1,17 @@
 import React from 'react';
-import { Form, useLoaderData, useNavigate } from "react-router-dom";
-import { Contact } from '../contacts';
+import { Form, redirect, useLoaderData, useNavigate } from "react-router-dom";
+import { Contact, Params, updateContact } from '../contacts';
+
+//@TODO: Leaving these any for now
+export const action = async ({ request, params }: {request:any, params:any}) => {
+  window.console.log('simulate updating a record!')
+  const formData = await request.formData();
+  console.log('formData', formData)
+  const updates = Object.fromEntries(formData);
+  console.log('fromEntries', updates)
+  await updateContact(params.contractId, updates);
+  return redirect(`/contacts/${params.contactId}`);
+};
 
 const EditContactPage: React.FC = () => {
   const contact = useLoaderData() as Contact;

@@ -10,7 +10,7 @@ import MainPage, { action, mainLoader } from "./pages/MainPage";
 
 import './index.css'
 import './App.css';
-import EditContactPage from './pages/EditContactPage';
+import EditContactPage, { action as editAction } from './pages/EditContactPage';
 import { destroy } from './actions';
 import IndexPage from './pages/IndexPage';
 
@@ -26,7 +26,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         loader: mainLoader,
         action: action,
         children: [
-          {index:  true, element: <IndexPage />},
+          { index: true, element: <IndexPage /> },
           {
             path: "contacts/:contactId",
             loader: contactLoader,
@@ -36,6 +36,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             path: "contacts/:contactId/edit",
             element: <EditContactPage />,
             loader: contactLoader,
+            action: editAction
           },
           {
             path: "contacts/:contactId/destroy",

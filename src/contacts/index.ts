@@ -55,3 +55,7 @@ export const deleteContact = (id: string) => {
 
 export const getContact = (index: string): Contact => getContacts()
     .find(contact => contact.id === index) as Contact;
+
+export const updateContact = async (contactId: string, updates:any) => {
+    return {};
+}
