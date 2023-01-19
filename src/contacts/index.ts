@@ -35,6 +35,7 @@ let data = [{
 }] as Contact[];
 
 export const getContacts = (): Contact[] => data;
+export const getContactsSearch = (name:string): Contact[] => !name ? getContacts() : data.filter(da => da.first.toLowerCase().includes(name.toLowerCase()));
 
 export const createContact = () => {
     data.push({

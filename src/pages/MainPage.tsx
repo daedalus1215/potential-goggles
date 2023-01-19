@@ -5,28 +5,38 @@ import {
     useNavigation,
     useLoaderData
 } from "react-router-dom";
-import { Contact, createContact, getContacts } from "../contacts";
+import { Contact, createContact, getContacts, getContactsSearch } from "../contacts";
 import cn from 'classname';
+import { useEffect } from "react";
 
-export async function mainLoader() {
-    const contacts = await getContacts();
-    return { contacts };
-}
 
 export async function action() {
     const contact = await createContact();
     return { contact };
 }
 
+export async function mainLoader({ request }: any) {
+    const url = new URL(request.url);
+    const q = url.searchParams.get("q") as string;
+    console.log('q', q)
+    const contacts = await getContactsSearch(q);
+    console.log('contacts', contacts)
+    return { contacts, q };
+}
+
 export default function MainPage() {
-    const { contacts } = useLoaderData() as { contacts: Contact[] };
+    const { contacts, q } = useLoaderData() as { contacts: Contact[], q: string };
     const navigation = useNavigation();
 
+    useEffect(() => {
+        //@TODO: Probs useRef is better here
+        document.getElementById('q').value = q;
+    }, [q]);
     return (
         <>
             <div id="sidebar" className="sidebar">
                 <div className="top">
-                    <form id="search-form" role="search" className="formSearch">
+                    <Form id="search-form" role="search" className="formSearch">
                         <i className={cn("bi-search", "searchIcon")}></i>
                         {/* <input className="search" placeholder="Search"></input> */}
 
@@ -37,8 +47,9 @@ export default function MainPage() {
                             type="search"
                             className="search"
                             name="q"
+                            defaultValue={q}
                         />
-                    </form>
+                    </Form>
                     <Form method="post" className="newForm">
                         <button type="submit" className="button">New</button>
                     </Form>
