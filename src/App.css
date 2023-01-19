@@ -47,12 +47,10 @@ li {
   padding: 0;
 }
 
-
 input.search:focus-visible {
   outline: none;
   color: #222;
 }
-
 
 .search {
   background-color: #eee;
@@ -60,7 +58,6 @@ input.search:focus-visible {
   height: 30px;
   border-radius: 8px;
   display: inline;
-
 }
 
 .newForm {
