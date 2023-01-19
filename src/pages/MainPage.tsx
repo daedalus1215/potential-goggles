@@ -3,7 +3,8 @@ import {
     NavLink,
     Outlet,
     useNavigation,
-    useLoaderData
+    useLoaderData,
+    useSubmit
 } from "react-router-dom";
 import { Contact, createContact, getContacts, getContactsSearch } from "../contacts";
 import cn from 'classname';
@@ -27,11 +28,13 @@ export async function mainLoader({ request }: any) {
 export default function MainPage() {
     const { contacts, q } = useLoaderData() as { contacts: Contact[], q: string };
     const navigation = useNavigation();
+    const submit = useSubmit();
 
     useEffect(() => {
         //@TODO: Probs useRef is better here
         document.getElementById('q').value = q;
     }, [q]);
+
     return (
         <>
             <div id="sidebar" className="sidebar">
@@ -48,6 +51,9 @@ export default function MainPage() {
                             className="search"
                             name="q"
                             defaultValue={q}
+                            onChange={(event) => {
+                                submit(event.currentTarget.form);
+                            }}
                         />
                     </Form>
                     <Form method="post" className="newForm">
