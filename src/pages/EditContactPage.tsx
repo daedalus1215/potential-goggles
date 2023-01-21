@@ -1,9 +1,10 @@
 import React from 'react';
 import { Form, redirect, useLoaderData, useNavigate } from "react-router-dom";
 import { Contact, Params, updateContact } from '../contacts';
+import { ActionInterface } from './interfaces';
 
 //@TODO: Leaving these any for now
-export const action = async ({ request, params }: {request:any, params:any}) => {
+export const action: ActionInterface = async ({ request, params }) => {
   window.console.log('simulate updating a record!')
   const formData = await request.formData();
   console.log('formData', formData)
@@ -71,8 +72,6 @@ const EditContactPage: React.FC = () => {
         </p>
       </div>
 
-
-
       <div className='row'>
         <p className="label">
           Notes
@@ -83,7 +82,6 @@ const EditContactPage: React.FC = () => {
           rows={6}
         />
       </div>
-
 
       <div className='row'>
         <p className="label">
