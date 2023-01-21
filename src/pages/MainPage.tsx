@@ -10,7 +10,6 @@ import { Contact, createContact, getContacts, getContactsSearch } from "../conta
 import cn from 'classname';
 import { useEffect } from "react";
 
-
 export async function action() {
     const contact = await createContact();
     return { contact };
