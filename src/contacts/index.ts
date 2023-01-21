@@ -1,3 +1,4 @@
+import { isHtmlElement } from "react-router-dom/dist/dom";
 
 export interface Contact {
     id: string;
@@ -15,7 +16,7 @@ export interface Params {
     };
 }
 
-let data = [{
+let data: Contact[] = [{
     id: 'dsd',
     first: "Jeremy",
     last: "Holmes",
@@ -32,10 +33,10 @@ let data = [{
     twitter: "twitter handle",
     notes: "Some notes",
     favorite: true,
-}] as Contact[];
+}];
 
 export const getContacts = (): Contact[] => data;
-export const getContactsSearch = (name:string): Contact[] => !name ? getContacts() : data.filter(da => da.first.toLowerCase().includes(name.toLowerCase()));
+export const getContactsSearch = (name: string): Contact[] => !name ? getContacts() : data.filter(da => da.first.toLowerCase().includes(name.toLowerCase()));
 
 export const createContact = () => {
     data.push({
@@ -57,6 +58,9 @@ export const deleteContact = (id: string) => {
 export const getContact = (index: string): Contact => getContacts()
     .find(contact => contact.id === index) as Contact;
 
-export const updateContact = async (contactId: string, updates:any) => {
-    return {};
+export const updateContact = async (contactId: string, updates: any) => {
+    const otherContacts = data.filter(items => items.id !== contactId);
+    otherContacts.push({ ...data?.find(item => item?.id === contactId), ...updates });
+    data = otherContacts;
+    return data;
 }
