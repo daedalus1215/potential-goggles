@@ -25,7 +25,7 @@ export async function mainLoader({ request }: any) {
 }
 
 export default function MainPage() {
-    const { contacts, q } = useLoaderData() as { contacts: Contact[], q: string };
+    const { items: contacts, q } = useLoaderData() as { items: any, q: string };
     const navigation = useNavigation();
     const submit = useSubmit();
 
@@ -66,13 +66,14 @@ export default function MainPage() {
                     {contacts.length ? (
                         <ul>
                             {contacts.map((contact: any) => (
-                                <li key={contact.id}>
+                                <li key={contact._id}>
                                     <NavLink
+                                        key={contact.id}
                                         to={`contacts/${contact.id}`}
                                         className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""}>
-                                        {contact.first || contact.last ? (
+                                        {contact?.title ? (
                                             <>
-                                                {contact.first} {contact.last}
+                                                {contact.title}
                                             </>
                                         ) : (
                                             <i>No Name</i>

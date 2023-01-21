@@ -54,7 +54,6 @@ export const deleteContact = (id: string) => {
     data = data.filter(contact => contact.id !== id);
 }
 
-
 export const getContact = (index: string): Contact => getContacts()
     .find(contact => contact.id === index) as Contact;
 
