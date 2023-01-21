@@ -1,5 +1,6 @@
 import { Form, useLoaderData } from "react-router-dom";
-import { Contact, createContact, getContact, Params } from "../contacts";
+import { Contact, createContact, getContact, Params } from "../../contacts";
+import Favorite from './Favorite';
 
 export async function contactLoader({ params }: Params) {
     const contact = await getContact(params.contactId);
@@ -76,23 +77,3 @@ export default function ContactPage() {
     );
 }
 
-function Favorite({ contact }: { contact: Contact }) {
-    // yes, this is a `let` for later
-    let favorite = contact.favorite;
-    return (
-        <Form method="post" className="favoriteForm">
-            <button
-                name="favorite"
-                className="favorite"
-                value={favorite ? "false" : "true"}
-                aria-label={
-                    favorite
-                        ? "Remove from favorites"
-                        : "Add to favorites"
-                }
-            >
-                {favorite ? "★" : "☆"}
-            </button>
-        </Form>
-    );
-}
