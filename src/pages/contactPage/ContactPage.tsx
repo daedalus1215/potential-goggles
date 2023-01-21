@@ -15,6 +15,13 @@ export async function action() {
 export default function ContactPage() {
     const contact = useLoaderData() as Contact;
 
+    if (!contact) {
+        throw new Response("", {
+          status: 404,
+          statusText: "Not Found",
+        });
+      }
+      
     return (
         <div id="contact" className="contact">
             <div className="avatar">
