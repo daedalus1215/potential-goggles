@@ -23,28 +23,33 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       {
         path: "/",
         element: <MainPage />,
-        errorElement: <ErrorPage />,
         loader: mainLoader,
         action: mainAction,
+        errorElement: <ErrorPage />,
         children: [
-          { index: true, element: <IndexPage /> },
           {
-            path: "contacts/:contactId",
-            loader: contactLoader,
-            element: <ContactPage />,
-            action: favoriteAction
-          },
-          {
-            path: "contacts/:contactId/edit",
-            element: <EditContactPage />,
-            loader: contactLoader,
-            action: editAction
-          },
-          {
-            path: "contacts/:contactId/destroy",
-            action: destroy,
-            errorElement: <div>Oops! There was an error.</div>,
-          },
+            errorElement: <ErrorPage />,
+            children: [
+              { index: true, element: <IndexPage /> },
+              {
+                path: "contacts/:contactId",
+                loader: contactLoader,
+                element: <ContactPage />,
+                action: favoriteAction
+              },
+              {
+                path: "contacts/:contactId/edit",
+                element: <EditContactPage />,
+                loader: contactLoader,
+                action: editAction
+              },
+              {
+                path: "contacts/:contactId/destroy",
+                action: destroy,
+                errorElement: <div>Oops! There was an error.</div>,
+              },
+            ]
+          }
         ],
       }])} />
   </React.StrictMode>,

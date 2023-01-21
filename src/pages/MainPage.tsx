@@ -6,7 +6,7 @@ import {
     useLoaderData,
     useSubmit
 } from "react-router-dom";
-import { Contact, createContact, getContacts, getContactsSearch } from "../contacts";
+import { Contact, createContact, getContactsSearch } from "../contacts";
 import cn from 'classname';
 import { useEffect } from "react";
 
