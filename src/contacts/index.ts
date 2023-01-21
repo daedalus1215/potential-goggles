@@ -7,7 +7,7 @@ export interface Contact {
     avatar: string;
     twitter: string;
     notes: string;
-    favorite: true;
+    favorite: boolean;
 };
 
 export interface Params {
