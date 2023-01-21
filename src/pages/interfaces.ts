@@ -1,0 +1,1 @@
+export type ActionInterface = ({ request, params }: { request: any, params: any }) => void;
