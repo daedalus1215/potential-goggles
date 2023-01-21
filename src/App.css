@@ -58,6 +58,7 @@ input.search:focus-visible {
   height: 30px;
   border-radius: 8px;
   display: inline;
+  color: #222;
 }
 
 .newForm {

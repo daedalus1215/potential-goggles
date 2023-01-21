@@ -30,34 +30,34 @@ export default function MainPage() {
     const navigation = useNavigation();
     const submit = useSubmit();
 
-    const searching = navigation.location && new URLSearchParams(navigation.location.search).has("q");
+    // const searching = navigation.location && new URLSearchParams(navigation.location.search).has("q");
 
     useEffect(() => {
         //@TODO: Probs useRef is better here
         document.getElementById('q').value = q;
     }, [q]);
 
-    console.log("searching", searching)
     return (
         <>
             <div id="sidebar" className="sidebar">
                 <div className="top">
                     <Form id="search-form" role="search" className="formSearch">
                         <i className={cn("bi-search", "searchIcon")} ></i>
-                        {/* <input className="search" placeholder="Search"></input> */}
                         <input
                             id="q"
                             aria-label="Search contacts"
                             placeholder="Search"
                             type="search"
-                            className={cn("search", (searching) ? "loading" : "")}
+                            className={cn("search")}
                             name="q"
                             defaultValue={q}
                             onChange={(event) => {
-                                submit(event.currentTarget.form);
+                                const isFirstSearch = q == null;
+                                submit(event.currentTarget.form, {
+                                    replace: !isFirstSearch
+                                });
                             }}
                         />
-
                     </Form>
                     <Form method="post" className="newForm">
                         <button type="submit" className="button">New</button>
