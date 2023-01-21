@@ -5,14 +5,15 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
-import ContactPage, { contactLoader } from './pages/ContactPage';
-import MainPage, { action, mainLoader } from "./pages/MainPage";
+import ContactPage, { contactLoader } from './pages/contactPage/ContactPage';
+import MainPage, { action as mainAction, mainLoader } from "./pages/MainPage";
+import EditContactPage, { action as editAction } from './pages/EditContactPage';
+import { action as favoriteAction } from './pages/contactPage/Favorite';
+import { destroy } from './actions';
+import IndexPage from './pages/IndexPage';
 
 import './index.css'
 import './App.css';
-import EditContactPage, { action as editAction } from './pages/EditContactPage';
-import { destroy } from './actions';
-import IndexPage from './pages/IndexPage';
 
 
 
@@ -24,13 +25,14 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         element: <MainPage />,
         errorElement: <ErrorPage />,
         loader: mainLoader,
-        action: action,
+        action: mainAction,
         children: [
           { index: true, element: <IndexPage /> },
           {
             path: "contacts/:contactId",
             loader: contactLoader,
-            element: <ContactPage />
+            element: <ContactPage />,
+            action: favoriteAction
           },
           {
             path: "contacts/:contactId/edit",
