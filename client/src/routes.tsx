@@ -38,6 +38,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                 {
                   path: "tasks",
                   element: <TaskPage />,
+                  // Can we just piggy back off of the Mainpage's work? Maybe need to use useQuery
+                  loader: async (request) => await fetch('http://localhost:3001/api/tasks', {
+                    tasks: request.request
+                  }),
                   errorElement: <div>Oops! There was an error.</div>,
                 },
                 {
