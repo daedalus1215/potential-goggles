@@ -5,6 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
+import TaskForm from './pages/taskPage/TaskForm';
 import ContactPage, { contactLoader } from './pages/contactPage/ContactPage';
 import MainPage, { action as mainAction, mainLoader } from "./pages/MainPage";
 import EditContactPage, { action as editAction } from './pages/EditContactPage';
@@ -12,7 +13,7 @@ import { action as favoriteAction } from './pages/contactPage/Favorite';
 import { destroy } from './actions';
 import IndexPage from './pages/IndexPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import TaskPage from './pages/taskPage/TaskPage';
+
 
 import './index.css'
 import './App.css';
@@ -37,8 +38,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                 { index: true, element: <IndexPage /> },
                 {
                   path: "tasks",
-                  element: <TaskPage />,
-                  // Can we just piggy back off of the Mainpage's work? Maybe need to use useQuery
+                  element: <TaskForm />,
                   loader: async (request) => await fetch('http://localhost:3001/api/tasks', {
                     tasks: request.request
                   }),
