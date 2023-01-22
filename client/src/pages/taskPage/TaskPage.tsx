@@ -5,7 +5,7 @@ import { useLoaderData } from 'react-router-dom';
 const TaskPage = () => {
     console.log('ouch')
     // const {data}:any = useQuery(tasksQuery());
-    const { items: tasks } = useLoaderData();
+    const { items: tasks } = useLoaderData() as { items: any };
     window.console.log('data', tasks);
     return <div>
         {tasks?.map((dad: any) => <div key={dad.id}>{dad.title}</div>)}

@@ -6,8 +6,8 @@ import {
     useLoaderData,
     useSubmit
 } from "react-router-dom";
-import { Contact, createContact, getContactsSearch } from "../contacts";
-import cn from 'classname';
+import cn from 'classnames';
+import { createContact, getContactsSearch } from "../contacts";
 import { useEffect } from "react";
 
 export async function action() {
@@ -25,7 +25,7 @@ export async function mainLoader({ request }: any) {
 }
 
 export default function MainPage() {
-    const { items: contacts, q } = useLoaderData() as { items: any, q: string };
+    const { items: tasks, q } = useLoaderData() as { items: any, q: string };
     const navigation = useNavigation();
     const submit = useSubmit();
 
@@ -63,9 +63,9 @@ export default function MainPage() {
                     </Form>
                 </div>
                 <nav className="navbar">
-                    {contacts.length ? (
+                    {tasks.length ? (
                         <ul>
-                            {contacts.map((contact: any) => (
+                            {tasks.map((contact: any) => (
                                 <li key={contact._id}>
                                     <NavLink
                                         key={contact.id}
