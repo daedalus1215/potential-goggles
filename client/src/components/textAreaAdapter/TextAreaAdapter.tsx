@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 // interface AdapterProp {
 //   input: {
@@ -7,8 +7,12 @@ import { Editor } from '@tinymce/tinymce-react';
 //   };
 // }
 
-export const Adapter  = () => {
-  // const { onChange, value } = rest.input;
+type AdapterProps = {
+  value: string;
+  onChange: (value: ChangeEvent<HTMLTextAreaElement>) => void;
+};
+
+export const Adapter: React.FC<AdapterProps> = ({ value, onChange }) => {
 
   const toolbar =
     'fullscreen | undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help';
@@ -20,39 +24,42 @@ export const Adapter  = () => {
 
   const [screenWidth] = React.useState(window.innerWidth);
 
+  const adapterChange = onChange as unknown as (a: string, editor: any) => void;
+
   const init = screenWidth < 600
     ? {
-        height: '95vw',
-        width: '100vw',
-        menubar: true,
-        plugins,
-        toolbar,
-      }
+      height: '95vw',
+      width: '100vw',
+      menubar: true,
+      plugins,
+      toolbar,
+    }
     : {
-        height: '50vw',
-        width: '100%',
-        menubar: true,
-        plugins,
-        toolbar,
-      }; 
+      height: '50vw',
+      width: '100%',
+      menubar: true,
+      plugins,
+      toolbar,
+    };
 
   return (
     <Editor
       data-test-id="text-area-adapter"
       test-dataid="textAreaAdapter"
-      // value={value}
+      value={value}
+      id="description"
       init={init}
-      // onEditorChange={onChange}
-      // {...rest}
+      onEditorChange={adapterChange}
+    // {...rest}
     />
   );
 };
 
-const TextAreaAdapter = () => {
+const TextAreaAdapter = ({value, onChange}:AdapterProps) => {
   const comp = navigator.onLine ? (
-    <Adapter />
+    <Adapter onChange={onChange} value={value}/>
   ) : (
-    <textarea name="description" id="description"   onChange={onChange} value={value}/>
+    <textarea name="description" id="description" onChange={onChange} value={value} />
   );
 
   return comp;
