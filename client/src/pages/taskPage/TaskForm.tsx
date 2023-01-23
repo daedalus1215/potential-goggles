@@ -1,9 +1,10 @@
 /* eslint-disable no-useless-computed-key */
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Form, useLoaderData } from 'react-router-dom';
 // import TagMultiSelect from 'pages/tasks/TaskForm/tagMultiSelect/TagMultiSelect';
 // import Timer from 'pages/tasks/TaskForm/timer/Timer';
 import TextAreaAdapter from '../../components/textAreaAdapter/TextAreaAdapter';
+import useListenForSave from './useListenForSave';
 // import { Dropdown, TopBar, SaveButton } from 'components';
 
 import styles from './TaskForm.module.css';
@@ -11,12 +12,13 @@ import styles from './TaskForm.module.css';
 const FORM_ID = "taskForm";
 
 const TaskForm = () => {
-  const task = useLoaderData();
+  const { items: task } = useLoaderData();
+  const [description, setDescription] = useState(task.description);
   // const tags = useTagsToOptions();
   // const task = useTaskByIdSelector();
   // const projectOptions = useFetchProjectOptions();
   // const onSubmit = useSubmit();
-  // useListenForSave(FORM_ID);
+  useListenForSave(FORM_ID);
 
   return (<div
     data-testid="addTaskForm">
@@ -25,9 +27,10 @@ const TaskForm = () => {
       <DateTimeButton taskId={taskId} />
       <Timer />
     </TopBar> */}
-    <form>
-      <TextAreaAdapter />
-    </form>
+    <Form id={FORM_ID} name={FORM_ID} method="put">
+      <TextAreaAdapter value={description} onChange={setDescription} />
+      <button type='submit'/>
+    </Form>
   </div>);
 };
 
