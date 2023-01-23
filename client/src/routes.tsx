@@ -37,12 +37,28 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
               children: [
                 { index: true, element: <IndexPage /> },
                 {
-                  path: "tasks",
+                  path: "task/:taskId",
                   element: <TaskForm />,
-                  loader: async (request) => await fetch('http://localhost:3001/api/tasks', {
-                    tasks: request.request
-                  }),
+                  loader: async (request) => {
+                    window.console.log('request', request.params.taskId)
+                    return await fetch(`http://localhost:3001/api/task/${request.params.taskId}`)
+                  },
                   errorElement: <div>Oops! There was an error.</div>,
+                  action: async ({ request, params }) => {
+                    window.console.log('request.action', request)
+                    window.console.log('method.action', params)
+
+                    let formData = await request.formData();
+                    window.console.log('formData', formData);
+                    let description = formData.get("description");
+                    window.console.log('description', description);
+
+                    switch (request.method) {
+                      case "PUT": {
+                        return {};
+                      }
+                    }
+                  }
                 },
                 {
                   path: "contacts/:contactId",
