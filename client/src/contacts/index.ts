@@ -10,6 +10,14 @@ export interface Contact {
     favorite: boolean;
 };
 
+export interface Task {
+    _id: string;
+    title?: string;
+    description: string;
+    projectId: number;
+    time: number;
+}
+
 export interface Params {
     params: {
         contactId: string
@@ -35,9 +43,34 @@ let data: Contact[] = [{
     favorite: true,
 }];
 
+/**
+ * https://dev.to/iamandrewluca/typed-fetch-response-in-typescript-1eh1
+ */
+interface TypedResponse<T = any> extends Response {
+    /**
+     * this will override `json` method from `Body` that is extended by `Response`
+     * interface Body {
+     *     json(): Promise<any>;
+     * }
+     */
+    json<P = T>(): Promise<P>
+}
 export const getContacts = (): Contact[] => data;
-export const getContactsSearch = (name: string): Contact[] => !name ? getContacts() : data.filter(da => da.first.toLowerCase().includes(name.toLowerCase()));
 
+export const getContactsSearch = async (name: string): Promise<Task[]> => {
+    const results = await fetch('http://localhost:3001/api/tasks') as TypedResponse<{items: Task[]}>;
+    if (!results.ok) throw new Error('Something went wrong!');
+    const tasks = await results.json();
+
+    if (!name) {
+        return tasks.items;
+    } else {
+        console.log('name', name);
+
+        return tasks.items.filter((task: Task) => task.description.toLowerCase().includes(name.toLowerCase()));
+    }
+
+}
 export const createContact = () => {
     data.push({
         id: 'd2sdw',
