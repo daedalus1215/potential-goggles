@@ -14,7 +14,7 @@ export async function action() {
 
 export default function ContactPage() {
     const contact = useLoaderData() as Contact;
-
+    console.log('contact', contact);
     if (!contact) {
         throw new Response("", {
           status: 404,

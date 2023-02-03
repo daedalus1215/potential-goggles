@@ -15,7 +15,8 @@ import IndexPage from './pages/IndexPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 
-import './index.css'
+//@TODO: Having an issue with catching form stuff
+import './index.css'  
 import './App.css';
 
 const queryClient = new QueryClient();
@@ -27,9 +28,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         {
           path: "/",
           element: <MainPage />,
-          loader: async (request) => await fetch('http://localhost:3001/api/tasks', {
-            tasks: request.request
-          }),
+          loader: mainLoader,
           errorElement: <ErrorPage />,
           children: [
             {
@@ -48,9 +47,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                     window.console.log('request.action', request)
                     window.console.log('method.action', params)
 
-                    let formData = await request.formData();
-                    window.console.log('formData', formData);
-                    let description = formData.get("description");
+                    const data = Object.fromEntries(await request.formData());
+                    window.console.log('formData', data);
+                    let description = data.description;
                     window.console.log('description', description);
 
                     switch (request.method) {
