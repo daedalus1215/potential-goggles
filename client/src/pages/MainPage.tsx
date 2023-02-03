@@ -7,7 +7,7 @@ import {
     useSubmit
 } from "react-router-dom";
 import cn from 'classnames';
-import { createContact, getContactsSearch } from "../contacts";
+import { createContact, getContactsSearch, Task } from "../contacts";
 import { useEffect } from "react";
 
 export async function action() {
@@ -16,24 +16,27 @@ export async function action() {
 }
 
 export async function mainLoader({ request }: any) {
+    console.log('mainLoader')
     const url = new URL(request.url);
     const q = url.searchParams.get("q") as string;
     console.log('q', q)
-    const contacts = await getContactsSearch(q);
-    console.log('contacts', contacts)
-    return { contacts, q };
+    const tasks = await getContactsSearch(q);
+    return { tasks, q };
 }
 
 export default function MainPage() {
-    const { items: tasks, q } = useLoaderData() as { items: any, q: string };
+    const { tasks, q } = useLoaderData() as { tasks: Task[], q: string };
     const navigation = useNavigation();
     const submit = useSubmit();
-
+    
+    console.log('tasks', tasks)
     // const searching = navigation.location && new URLSearchParams(navigation.location.search).has("q");
 
+    // console.log('q', q)
     useEffect(() => {
-        //@TODO: Probs useRef is better here
-        document.getElementById('q').value = q;
+        const element = document.getElementById('q') as unknown as { value: string };
+        element.value = q;
+        // console.log('q', q)
     }, [q]);
 
     return (
@@ -69,7 +72,7 @@ export default function MainPage() {
                                 <li key={contact._id}>
                                     <NavLink
                                         key={contact.id}
-                                        to={`contacts/${contact.id}`}
+                                        to={`contacts/${contact._id}`}
                                         className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""}>
                                         {contact?.title ? (
                                             <>
