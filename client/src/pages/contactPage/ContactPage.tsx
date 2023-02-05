@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { Form, useLoaderData } from "react-router-dom";
-import { Contact, createContact, getContact, Params } from "../../contacts";
-import Favorite from './Favorite';
+import TextAreaAdapter from "../../components/textAreaAdapter/TextAreaAdapter";
+import { createContact, getContact, Params, Task } from "../../contacts";
 
 export async function contactLoader({ params }: Params) {
     const contact = await getContact(params.contactId);
@@ -12,55 +13,29 @@ export async function action() {
     return contact;
 }
 
-export default function ContactPage() {
-    const contact = useLoaderData() as Contact;
-    console.log('contact', contact);
-    if (!contact) {
+const ContactPage = () => {
+    const task = useLoaderData() as Task;
+    const [description, setDescription] = useState(task.description);
+
+    if (!task) {
         throw new Response("", {
-          status: 404,
-          statusText: "Not Found",
+            status: 404,
+            statusText: "Task not found!",
         });
-      }
-      
+    }
+
+    const onChange = (value: string) => {
+        setDescription(value);
+    }
+
     return (
         <div id="contact" className="contact">
-            <div className="avatar">
-                <img
-                    key={contact.avatar || ''}
-                    src={contact.avatar || ''}
-                />
-            </div>
-
             <div className="contactRight">
-                <div className="contactTitle">
-                    {contact.first || contact.last ? (
-                        <>
-                            {contact.first} {contact.last}
-                        </>
-                    ) : (
-                        <i>No Name</i>
-                    )}{" "}
-                    <Favorite contact={contact} />
-                </div>
-
-                {contact.twitter && (
-                    <p className="twitter">
-                        <a
-                            target="_blank"
-                            href={`https://twitter.com/${contact.twitter}`}
-                        >
-                            {contact.twitter}
-                        </a>
-                    </p>
-                )}
-
-                {contact.notes && <p className="notes">{contact.notes}</p>}
-
                 <div className="contactButtons">
                     <Form
-                        action="edit"
+                        action="save"
                         className="formEdit">
-                        <button type="submit" className="button">Edit</button>
+                        <button type="submit" className="button">Save</button>
                     </Form>
                     <Form
                         method="post"
@@ -79,8 +54,11 @@ export default function ContactPage() {
                         <button type="submit" className="button">Delete</button>
                     </Form>
                 </div>
+                <TextAreaAdapter value={description} onChange={onChange} />
             </div>
         </div>
     );
-}
+};
+
+export default ContactPage;
 
