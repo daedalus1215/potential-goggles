@@ -16,6 +16,7 @@ export interface Task {
     description: string;
     projectId: number;
     time: number;
+    favorite?: boolean;
 }
 
 export interface Params {
@@ -57,7 +58,7 @@ interface TypedResponse<T = any> extends Response {
 }
 export const getContacts = (): Contact[] => data;
 
-export const getContactsSearch = async (name: string): Promise<Task[]> => {
+export const getContactsSearch = async (name?: string): Promise<Task[]> => {
     const results = await fetch('http://localhost:3001/api/tasks') as TypedResponse<{items: Task[]}>;
     if (!results.ok) throw new Error('Something went wrong!');
     const tasks = await results.json();
@@ -87,9 +88,11 @@ export const deleteContact = (id: string) => {
     data = data.filter(contact => contact.id !== id);
 }
 
-export const getContact = (index: string): Contact => getContacts()
-    .find(contact => contact.id === index) as Contact;
+export const getContact = async (index: string): Promise<Task> => {
+    const tasks = await getContactsSearch();
 
+    return tasks.find((task:Task) => task._id === index) ?? {_id: index, description: '', projectId: 0, time: 0};
+}
 export const updateContact = async (contactId: string, updates: any) => {
     const otherContacts = data.filter(items => items.id !== contactId);
     otherContacts.push({ ...data?.find(item => item?.id === contactId), ...updates });
