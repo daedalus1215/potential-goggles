@@ -9,20 +9,15 @@ import {
 import { ActionInterface } from '../interfaces';
 
 
-export const action: ActionInterface = async ({ request, params }) => {
-    let formData = await request.formData();
-    return updateContact(params.contactId, {
-        favorite: formData.get('favorite') === 'true'
-    });
-};
+
 
 interface FavoriteProps {
     contact: Contact
 }
 
-const Favorite: React.FC<FavoriteProps> = ({ contact }) => {
+const Favorite: React.FC<FavoriteProps> = ({ contact: task }) => {
     const fetcher = useFetcher();
-    let favorite = contact.favorite;
+    const favorite = task?.favorite ?? false;
     return (
         <fetcher.Form method="post" className="favoriteForm">
             <button
