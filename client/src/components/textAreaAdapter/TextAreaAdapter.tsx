@@ -9,7 +9,7 @@ import { Editor } from '@tinymce/tinymce-react';
 
 type AdapterProps = {
   value: string;
-  onChange: (value: ChangeEvent<HTMLTextAreaElement>) => void;
+  onChange: (value: string) => void | ((value: ChangeEvent<HTMLTextAreaElement>) => void);
 };
 
 export const Adapter: React.FC<AdapterProps> = ({ value, onChange }) => {
@@ -48,6 +48,7 @@ export const Adapter: React.FC<AdapterProps> = ({ value, onChange }) => {
       test-dataid="textAreaAdapter"
       value={value}
       id="description"
+      name="description"
       init={init}
       onEditorChange={adapterChange}
     // {...rest}
@@ -56,13 +57,13 @@ export const Adapter: React.FC<AdapterProps> = ({ value, onChange }) => {
 };
 
 const TextAreaAdapter = ({value, onChange}:AdapterProps) => {
-  const comp = navigator.onLine ? (
-    <Adapter onChange={onChange} value={value}/>
-  ) : (
-    <textarea name="description" id="description" onChange={onChange} value={value} />
-  );
+  // const comp = navigator.onLine ? (
+    return <Adapter onChange={onChange} value={value}/>
+  // ) : (
+  //   <textarea name="description" id="description" onChange={onChange} value={value} />
+  // );
 
-  return comp;
+  // return comp;
 };
 
 export default TextAreaAdapter;
