@@ -10,13 +10,13 @@ import ContactPage, { contactLoader } from './pages/contactPage/ContactPage';
 import MainPage, { action as mainAction, mainLoader } from "./pages/MainPage";
 import EditContactPage, { action as editAction } from './pages/EditContactPage';
 import { action as favoriteAction } from './pages/contactPage/Favorite';
-import { destroy } from './actions';
+import { destroyContact, updateContactForm } from './actions';
 import IndexPage from './pages/IndexPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 
 //@TODO: Having an issue with catching form stuff
-import './index.css'  
+import './index.css'
 import './App.css';
 
 const queryClient = new QueryClient();
@@ -63,7 +63,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                   path: "contacts/:contactId",
                   loader: contactLoader,
                   element: <ContactPage />,
-                  action: favoriteAction
+                  action: updateContactForm
                 },
                 {
                   path: "contacts/:contactId/edit",
@@ -73,7 +73,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                 },
                 {
                   path: "contacts/:contactId/destroy",
-                  action: destroy,
+                  action: destroyContact,
                   errorElement: <div>Oops! There was an error.</div>,
                 },
               ]
