@@ -1,9 +1,10 @@
 /**
- * Moving towards this response. Moving this way of catching data loads 
- * on the front end. 
- * @param {Function} res express response callback
+ * @TODO: Can remove this. No need for it, since we are not wrapping responses anymore for redux store
+ * @param {*} res 
+ * @param {*} type 
+ * @returns 
  */
 module.exports = (res, type) => data => {
     //@TODO: Let's handle error responses
-    res.jsonp({ items: data, type });
+    res.jsonp(data);
 }
