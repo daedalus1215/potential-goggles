@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, MutableRefObject, RefObject } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 // interface AdapterProp {
 //   input: {
@@ -8,11 +8,12 @@ import { Editor } from '@tinymce/tinymce-react';
 // }
 
 type AdapterProps = {
+  reference: RefObject<Editor>;
   value: string;
-  onChange: (value: string) => void | ((value: ChangeEvent<HTMLTextAreaElement>) => void);
+  // onChange: (value: string) => void | ((value: ChangeEvent<HTMLTextAreaElement>) => void);
 };
 
-export const Adapter: React.FC<AdapterProps> = ({ value, onChange }) => {
+export const Adapter: React.FC<AdapterProps> = ({ reference, value }) => {
 
   const toolbar =
     'fullscreen | undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help';
@@ -24,7 +25,7 @@ export const Adapter: React.FC<AdapterProps> = ({ value, onChange }) => {
 
   const [screenWidth] = React.useState(window.innerWidth);
 
-  const adapterChange = onChange as unknown as (a: string, editor: any) => void;
+  // const adapterChange = onChange as unknown as (a: string, editor: any) => void;
 
   const init = screenWidth < 600
     ? {
@@ -46,19 +47,18 @@ export const Adapter: React.FC<AdapterProps> = ({ value, onChange }) => {
     <Editor
       data-test-id="text-area-adapter"
       test-dataid="textAreaAdapter"
-      value={value}
+      initialValue={value}
+      ref={reference}
       id="description"
-      name="description"
+      textareaName="description"
       init={init}
-      onEditorChange={adapterChange}
-    // {...rest}
     />
   );
 };
 
-const TextAreaAdapter = ({value, onChange}:AdapterProps) => {
+const TextAreaAdapter = ({ reference, value }: AdapterProps) => {
   // const comp = navigator.onLine ? (
-    return <Adapter onChange={onChange} value={value}/>
+  return <Adapter reference={reference} value={value} />
   // ) : (
   //   <textarea name="description" id="description" onChange={onChange} value={value} />
   // );
