@@ -1,0 +1,30 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  /* This is better for small screens, once min() is better supported */
+  /* grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); */
+  grid-gap: 10px;
+}
+
+.content {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background 400ms;
+  color: #fff;
+  background-color: #6200ee;
+  font-family: 'Roboto', sans-serif;
+  outline: 0;
+  border: 0;
+  border-radius: 6px;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  padding: 4px 5px;
+  width: 100px;
+  height: 100px;
+  font-size: .95rem;
+}
+
+.time {
+  width: 100%;
+}
