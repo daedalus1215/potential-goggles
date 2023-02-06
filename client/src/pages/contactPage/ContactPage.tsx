@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Form, useLoaderData } from "react-router-dom";
 import TextAreaAdapter from "../../components/textAreaAdapter/TextAreaAdapter";
 import { createContact, getContact, Params, Task } from "../../contacts";
@@ -15,7 +15,7 @@ export async function action() {
 
 const ContactPage = () => {
     const task = useLoaderData() as Task;
-    const [description, setDescription] = useState(task.description);
+    const descRef = useRef(null);
 
     if (!task) {
         throw new Response("", {
@@ -23,12 +23,6 @@ const ContactPage = () => {
             statusText: "Task not found!",
         });
     }
-
-    const onChange = (value: string) => {
-        setDescription(value);
-    }
-
-    
 
     return (
         <div id="contact" className="contact">
@@ -41,9 +35,8 @@ const ContactPage = () => {
                         {/* add projectId drop down */}
                         {/* add tags drop down */}
                         <input type="hidden" name="id" value={task._id} />
-                        <input type="hidden" name="description" value={description} />
                         <button type="submit" className="button">Save</button>
-                        <TextAreaAdapter value={description} onChange={onChange} />
+                        <TextAreaAdapter reference={descRef} value={task.description} />
                     </Form>
                 </div>
             </div>
