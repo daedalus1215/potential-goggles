@@ -1,6 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import styles from './Button.module.css';
+import useRippleEffect from './button/useRippleEffect/useRippleEffect';
 
 interface ButtonProps {
   className?: string;
@@ -14,16 +15,18 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ className, onClick, value, children, testid, title, type, disabled, ...rest }) => {
-  const clickCallback = useRippleEffect('button', onClick || (() => { }));
+  const clickCallback = useRippleEffect('button', onClick ?? (() => { }));
   return (
     <button
-      className={cn('btn', 'btn-default', 'navbar-btn', styles.baseBtn, className)}
+      className={cn(styles.baseBtn, className)}
       onClick={clickCallback}
       data-testid={testid}
       disabled={disabled}
       {...rest}>
-      {children}
-      {value}
+      <>
+        {children}
+        {value}
+      </>
     </button>
   );
 };
