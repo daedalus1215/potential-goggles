@@ -459,13 +459,13 @@
     "@tanstack/query-core" "4.22.0"
     use-sync-external-store "^1.2.0"
 
-"@tinymce/tinymce-react@^4.3.0":
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/@tinymce/tinymce-react/-/tinymce-react-4.3.0.tgz#5e2f5a58526a1bba9710f54f5fcf16abd4c742a1"
-  integrity sha512-iB4cUsYfcJL4NGuKhqCGYuTmFTje3nPxyPv1HxprTsp/YMGuuiiSNWrv3zwI31QX5Cn8qeq9MrMDnbxuRugHyg==
+"@tinymce/tinymce-react@^3.12.6":
+  version "3.14.0"
+  resolved "https://registry.yarnpkg.com/@tinymce/tinymce-react/-/tinymce-react-3.14.0.tgz#0883df0532b5916b41066f8dc55df09a2d1aa1d0"
+  integrity sha512-1X3Kl4DNVG/XNttlniQHvb9awX2MrD7XaFO2nWZ9SJrionIqWqKMLVl5GnJ8Br6KehNl97amxO8t3+5eLvfgxg==
   dependencies:
     prop-types "^15.6.2"
-    tinymce "^6.3.1"
+    tinymce "^5.5.1"
 
 "@types/classnames@^2.3.1":
   version "2.3.1"
@@ -1024,6 +1024,18 @@ minimist@1:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.7.tgz#daa1c4d91f507390437c6a8bc01078e7000c4d18"
   integrity sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==
 
+moment-timezone@^0.5.40:
+  version "0.5.40"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.40.tgz#c148f5149fd91dd3e29bf481abc8830ecba16b89"
+  integrity sha512-tWfmNkRYmBkPJz5mr9GVDn9vRlVZOTe6yqY92rFxiOdWXbjaR0+9LwQnZGGuNR63X456NqmEkbskte8tWL5ePg==
+  dependencies:
+    moment ">= 2.9.0"
+
+"moment@>= 2.9.0":
+  version "2.29.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
+  integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
+
 ms@2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
@@ -1350,10 +1362,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-tinymce@^6.3.1:
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-6.3.1.tgz#cc5cf2b9f702d429cf5d1d21ed62245d768bfc4f"
-  integrity sha512-+oCwXuTxAdJXVJ0130OxQz0JDNsqg3deuzgeUo8X5Vb27EzCJgXwO5eWvCxvkxpQo4oiHMVlM4tUIpTUHufHGQ==
+tinymce@^5.5.1:
+  version "5.10.7"
+  resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-5.10.7.tgz#d89d446f1962f2a1df6b2b70018ce475ec7ffb80"
+  integrity sha512-9UUjaO0R7FxcFo0oxnd1lMs7H+D0Eh+dDVo5hKbVe1a+VB0nit97vOqlinj+YwgoBDt6/DSCUoWqAYlLI8BLYA==
 
 to-fast-properties@^2.0.0:
   version "2.0.0"
