@@ -4,7 +4,6 @@ import {
 } from 'react-router-dom';
 import {
     Contact,
-    updateContact
 } from '../../contacts';
 import { ActionInterface } from '../interfaces';
 

@@ -69,20 +69,20 @@ export default function MainPage() {
                 <nav className="navbar">
                     {tasks.length ? (
                         <ul>
-                            {tasks.map((contact: any) => (
-                                <li key={contact._id}>
+                            {tasks.map((task: any) => (
+                                <li key={task._id}>
                                     <NavLink
-                                        key={contact.id}
-                                        to={`contacts/${contact._id}`}
+                                        key={task.id}
+                                        to={`task/${task._id}`}
                                         className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""}>
-                                        {contact?.title ? (
+                                        {task?.title ? (
                                             <>
-                                                {contact.title}
+                                                {task.title}
                                             </>
                                         ) : (
                                             <i>No Name</i>
                                         )}{" "}
-                                        {contact.favorite && <span>★</span>}
+                                        {task.favorite && <span>★</span>}
                                     </NavLink>
                                 </li>
                             ))}
