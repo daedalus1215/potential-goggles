@@ -15,6 +15,7 @@ export async function action() {
     return { contact };
 }
 
+//@TODO: Move this
 export async function mainLoader({ request }: any) {
     console.log('mainLoader')
     const url = new URL(request.url);

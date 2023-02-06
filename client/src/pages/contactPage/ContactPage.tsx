@@ -28,33 +28,24 @@ const ContactPage = () => {
         setDescription(value);
     }
 
+    
+
     return (
         <div id="contact" className="contact">
             <div className="contactRight">
                 <div className="contactButtons">
                     <Form
-                        action="save"
-                        className="formEdit">
-                        <button type="submit" className="button">Save</button>
-                    </Form>
-                    <Form
                         method="post"
-                        action="destroy"
-                        className="formDelete"
-                        onSubmit={(event) => {
-                            if (
-                                !confirm(
-                                    "Please confirm you want to delete this record."
-                                )
-                            ) {
-                                event.preventDefault();
-                            }
-                        }}
-                    >
-                        <button type="submit" className="button">Delete</button>
+                        action={`/contacts/${task._id}`}
+                        className="formEdit">
+                        {/* add projectId drop down */}
+                        {/* add tags drop down */}
+                        <input type="hidden" name="id" value={task._id} />
+                        <input type="hidden" name="description" value={description} />
+                        <button type="submit" className="button">Save</button>
+                        <TextAreaAdapter value={description} onChange={onChange} />
                     </Form>
                 </div>
-                <TextAreaAdapter value={description} onChange={onChange} />
             </div>
         </div>
     );
