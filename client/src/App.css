@@ -229,3 +229,8 @@ textarea {
 .editContactPgeSubmit {
   margin-right: 10px;
 }
+
+/* Suppress the toast on tinyMCE */
+.tox-notification.tox-notification--in.tox-notification--warning {
+  display: none;
+}
