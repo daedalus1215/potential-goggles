@@ -1,4 +1,6 @@
 import { isHtmlElement } from "react-router-dom/dist/dom";
+import fetchApiData from "../utils/fetchApiData";
+import getCurrentDateTimeEstFormat from "../utils/getCurrentDateTimeEstFormat";
 
 export interface Contact {
     id: string;
@@ -59,16 +61,16 @@ interface TypedResponse<T = any> extends Response {
 export const getContacts = (): Contact[] => data;
 
 export const getContactsSearch = async (name?: string): Promise<Task[]> => {
-    const results = await fetch('http://localhost:3001/api/tasks') as TypedResponse<{items: Task[]}>;
+    const results = await fetch('http://localhost:3001/api/tasks') as TypedResponse<Task[]>;
     if (!results.ok) throw new Error('Something went wrong!');
     const tasks = await results.json();
 
     if (!name) {
-        return tasks.items;
+        return tasks;
     } else {
         console.log('name', name);
 
-        return tasks.items.filter((task: Task) => task.description.toLowerCase().includes(name.toLowerCase()));
+        return tasks.filter((task: Task) => task.description.toLowerCase().includes(name.toLowerCase()));
     }
 
 }
@@ -89,13 +91,7 @@ export const deleteContact = (id: string) => {
 }
 
 export const getContact = async (index: string): Promise<Task> => {
-    const tasks = await getContactsSearch();
+    const task = await fetchApiData<Task>(`http://localhost:3001/api/task/${index}`, {});
+    return task;
+}
 
-    return tasks.find((task:Task) => task._id === index) ?? {_id: index, description: '', projectId: 0, time: 0};
-}
-export const updateContact = async (contactId: string, updates: any) => {
-    const otherContacts = data.filter(items => items.id !== contactId);
-    otherContacts.push({ ...data?.find(item => item?.id === contactId), ...updates });
-    data = otherContacts;
-    return data;
-}
