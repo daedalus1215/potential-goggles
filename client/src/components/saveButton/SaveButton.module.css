@@ -1,0 +1,21 @@
+.submit,
+.submit:hover {
+  align-self: flex-end;
+  background-color: #2d73f5;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  align-self: flex-end;
+  font-size: 20px;
+  width: 45px;
+  height: 45px;
+  margin: 10px 5px;
+}
+
+.submit:hover {
+  background-color: #275ab9;
+}
+
+.submit:disabled {
+  background-color: rgba(45, 115, 245, 0.45);
+}
