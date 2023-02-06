@@ -1,6 +1,6 @@
 import { redirect } from "react-router-dom";
-import { deleteContact, Params } from "./contacts";
-import { ActionInterface } from "./pages/interfaces";
+import { deleteContact } from "./contacts";
+import { ActionInterface, Params } from "./pages/interfaces";
 import fetchApiData from "./utils/fetchApiData";
 import getCurrentDateTimeEstFormat from "./utils/getCurrentDateTimeEstFormat";
 
@@ -32,7 +32,7 @@ const updateTask = async (updates: any) => {
     const { _id, description, projectId, tags } = updates;
     const dateFormatted = getCurrentDateTimeEstFormat();
     // const timeTask = hydrateTaskForm(_id, allTags, project, description, dateFormatted, time, tags);
-    await fetchApiData('http://localhost:3001/api/task',
+    return await fetchApiData('http://localhost:3001/api/task',
         {
             method: 'PUT',
             body: {
