@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
 import TaskForm from './pages/taskPage/TaskForm';
-import ContactPage, { contactLoader } from './pages/contactPage/ContactPage';
+import TaskPage, { contactLoader } from './pages/taskPage/TaskPage';
 import MainPage, { action as mainAction, mainLoader } from "./pages/MainPage";
 // import EditContactPage, { action as editAction } from './pages/EditContactPage';
 import { destroyContact, updateTaskForm } from './actions';
@@ -36,42 +36,12 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                 { index: true, element: <IndexPage /> },
                 {
                   path: "task/:taskId",
-                  element: <TaskForm />,
-                  loader: async (request) => {
-                    window.console.log('request', request.params.taskId)
-                    return await fetch(`http://localhost:3001/api/task/${request.params.taskId}`)
-                  },
-                  errorElement: <div>Oops! There was an error.</div>,
-                  action: async ({ request, params }) => {
-                    window.console.log('request.action', request)
-                    window.console.log('method.action', params)
-
-                    const data = Object.fromEntries(await request.formData());
-                    window.console.log('formData', data);
-                    let description = data.description;
-                    window.console.log('description', description);
-
-                    switch (request.method) {
-                      case "PUT": {
-                        return {};
-                      }
-                    }
-                  }
-                },
-                {
-                  path: "contacts/:contactId",
                   loader: contactLoader,
-                  element: <ContactPage />,
+                  element: <TaskPage />,
                   action: updateTaskForm,
                 },
-                // {
-                //   path: "contacts/:contactId/edit",
-                //   element: <EditContactPage />,
-                //   loader: contactLoader,
-                //   action: editAction
-                // },
                 {
-                  path: "contacts/:contactId/destroy",
+                  path: "task/:taskId/destroy",
                   action: destroyContact,
                   errorElement: <div>Oops! There was an error.</div>,
                 },

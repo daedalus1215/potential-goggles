@@ -7,7 +7,7 @@ import getCurrentDateTimeEstFormat from "./utils/getCurrentDateTimeEstFormat";
 
 export async function destroyContact({ params }: Params) {
     // throw new Error("oh dang!");
-    deleteContact(params.contactId);
+    deleteContact(params.taskId);
     return redirect("/");
 }
 
@@ -16,6 +16,8 @@ export const updateTaskForm: ActionInterface = async ({ request, params }) => {
 
     console.log('request', request);
     console.log('params', params);
+    console.log('description', formData.get("description"));
+
     // console.log('formData', formData);
     // console.log('formData', formData.get("description"));
     return updateTask({
