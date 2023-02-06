@@ -1,31 +1,5 @@
-import { isHtmlElement } from "react-router-dom/dist/dom";
+import { Contact, Task, TypedResponse } from "../pages/interfaces";
 import fetchApiData from "../utils/fetchApiData";
-import getCurrentDateTimeEstFormat from "../utils/getCurrentDateTimeEstFormat";
-
-export interface Contact {
-    id: string;
-    first: string;
-    last: string;
-    avatar: string;
-    twitter: string;
-    notes: string;
-    favorite: boolean;
-};
-
-export interface Task {
-    _id: string;
-    title?: string;
-    description: string;
-    projectId: number;
-    time: number;
-    favorite?: boolean;
-}
-
-export interface Params {
-    params: {
-        contactId: string
-    };
-}
 
 let data: Contact[] = [{
     id: 'dsd',
@@ -46,18 +20,7 @@ let data: Contact[] = [{
     favorite: true,
 }];
 
-/**
- * https://dev.to/iamandrewluca/typed-fetch-response-in-typescript-1eh1
- */
-interface TypedResponse<T = any> extends Response {
-    /**
-     * this will override `json` method from `Body` that is extended by `Response`
-     * interface Body {
-     *     json(): Promise<any>;
-     * }
-     */
-    json<P = T>(): Promise<P>
-}
+
 export const getContacts = (): Contact[] => data;
 
 export const getContactsSearch = async (name?: string): Promise<Task[]> => {
@@ -92,6 +55,7 @@ export const deleteContact = (id: string) => {
 
 export const getContact = async (index: string): Promise<Task> => {
     const task = await fetchApiData<Task>(`http://localhost:3001/api/task/${index}`, {});
+    console.log('task', task)
     return task;
 }
 
