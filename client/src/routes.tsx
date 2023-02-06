@@ -8,9 +8,8 @@ import ErrorPage from "./pages/ErrorPage";
 import TaskForm from './pages/taskPage/TaskForm';
 import ContactPage, { contactLoader } from './pages/contactPage/ContactPage';
 import MainPage, { action as mainAction, mainLoader } from "./pages/MainPage";
-import EditContactPage, { action as editAction } from './pages/EditContactPage';
-import { action as favoriteAction } from './pages/contactPage/Favorite';
-import { destroyContact, updateContactForm } from './actions';
+// import EditContactPage, { action as editAction } from './pages/EditContactPage';
+import { destroyContact, updateTaskForm } from './actions';
 import IndexPage from './pages/IndexPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -63,14 +62,14 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                   path: "contacts/:contactId",
                   loader: contactLoader,
                   element: <ContactPage />,
-                  action: updateContactForm
+                  action: updateTaskForm,
                 },
-                {
-                  path: "contacts/:contactId/edit",
-                  element: <EditContactPage />,
-                  loader: contactLoader,
-                  action: editAction
-                },
+                // {
+                //   path: "contacts/:contactId/edit",
+                //   element: <EditContactPage />,
+                //   loader: contactLoader,
+                //   action: editAction
+                // },
                 {
                   path: "contacts/:contactId/destroy",
                   action: destroyContact,
