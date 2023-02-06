@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 import { Form, useLoaderData } from "react-router-dom";
-import { TopBar } from "../../components";
+import { Button, TopBar } from "../../components";
+import ms from 'pretty-ms';
 import SaveButton from "../../components/saveButton/SaveButton";
 import TextAreaAdapter from "../../components/textAreaAdapter/TextAreaAdapter";
 import { createContact, getContact } from "../../contacts";
@@ -8,6 +9,7 @@ import { Params, Task } from "../interfaces";
 
 import DateTimeButton from "./dateTimePage/DateTimeButton";
 import Timer from "./timer/Timer";
+import classNames from "classnames";
 
 export async function contactLoader({ params }: Params) {
     const contact = await getContact(params.taskId);
@@ -29,7 +31,7 @@ const TaskPage = () => {
             statusText: "Task not found!",
         });
     }
-
+    const original = (task?.time && ms(task.time, { secondsDecimalDigits: 2 })) ?? 0
     return (
         <div id="contact" className="contact">
             <div className="contactRight">
@@ -38,7 +40,7 @@ const TaskPage = () => {
                         <>
                             {/* <SaveButton name={FORM_ID} /> */}
                             {/* <DateTimeButton taskId={taskId} /> */}
-                            <Timer task={task} />
+                            <div data-test-id="fractionHour">{`Hours: ${original}`}</div>
                         </>
                     </TopBar>
                     <Form
@@ -48,7 +50,7 @@ const TaskPage = () => {
                         {/* add projectId drop down */}
                         {/* add tags drop down */}
                         <input type="hidden" name="id" value={task._id} />
-                        <button type="submit" className="button">Save</button>
+                        <Button type="submit" className={classNames("bi bi-save")}/>
                         <TextAreaAdapter reference={descRef} value={task.description} />
                     </Form>
                 </div>

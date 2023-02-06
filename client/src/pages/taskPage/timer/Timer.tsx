@@ -8,11 +8,11 @@ import styles from './Timer.module.css';
 const Timer = ({ task }) => {
   const [isActive, setIsActive] = useState(false);
   const [time, setTime] = useState(task.time);
-  const setTimeCallback = useCallback(times => setTime(times), [setTime]);
+  const setTimeCallback = useCallback((times:number) => setTime(times), [setTime]);
   useUpdateCurrentTime(time, isActive, setTimeCallback);
-  const msTime = (time && ms(time, { secondsDecimalDigits: 2 })) || 0;
+  const msTime = (time && ms(time, { secondsDecimalDigits: 2 })) ?? 0;
 
-  const original = (task?.time && ms(task.time, { secondsDecimalDigits: 2 })) || 0
+  const original = (task?.time && ms(task.time, { secondsDecimalDigits: 2 })) ?? 0
   return <TimerButtons
     time={time}
     setTime={setTimeCallback}
