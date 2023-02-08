@@ -1,21 +1,23 @@
 import React from 'react';
 import moment from 'moment-timezone';
-import { useRippleEffectById } from 'hooks';
+import useRippleEffectById from '../../../../components/button/useRippleEffect/useRippleEffectById';
 import styles from './DateTimeListView.module.css';
-import { EditDateTimeInterface, DateTimeInterface } from 'interfaces/pages/tasks/Task';
+import { DateTime } from '../../../interfaces';
 
 const myTimezone = 'America/New_York';
 const myDatetimeFormat = 'YYYY-MM-DD hh:mm:ss a';
 
 interface DateTimeItemInterface {
-  dateTime: DateTimeInterface;
-  setEditDateTime: (dateTime: EditDateTimeInterface) => void;
+  dateTime: DateTime;
+  setEditDateTime: (dateTime: DateTime) => void;
 }
 
 const DateTimeItem: React.FC<DateTimeItemInterface> = ({ dateTime, setEditDateTime }) => {
-  const myDatetimeString = moment(dateTime.date).tz(myTimezone).format(myDatetimeFormat);
+  const {id, date, time } = dateTime;
 
-  const onClick = () => setEditDateTime({ id: dateTime.id, date: dateTime.date, minutes: dateTime.time });
+  const myDatetimeString = moment(date).tz(myTimezone).format(myDatetimeFormat);
+
+  const onClick = () => setEditDateTime({ id, date, time });
   const rippleClick = useRippleEffectById(dateTime.id, onClick);
 
   return (
