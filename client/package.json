@@ -16,11 +16,13 @@
     "@tinymce/tinymce-react": "^3.12.6",
     "@types/classnames": "^2.3.1",
     "classname": "^0.0.0",
+    "final-form": "^4.20.9",
     "moment-timezone": "^0.5.40",
     "path": "^0.12.7",
     "pretty-ms": "^8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-final-form": "^6.5.9",
     "react-router-dom": "^6.6.1",
     "type-coverage": "^2.24.1"
   },
