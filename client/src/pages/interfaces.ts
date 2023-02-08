@@ -12,6 +12,9 @@ export interface Contact {
     notes: string;
     favorite: boolean;
 };
+
+export interface DateTime { id:string, date: string, time: string }
+
 export interface Task {
     _id: string;
     title?: string;
@@ -19,7 +22,9 @@ export interface Task {
     projectId: number;
     time: number;
     favorite?: boolean;
+    dateTimes: DateTime[];
 }
+
 export interface Params {
     params: {
         taskId: string
