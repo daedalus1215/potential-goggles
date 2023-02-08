@@ -36,21 +36,25 @@ const TaskPage = () => {
         <div id="contact" className="contact">
             <div className="contactRight">
                 <div className="contactButtons">
-                    <TopBar>
+                    {/* <TopBar>
                         <>
-                            {/* <SaveButton name={FORM_ID} /> */}
-                            {/* <DateTimeButton taskId={taskId} /> */}
-                            <div data-test-id="fractionHour">{`Hours: ${original}`}</div>
+                            { <SaveButton name={FORM_ID} /> }
+                            {  }
                         </>
-                    </TopBar>
+                    </TopBar> */}
                     <Form
                         method="post"
                         action={`/task/${task._id}`}
                         className="formEdit">
                         {/* add projectId drop down */}
                         {/* add tags drop down */}
+                        <TopBar>
+                            <Button className="bi bi-save" type="submit" />
+                            <DateTimeButton task={task} />
+                            <div data-test-id="fractionHour">{`Hours: ${original}`}</div>
+                        </TopBar>
                         <input type="hidden" name="id" value={task._id} />
-                        <Button type="submit" className={classNames("bi bi-save")}/>
+
                         <TextAreaAdapter reference={descRef} value={task.description} />
                     </Form>
                 </div>
