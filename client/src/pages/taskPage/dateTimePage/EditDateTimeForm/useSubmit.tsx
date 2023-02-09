@@ -1,6 +1,3 @@
-import { EditDateTimeInterface } from 'interfaces/pages/tasks/Task';
-import { useDispatch } from 'react-redux';
-import { putDateTime } from 'redux/actionCreators/actions';
 
 interface SubmitProp {
   id: string;
@@ -9,7 +6,7 @@ interface SubmitProp {
 }
 
 const useSubmit = (taskId: String, setIsShowingEditDateTimeForm: (isShowing: boolean) => void): ((editDateTime: EditDateTimeInterface) => void) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   return ({ id, date, minutes }: SubmitProp) => {
     const config = {
       body: {
@@ -21,9 +18,10 @@ const useSubmit = (taskId: String, setIsShowingEditDateTimeForm: (isShowing: boo
       dateTimeId: id,
     };
 
-    dispatch(putDateTime(config));
+    //@TODO: Invoke an action and persist the Date Time
+    // dispatch(putDateTime(config));
     setIsShowingEditDateTimeForm(false);
-    window.location.reload();
+    // window.location.reload();
   };
 };
 
