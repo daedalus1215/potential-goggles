@@ -1,18 +1,17 @@
 import React from 'react';
 import { displayMsInFractionalHourFormat } from '../../../../utils/';
-import { DateTime, Task } from '../../../interfaces';
+import { Task } from '../../../interfaces';
 import DateTimeListView from '../dateTimeListView/DateTimeListView';
 import EditDateTimeForm from '../EditDateTimeForm/EditDateTimeForm';
 import styles from './DateTimePage.module.css';
 
 interface DateTimePageProp {
   setIsShowing: (isShowing: boolean) => void;
-  task: Task
+  task: Task;
 }
 
 const DateTimePage: React.FC<DateTimePageProp> = ({ task, setIsShowing }) => {
-  const [editDateTime, setEditDateTime] = React.useState({ id: '', date: '', minutes: "00:00" });
-  // const { dateTimes, time } = useTaskByIdSelector();
+  const [editDateTime, setEditDateTime] = React.useState({ id: '', date: '', time: "00:00" });
   const millisecondsInFractionalHourFormat = displayMsInFractionalHourFormat(task.time);
 
   return (
@@ -23,7 +22,7 @@ const DateTimePage: React.FC<DateTimePageProp> = ({ task, setIsShowing }) => {
           <div className={styles.dateTimeTotal}> Total: {millisecondsInFractionalHourFormat} hrs</div>
         </>
       ) : (
-        <EditDateTimeForm taskId={task._id} editDateTime={editDateTime} setIsShowingEditDateTimeForm={setIsShowing} />
+        <EditDateTimeForm task={task} editDateTime={editDateTime} setIsShowingEditDateTimeForm={setIsShowing} />
       )}
     </div>
   );
