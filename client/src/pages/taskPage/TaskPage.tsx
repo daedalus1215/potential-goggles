@@ -42,6 +42,7 @@ const TaskPage = () => {
                             {  }
                         </>
                     </TopBar> */}
+                    <DateTimeButton task={task} />
                     <Form
                         method="post"
                         action={`/task/${task._id}`}
@@ -49,9 +50,10 @@ const TaskPage = () => {
                         {/* add projectId drop down */}
                         {/* add tags drop down */}
                         <TopBar>
-                            <Button className="bi bi-save" type="submit" />
-                            <DateTimeButton task={task} />
-                            <div data-test-id="fractionHour">{`Hours: ${original}`}</div>
+                            <>
+                                <Button className="bi bi-save" type="submit" />
+                                <div data-test-id="fractionHour">{`Hours: ${original}`}</div>
+                            </>
                         </TopBar>
                         <input type="hidden" name="id" value={task._id} />
 
