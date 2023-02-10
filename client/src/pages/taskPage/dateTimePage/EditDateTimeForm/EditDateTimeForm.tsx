@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import cn from 'classnames';
 import { Button } from '../../../../components';
-import { DateTime } from '../../../interfaces';
+import { DateTime, Task } from '../../../interfaces';
 import { formatMinsAndSecsForDisplay } from '../../../../utils';
 
 import styles from './EditDateTimeForm.module.css';
@@ -10,24 +10,23 @@ import { Form } from 'react-router-dom';
 
 interface EditDateTimeFormProp {
   editDateTime: DateTime;
-  taskId: string;
+  task: Task;
   setIsShowingEditDateTimeForm: (setIsShowing: boolean) => void;
 }
 
-const EditDateTimeForm: React.FC<EditDateTimeFormProp> = ({ editDateTime, taskId, setIsShowingEditDateTimeForm }) => {
+const EditDateTimeForm: React.FC<EditDateTimeFormProp> = ({ editDateTime, task, setIsShowingEditDateTimeForm }) => {
   const minsAndSecs = formatMinsAndSecsForDisplay(editDateTime.time);
-  //@TODO: Replace with new info
-  // const { setInfoFlashMessage } = useFlashMessageContext();
 
-  useEffect(() => {
-    // setInfoFlashMessage('Save note before adjusting time, might lose notes.');
-  }, []);
-
-  // @TODO: might need an action on this form.
   return (
-    <Form method='post'>
+    <Form
+      method='post'
+      //@TODO: tie in the action here!
+      // action={}
+      className="formEditDateTime"
+    >
       <h2>Edit Date Time</h2>
       <input hidden={true} name="id" value={editDateTime.id} />
+      <input hidden={true} name="taskId" value={task._id} />
       <div className={styles.field}>
         {/* <Field name="date" validate={utcFormatValidator}> */}
         <div className={styles.field}>
