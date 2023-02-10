@@ -1,11 +1,11 @@
 import React from 'react';
-import { DateTimeInterface, EditDateTimeInterface } from 'interfaces/pages/tasks/Task';
+import { DateTime } from '../../../interfaces';
 import DateTimeItem from './DateTimeItem';
 import styles from './DateTimeListView.module.css';
 
 interface DateTimeListViewProp {
-  dateTimes: DateTimeInterface[];
-  setEditDateTime: (dateTime: EditDateTimeInterface) => void;
+  dateTimes: DateTime[];
+  setEditDateTime: (dateTime: DateTime) => void;
 }
 
 const DateTimeListView: React.FC<DateTimeListViewProp> = ({ dateTimes, setEditDateTime }) => {
