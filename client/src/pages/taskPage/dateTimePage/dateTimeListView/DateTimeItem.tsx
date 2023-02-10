@@ -13,15 +13,22 @@ interface DateTimeItemInterface {
 }
 
 const DateTimeItem: React.FC<DateTimeItemInterface> = ({ dateTime, setEditDateTime }) => {
-  const {id, date, time } = dateTime;
+  const { id, date, time } = dateTime;
 
   const myDatetimeString = moment(date).tz(myTimezone).format(myDatetimeFormat);
 
   const onClick = () => setEditDateTime({ id, date, time });
   const rippleClick = useRippleEffectById(dateTime.id, onClick);
 
+  const key = dateTime.id + dateTime.time;
+  
   return (
-    <div id={dateTime.id} className={styles.content} key={dateTime.id + dateTime.time} onClick={rippleClick} data-testid="DateTimeItem">
+    <div
+      id={dateTime.id}
+      className={styles.content}
+      key={key}
+      onClick={rippleClick}
+      data-testid="DateTimeItem">
       <input type="hidden" value={dateTime.id} name="id" />
       <div className={styles.date}>Date: {myDatetimeString}</div>
       <div className={styles.time}>Mins: {dateTime.time}</div>
