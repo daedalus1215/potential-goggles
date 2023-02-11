@@ -1,25 +1,10 @@
-import { useMemo, useRef, useState } from "react";
+import { useRef } from "react";
 import { Form, useLoaderData } from "react-router-dom";
 import { Button, TopBar } from "../../components";
 import ms from 'pretty-ms';
-import SaveButton from "../../components/saveButton/SaveButton";
 import TextAreaAdapter from "../../components/textAreaAdapter/TextAreaAdapter";
-import { createContact, getContact } from "../../contacts";
-import { Params, Task } from "../interfaces";
-
+import { Task } from "../interfaces";
 import DateTimeButton from "./dateTimePage/DateTimeButton";
-import Timer from "./timer/Timer";
-import classNames from "classnames";
-
-export async function contactLoader({ params }: Params) {
-    const contact = await getContact(params.taskId);
-    return contact;
-}
-
-export async function action() {
-    const contact = await createContact();
-    return contact;
-}
 
 const TaskPage = () => {
     const task = useLoaderData() as Task;
@@ -47,8 +32,6 @@ const TaskPage = () => {
                         method="post"
                         action={`/task/${task._id}`}
                         className="formEdit">
-                        {/* add projectId drop down */}
-                        {/* add tags drop down */}
                         <TopBar>
                             <>
                                 <Button className="bi bi-save" type="submit" />
