@@ -10,7 +10,7 @@ module.exports = async (taskId, dateTime) => {
             return {
                 _id: dT._id,
                 date: dateTime.date,
-                time: minutesToMilliseconds(dateTime.minutes),
+                time: minutesToMilliseconds(dateTime.time),
             };
         } else {
             return dT;
