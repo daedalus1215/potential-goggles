@@ -1,25 +1,32 @@
 import { redirect } from "react-router-dom";
-import { deleteContact } from "./contacts";
-import { ActionInterface, Params } from "./pages/interfaces";
-import fetchApiData from "./utils/fetchApiData";
-import getCurrentDateTimeEstFormat from "./utils/getCurrentDateTimeEstFormat";
+import { ActionInterface, Params, Task } from "../pages/interfaces";
+import fetchApiData from "../utils/fetchApiData";
+import getCurrentDateTimeEstFormat from "../utils/getCurrentDateTimeEstFormat";
 
+// export async function destroyContact({ params }: Params) {
+//     // throw new Error("oh dang!");
+//     deleteContact(params.taskId);
+//     return redirect("/");
+// }
 
-export async function destroyContact({ params }: Params) {
-    // throw new Error("oh dang!");
-    deleteContact(params.taskId);
-    return redirect("/");
+export const fetchTask = async (index: string): Promise<Task> => {
+    const task = await fetchApiData<Task>(`http://localhost:3001/api/task/${index}`, {});
+    console.log('task', task)
+    return task;
 }
 
-export const updateTaskForm: ActionInterface = async ({ request, params }) => {
+export const updateDateTime: ActionInterface = async ({request, params}) => {
     let formData = await request.formData();
+    console.log('formData', formData);
+};
 
+export const updateTaskForm: ActionInterface = async ({ request, params }) => {
     console.log('request', request);
     console.log('params', params);
-    console.log('description', formData.get("description"));
 
-    // console.log('formData', formData);
-    // console.log('formData', formData.get("description"));
+    let formData = await request.formData();
+    console.log('formData', formData)
+    console.log('formId', formData.get('formId'))
     return updateTask({
         _id: formData.get("id"),
         description: formData.get("description"),
