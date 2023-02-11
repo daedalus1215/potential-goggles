@@ -7,23 +7,9 @@ import {
     useSubmit
 } from "react-router-dom";
 import cn from 'classnames';
-import { createContact, getContactsSearch, Task } from "../contacts";
+import { getContactsSearch } from "../contacts";
 import { useEffect } from "react";
-
-export async function action() {
-    const contact = await createContact();
-    return { contact };
-}
-
-//@TODO: Move this
-export async function mainLoader({ request }: any) {
-    console.log('mainLoader')
-    const url = new URL(request.url);
-    const q = url.searchParams.get("q") as string;
-    console.log('q', q)
-    const tasks = await getContactsSearch(q);
-    return { tasks, q };
-}
+import { Task } from "./interfaces";
 
 export default function MainPage() {
     const { tasks, q } = useLoaderData() as { tasks: Task[], q: string };
