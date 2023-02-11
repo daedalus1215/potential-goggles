@@ -5,11 +5,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
-import TaskForm from './pages/taskPage/TaskForm';
-import TaskPage, { contactLoader } from './pages/taskPage/TaskPage';
-import MainPage, { action as mainAction, mainLoader } from "./pages/MainPage";
+import TaskPage from './pages/taskPage/TaskPage';
+import MainPage from "./pages/MainPage";
 // import EditContactPage, { action as editAction } from './pages/EditContactPage';
-import { destroyContact, updateTaskForm } from './actions';
+import { updateTaskForm } from './actions/actions';
 import IndexPage from './pages/IndexPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -17,6 +16,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 //@TODO: Having an issue with catching form stuff
 import './index.css'
 import './App.css';
+import DateTimePage from './pages/taskPage/dateTimePage/page/DateTimePage';
+import { searchLoader, taskLoader } from './actions/loaders';
 
 const queryClient = new QueryClient();
 
@@ -27,7 +28,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         {
           path: "/",
           element: <MainPage />,
-          loader: mainLoader,
+          loader: searchLoader,
           errorElement: <ErrorPage />,
           children: [
             {
@@ -36,14 +37,15 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                 { index: true, element: <IndexPage /> },
                 {
                   path: "task/:taskId",
-                  loader: contactLoader,
+                  loader: taskLoader,
                   element: <TaskPage />,
                   action: updateTaskForm,
                 },
                 {
-                  path: "task/:taskId/destroy",
-                  action: destroyContact,
-                  errorElement: <div>Oops! There was an error.</div>,
+                  path: "date-time/:taskId",
+                  loader: taskLoader,
+                  element: <DateTimePage />,
+                  action: updateTaskForm,
                 },
               ]
             }
