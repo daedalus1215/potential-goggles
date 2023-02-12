@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import cn from 'classnames';
-import { Button } from '../../components';
+import { Button, SaveButton } from '../../components';
 import { DateTime, Task } from '../../interfaces';
 import { formatMinsAndSecsForDisplay } from '../../utils';
 import { minSecValidator, utcFormatValidator } from '../../utils/forms/validators';
@@ -37,11 +37,11 @@ const EditDateTimeForm: React.FC = () => {
       <input hidden={true} name="id" value={dateTime.id} />
 
       {/* <label htmlFor="date">Date</label> */}
-      <input className={styles.input} type="text" id="date" />
+      <input className={styles.input} type="text" id="date" defaultValue={dateTime.date}/>
 
       {/* <label htmlFor="minutes">Minutes</label> */}
-      <input className={styles.input} type="text" id="minutes" />
-      <Button type="submit" className={styles.submit} value="Submit Form" />
+      <input className={styles.input} type="text" id="minutes" defaultValue={minsAndSecs}/>
+      <SaveButton />  
     </Form>
   );
 };
