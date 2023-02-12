@@ -1,5 +1,5 @@
 import { redirect } from "react-router-dom";
-import { ActionInterface, Params, Task } from "../pages/interfaces";
+import { ActionInterface, Params, Task } from "../interfaces";
 import fetchApiData from "../utils/fetchApiData";
 import getCurrentDateTimeEstFormat from "../utils/getCurrentDateTimeEstFormat";
 

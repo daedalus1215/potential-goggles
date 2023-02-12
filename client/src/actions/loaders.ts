@@ -1,5 +1,6 @@
+import { parseMutationArgs } from "@tanstack/react-query";
 import { getContactsSearch } from "../contacts";
-import { Params } from "../pages/interfaces";
+import { DateParams, Params, DateTime } from "../interfaces";
 import { fetchTask } from "./actions";
 
 //@TODO: Move this
@@ -12,8 +13,18 @@ export async function searchLoader({ request }: any) {
     return { tasks, q };
 }
 
-
 export async function taskLoader({ params }: Params) {
-    const contact = await fetchTask(params.taskId);
-    return contact;
+    const task = await fetchTask(params.taskId);
+    return task;
+}
+
+export async function dateTimeLoader({ params }: DateParams) {
+    const task = await fetchTask(params.taskId);
+
+    return {
+        dateTime: task.dateTimes.filter(dateTime => dateTime.id === params.dateTimeId)?.[0] ?? {
+            id: '', date: '', time: '',
+            taskId: task._id
+        }
+    }
 }
