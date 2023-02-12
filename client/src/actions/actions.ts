@@ -17,7 +17,13 @@ export const fetchTask = async (index: string): Promise<Task> => {
 
 export const updateDateTime: ActionInterface = async ({request, params}) => {
     let formData = await request.formData();
-    console.log('formData', formData);
+    console.log('updateDateTime', formData);
+    const id = formData.get("id");
+    const date = formData.get("date");
+    const minutes = formData.get("minutes");
+    console.log('id', id);
+    console.log('date', date);
+    console.log('minutes', minutes);
 };
 
 export const updateTaskForm: ActionInterface = async ({ request, params }) => {
