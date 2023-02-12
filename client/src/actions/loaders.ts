@@ -11,20 +11,19 @@ export async function searchLoader({ request }: any) {
     console.log('q', q)
     const tasks = await getContactsSearch(q);
     return { tasks, q };
-}
+};
 
 export async function taskLoader({ params }: Params) {
     const task = await fetchTask(params.taskId);
     return task;
-}
+};
 
 export async function dateTimeLoader({ params }: DateParams) {
     const task = await fetchTask(params.taskId);
 
     return {
-        dateTime: task.dateTimes.filter(dateTime => dateTime.id === params.dateTimeId)?.[0] ?? {
-            id: '', date: '', time: '',
-            taskId: task._id
-        }
+        dateTime: task.dateTimes
+            .find(dateTime => dateTime.id === params.dateTimeId),
+        taskId: params.taskId
     }
 }
