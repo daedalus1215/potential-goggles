@@ -16,6 +16,7 @@ interface EditDateTimeFormProp {
 const EditDateTimeForm: React.FC = () => {
   const { dateTime, taskId } = useLoaderData() as EditDateTimeFormProp;
 
+  console.log('taskId', taskId)
   const minsAndSecs = formatMinsAndSecsForDisplay(dateTime.time);
 
   if (!dateTime) {
@@ -29,7 +30,7 @@ const EditDateTimeForm: React.FC = () => {
     <Form
       method='post'
       //@TODO: tie in the action here!
-      action={`/task/${dateTime.id}`}
+      action={`/date-time/${taskId}/edit/${dateTime.id}`}
       className={styles.form}
     >
       <h2 className={styles.h2}>Edit Date Time</h2>
@@ -37,10 +38,10 @@ const EditDateTimeForm: React.FC = () => {
       <input hidden={true} name="id" value={dateTime.id} />
 
       {/* <label htmlFor="date">Date</label> */}
-      <input className={styles.input} type="text" id="date" defaultValue={dateTime.date}/>
+      <input className={styles.input} type="text" name="date" defaultValue={dateTime.date}/>
 
       {/* <label htmlFor="minutes">Minutes</label> */}
-      <input className={styles.input} type="text" id="minutes" defaultValue={minsAndSecs}/>
+      <input className={styles.input} type="text" name="minutes" defaultValue={minsAndSecs}/>
       <SaveButton />  
     </Form>
   );
