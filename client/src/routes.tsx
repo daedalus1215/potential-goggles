@@ -16,8 +16,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 //@TODO: Having an issue with catching form stuff
 import './index.css'
 import './App.css';
-import DateTimePage from './pages/taskPage/dateTimePage/page/DateTimePage';
-import { searchLoader, taskLoader } from './actions/loaders';
+import DateTimePage from './pages/dateTimePage/page/DateTimePage';
+import { dateTimeLoader, searchLoader, taskLoader } from './actions/loaders';
+import EditDateTimeForm from './pages/EditDateTimeForm/EditDateTimeForm';
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,12 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                   path: "date-time/:taskId",
                   loader: taskLoader,
                   element: <DateTimePage />,
+                  action: updateTaskForm,
+                },
+                {
+                  path: "date-time/:taskId/edit/:dateTimeId",
+                  loader: dateTimeLoader,
+                  element: <EditDateTimeForm />,
                   action: updateTaskForm,
                 },
               ]
