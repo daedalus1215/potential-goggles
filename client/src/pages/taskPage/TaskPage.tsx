@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { Form, useLoaderData } from "react-router-dom";
-import { Button, TopBar } from "../../components";
+import { Button, SaveButton, TopBar } from "../../components";
 import ms from 'pretty-ms';
 import TextAreaAdapter from "../../components/textAreaAdapter/TextAreaAdapter";
 import { Task } from "../../interfaces";
@@ -23,27 +23,17 @@ const TaskPage = () => {
         <div id="contact" className="contact">
             <div className="contactRight">
                 <div className="contactButtons">
-                    {/* <TopBar>
-                        <>
-                            { <SaveButton name={FORM_ID} /> }
-                            {  }
-                        </>
-                    </TopBar> */}
-                    {/* <DateTimeButton task={task} /> */}
+                    <h2 className={styles.h2}>{task.title}</h2>
+                    <div data-test-id="fractionHour">{`Hours: ${original}`}</div>
                     <Link to={`/date-time/${task._id}`}>Date Time</Link>
                     <Form
                         method="post"
                         action={`/task/${task._id}`}
                         className={styles.form}>
-                        <TopBar>
-                            <>
-                            <Button type="submit" className={styles.submit} value="Submit Form" />
-                                <div data-test-id="fractionHour">{`Hours: ${original}`}</div>
-                            </>
-                        </TopBar>
                         <input type="hidden" name="id" value={task._id} />
 
                         <TextAreaAdapter reference={descRef} value={task.description} />
+                        <SaveButton />
                     </Form>
                 </div>
             </div>
