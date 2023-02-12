@@ -1,4 +1,4 @@
-import { Task, TypedResponse } from "../pages/interfaces";
+import { Task, TypedResponse } from "../interfaces";
 import fetchApiData from "../utils/fetchApiData";
 
 export const getContactsSearch = async (name?: string): Promise<Task[]> => {

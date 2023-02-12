@@ -5,7 +5,7 @@ import {
 import {
     Contact,
 } from '../../contacts';
-import { ActionInterface } from '../interfaces';
+import { ActionInterface } from '../../interfaces';
 
 
 

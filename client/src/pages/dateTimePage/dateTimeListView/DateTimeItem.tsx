@@ -1,29 +1,31 @@
 import React from 'react';
 import moment from 'moment-timezone';
-import useRippleEffectById from '../../../../components/button/useRippleEffect/useRippleEffectById';
+import useRippleEffectById from '../../../components/button/useRippleEffect/useRippleEffectById';
 import styles from './DateTimeListView.module.css';
 import { DateTime } from '../../../interfaces';
+import { Link } from 'react-router-dom';
 
 const myTimezone = 'America/New_York';
 const myDatetimeFormat = 'YYYY-MM-DD hh:mm:ss a';
 
 interface DateTimeItemInterface {
   dateTime: DateTime;
-  setEditDateTime: (dateTime: DateTime) => void;
+  taskId: string;
 }
 
-const DateTimeItem: React.FC<DateTimeItemInterface> = ({ dateTime, setEditDateTime }) => {
-  const { id, date, time } = dateTime;
+const DateTimeItem: React.FC<DateTimeItemInterface> = ({ dateTime, taskId }) => {
 
-  const myDatetimeString = moment(date).tz(myTimezone).format(myDatetimeFormat);
+  const myDatetimeString = moment(dateTime.date)
+    .tz(myTimezone)
+    .format(myDatetimeFormat);
 
-  const onClick = () => setEditDateTime({ id, date, time });
-  const rippleClick = useRippleEffectById(dateTime.id, onClick);
+  const rippleClick = useRippleEffectById(dateTime.id, () => {});
 
   const key = dateTime.id + dateTime.time;
-  
+
   return (
-    <div
+    <Link
+      to={`/date-time/${taskId}/edit/${dateTime.id}`}
       id={dateTime.id}
       className={styles.content}
       key={key}
@@ -32,7 +34,7 @@ const DateTimeItem: React.FC<DateTimeItemInterface> = ({ dateTime, setEditDateTi
       <input type="hidden" value={dateTime.id} name="id" />
       <div className={styles.date}>Date: {myDatetimeString}</div>
       <div className={styles.time}>Mins: {dateTime.time}</div>
-    </div>
+    </Link>
   );
 };
 

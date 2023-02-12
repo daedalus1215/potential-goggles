@@ -9,7 +9,7 @@ import {
 import cn from 'classnames';
 import { getContactsSearch } from "../contacts";
 import { useEffect } from "react";
-import { Task } from "./interfaces";
+import { Task } from "../interfaces";
 
 export default function MainPage() {
     const { tasks, q } = useLoaderData() as { tasks: Task[], q: string };

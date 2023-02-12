@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-computed-key */
 import React, { useState } from 'react';
 import cn from 'classnames';
-import { Modal, Button } from '../../../components';
+import { Modal, Button } from '../../components';
 import DateTimePage from './page/DateTimePage';
 import styles from './DateTimeButton.module.css';
 import { Task } from '../../interfaces';

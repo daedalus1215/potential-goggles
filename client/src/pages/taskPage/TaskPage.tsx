@@ -3,8 +3,10 @@ import { Form, useLoaderData } from "react-router-dom";
 import { Button, TopBar } from "../../components";
 import ms from 'pretty-ms';
 import TextAreaAdapter from "../../components/textAreaAdapter/TextAreaAdapter";
-import { Task } from "../interfaces";
-import DateTimeButton from "./dateTimePage/DateTimeButton";
+import { Task } from "../../interfaces";
+import DateTimeButton from "../dateTimePage/DateTimeButton";
+import { Link } from "react-router-dom";
+import styles from './TaskPage.module.css';
 
 const TaskPage = () => {
     const task = useLoaderData() as Task;
@@ -27,14 +29,15 @@ const TaskPage = () => {
                             {  }
                         </>
                     </TopBar> */}
-                    <DateTimeButton task={task} />
+                    {/* <DateTimeButton task={task} /> */}
+                    <Link to={`/date-time/${task._id}`}>Date Time</Link>
                     <Form
                         method="post"
                         action={`/task/${task._id}`}
-                        className="formEdit">
+                        className={styles.form}>
                         <TopBar>
                             <>
-                                <Button className="bi bi-save" type="submit" />
+                            <Button type="submit" className={styles.submit} value="Submit Form" />
                                 <div data-test-id="fractionHour">{`Hours: ${original}`}</div>
                             </>
                         </TopBar>
