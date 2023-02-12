@@ -1,3 +1,16 @@
+export interface Params {
+    params: {
+        taskId: string
+    };
+}
+
+export interface DateParams extends Params{
+    params: {
+        taskId: string,
+        dateTimeId: string
+    }
+}
+
 export type ActionInterface = ({ request, params }: { request: any, params: any }) => void;
 export type ErrorInterface = {
     statusText: string;
@@ -25,11 +38,6 @@ export interface Task {
     dateTimes: DateTime[];
 }
 
-export interface Params {
-    params: {
-        taskId: string
-    };
-}
 /**
  * https://dev.to/iamandrewluca/typed-fetch-response-in-typescript-1eh1
  */
