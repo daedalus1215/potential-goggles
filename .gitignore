@@ -24,3 +24,4 @@ client/*.local
 *.sw?
 server/config.js
 server/node_modules
+server/dist/*

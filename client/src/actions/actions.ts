@@ -25,15 +25,19 @@ export const updateDateTime: ActionInterface = async ({request, params}) => {
     console.log('date', date);
     console.log('minutes', minutes);
 };
+//@TODO: Replace `any` here with a type!
+const prepareAndSendDateTime = async (updates:any) => {
 
-export const updateTaskForm: ActionInterface = async ({ request, params }) => {
+};
+
+export const updateTask: ActionInterface = async ({ request, params }) => {
     console.log('request', request);
     console.log('params', params);
 
     let formData = await request.formData();
     console.log('formData', formData)
     console.log('formId', formData.get('formId'))
-    return updateTask({
+    return prepareAndSendTask({
         _id: formData.get("id"),
         description: formData.get("description"),
         projectId: formData.get("projectId") ?? 0,
@@ -41,7 +45,8 @@ export const updateTaskForm: ActionInterface = async ({ request, params }) => {
     });
 };
 
-const updateTask = async (updates: any) => {
+//@TODO: Replace `any` here with a type!
+const prepareAndSendTask = async (updates: any) => {
     const { _id, description, projectId, tags } = updates;
     const dateFormatted = getCurrentDateTimeEstFormat();
     // const timeTask = hydrateTaskForm(_id, allTags, project, description, dateFormatted, time, tags);
