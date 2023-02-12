@@ -18,7 +18,7 @@ const Button: React.FC<ButtonProps> = ({ className, onClick, value, children, te
   const clickCallback = useRippleEffect('button', onClick || (() => { }));
   return (
     <button
-      className={cn('btn', 'btn-default', 'navbar-btn', styles.baseBtn, className)}
+      className={cn(styles.baseBtn, className)}
       onClick={clickCallback}
       data-testid={testid}
       disabled={disabled}
