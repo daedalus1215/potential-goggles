@@ -36,7 +36,7 @@ mongoose.connection
       `Mongoose connection open on mongodb://${serverConfig().mongoServerAndPort}/tasks`,
     );
   })
-  .on('error', err => {
+  .on('error', (err:any) => {
     console.log(`Connection error: ${err.message}`);
   });
 
@@ -50,7 +50,7 @@ app.use(morgan('common', {
   stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 }));
 
-app.use((req, res, next) => {
+app.use((req:any, res:any, next:any) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
     'Access-Control-Allow-Headers',
