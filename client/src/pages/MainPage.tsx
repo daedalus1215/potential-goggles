@@ -11,6 +11,8 @@ import { getContactsSearch } from "../contacts";
 import { useEffect } from "react";
 import { Task } from "../interfaces";
 
+import styles from './MainPage.module.css';
+
 export default function MainPage() {
     const { tasks, q } = useLoaderData() as { tasks: Task[], q: string };
     const navigation = useNavigation();
@@ -56,11 +58,11 @@ export default function MainPage() {
                     {tasks.length ? (
                         <ul>
                             {tasks.map((task: any) => (
-                                <li key={task._id}>
+                                <li key={task._id} className={styles.sideItem}>
                                     <NavLink
                                         key={task.id}
                                         to={`task/${task._id}`}
-                                        className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""}>
+                                        className={cn(styles.isActive, styles.isPending)}>
                                         {task?.title ? (
                                             <>
                                                 {task.title}

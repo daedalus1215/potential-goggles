@@ -17,18 +17,18 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #222;
   text-decoration: inherit;
 }
 
 a:hover {
-  background-color: #3943f6;
+  background: linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
   color: #ddd;
 }
 
 .active {
-  background-color: #535bf2;
-  color: #ddd;
+  background-color: #45D6D6;
+  color: #444;
 }
 
 .isPending {
