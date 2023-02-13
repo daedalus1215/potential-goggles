@@ -13,6 +13,7 @@ export type Response<T> = {
     jsonp: (data: T) => void
 }
 export type Task = {
+    _id: string;
     date: string;
     title: string;
     description:string;
@@ -20,3 +21,14 @@ export type Task = {
     time: DateTimeDto,
     tags: any[]
 } 
+
+export type DateTime = { 
+    _id: string;
+    time: string;
+    date: string;
+}
+
+export type TaskTitle = {
+    title:string;
+    id: string;
+}
