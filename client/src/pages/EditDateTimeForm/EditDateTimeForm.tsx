@@ -34,8 +34,8 @@ const EditDateTimeForm: React.FC = () => {
       className={styles.form}
     >
       <h2 className={styles.h2}>Edit Date Time</h2>
-      <input hidden={true} name="formId" value="DateTimeForm" />
-      <input hidden={true} name="id" value={dateTime.id} />
+      <input hidden={true} name="taskId" value={taskId} readOnly/>
+      <input hidden={true} name="id" value={dateTime.id} readOnly/>
 
       {/* <label htmlFor="date">Date</label> */}
       <input className={styles.input} type="text" name="date" defaultValue={dateTime.date}/>
