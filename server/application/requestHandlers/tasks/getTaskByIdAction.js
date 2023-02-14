@@ -3,7 +3,11 @@ const apiResponse = require('../apiResponse');
 const { FETCH_TASK_BY_ID_RESPONSE_SUCCESS } = require('../reduxTypes'); 
 
 module.exports = async (req, res) => {
-  const response = apiResponse(res, FETCH_TASK_BY_ID_RESPONSE_SUCCESS);
+  console.log('we here')
+  console.log('req', req?.params)
+  if(req?.params?.id === 'undefined') {
+    res.jsonp({error: 'Need Id'});
+  }
   const task = await TaskService.fetchTaskById(req.params.id);
-  response(task);
+  res.jsonp(task);
 };
