@@ -1,10 +1,12 @@
-import { Response, Task, UpdateDateTimeActionRequest } from "../../../dist/interfaces";
+import { Console } from "console";
+import { Response, Task, UpdateDateTimeActionRequest } from "../../../interfaces";
+import { DateTimeDto } from "../../../interfaces";
 
 const TaskService = require('../../../domain/services/tasks/TaskService');
 
-module.exports = (req: UpdateDateTimeActionRequest, res: Response<Task>) => {
+module.exports = async (req: UpdateDateTimeActionRequest, res: Response<Task>) => {
     const id = req.params.taskId;
     const dateTime = req.body;
-    const updatedTaskWithDateTime = TaskService.updateDateTimeOfTask(id, dateTime);
+    const updatedTaskWithDateTime = await TaskService.updateDateTimeOfTask(id, dateTime);
     res.jsonp(updatedTaskWithDateTime);
 };  
