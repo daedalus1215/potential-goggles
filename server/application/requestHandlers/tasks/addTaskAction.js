@@ -1,4 +1,4 @@
-const Task = require('../../../infrastructure/models/Task');
+const Task = require('../../../infrastructure/models/TaskModel');
 const hydrate = require('../../../infrastructure/hydrators/hydrate');
 
 //@TODO: Make a Service and Repository

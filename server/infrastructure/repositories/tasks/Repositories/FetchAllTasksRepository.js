@@ -1,4 +1,4 @@
-const Task = require('../../../models/Task');
+const Task = require('../../../models/TaskModel');
 const hydrate = require('../../../hydrators/hydrate');
 const EntityToDto = require('./FetchTaskByIdRepository/EntityToDto');
 

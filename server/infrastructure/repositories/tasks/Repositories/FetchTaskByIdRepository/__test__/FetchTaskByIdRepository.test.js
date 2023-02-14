@@ -1,8 +1,8 @@
 const FetchTaskByIdRepository = require('../FetchTaskByIdRepository');
-const Task = require('../../../../../models/Task');
+const Task = require('../../../../../models/TaskModel');
 const EntityToDto = require('../EntityToDto');
 
-jest.mock('../../../../../models/Task');
+jest.mock('../../../../../models/TaskModel');
 jest.mock('../EntityToDto');
 
 describe('server/infrastructure/repositories/tasks/Repositories/__test__/FetchTaskByIdRepository.test.js', () => {

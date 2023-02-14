@@ -1,4 +1,4 @@
-const Task = require("../../../infrastructure/models/Task");
+const Task = require("../../../infrastructure/models/TaskModel");
 const TagService = require("../../../domain/services/tags/TagService");
 const hydrateAndResponse = require("../../../infrastructure/hydrators/hydrateAndResponse");
 

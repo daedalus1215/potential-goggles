@@ -1,4 +1,4 @@
-const Task = require('../../../../models/Task');
+const Task = require('../../../../models/TaskModel');
 const EntityToDto = require('./EntityToDto');
 
 module.exports = async (taskId) => {

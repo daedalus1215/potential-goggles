@@ -1,6 +1,6 @@
 const minutesToMilliseconds = require("../../../../../utils/minutesToMilliseconds");
 const hydrate = require("../../../../hydrators/hydrate");
-const Task = require("../../../../models/Task");
+const Task = require("../../../../models/TaskModel");
 const UpdateDateTimeRepository = require("../UpdateDateTimeRepository");
 
 jest.mock("../../../../hydrators/hydrate");

@@ -1,4 +1,4 @@
-const Task = require('../../../infrastructure/models/Task');
+const Task = require('../../../infrastructure/models/TaskModel');
 
 module.exports = (req, res) => {
     const { id } = req.params;

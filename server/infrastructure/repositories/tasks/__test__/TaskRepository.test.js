@@ -1,12 +1,12 @@
 const TaskRepository = require('../TaskRepository');
-const Task = require('../../../models/Task');
+const Task = require('../../../models/TaskModel');
 const hydrate = require('../../../hydrators/hydrate');
 
 describe('server/infrastructure/repositories/tasks/__test__/TaskRepository.test.js', () => {
   describe('TaskRepository', () => {
     // Arrange
     beforeEach(() => {
-      jest.mock('../../../models/Task');
+      jest.mock('../../../models/TaskModel');
       jest.mock('../../../hydrators/hydrate');
     });
 

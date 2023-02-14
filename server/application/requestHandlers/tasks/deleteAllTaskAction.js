@@ -1,4 +1,4 @@
-const Task = require('../../../infrastructure/models/Task');
+const Task = require('../../../infrastructure/models/TaskModel');
 
 module.exports = () => {
     Task.deleteMany({}, e => {
