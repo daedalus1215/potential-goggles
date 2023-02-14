@@ -8,7 +8,7 @@ import ErrorPage from "./pages/ErrorPage";
 import TaskPage from './pages/taskPage/TaskPage';
 import MainPage from "./pages/MainPage";
 // import EditContactPage, { action as editAction } from './pages/EditContactPage';
-import { updateDateTime, updateTask } from './actions/actions';
+import { newTaskAction, updateDateTime, updateTaskAction as updateTaskAction } from './actions/actions';
 import IndexPage from './pages/IndexPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -31,6 +31,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element: <MainPage />,
           loader: searchLoader,
           errorElement: <ErrorPage />,
+          action: newTaskAction,
           children: [
             {
               errorElement: <ErrorPage />,
@@ -40,7 +41,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                   path: "task/:taskId",
                   loader: taskLoader,
                   element: <TaskPage />,
-                  action: updateTask,
+                  action: updateTaskAction,
                 },
                 {
                   path: "date-time/:taskId",
