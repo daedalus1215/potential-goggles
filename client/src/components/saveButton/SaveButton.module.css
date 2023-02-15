@@ -1,6 +1,6 @@
 .submit {
-  -moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
-  -webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+  -moz-box-shadow: inset 0px 1px 0px 0px #008484;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #008484;
   box-shadow: inset 0px 1px 0px 0px #45D6D6;
   background-color: #2CBBBB;
   display: inline-block;
@@ -15,6 +15,6 @@
 }
 
 .submit:hover {
-  background: linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
-  background-color: #34CACA;
+  background: linear-gradient(to bottom, #4ECCCC 5%, #7DE0E0 100%);
+  background-color: #4ECCCC;
 }
