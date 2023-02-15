@@ -14,12 +14,18 @@ export const fetchTask = async (index: string): Promise<Task> => {
     return task
 }
 
+export const createDateTime: ActionInterface = async ({ request }) => {
+    const formData = await request.formData()
+
+    const taskId = formData.get('taskId')
+    return await fetchApiData(`http://localhost:3001/api/task/${taskId}/dateTime`, { method: 'POST' })
+}
+
 export const updateDateTime: ActionInterface = async ({ request }) => {
     const formData = await request.formData()
 
     const taskId = formData.get('taskId')
     const id = formData.get('id')
-
     return await fetchApiData(`http://localhost:3001/api/task/${taskId}/dateTime/${id}`, {
         method: 'PUT',
         body: {
@@ -49,7 +55,7 @@ export const updateTaskAction: ActionInterface = async ({ request }) => {
 
 }
 
-export const newTaskAction: ActionInterface = async () => {  
+export const newTaskAction: ActionInterface = async () => {
     await fetchApiData('http://localhost:3001/api/task', {
         method: 'POST',
     });
