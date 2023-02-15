@@ -3,10 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 import { displayMsInFractionalHourFormat } from '../../../utils';
 import { Task } from '../../../interfaces';
 import DateTimeListView from '../dateTimeListView/DateTimeListView';
-import EditDateTimeForm from '../../EditDateTimeForm/EditDateTimeForm';
 import styles from './DateTimePage.module.css';
-import { Button } from '../../../components';
-
 
 const DateTimePage: React.FC = () => {
   const task = useLoaderData() as Task;
@@ -19,7 +16,6 @@ const DateTimePage: React.FC = () => {
   }
 
   const millisecondsInFractionalHourFormat = displayMsInFractionalHourFormat(task.time);
-  window.console.log('DateTimePage')
   return (<>
   
   <div className={styles.childrenContent}>
