@@ -7,18 +7,15 @@ import {
 import ErrorPage from "./pages/ErrorPage";
 import TaskPage from './pages/taskPage/TaskPage';
 import MainPage from "./pages/MainPage";
-// import EditContactPage, { action as editAction } from './pages/EditContactPage';
 import { newTaskAction, updateDateTime, updateTaskAction as updateTaskAction } from './actions/actions';
 import IndexPage from './pages/IndexPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
-
-//@TODO: Having an issue with catching form stuff
-import './index.css'
-import './App.css';
 import DateTimePage from './pages/dateTimePage/page/DateTimePage';
 import { dateTimeLoader, searchLoader, taskLoader } from './actions/loaders';
 import EditDateTimeForm from './pages/EditDateTimeForm/EditDateTimeForm';
+
+import './index.css'
+import './App.css';
 
 const queryClient = new QueryClient();
 
