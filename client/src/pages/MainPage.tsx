@@ -10,13 +10,9 @@ const MainPage = () => {
   const navigation = useNavigation()
   const submit = useSubmit()
 
-  // const searching = navigation.location && new URLSearchParams(navigation.location.search).has("q");
-
-  // console.log('q', q)
   useEffect(() => {
     const element = document.getElementById('q') as unknown as { value: string }
     element.value = q
-    // console.log('q', q)
   }, [q])
 
   const onChange = (event: any) => {

@@ -16,7 +16,6 @@ interface EditDateTimeFormProp {
 const EditDateTimeForm: React.FC = () => {
   const { dateTime, taskId } = useLoaderData() as EditDateTimeFormProp;
 
-  console.log('taskId', taskId)
   const minsAndSecs = formatMinsAndSecsForDisplay(dateTime.time);
 
   if (!dateTime) {
