@@ -29,7 +29,7 @@ const EditDateTimeForm: React.FC = () => {
     <Form
       method='post'
       //@TODO: tie in the action here!
-      action={`/date-time/${taskId}/edit/${dateTime.id}`}
+      action={`/date-time/${taskId}`}
       className={styles.form}
     >
       <h2 className={styles.h2}>Edit Date Time</h2>

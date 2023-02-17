@@ -8,7 +8,7 @@ import ErrorPage from "./pages/ErrorPage";
 import TaskPage from './pages/taskPage/TaskPage';
 import MainPage from "./pages/MainPage";
 import { createDateTime, newTaskAction, updateDateTime, updateTaskAction as updateTaskAction } from './actions/actions';
-import IndexPage from './pages/IndexPage';
+import IndexPage from './pages/indexPage/IndexPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import DateTimePage from './pages/dateTimePage/page/DateTimePage';
 import { dateTimeLoader, searchLoader, taskLoader } from './actions/loaders';

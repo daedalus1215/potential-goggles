@@ -7,7 +7,7 @@ interface ButtonProps {
   className?: string
   onClick?: (e?: any) => void
   value?: string | number
-  children?: React.FC
+  children?:any
   testid?: string
   title?: string
   type?: string
