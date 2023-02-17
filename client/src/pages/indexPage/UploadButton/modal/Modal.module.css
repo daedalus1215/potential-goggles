@@ -1,0 +1,38 @@
+.modal {
+  z-index: 100000;
+  position: fixed; /* Stay in place */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modalContent {
+  background-color: #fefefe;
+  margin: 5% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  height: 80%;
+  overflow-y: scroll;
+}
+
+.closeButton {
+  color: #aaa;
+  font-size: 14px;
+  height: 28px;
+  float: right;
+  line-height: 1.75;
+  font-weight: bold;
+  width: 10px;
+  height: 20px;
+  margin: 0;
+  position: relative;
+  right: 0px;
+  background-color: grey;
+  top: 0px;
+  text-decoration: none;
+}

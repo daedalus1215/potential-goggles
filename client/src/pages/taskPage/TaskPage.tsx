@@ -24,8 +24,10 @@ const TaskPage = () => {
             <div className="contactRight">
                 <div className="contactButtons">
                     <h2 className={styles.h2}>{task.title}</h2>
+
                     <div data-test-id="fractionHour">{`Hours: ${original}`}</div>
-                    <Link to={`/date-time/${task._id}`}>Date Time</Link>
+                    <Button><Link to={`/date-time/${task._id}`} className={styles.dateTimeButton}>Date Time</Link></Button>
+
                     <Form
                         method="post"
                         action={`/task/${task._id}`}
@@ -34,6 +36,12 @@ const TaskPage = () => {
 
                         <TextAreaAdapter reference={descRef} value={task.description} />
                         <SaveButton />
+                        <Form
+                            className={styles.deleteForm}
+                            method="delete"
+                            action={`/task/${task._id}`}>
+                            <Button value="Delete" />
+                        </Form>
                     </Form>
                 </div>
             </div>

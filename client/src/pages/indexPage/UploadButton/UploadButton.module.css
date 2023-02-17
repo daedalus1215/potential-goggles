@@ -1,0 +1,27 @@
+.uploadButton,
+.uploadButton:hover {
+  background-color: #3e80ed;
+  color: white;
+  width: 45px;
+  height: 40px;
+  margin: 4px 5px;
+  border: none;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.uploadButton:hover {
+  background-color: #184693;
+}
+
+.file {
+  width: 60px;
+  height: 40px;
+  padding: 0;
+  z-index: 10;
+  opacity: 0;
+  position: absolute;
+  left: 1px;
+  top: 1px;
+}
