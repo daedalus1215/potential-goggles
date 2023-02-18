@@ -1,5 +1,6 @@
 const EntityToDto = require("../FetchTaskByIdRepository/EntityToDto");
 const sumExistingTime = require("./sumExistingTime");
+var striptags = require('striptags');
 
 module.exports = (dto, res) => (err, doc) => {
     if (err) throw err;
@@ -19,7 +20,7 @@ module.exports = (dto, res) => (err, doc) => {
     doc.date = dto.date;
     doc.contractId = dto.contractId;
     doc.tags = dto.tags;
-    doc.title = dto.description.split("</p>")[0].split("<p>")[1]
+    doc.title = striptags(dto.description.split("</p>")[0].split("<p>")[1]);
     doc.save((err, task) => {
         res(EntityToDto(task));
     });
