@@ -2,13 +2,14 @@ import { fetchTask } from './actions'
 import type { LoaderFunctionArgs } from "@remix-run/router";
 import { Task, TypedResponse } from '../interfaces';
 
-export const searchLoader = async ({ request }: LoaderFunctionArgs) => {
+export const searchLoader = async ({ request, params }: LoaderFunctionArgs) => {
     const url = new URL(request.url)
     const q = url.searchParams.get('q') as string
     const results = (await fetch('http://localhost:3001/api/tasks')) as TypedResponse<Task[]>
     const tasks = await selectSearchResult(results, q);
+    const selectedId = params.id;
 
-    return { tasks, q }
+    return { tasks, q, selectedId }
 }
 
 const selectSearchResult = async (results: TypedResponse<Task[]>, name?: string) => {
