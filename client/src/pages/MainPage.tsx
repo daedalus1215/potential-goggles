@@ -1,12 +1,12 @@
 import { Form, NavLink, Outlet, useNavigation, useLoaderData, useSubmit } from 'react-router-dom'
 import cn from 'classnames'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Task } from '../interfaces'
 
 import styles from './MainPage.module.css'
 
 const MainPage = () => {
-  const { tasks, q } = useLoaderData() as { tasks: Task[]; q: string }
+  const { tasks, q, selectedId } = useLoaderData() as { tasks: Task[]; q: string }
   const navigation = useNavigation()
   const submit = useSubmit()
 
@@ -45,19 +45,21 @@ const MainPage = () => {
             </button>
           </Form>
         </div>
-        <nav className="navbar">
+        <nav className={styles.navbar}>
           {tasks.length ? (
-            <ul>
+            <ul className={styles.taskListView}>
               {tasks.map((task: any) => (
-                <li key={task._id} className={styles.sideItem}>
+                <li key={task._id} className={styles.taskContainer}>
                   <NavLink
                     key={task.id}
                     to={`task/${task._id}`}
-                    className={cn(styles.isActive, styles.isPending)}
+                    className={cn(styles.isActive, styles.isPending, styles.taskItem)}
                   >
                     {task?.title ? <>{task.title}</> : <i>No Name</i>}{' '}
-                    {task.favorite && <span>★</span>}
                   </NavLink>
+                  <div className={styles.borderContainer}>
+                    <div className={cn(styles.underBorder, { [styles.underBorderSelected]: task._id === selectedId })} />
+                  </div>
                 </li>
               ))}
             </ul>
