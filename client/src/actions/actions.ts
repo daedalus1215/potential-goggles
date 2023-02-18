@@ -26,7 +26,7 @@ export const updateDateTime: ActionInterface = async ({ request }) => {
 
     const taskId = formData.get('taskId')
     const id = formData.get('id')
-    return await fetchApiData(`http://localhost:3001/api/task/${taskId}/dateTime/${id}`, {
+    await fetchApiData(`http://localhost:3001/api/task/${taskId}/dateTime/${id}`, {
         method: 'PUT',
         body: {
             id,
@@ -34,6 +34,7 @@ export const updateDateTime: ActionInterface = async ({ request }) => {
             time: formData.get('minutes'),
         },
     })
+    return redirect(`/date-time/${taskId}`);
 }
 
 const forms = {
