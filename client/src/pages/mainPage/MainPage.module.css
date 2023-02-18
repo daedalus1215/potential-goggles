@@ -1,0 +1,109 @@
+/* task list view */
+.taskListHeader {
+  display: flex;
+}
+
+.taskList {
+  margin: 0;
+  padding: 0;
+  max-width: 200px;
+  min-width: 200px;
+  overflow-y: scroll;
+  background-color: #fff;
+  font-size: 20px;
+
+}
+
+/* task */
+li {
+  list-style: none;
+  font-size: 20px;
+}
+
+.task {
+  cursor: pointer;
+}
+
+.taskContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  color: #3b3b3b;
+  margin-top: 10px;
+  /* Need to make the task top overlap underBorder (of previous task). This allows us to blend it into the selected task. */
+}
+
+.taskContainer:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+.taskItem,
+.taskItem {
+  height: 55px;
+  display: flex;
+  text-decoration: none;
+  font-size: .9rem;
+  margin: 5px;
+}
+
+.selected {
+  background-color: rgb(200, 200, 200);
+}
+
+.borderContainer {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.underBorder {
+  width: 80%;
+  background-color: rgb(200, 200, 200);
+  height: 1px;
+}
+
+.underBorderSelected {
+  visibility: hidden;
+}
+
+.taskItemLeft,
+.taskItemLeft:hover {
+  flex: 5;
+  overflow: hidden;
+}
+
+.taskItemDescription {
+  display: block;
+  overflow: hidden;
+  font-size: 0.95rem;
+  overflow-wrap: break-word;
+  padding-left: 10px;
+}
+
+.taskItemCustomer {
+  /* display: inline-block; */
+  font-style: italic;
+  line-height: 1em;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+.taskItemDateTime {
+  line-height: 1.25em;
+}
+
+.tag {
+  margin-right: 0.5em;
+  background-color: rgb(100, 100, 200);
+  padding: 4px;
+  color: white;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  .listViewOnly {
+    max-width: 100%;
+    min-width: 100%;
+    width: 100%;
+  }
+}

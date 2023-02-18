@@ -1,12 +1,12 @@
 import { Form, NavLink, Outlet, useNavigation, useLoaderData, useSubmit } from 'react-router-dom'
 import cn from 'classnames'
 import { useEffect, useState } from 'react'
-import { Task } from '../interfaces'
+import { Task } from '../../interfaces'
 
 import styles from './MainPage.module.css'
 
 const MainPage = () => {
-  const { tasks, q, selectedId } = useLoaderData() as { tasks: Task[]; q: string }
+  const { tasks, q, selectedId } = useLoaderData() as { tasks: Task[]; q: string; selectedId: string }
   const navigation = useNavigation()
   const submit = useSubmit()
 
@@ -45,7 +45,7 @@ const MainPage = () => {
             </button>
           </Form>
         </div>
-        <nav className={styles.navbar}>
+        {/* <nav className={styles.navbar}> */}
           {tasks.length ? (
             <ul className={styles.taskListView}>
               {tasks.map((task: any) => (
@@ -68,7 +68,7 @@ const MainPage = () => {
               <i>No contacts</i>
             </p>
           )}
-        </nav>
+        {/* </nav> */}
       </div>
       <div id="detail" className={cn('detail', navigation.state === 'loading' ? 'loading' : '')}>
         <Outlet />
