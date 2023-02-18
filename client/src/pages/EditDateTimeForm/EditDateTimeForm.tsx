@@ -4,7 +4,7 @@ import { Button, SaveButton } from '../../components';
 import { DateTime, Task } from '../../interfaces';
 import { formatMinsAndSecsForDisplay } from '../../utils';
 import { minSecValidator, utcFormatValidator } from '../../utils/forms/validators';
-import { Form, useLoaderData } from 'react-router-dom';
+import { Form, redirect, useLoaderData } from 'react-router-dom';
 
 import styles from './EditDateTimeForm.module.css';
 
@@ -28,20 +28,13 @@ const EditDateTimeForm: React.FC = () => {
   return (
     <Form
       method='post'
-      //@TODO: tie in the action here!
-      action={`/date-time/${taskId}`}
-      className={styles.form}
-    >
+      className={styles.form}>
       <h2 className={styles.h2}>Edit Date Time</h2>
-      <input hidden={true} name="taskId" value={taskId} readOnly/>
-      <input hidden={true} name="id" value={dateTime.id} readOnly/>
-
-      {/* <label htmlFor="date">Date</label> */}
-      <input className={styles.input} type="text" name="date" defaultValue={dateTime.date}/>
-
-      {/* <label htmlFor="minutes">Minutes</label> */}
-      <input className={styles.input} type="text" name="minutes" defaultValue={minsAndSecs}/>
-      <SaveButton />  
+      <input hidden={true} name="taskId" value={taskId} readOnly />
+      <input hidden={true} name="id" value={dateTime.id} readOnly />
+      <input className={styles.input} type="text" name="date" defaultValue={dateTime.date} />
+      <input className={styles.input} type="text" name="minutes" defaultValue={minsAndSecs} />
+      <SaveButton />
     </Form>
   );
 };
