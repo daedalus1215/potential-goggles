@@ -1,28 +1,23 @@
+html {
+  overflow: scroll;
+  /* Remove scrollbar space */
+  overflow-x: hidden;
+  /* Remove scrollbar space */
+  height: 90%
+}
+
 body {
   background-color: #eee;
   font-size: 14px;
 }
 
-html {
-  overflow: scroll; /* Remove scrollbar space */
-  overflow-x: hidden;  /* Remove scrollbar space */
-}
 ::-webkit-scrollbar {
-  width: 0;  /* Remove scrollbar space */
-  background: transparent;  /* Optional: just make scrollbar invisible */
+  width: 0;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
 }
 
-.navbar {
-  -ms-overflow-style: none;
-  /* Internet Explorer 10+ */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
-.navbar::-webkit-scrollbar {
-  display: none;
-  /* Safari and Chrome */
-}
 
 ul {
   margin: 0;
@@ -34,6 +29,7 @@ ul {
   /* Increase/decrease this value for cross-browser compatibility */
   box-sizing: content-box;
   /* So the width will be 100% + 17px */
+  background-color: #fff;
 }
 
 #root {
@@ -45,9 +41,9 @@ ul {
 /* Sidebar */
 .sidebar {
   flex: 2;
-  background-color: #aaa;
+  background-color: #fff;
   margin: 0;
-  height: 100vh;
+  height: 95vh;
   padding: 1em;
   display: flex;
   flex-direction: column;
@@ -69,7 +65,6 @@ ul {
 }
 
 li {
-  text-align: justify;
   list-style: none;
 }
 
