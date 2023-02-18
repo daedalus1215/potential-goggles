@@ -14,7 +14,7 @@ const DropZone = ({ onClick }:any) => {
         reader.onerror = () => console.log('file reading has failed')
         reader.onload = () => {
             const binaryStr = JSON.parse(reader.result);
-            fetchApiData('import', { body: binaryStr, method: 'POST' });
+            fetchApiData('http://localhost:3001/api/import', { body: binaryStr, method: 'POST' });
         }
         reader.readAsBinaryString(acceptedFiles[0]);
         /* eslint-disable-next-line react-hooks/exhaustive-deps */
