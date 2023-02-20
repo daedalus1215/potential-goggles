@@ -14,6 +14,16 @@ export const fetchTask = async (index: string): Promise<Task> => {
     return task
 }
 
+export const fetchTasks = async (): Promise<Task[]> => {
+    const task = await fetchApiData<Task[]>(`http://localhost:3001/api/tasks`, {})
+    return task
+}
+
+export const fetchTasksTitles = async (): Promise<Task[]> => {
+    const task = await fetchApiData<Task[]>(`http://localhost:3001/api/tasks-titles`, {})
+    return task
+}
+
 export const createDateTime: ActionInterface = async ({ request }) => {
     const formData = await request.formData()
 
