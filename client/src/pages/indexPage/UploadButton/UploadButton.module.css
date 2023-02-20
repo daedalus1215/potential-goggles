@@ -2,17 +2,29 @@
 .uploadButton:hover {
   background-color: #3e80ed;
   color: white;
-  width: 45px;
-  height: 40px;
-  margin: 4px 5px;
+  width: 150px;
+  /* margin: 4px 5px; */
   border: none;
   text-decoration: none;
   text-align: center;
   border-radius: 4px;
+  font-size: .9rem;
 }
 
 .uploadButton:hover {
   background-color: #184693;
+}
+
+.wrap {
+  display: flex;
+}
+
+.title {
+  margin-left: 1rem;
+}
+
+.icon {
+  font-size: 1.2rem;
 }
 
 .file {

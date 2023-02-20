@@ -21,7 +21,8 @@ const getTagByIdAction = require('./application/requestHandlers/tags/getTagByIdA
 
 module.exports = (app) => {
     // TASKS
-    app.get('/api/tasks', getAllTaskTitlesAction);
+    app.get('/api/tasks', getAllTasksAction);
+    app.get('/api/tasks-titles', getAllTaskTitlesAction);
     app.get('/api/task/:id', getTaskByIdAction);
     app.post('/api/task/',[
             body('_id').isString().trim().escape(),

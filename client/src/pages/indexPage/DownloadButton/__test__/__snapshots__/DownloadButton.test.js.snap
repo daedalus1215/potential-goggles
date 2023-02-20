@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`src/pages/tasks/TaskListView/__test__/DownloadButton.test.js DownloadButton should render the button when tasks are available 1`] = `
+<button
+  class="btn btn-default navbar-btn baseBtn buttonDownload glyphicon glyphicon-download-alt"
+  data-testid="btn-download"
+/>
+`;
