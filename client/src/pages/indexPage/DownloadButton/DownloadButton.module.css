@@ -5,7 +5,17 @@
   width: 45px;
   height: 40px;
   margin: 4px 5px;
+  width: 150px;
 }
+
+.title {
+  margin-left: 1rem;
+}
+
+.icon {
+  font-size: 1.2rem;
+}
+
 
 .buttonDownload:hover {
   background-color: #184693;
