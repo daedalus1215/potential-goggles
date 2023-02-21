@@ -1,6 +1,8 @@
 import DownloadButton from './DownloadButton/DownloadButton';
 import UploadButton from './UploadButton/UploadButton';
 
+import styles from './IndexPage.module.css';
+
 export default function IndexPage() {
 
   return (
@@ -8,6 +10,7 @@ export default function IndexPage() {
       <br />
       <UploadButton />
       <DownloadButton />
+      <div className={styles.underline}></div>
     </p>
   )
 }
