@@ -1,5 +1,3 @@
-import { useLoaderData } from 'react-router-dom';
-import { Task } from '../../interfaces';
 import DownloadButton from './DownloadButton/DownloadButton';
 import UploadButton from './UploadButton/UploadButton';
 
