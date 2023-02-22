@@ -7,6 +7,7 @@ import { Task } from "../../interfaces";
 import DateTimeButton from "../dateTimePage/DateTimeButton";
 import { Link } from "react-router-dom";
 import styles from './TaskPage.module.css';
+import classNames from "classnames";
 
 const TaskPage = () => {
     const task = useLoaderData() as Task;
@@ -26,22 +27,23 @@ const TaskPage = () => {
                     <h2 className={styles.h2}>{task.title}</h2>
 
                     <div data-test-id="fractionHour">{`Hours: ${original}`}</div>
-                    <Button><Link to={`/date-time/${task._id}`} className={styles.dateTimeButton}>Date Time</Link></Button>
-
+                    <Button>
+                        <Link to={`/date-time/${task._id}`} className={styles.dateTimeButton}>Date Time</Link>
+                    </Button>
+                    <Form method="delete">
+                        <input type="hidden" name="formId" value="deleteTask" />
+                        <input type="hidden" name="id" value={task._id} />
+                        <Button type="submit"><i className={classNames("bi bi-trash", styles.trash)} ></i></Button>
+                    </Form>
                     <Form
                         method="post"
                         action={`/task/${task._id}`}
                         className={styles.form}>
                         <input type="hidden" name="id" value={task._id} />
+                        <input type="hidden" name="formId" value="updateTask" />
 
                         <TextAreaAdapter reference={descRef} value={task.description} />
                         <SaveButton />
-                        <Form
-                            className={styles.deleteForm}
-                            method="delete"
-                            action={`/task/${task._id}`}>
-                            <Button value="Delete" />
-                        </Form>
                     </Form>
                 </div>
             </div>
