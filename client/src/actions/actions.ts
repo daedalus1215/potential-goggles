@@ -48,22 +48,30 @@ export const updateDateTime: ActionInterface = async ({ request }) => {
 }
 
 const forms = {
-    NewTaskForm: 'newTaskForm',
-    SearchContacts: 'searchContacts'
+    newTaskForm: 'newTaskForm',
+    searchContacts: 'searchContacts',
+    deleteTask: "deleteTask",
+    updateTask: "updateTask"
 }
 
 export const updateTaskAction: ActionInterface = async ({ request }) => {
     const formData = await request.formData()
-
     const formId: keyof typeof forms = formData.get('formId');
 
-    return prepareAndSendTask({
-        _id: formData.get('id'),
-        description: formData.get('description'),
-        projectId: formData.get('projectId') ?? 0,
-        tags: formData.get('tags') ?? 0,
-    })
-
+    //@TODO: Could of done this over the verbs in the form.
+    switch (formId) {
+        case forms.updateTask:
+            return prepareAndSendTask({
+                _id: formData.get('id'),
+                description: formData.get('description'),
+                projectId: formData.get('projectId') ?? 0,
+                tags: formData.get('tags') ?? 0,
+            })
+        case "deleteTask":
+            //@TODO:
+            await fetchApiData(`http://localhost:3001/api/task/${formData.get('id')}`, { method: 'DELETE' });
+            return redirect("/")
+    }
 }
 
 export const newTaskAction: ActionInterface = async () => {
