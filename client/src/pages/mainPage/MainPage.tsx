@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 import { Task } from '../../interfaces'
 
 import styles from './MainPage.module.css'
+import classNames from 'classnames'
+import Button from '../../components/button/Button'
 
 const MainPage = () => {
   const { tasks, q, selectedId } = useLoaderData() as { tasks: Task[]; q: string; selectedId: string }
@@ -39,35 +41,35 @@ const MainPage = () => {
             />
           </Form>
           <Form method="post" className="newForm">
-            {/* @TODO: Left off here with the newTaskForm, we need to catch this and create a new task */}
+          <input type="hidden" name="formId" value="newTask"/>
             <button type="submit" className="button">
               New
             </button>
           </Form>
         </div>
         {/* <nav className={styles.navbar}> */}
-          {tasks.length ? (
-            <ul className={styles.taskListView}>
-              {tasks.map((task: any) => (
-                <li key={task._id} className={styles.taskContainer}>
-                  <NavLink
-                    key={task.id}
-                    to={`task/${task._id}`}
-                    className={cn(styles.isActive, styles.isPending, styles.taskItem)}
-                  >
-                    {task?.title ? <>{task.title}</> : <i>No Name</i>}{' '}
-                  </NavLink>
-                  <div className={styles.borderContainer}>
-                    <div className={cn(styles.underBorder, { [styles.underBorderSelected]: task._id === selectedId })} />
-                  </div>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>
-              <i>No contacts</i>
-            </p>
-          )}
+        {tasks.length ? (
+          <ul className={styles.taskListView}>
+            {tasks.map((task: any) => (
+              <li key={task._id} className={styles.taskItemContainer}>
+                <NavLink
+                  key={task.id}
+                  to={`task/${task._id}`}
+                  className={cn(styles.taskItem, styles.isActive, styles.isPending)}
+                >
+                  {task?.title ? <>{task.title}</> : <i>No Name</i>}{' '}
+                </NavLink>
+                <div className={styles.borderContainer}>
+                  <div className={cn(styles.underBorder, { [styles.underBorderSelected]: task._id === selectedId })} />
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>
+            <i>No contacts</i>
+          </p>
+        )}
         {/* </nav> */}
       </div>
       <div id="detail" className={cn('detail', navigation.state === 'loading' ? 'loading' : '')}>
