@@ -4,10 +4,8 @@ import { Button, SaveButton, TopBar } from "../../components";
 import ms from 'pretty-ms';
 import TextAreaAdapter from "../../components/textAreaAdapter/TextAreaAdapter";
 import { Task } from "../../interfaces";
-import { Link } from "react-router-dom";
 import styles from './TaskPage.module.css';
 import classNames from "classnames";
-import { redirect } from 'react-router-dom'
 
 const TaskPage = () => {
     const task = useLoaderData() as Task;
@@ -26,18 +24,26 @@ const TaskPage = () => {
             <div className="contactRight">
                 <div className="contactButtons">
                     <h2 className={styles.h2}>{task.title}</h2>
-
                     <div data-test-id="fractionHour">{`Hours: ${original}`}</div>
-                    <Button
-                        value="DateTime"
-                        onClick={() => {
-                            navigate(`/date-time/${task._id}`);
-                        }} />
-                    <Form method="delete">
-                        <input type="hidden" name="formId" value="deleteTask" />
-                        <input type="hidden" name="id" value={task._id} />
-                        <Button type="submit"><i className={classNames("bi bi-trash", styles.trash)} ></i></Button>
-                    </Form>
+                    <TopBar>
+                        <>
+                            <Button
+                                value="DateTime"
+                                onClick={() => {
+                                    navigate(`/date-time/${task._id}`);
+                                }} />
+
+                            <Form method="delete" onSubmit={(event) => {
+                                if (!confirm("Please confirm you want to delete this task.")) {
+                                    event.preventDefault();
+                                }
+                            }}>
+                                <input type="hidden" name="formId" value="deleteTask" />
+                                <input type="hidden" name="id" value={task._id} />
+                                <Button type="submit" className={styles.trashButton}><i className={classNames("bi bi-trash", styles.trash)} ></i></Button>
+                            </Form>
+                        </>
+                    </TopBar>
                     <Form
                         method="post"
                         action={`/task/${task._id}`}
