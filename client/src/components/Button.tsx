@@ -1,7 +1,7 @@
 import React from 'react'
 import cn from 'classnames'
-import styles from './Button.module.css'
 import useRippleEffect from './button/useRippleEffect/useRippleEffect'
+import styles from './Button.module.css'
 
 interface ButtonProps {
   className?: string
