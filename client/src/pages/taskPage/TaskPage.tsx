@@ -1,17 +1,18 @@
 import { useRef } from "react";
-import { Form, useLoaderData } from "react-router-dom";
+import { Form, useLoaderData, useNavigate } from "react-router-dom";
 import { Button, SaveButton, TopBar } from "../../components";
 import ms from 'pretty-ms';
 import TextAreaAdapter from "../../components/textAreaAdapter/TextAreaAdapter";
 import { Task } from "../../interfaces";
-import DateTimeButton from "../dateTimePage/DateTimeButton";
 import { Link } from "react-router-dom";
 import styles from './TaskPage.module.css';
 import classNames from "classnames";
+import { redirect } from 'react-router-dom'
 
 const TaskPage = () => {
     const task = useLoaderData() as Task;
     const descRef = useRef(null);
+    const navigate = useNavigate();
 
     if (!task) {
         throw new Response("", {
@@ -27,9 +28,11 @@ const TaskPage = () => {
                     <h2 className={styles.h2}>{task.title}</h2>
 
                     <div data-test-id="fractionHour">{`Hours: ${original}`}</div>
-                    <Button>
-                        <Link to={`/date-time/${task._id}`} className={styles.dateTimeButton}>Date Time</Link>
-                    </Button>
+                    <Button
+                        value="DateTime"
+                        onClick={() => {
+                            navigate(`/date-time/${task._id}`);
+                        }} />
                     <Form method="delete">
                         <input type="hidden" name="formId" value="deleteTask" />
                         <input type="hidden" name="id" value={task._id} />

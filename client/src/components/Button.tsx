@@ -27,10 +27,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   const clickCallback = useRippleEffect(
     'button',
-    onClick ??
-      (() => {
-        window.console.log('hi there')
-      })
+    onClick
   )
   return (
     <button
