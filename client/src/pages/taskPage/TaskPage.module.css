@@ -27,3 +27,12 @@
     display: inline;
 }
 
+.trashButton {
+    margin-left: 1em;
+    background-color: #FF2E2E;
+}
+
+.trashButton:hover {
+    background-color: #FF7979;
+}
+
