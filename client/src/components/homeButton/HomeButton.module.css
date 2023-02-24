@@ -1,0 +1,18 @@
+.buttonAdd,
+.buttonAdd:hover {
+  background-color: #3085CC;
+  color: white;
+  border: none;
+  text-decoration: none;
+  width: 45px;
+  height: 40px;
+  margin: 4px 5px;
+  text-align: center;
+  font-size: 1.5rem;
+  border-radius: 4px;
+  padding: 0;
+}
+
+.buttonAdd:hover {
+  background-color: #76B4E7;
+}
