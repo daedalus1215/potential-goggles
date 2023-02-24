@@ -6,6 +6,8 @@ module.exports = (doc) => {
     task.tags = doc?.tags || [];
     task.date = doc?.date || '';
     task.contractId = doc.contractId || '';
+    task.title = doc.title ?? dto?.description ?? striptags(dto.description.split("</p>")[0].split("<p>")[1]);
+
 
     task.time = doc?.time
         .map(a => parseInt(a.time))
