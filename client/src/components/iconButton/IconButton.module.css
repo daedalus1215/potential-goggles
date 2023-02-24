@@ -1,0 +1,21 @@
+.iconButton {
+  background-color: #3e80ed;
+  color: white;
+  width: 45px;
+  height: 40px;
+  margin: 4px 5px;
+  width: 150px;
+}
+
+.iconButton:hover {
+  background-color: #184693;
+}
+
+.title {
+  margin-left: 1rem;
+}
+
+.icon {
+  font-size: 1.2rem;
+}
+
