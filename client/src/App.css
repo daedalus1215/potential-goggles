@@ -33,7 +33,6 @@ ul {
 }
 
 #root {
-  text-align: center;
   display: flex;
   width: 100%;
 }
@@ -52,6 +51,7 @@ ul {
 .top {
   display: flex;
   flex-direction: row;
+  text-align: center;
 }
 
 .formSearch {
