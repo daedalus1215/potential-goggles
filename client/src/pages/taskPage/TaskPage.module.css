@@ -36,3 +36,7 @@
     background-color: #FF7979;
 }
 
+.left {
+    float: left;
+    margin-top:1em;
+}
