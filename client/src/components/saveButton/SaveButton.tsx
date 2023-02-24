@@ -1,16 +1,16 @@
+import classNames from 'classnames';
 import React from 'react';
 import Button from '../button/Button';
 
 import styles from './SaveButton.module.css';
 
-const SaveButton: React.FC = () => <Button
+interface props {
+    className?: string;
+}
+
+const SaveButton: React.FC<props> = ({ className }) => <Button
     type="submit"
-    className={styles.submit}
-    // className={cn(styles.submit, "glyphicon glyphicon-floppy-save")}
-    // onClick={() => {
-    //     document.getElementById(name)
-    //         ?.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }))
-    // }}
+    className={classNames(styles.submit, className)}
     value="Save Form"
 />
 
