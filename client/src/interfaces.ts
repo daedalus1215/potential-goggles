@@ -38,6 +38,12 @@ export interface Task {
     dateTimes: DateTime[];
 }
 
+export interface Tag {
+    _id: string;
+    name: string;
+    description: string;
+}
+
 /**
  * https://dev.to/iamandrewluca/typed-fetch-response-in-typescript-1eh1
  */
