@@ -11,11 +11,12 @@ import { createDateTime, newTaskAction, updateDateTime, updateTaskAction as upda
 import IndexPage from './pages/indexPage/IndexPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import DateTimePage from './pages/dateTimePage/page/DateTimePage';
-import { dateTimeLoader, searchLoader, taskLoader, tasksLoader } from './actions/loaders';
+import { dateTimeLoader, searchLoader, tagsLoader, taskLoader, tasksLoader } from './actions/loaders';
 import EditDateTimeForm from './pages/EditDateTimeForm/EditDateTimeForm';
 
 import './index.css'
 import './App.css';
+import TagePage from './pages/tagPage/TagPage';
 
 const queryClient = new QueryClient();
 
@@ -54,6 +55,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                   loader: dateTimeLoader,
                   element: <EditDateTimeForm />,
                   action: updateDateTime,
+                },
+                {
+                  path: "tags/",
+                  loader: tagsLoader,
+                  element: <TagePage />,
                 },
               ]
             }
