@@ -41,7 +41,7 @@ mongoose.connection
   });
 
 
-app.listen(serverConfig().serverPort, () => {
+app.listen(serverConfig().serverPort, serverConfig().address, () => {
   console.debug(`Backend has started on port ${serverConfig().serverPort}`);
 });
 

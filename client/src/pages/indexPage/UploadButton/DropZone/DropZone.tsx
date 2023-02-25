@@ -1,12 +1,14 @@
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import fetchApiData from "../../../../utils/fetchApiData";
+import fetchApiData from "@/utils/fetchApiData";
+import { api } from '@/config.json';
+
 import styles from './DropZone.module.css'
 
-const DropZone = ({ onClick }:any) => {
+const DropZone = ({ onClick }: any) => {
     // const { setSuccessFlashMessage } = useFlashMessageContext();
 
-    const onDrop = useCallback((acceptedFiles:any) => {
+    const onDrop = useCallback((acceptedFiles: any) => {
         const reader = new FileReader() as any;
 
         //@TODO: Could error message in these cases
@@ -14,7 +16,7 @@ const DropZone = ({ onClick }:any) => {
         reader.onerror = () => console.log('file reading has failed')
         reader.onload = () => {
             const binaryStr = JSON.parse(reader.result);
-            fetchApiData('http://localhost:3001/api/import', { body: binaryStr, method: 'POST' });
+            fetchApiData(`${api}import`, { body: binaryStr, method: 'POST' });
         }
         reader.readAsBinaryString(acceptedFiles[0]);
         /* eslint-disable-next-line react-hooks/exhaustive-deps */
