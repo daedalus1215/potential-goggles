@@ -5,7 +5,7 @@ import { Task, TypedResponse } from '../interfaces';
 export const searchLoader = async ({ request, params }: LoaderFunctionArgs) => {
     const url = new URL(request.url)
     const q = url.searchParams.get('q') as string
-    const results = (await fetch('http://localhost:3001/api/tasks-titles')) as TypedResponse<Task[]>
+    const results = (await fetch('http://192.168.1.238:3001/api/tasks-titles')) as TypedResponse<Task[]>
     const tasks = await selectSearchResult(results, q);
     const selectedId = params.id;
 

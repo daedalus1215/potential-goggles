@@ -1,7 +1,8 @@
 import { redirect } from 'react-router-dom'
-import { ActionInterface, Params, Tag, Task } from '../interfaces'
-import fetchApiData from '../utils/fetchApiData'
-import getCurrentDateTimeEstFormat from '../utils/getCurrentDateTimeEstFormat'
+import { ActionInterface, Params, Tag, Task } from '@/interfaces'
+import fetchApiData from '@/utils/fetchApiData'
+import getCurrentDateTimeEstFormat from '@/utils/getCurrentDateTimeEstFormat'
+import { api } from '@/config.json';
 
 // export async function destroyContact({ params }: Params) {
 //     // throw new Error("oh dang!");
@@ -10,17 +11,17 @@ import getCurrentDateTimeEstFormat from '../utils/getCurrentDateTimeEstFormat'
 // }
 
 export const fetchTask = async (index: string): Promise<Task> => {
-    const task = await fetchApiData<Task>(`http://localhost:3001/api/task/${index}`, {})
+    const task = await fetchApiData<Task>(`${api}task/${index}`, {})
     return task
 }
 
 export const fetchTasks = async (): Promise<Task[]> => {
-    const task = await fetchApiData<Task[]>(`http://localhost:3001/api/tasks`, {})
+    const task = await fetchApiData<Task[]>(`${api}tasks`, {})
     return task
 }
 
 export const fetchTasksTitles = async (): Promise<Task[]> => {
-    const task = await fetchApiData<Task[]>(`http://localhost:3001/api/tasks-titles`, {})
+    const task = await fetchApiData<Task[]>(`${api}tasks-titles`, {})
     return task
 }
 
@@ -28,7 +29,7 @@ export const createDateTime: ActionInterface = async ({ request }) => {
     const formData = await request.formData()
 
     const taskId = formData.get('taskId')
-    return await fetchApiData(`http://localhost:3001/api/task/${taskId}/dateTime`, { method: 'POST' })
+    return await fetchApiData(`${api}task/${taskId}/dateTime`, { method: 'POST' })
 }
 
 export const updateDateTime: ActionInterface = async ({ request }) => {
@@ -36,7 +37,7 @@ export const updateDateTime: ActionInterface = async ({ request }) => {
 
     const taskId = formData.get('taskId')
     const id = formData.get('id')
-    await fetchApiData(`http://localhost:3001/api/task/${taskId}/dateTime/${id}`, {
+    await fetchApiData(`${api}task/${taskId}/dateTime/${id}`, {
         method: 'PUT',
         body: {
             id,
@@ -69,13 +70,13 @@ export const updateTaskAction: ActionInterface = async ({ request }) => {
             })
         case "deleteTask":
             //@TODO:
-            await fetchApiData(`http://localhost:3001/api/task/${formData.get('id')}`, { method: 'DELETE' });
+            await fetchApiData(`${api}task/${formData.get('id')}`, { method: 'DELETE' });
             return redirect("/")
     }
 }
 
 export const newTaskAction: ActionInterface = async () => {
-    await fetchApiData('http://localhost:3001/api/task', {
+    await fetchApiData('${api}task', {
         method: 'POST',
     });
 
@@ -86,7 +87,7 @@ export const newTaskAction: ActionInterface = async () => {
 const prepareAndSendTask = async (updates: any) => {
     const { _id, description, projectId, tags } = updates
     const dateFormatted = getCurrentDateTimeEstFormat()
-    return await fetchApiData('http://localhost:3001/api/task', {
+    return await fetchApiData('${api}task', {
         method: 'PUT',
         body: {
             _id,
@@ -104,6 +105,6 @@ const prepareAndSendTask = async (updates: any) => {
 }
 
 export const fetchTags = async (): Promise<Tag[]> => {
-    const tags = await fetchApiData<Tag[]>(`http://localhost:3001/api/tags`, {})
+    const tags = await fetchApiData<Tag[]>(`${api}tags`, {})
     return tags
 }
