@@ -1,5 +1,5 @@
 import { redirect } from 'react-router-dom'
-import { ActionInterface, Params, Task } from '../interfaces'
+import { ActionInterface, Params, Tag, Task } from '../interfaces'
 import fetchApiData from '../utils/fetchApiData'
 import getCurrentDateTimeEstFormat from '../utils/getCurrentDateTimeEstFormat'
 
@@ -101,4 +101,9 @@ const prepareAndSendTask = async (updates: any) => {
             ],
         },
     })
+}
+
+export const fetchTags = async (): Promise<Tag[]> => {
+    const tags = await fetchApiData<Tag[]>(`http://localhost:3001/api/tags`, {})
+    return tags
 }
