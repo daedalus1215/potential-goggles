@@ -108,3 +108,8 @@ export const fetchTags = async (): Promise<Tag[]> => {
     const tags = await fetchApiData<Tag[]>(`${api}tags`, {})
     return tags
 }
+
+export const fetchTag = async (id:string): Promise<Tag> => {
+    const tag = await fetchApiData<Tag>(`${api}tag/${id}`, {})
+    return tag
+}
