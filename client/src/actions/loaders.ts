@@ -1,4 +1,4 @@
-import { fetchTags, fetchTask, fetchTasks } from './actions'
+import { fetchTag, fetchTags, fetchTask, fetchTasks } from './actions'
 import type { LoaderFunctionArgs } from "@remix-run/router";
 import { Task, TypedResponse } from '../interfaces';
 
@@ -44,4 +44,10 @@ export const dateTimeLoader = async ({ params }: LoaderFunctionArgs) => {
 export const tagsLoader = async () => {
     const tags = await fetchTags()
     return tags
+}
+
+export const tagLoader = async ({ params }: LoaderFunctionArgs) => {
+    const tagId = params.tagId ?? ''
+    const tag = await fetchTag(tagId)
+    return tag
 }
