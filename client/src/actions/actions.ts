@@ -70,13 +70,13 @@ export const updateTaskAction: ActionInterface = async ({ request }) => {
             })
         case "deleteTask":
             //@TODO:
-            await fetchApiData(`${api}task/${formData.get('id')}`, { method: 'DELETE' });
+            await fetchApiData(`task/${formData.get('id')}`, { method: 'DELETE' });
             return redirect("/")
     }
 }
 
 export const newTaskAction: ActionInterface = async () => {
-    await fetchApiData('${api}task', {
+    await fetchApiData(`${api}task`, {
         method: 'POST',
     });
 
@@ -87,7 +87,7 @@ export const newTaskAction: ActionInterface = async () => {
 const prepareAndSendTask = async (updates: any) => {
     const { _id, description, projectId, tags } = updates
     const dateFormatted = getCurrentDateTimeEstFormat()
-    return await fetchApiData('${api}task', {
+    return await fetchApiData(`${api}task`, {
         method: 'PUT',
         body: {
             _id,
