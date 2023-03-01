@@ -40,11 +40,12 @@ function EditTagePage() {
             </div>
 
             <Form
-                method="post"
-                action={`/tag/${tag._id}`}
+                method="put"
+                // action={`/tags`}
                 className={styles.form}>
                 <input type="hidden" name="id" value={tag._id} />
                 <input type="hidden" name="formId" value="updateTag" />
+                <input type="text" name="name" defaultValue={tag.name} />
                 
                 <TextAreaAdapter reference={descRef} value={tag.description} />
                 <SaveButton className={styles.left} />
