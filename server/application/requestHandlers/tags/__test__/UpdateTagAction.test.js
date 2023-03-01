@@ -1,15 +1,15 @@
 const TagService = require('../../../../domain/services/tags/TagService');
-const putTagAction = require('../putTagAction');
+const UpdateTagAction = require('../UpdateTagAction');
 const jsonResponse = require('../../apiResponse');
 const { PUT_TAG_RESPONSE } = require('../../reduxTypes');
 
 jest.mock('../../../../domain/services/tags/TagService');
 jest.mock('../../apiResponse');
 
-describe('server/application/requestHandlers/tags/__test__/putTagAction.test.js', () => {
+describe('server/application/requestHandlers/tags/__test__/UpdateTagAction.test.js', () => {
   // Arrange
 
-  describe('putTagAction', () => {
+  describe('UpdateTagAction', () => {
     it('should call TagService.updateTag()', () => {
       // Arrange
       const request = {
@@ -26,7 +26,7 @@ describe('server/application/requestHandlers/tags/__test__/putTagAction.test.js'
       jest.spyOn(TagService, 'updateTag');
 
       // Act
-      putTagAction(request, response);
+      UpdateTagAction(request, response);
 
       // Assert
       expect(jsonResponse).toHaveBeenNthCalledWith(1, response, PUT_TAG_RESPONSE);
