@@ -15,8 +15,8 @@ const updateDateTimeAction = require('./application/requestHandlers/tasks/dateTi
 const postDateTimeAction = require('./application/requestHandlers/tasks/dateTime/postDateTimeAction');
 // TAG ACTION imports
 const deleteTagAction = require('./application/requestHandlers/tags/deleteTagAction');
-const postTagAction = require('./application/requestHandlers/tags/postTagAction');
-const putTagAction = require('./application/requestHandlers/tags/putTagAction');
+const AddTagAction = require('./application/requestHandlers/tags/AddTagAction');
+const UpdateTagAction = require('./application/requestHandlers/tags/UpdateTagAction');
 const getTagByIdAction = require('./application/requestHandlers/tags/getTagByIdAction');
 
 module.exports = (app) => {
@@ -67,7 +67,7 @@ module.exports = (app) => {
     // TAGS
     app.get('/api/tags', getAllTagsAction);
     app.get('/api/tag/:id', getTagByIdAction);
-    app.post('/api/tag', postTagAction);
-    app.put('/api/tag', putTagAction);
+    app.post('/api/tag', AddTagAction);
+    app.put('/api/tag/:id', UpdateTagAction);
     app.delete('/api/tag/:id', deleteTagAction);
 }
