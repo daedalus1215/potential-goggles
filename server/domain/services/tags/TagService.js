@@ -8,9 +8,9 @@ const TagService = {
   fetchAllTags: (res) => fetchAllTags(res),
   deleteTag: (tagId, res) =>
     TagRepository.deleteTag(tagId, res),
-  addTag: (dto, res) => addTag(dto, res),
-  updateTag: (tagDto, res) =>
-    TagRepository.updateTag(tagDto, res)
+  addTag: (dto) => addTag(dto),
+  updateTag: (tagDto) =>
+    TagRepository.updateTag(tagDto)
 };
 
 module.exports = TagService;
