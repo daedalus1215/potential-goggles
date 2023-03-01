@@ -4,12 +4,6 @@ import fetchApiData from '@/utils/fetchApiData'
 import getCurrentDateTimeEstFormat from '@/utils/getCurrentDateTimeEstFormat'
 import { api } from '@/config.json';
 
-// export async function destroyContact({ params }: Params) {
-//     // throw new Error("oh dang!");
-//     deleteContact(params.taskId);
-//     return redirect("/");
-// }
-
 export const fetchTask = async (index: string): Promise<Task> => {
     const task = await fetchApiData<Task>(`${api}task/${index}`, {})
     return task
@@ -30,6 +24,17 @@ export const createDateTime: ActionInterface = async ({ request }) => {
 
     const taskId = formData.get('taskId')
     return await fetchApiData(`${api}task/${taskId}/dateTime`, { method: 'POST' })
+}
+
+export const createTag: ActionInterface = async ({ request }) => {
+    const formData = await request.formData()
+    return await fetchApiData(`${api}tag`, {
+        method: 'POST',
+        body: {
+            description: '',
+            name: ''
+        }
+    })
 }
 
 export const updateDateTime: ActionInterface = async ({ request }) => {
@@ -60,18 +65,22 @@ const forms = {
 export const updateTagAction: ActionInterface = async ({ request }) => {
     const formData = await request.formData()
     const formId: keyof typeof forms = formData.get('formId');
+    const id = formData.get('id');
 
     //@TODO: Could of done this over the verbs in the form.
     switch (formId) {
         case forms.updateTag:
-            return prepareAndSendTask({
-                _id: formData.get('id'),
-                description: formData.get('description'),
-                projectId: formData.get('projectId') ?? 0,
-                tags: formData.get('tags') ?? 0,
-            })
+            await fetchApiData(`${api}tag/${id}`, {
+                method: 'PUT',
+                body: {
+                    _id: id,
+                    description: formData.get('description') ?? '',
+                    name: formData.get('name') ?? ''
+                }
+            });
+            return redirect(`/tags`)
         case forms.deleteTag:
-            await fetchApiData(`${api}tag/${formData.get('id')}`, { method: 'DELETE' });
+            await fetchApiData(`${api}tag/${id}`, { method: 'DELETE' });
             return redirect("/")
     }
 }
@@ -130,7 +139,7 @@ export const fetchTags = async (): Promise<Tag[]> => {
     return tags
 }
 
-export const fetchTag = async (id:string): Promise<Tag> => {
+export const fetchTag = async (id: string): Promise<Tag> => {
     const tag = await fetchApiData<Tag>(`${api}tag/${id}`, {})
     return tag
 }
