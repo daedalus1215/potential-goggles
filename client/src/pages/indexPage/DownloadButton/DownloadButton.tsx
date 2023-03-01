@@ -1,6 +1,6 @@
 import React from 'react';
-import { fetchTasks } from '../../../actions/actions';
-import IconButton from '../../../components/iconButton/IconButton';
+import { fetchTasks } from '@/actions/actions';
+import IconButton from '@/components/iconButton/IconButton';
 import writeJsonFile from './writeJsonFile';
 
 const DownloadButton: React.FC = (...tasks) => {
