@@ -7,7 +7,7 @@ import {
 import ErrorPage from "./pages/ErrorPage";
 import TaskPage from './pages/taskPage/TaskPage';
 import MainPage from "./pages/mainPage/MainPage";
-import { createDateTime, newTaskAction, updateDateTime, updateTaskAction as updateTaskAction } from './actions/actions';
+import { createDateTime, newTaskAction, updateDateTime, updateTagAction, updateTaskAction as updateTaskAction } from './actions/actions';
 import IndexPage from './pages/indexPage/IndexPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import DateTimePage from './pages/dateTimePage/page/DateTimePage';
@@ -65,6 +65,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                 {
                   path: "tag/:tagId",
                   loader: tagLoader,
+                  action: updateTagAction,
                   element: <EditTagPage />,
                 },
               ]

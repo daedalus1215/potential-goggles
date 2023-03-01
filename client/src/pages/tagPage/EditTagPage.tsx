@@ -27,7 +27,7 @@ function EditTagePage() {
                 <TopBar>
                     <>
                         <Form method="delete" onSubmit={(event) => {
-                            if (!confirm("Please confirm you want to delete this task.")) {
+                            if (!confirm("Please confirm you want to delete this Tag.")) {
                                 event.preventDefault();
                             }
                         }}>
@@ -41,7 +41,7 @@ function EditTagePage() {
 
             <Form
                 method="post"
-                action={`/task/${tag._id}`}
+                action={`/tag/${tag._id}`}
                 className={styles.form}>
                 <input type="hidden" name="id" value={tag._id} />
                 <input type="hidden" name="formId" value="updateTag" />

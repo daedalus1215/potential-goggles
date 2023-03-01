@@ -9,11 +9,11 @@ const { DELETE_TAG_RESPONSE } = require('../reduxTypes');
  * @param {*} res 
  */
 module.exports = async (req, res) => {
-    const responder = apiResponse(res, DELETE_TAG_RESPONSE);
     const model = await TagService.deleteTag(req.params.id);
-    if (model.ok === 1) {
-        responder(req.params.id);
+    console.log('model', model)
+    if (model.ok) {
+        res.jsonp(model);
     } else {
-        responder(model);
+        throw Error('Something went wrong deleting tag.')
     }
 };
