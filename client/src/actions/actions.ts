@@ -71,7 +71,6 @@ export const updateTagAction: ActionInterface = async ({ request }) => {
                 tags: formData.get('tags') ?? 0,
             })
         case forms.deleteTag:
-            console.log('deleteTag!')
             await fetchApiData(`${api}tag/${formData.get('id')}`, { method: 'DELETE' });
             return redirect("/")
     }
