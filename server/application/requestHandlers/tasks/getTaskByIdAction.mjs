@@ -1,9 +1,12 @@
-const TaskService = require('../../../domain/services/tasks/TaskService');
+import TaskService from "../../../domain/services/tasks/TaskService.mjs";
 
-module.exports = async (req, res) => {
+
+const getTaskByIdAction = async (req, res) => {
   if (!req?.params?.id) {
     res.jsonp({ error: 'Need Id' });
   }
   const task = await TaskService.fetchTaskById(req.params.id);
   res.jsonp(task);
 };
+
+export default getTaskByIdAction;

@@ -2,7 +2,7 @@
  * 
  * @param {Object} request 
  */
-module.exports = request => {
+export default request => {
     // eslint-disable-next-line no-underscore-dangle
     return {
         id: request.body._id,

@@ -23,6 +23,6 @@ client/config.json
 *.njsproj
 *.sln
 *.sw?
-server/config.js
+server/config.mjs
 server/node_modules
 server/dist/*

@@ -1,5 +1,5 @@
 
-module.exports = (mins) => {
+export default (mins) => {
     const [minutes, seconds] = mins.split(":");
     
     const minutesToMilliseconds = minutes * 1000 * 60;

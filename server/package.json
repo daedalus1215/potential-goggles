@@ -24,7 +24,7 @@
   },
   "proxy": "http://127.0.0.1:3001",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon server.mjs",
     "test": "jest --watch"
   },
   "types": "dist/index.d.ts",
