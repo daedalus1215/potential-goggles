@@ -1,10 +1,7 @@
-import { Task } from "../../../../../interfaces";
-const TaskModel = require('../../../../../infrastructure/models/TaskModel');
-const minutesToMilliseconds = require('../../../../../utils/minutesToMilliseconds');
+import TaskModel from "../../../../../infrastructure/models/TaskModel.mjs";
+import minutesToMilliseconds from "../../../../../utils/minutesToMilliseconds.js";
 
-type Repository = (taskId: string) => Promise<Task>;
-
-const CreateDateTimeRepository: Repository = async (taskId) => {
+const CreateDateTimeRepository = async (taskId) => {
     const task = await TaskModel.findOne({ _id: taskId });
     const { time } = task;
     time.push({
