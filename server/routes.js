@@ -1,9 +1,9 @@
 const { body } = require('express-validator');
 
 // TASK ACTION imports
-const getAllTasksAction = require('./application/requestHandlers/tasks/getAllTasksAction');
-const getAllTaskTitlesAction = require('./application/requestHandlers/tasks/getAllTaskTitlesAction');
-const getTaskByIdAction = require('./application/requestHandlers/tasks/getTaskByIdAction');
+const getAllTasksAction = require('./application/requestHandlers/tasks/getAllTasksAction.mjs');
+const getAllTaskTitlesAction = require('./application/requestHandlers/tasks/getAllTaskTitlesAction.mjs');
+const getTaskByIdAction = require('./application/requestHandlers/tasks/getTaskByIdAction.mjs');
 const putTaskAction = require('./application/requestHandlers/tasks/putTaskAction');
 const getAllTagsAction = require('./application/requestHandlers/tags/getAllTagsAction');
 const addTaskAction = require('./application/requestHandlers/tasks/addTaskAction');

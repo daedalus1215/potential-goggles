@@ -24,10 +24,11 @@
   },
   "proxy": "http://127.0.0.1:3001",
   "scripts": {
-    "start": "nodemon server.ts",
+    "start": "nodemon server.js",
     "test": "jest --watch"
   },
   "types": "dist/index.d.ts",
+  "type": "module",
   "files": [
     "/dist",
     "/typings"
