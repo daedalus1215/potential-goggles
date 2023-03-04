@@ -2,7 +2,7 @@ import EntityToDto from "../FetchTaskByIdRepository/EntityToDto.mjs";
 import sumExistingTime from "./sumExistingTime.mjs";
 import striptags from 'striptags';
 
-const assembleAndSave = (dto, res) => (err, doc) => {
+const assembleAndSave = (dto) => async (err, doc) => {
     if (err) throw err;
 
     const existingTime = sumExistingTime(doc);
@@ -21,10 +21,8 @@ const assembleAndSave = (dto, res) => (err, doc) => {
     doc.contractId = dto.contractId;
     doc.tags = dto.tags;
     doc.title = striptags(dto.description.split("</p>")[0].split("<p>")[1]);
-    doc.save((err, task) => {
-        res(EntityToDto(task));
-    });
-
+    const savedTask = await doc.save();
+    return EntityToDto(savedTask);
 };
 
 

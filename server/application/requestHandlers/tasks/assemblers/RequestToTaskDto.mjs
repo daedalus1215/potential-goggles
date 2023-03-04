@@ -2,7 +2,7 @@
  * 
  * @param {Object} request 
  */
-export default request => {
+const RequestToTaskDto = request => {
     // eslint-disable-next-line no-underscore-dangle
     return {
         id: request.body._id,
@@ -14,3 +14,5 @@ export default request => {
         time: request.body.WorkUnit[0].time
     }
 }
+
+export default RequestToTaskDto;
