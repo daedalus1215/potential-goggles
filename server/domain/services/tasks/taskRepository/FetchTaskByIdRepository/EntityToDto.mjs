@@ -18,6 +18,8 @@ export default (doc) => {
         || 0;
 
     task.dateTimes = doc?.time
+        .filter(dateTime => dateTime?.date)
+        .sort((a, b) => b.date.getTime() - a.date.getTime())
         .map(dateTime => {
             const date = dateTime.date;
             const id = dateTime._id;
