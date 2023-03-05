@@ -7,7 +7,6 @@ html {
 }
 
 body {
-  background-color: #eee;
   font-size: 14px;
 }
 
@@ -29,7 +28,6 @@ ul {
   /* Increase/decrease this value for cross-browser compatibility */
   box-sizing: content-box;
   /* So the width will be 100% + 17px */
-  background-color: #fff;
 }
 
 #root {
@@ -40,7 +38,6 @@ ul {
 /* Sidebar */
 .sidebar {
   flex: 2;
-  background-color: #fff;
   margin: 0;
   height: 95vh;
   padding: 1em;
@@ -62,10 +59,6 @@ ul {
   border-radius: 8px;
   display: inline;
   margin-right: 5px;
-}
-
-li {
-  list-style: none;
 }
 
 .searchIcon {
@@ -96,7 +89,6 @@ input.search:focus-visible {
 .detail {
   flex: 8;
   padding: 0;
-  background-color: #eee;
   margin: 0;
   margin-top: 2em;
   width: 600px;
@@ -151,114 +143,4 @@ input.search:focus-visible {
   margin: 10px 0;
   padding: 0;
   text-align: left;
-}
-
-.notes {
-  color: black;
-  font-size: 1.1rem;
-  text-align: left;
-  margin: 20px 0;
-}
-
-.formEdit {
-  display: inline;
-  margin: 0 10px 0 0;
-}
-
-.formDelete {
-  display: inline;
-}
-
-
-.button {
-  background-color: #eee;
-  border: solid 1px #aaa;
-  color: #222;
-  box-shadow: #aaa .5px .5px .5px .5px;
-}
-
-.contactButtons {
-  text-align: left;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-
-/* EditContactPage */
-.contactForm {
-  width: 600px;
-}
-
-.row {
-  display: flex;
-}
-
-input {
-  height: 30px;
-  border-radius: 8px;
-}
-
-.label {
-  height: 30px;
-  /* padding: 8px 0; */
-  margin-right: 100px;
-  margin-left: 100px;
-  font-size: 1rem;
-}
-
-.names {
-  flex: 8;
-  display: flex;
-}
-
-.firstName {
-  margin-right: 1em;
-  flex: 5;
-}
-
-.lastName {
-  flex: 5;
-}
-
-.twitter {
-  width: 100%;
-  font-size: 1rem;
-}
-
-textarea {
-  width: 100%;
-}
-
-.editContactPageButtons {
-  margin-left: 3em;
-}
-
-.editContactPgeSubmit {
-  margin-right: 10px;
-}
-
-/* Suppress the toast on tinyMCE */
-.tox-notification.tox-notification--in.tox-notification--warning {
-  display: none;
 }
