@@ -1,11 +1,11 @@
 import React from 'react';
 import cn from 'classnames';
+import { useNavigate } from 'react-router-dom';
+import Button from '../Button';
 
 import styles from './HomeButton.module.css';
-import Button from '../Button';
-import { useNavigate } from 'react-router-dom';
 
-const HomeButton = () => {
+const HomeButton: React.FC = () => {
     const navigate = useNavigate();
     return <Button
         className={cn(styles.buttonAdd)}

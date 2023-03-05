@@ -1,6 +1,6 @@
 .buttonAdd,
 .buttonAdd:hover {
-  background-color: #3085CC;
+  background-color: #FF8D2E;
   color: white;
   border: none;
   text-decoration: none;
@@ -14,5 +14,5 @@
 }
 
 .buttonAdd:hover {
-  background-color: #76B4E7;
+  background-color: #FF7400;
 }
