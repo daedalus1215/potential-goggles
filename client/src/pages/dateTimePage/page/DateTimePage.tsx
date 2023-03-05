@@ -7,6 +7,8 @@ import AddButton from '@/components/addButton/AddButton';
 import { TopBar } from '@/components';
 
 import styles from './DateTimePage.module.css';
+import HomeButton from '@/components/homeButton/HomeButton';
+import BackButton from '@/components/BackButton';
 
 const DateTimePage: React.FC = () => {
   const task = useLoaderData() as Task;
@@ -19,12 +21,15 @@ const DateTimePage: React.FC = () => {
   }
 
   // const millisecondsInFractionalHourFormat = displayMsInFractionalHourFormat(task.time);
-  return (<div className={styles.page}>
+  return (<div className='contactRight'>
+    <HomeButton />
+
     <div className={styles.header}>
 
       <h2 className={styles.h2}>{task.title}</h2>
       <TopBar>
         <>
+        <BackButton path={`/task/${task._id}`}/>
           <Form
             // action={`/date-time/${task._id}`}
             method='post'>
@@ -40,8 +45,7 @@ const DateTimePage: React.FC = () => {
     <div className={styles.childrenContent}>
       <DateTimeListView task={task} />
     </div>
-  </div>
-  );
+  </div>);
 };
 
 export default DateTimePage;
