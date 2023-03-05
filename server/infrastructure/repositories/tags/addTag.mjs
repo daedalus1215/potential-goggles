@@ -1,5 +1,4 @@
-const hydrateAndResponse = require("../../hydrators/hydrateAndResponse.mjs");
-const getTagModel = require("../../models/getTagModel.mjs");
+import getTagModel from "../../models/getTagModel.mjs";
 
 export default async (tagDto) => {
     const tag = getTagModel();

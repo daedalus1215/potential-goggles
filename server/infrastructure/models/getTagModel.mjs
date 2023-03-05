@@ -1,3 +1,3 @@
-const Tag = require("./Tag.mjs");
+import Tag from "./Tag.mjs";
 
 export default () => new Tag();

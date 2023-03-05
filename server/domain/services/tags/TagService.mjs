@@ -1,3 +1,4 @@
+import addTag from "../../../infrastructure/repositories/tags/addTag.mjs";
 import fetchAllTags from "../../../infrastructure/repositories/tags/fetchAllTags.mjs";
 import TagRepository from "../../../infrastructure/repositories/tags/TagRepository.mjs";
 
