@@ -1,14 +1,14 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { Form, useLoaderData, useNavigate } from "react-router-dom";
-import { Button, SaveButton, TopBar } from "../../components";
+import { Button, SaveButton, TopBar } from "@/components";
 import ms from 'pretty-ms';
-import TextAreaAdapter from "../../components/textAreaAdapter/TextAreaAdapter";
-import { Task } from "../../interfaces";
+import TextAreaAdapter from "@/components/textAreaAdapter/TextAreaAdapter";
+import { Task } from "@/interfaces";
 import styles from './TaskPage.module.css';
 import classNames from "classnames";
-import HomeButton from "../../components/homeButton/HomeButton";
+import HomeButton from "@/components/homeButton/HomeButton";
 
-const TaskPage = () => {
+const TaskPage: React.FC = () => {
     const task = useLoaderData() as Task;
     const descRef = useRef(null);
     const navigate = useNavigate();

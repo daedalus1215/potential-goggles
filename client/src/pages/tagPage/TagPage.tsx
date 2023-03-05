@@ -5,6 +5,8 @@ import { Tag as TagInterface } from '@/interfaces';
 import Tag from './tagItem/TagItem';
 
 import styles from './TagPage.module.css';
+import HomeButton from '@/components/homeButton/HomeButton';
+import { Button, TopBar } from '@/components';
 
 const TagePage: React.FC = () => {
     const tags = useLoaderData() as TagInterface[];
@@ -17,17 +19,21 @@ const TagePage: React.FC = () => {
     }
 
     return (
-        <div className={styles.page}>
-            <Form
-                method='post'>
-                <AddButton />
+        <div className='contactRight'>
+            <HomeButton />
+            <TopBar />
+            <div className={styles.page}>
+                <Form
+                    method='post'>
+                    <AddButton />
 
-                <div className={styles.grid}>
-                    {tags.map((tag: TagInterface) => {
-                        return <Tag key={tag._id} _id={tag._id} name={tag.name} />
-                    })}
-                </div>
-            </Form>
+                    <div className={styles.grid}>
+                        {tags.map((tag: TagInterface) => {
+                            return <Tag key={tag._id} _id={tag._id} name={tag.name} />
+                        })}
+                    </div>
+                </Form>
+            </div>
         </div>
     );
 }

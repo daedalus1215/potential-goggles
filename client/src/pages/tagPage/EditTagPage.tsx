@@ -7,6 +7,7 @@ import { Form, useLoaderData, useNavigate } from 'react-router-dom';
 
 import styles from './EditTagPage.module.css';
 import classNames from 'classnames';
+import BackButton from '@/components/BackButton';
 
 function EditTagePage() {
     const tag = useLoaderData() as Tag;
@@ -26,6 +27,7 @@ function EditTagePage() {
             <div className="contactButtons">
                 <TopBar>
                     <>
+                        <BackButton path='/tags' />
                         <Form method="delete" onSubmit={(event) => {
                             if (!confirm("Please confirm you want to delete this Tag.")) {
                                 event.preventDefault();
@@ -46,7 +48,7 @@ function EditTagePage() {
                 <input type="hidden" name="id" value={tag._id} />
                 <input type="hidden" name="formId" value="updateTag" />
                 <input type="text" name="name" defaultValue={tag.name} />
-                
+
                 <TextAreaAdapter reference={descRef} value={tag.description} />
                 <SaveButton className={styles.left} />
             </Form>
