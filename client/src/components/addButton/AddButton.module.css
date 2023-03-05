@@ -1,8 +1,8 @@
 .submit {
-  -moz-box-shadow: inset 0px 1px 0px 0px #DC9300;
-  -webkit-box-shadow: inset 0px 1px 0px 0px #DC9300;
-  box-shadow: inset 0px 1px 0px 0px #FFBE3C;
-  background-color: #FFB011;
+  -moz-box-shadow: inset 0px 1px 0px 0px #1447BE;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #1447BE;
+  box-shadow: inset 0px 1px 0px 0px #1447BE;
+  background-color: #5780DD;
   display: inline-block;
   cursor: pointer;
   color: #FFFFFF;
@@ -15,6 +15,5 @@
 }
 
 .submit:hover {
-  background: linear-gradient(to bottom, #FFCB62 5%, #DC9300 100%);
-  background-color: #FFCB62;
+  background: linear-gradient(to bottom, #7C9DE9 5%, #ABC1F4 100%);
 }
