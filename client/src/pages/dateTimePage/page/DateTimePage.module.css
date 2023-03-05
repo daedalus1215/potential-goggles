@@ -6,3 +6,7 @@
 .dateTimeTotal {
   float: right;
 }
+
+.header {
+  margin-left: 3em;
+}
