@@ -47,9 +47,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  font-size: 14px;
 }
-
-
 
 input {
   height: 30px;
