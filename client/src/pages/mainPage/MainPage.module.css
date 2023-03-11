@@ -1,17 +1,94 @@
+/* Sidebar */
+.sidebar {
+  /* flex: 2; */
+  margin: 0;
+  height: 95vh;
+  width: 240px;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchAndNew {
+  display: flex;
+}
+
+.searchFormWrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.search {
+  height: 30px;
+  outline: none;
+  border-radius: 8px;
+  background-color: #C5CAD6;
+  border: none;
+  color: black;
+  width: 120px;
+  flex: 8;
+}
+
 /* task list view */
 .taskListHeader {
   display: flex;
 }
 
-.taskList {
+.formSearch {
+  background-color: #eee;
+  width: 200px;
+  border: none;
+  height: 36px;
+  border-radius: 8px;
+  display: inline;
+  display: flex;
+}
+
+.searchIcon {
+  color: #aaa;
+  vertical-align: text-bottom;
+  padding: 0;
+  /* flex: 2; */
+  font-size: 16px;
+  margin-left: 6px;
+}
+
+/* input.search:focus-visible {
+  outline: none;
+  color: #222;
+} */
+
+.search {
+  background-color: #eee;
+  border: none;
+  height: 30px;
+  border-radius: 8px;
+  display: inline;
+  color: #222;
+}
+
+.newForm {
+  display: inline;
+}
+
+.detail {
+  flex: 8;
+  padding: 0;
+  margin: 0;
+  margin-top: 2em;
+  width: 600px;
+}
+
+
+.taskListView {
   margin: 0;
   padding: 0;
   max-width: 200px;
   min-width: 200px;
   overflow-y: scroll;
-  background-color: #fff;
+  /* background-color: #fff; */
   font-size: 20px;
-
 }
 
 /* task */
