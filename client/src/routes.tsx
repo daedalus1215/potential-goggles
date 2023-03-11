@@ -30,7 +30,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           element: <MainPage />,
           loader: searchLoader,
           errorElement: <ErrorPage />,
-          action: newTaskAction,
           children: [
             {
               errorElement: <ErrorPage />,
@@ -38,6 +37,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                 {
                   index: true,
                   element: <IndexPage />,
+                  action: newTaskAction,
                 },
                 {
                   path: "task/:taskId",
