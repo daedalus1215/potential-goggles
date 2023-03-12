@@ -1,27 +1,30 @@
 import React from 'react';
 import cn from 'classnames';
-import Button from '../Button';
 
 import styles from './IconButton.module.css';
+import { Button } from '..';
+import { Category } from '../button/Button';
 
 interface props {
-  onClick: any;
+  onClick?: any;
   icon: string;
-  title: string;
+  title?: string;
   className?: string;
+  type?: "submit";
+  category?: keyof typeof Category
 }
-const IconButton: React.FC<props> = ({ onClick, icon, title, className}) => {
+const IconButton: React.FC<props> = ({ onClick, icon, title, className, type, category }) => {
 
   return (<Button
     data-testid="icon-button"
     title={title}
-    type="a"
-    className={cn(styles.iconButton, className)}
+    type={type ?? "a"}
+    category={category}
+    className={cn(styles.IconButton, className, { [styles.hasTitle]: title })}
     onClick={onClick}>
-    <div className={styles.wrap}>
-      <i className={cn(icon, styles.icon)}></i>
-      <span className={styles.title}>{title}</span>
-    </div>
+    <i className={cn(icon, styles.icon)}></i>
+    {title && <span className={styles.title}>{title}</span>}
+
   </Button>
   );
 };

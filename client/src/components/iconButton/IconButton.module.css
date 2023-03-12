@@ -1,14 +1,18 @@
-.iconButton {
-  background-color: #3e80ed;
+.IconButton {
   color: white;
   width: 45px;
   height: 40px;
   margin: 4px 5px;
-  width: 150px;
+  padding: 0px;
 }
 
-.iconButton:hover {
-  background-color: #184693;
+.hasTitle {
+  flex-direction: row;
+  display: flex;
+  width: 150px;
+  padding: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
 }
 
 .title {
@@ -18,4 +22,3 @@
 .icon {
   font-size: 1.2rem;
 }
-
