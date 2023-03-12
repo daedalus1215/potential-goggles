@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import IconButton from '../../../components/iconButton/IconButton';
+import { Category } from '@/components/button/Button';
+import IconButton from '@/components/iconButton/IconButton';
 import UploadModal from './UploadModal';
 
 const UploadButton = () => {
@@ -7,6 +8,7 @@ const UploadButton = () => {
 
     return (<>
         <IconButton
+            category={Category.info}
             onClick={setIsModalShowing}
             icon="bi bi-cloud-upload"
             title="Upload"

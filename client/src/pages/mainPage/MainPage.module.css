@@ -3,10 +3,14 @@
   /* flex: 2; */
   margin: 0;
   height: 95vh;
-  width: 240px;
+  width: 0px;
   padding: 1em;
   display: flex;
   flex-direction: column;
+}
+
+.isExpanded {
+  width: 240px;
 }
 
 .searchAndNew {

@@ -8,7 +8,7 @@ const TagButton = () => {
     const navigate = useNavigate();
     return <IconButton
         icon="bi bi-tag"
-        title="Note tags"
+        // title="Note tags"
         className={styles.tagButton}
         onClick={() => {
             navigate("/tags");

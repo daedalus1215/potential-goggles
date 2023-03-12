@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react';
 import { Form, NavLink, useSubmit } from 'react-router-dom';
 import cn from 'classnames';
-import styles from '../MainPage.module.css'
 import { Task } from '@/interfaces';
+
+import styles from '../MainPage.module.css'
 
 type props = {
     tasks: Task[];
     q?: string;
-    selectedId?: string
+    selectedId?: string;
+    isExpanded: boolean
 }
 
-const Sidebar: React.FC<props> = ({ tasks, q, selectedId }) => {
+const Sidebar: React.FC<props> = ({ tasks, q, selectedId, isExpanded }) => {
     const submit = useSubmit()
 
     useEffect(() => {
@@ -27,8 +29,8 @@ const Sidebar: React.FC<props> = ({ tasks, q, selectedId }) => {
         })
     }
 
-    return (
-        <div id="sidebar" className={styles.sidebar}>
+    const render = () => {
+        return isExpanded ? (<div id="sidebar" className={cn(styles.sidebar, { [styles.isExpanded]: isExpanded })}>
             <div className={styles.searchAndNew}>
                 <div className={styles.searchFormWrapper}>
                     <Form id="search-form" role="search" className={styles.formSearch}>
@@ -50,7 +52,7 @@ const Sidebar: React.FC<props> = ({ tasks, q, selectedId }) => {
 
             {/* <nav className={styles.navbar}> */}
             {tasks.length ? (
-                <ul className={styles.taskListView}>
+                <ul className={cn(styles.taskListView, { [styles.isExpanded]: isExpanded })}>
                     {tasks.map((task: any) => (
                         <li key={task._id} className={styles.taskItemContainer}>
                             <NavLink
@@ -72,8 +74,11 @@ const Sidebar: React.FC<props> = ({ tasks, q, selectedId }) => {
                 </p>
             )}
             {/* </nav> */}
-        </div>
-    );
+        </div>)
+            : <></>
+    }
+
+    return (render());
 }
 
 export default Sidebar;

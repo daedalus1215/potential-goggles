@@ -13,6 +13,7 @@ const DownloadButton: React.FC = (...tasks) => {
     <>
       {tasks?.length && (
         <IconButton 
+          category='primary2nd'
           onClick={handleDownload}
           icon="bi bi-cloud-download"
           title="Download"

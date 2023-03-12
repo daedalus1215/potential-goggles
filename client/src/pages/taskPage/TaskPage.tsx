@@ -7,6 +7,7 @@ import { Task } from "@/interfaces";
 import styles from './TaskPage.module.css';
 import classNames from "classnames";
 import HomeButton from "@/components/homeButton/HomeButton";
+import IconButton from "@/components/iconButton/IconButton";
 
 const TaskPage: React.FC = () => {
     const task = useLoaderData() as Task;
@@ -28,8 +29,8 @@ const TaskPage: React.FC = () => {
                 <div data-test-id="fractionHour">{`Hours: ${original}`}</div>
                 <TopBar>
                     <>
-                        <Button
-                            value="DateTime"
+                        <IconButton
+                            icon="bi bi-clock"
                             onClick={() => {
                                 navigate(`/date-time/${task._id}`);
                             }} />
@@ -41,7 +42,10 @@ const TaskPage: React.FC = () => {
                         }}>
                             <input type="hidden" name="formId" value="deleteTask" />
                             <input type="hidden" name="id" value={task._id} />
-                            <Button type="submit" className={styles.trashButton}><i className={classNames("bi bi-trash", styles.trash)} ></i></Button>
+                            <IconButton
+                                icon="bi bi-trash"
+                                type="submit"
+                                className={styles.trashButton} />
                         </Form>
                     </>
                 </TopBar>
