@@ -3,7 +3,7 @@
   overflow: hidden;
   transition: background 400ms;
   color: #fff;
-  background-color: #6200ee;
+  background-color: #907FEB;
   font-family: 'Roboto', sans-serif;
   font-size: 1.5rem;
   outline: 0;
@@ -15,4 +15,50 @@
   width: 45px;
   height: 40px;
   display: inline;
+}
+
+
+.baseBtn:hover {
+  background-color: #533CD2;
+}
+
+.primary {
+  background-color: #907FEB;
+}
+
+.primary:hover {
+  background-color: #533CD2;
+}
+
+.primary2nd {
+  background-color: #3e80ed;
+}
+
+.primary2nd:hover {
+  background-color: #184693;
+}
+
+.danger {
+  background-color: #FF2E2E;
+}
+
+.danger:hover {
+  background-color: #FF7979;
+}
+
+.info {
+  background-color: #45D6D6;
+}
+
+.info:hover {
+  background: linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
+  background-color: #34CACA;
+}
+
+.accent {
+  background-color: #FF8D2E;
+}
+
+.accent:hover {
+  background-color: #FF7400;
 }
