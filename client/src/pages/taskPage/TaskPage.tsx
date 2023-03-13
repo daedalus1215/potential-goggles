@@ -7,6 +7,7 @@ import { Task } from "@/interfaces";
 import styles from './TaskPage.module.css';
 import HomeButton from "@/components/homeButton/HomeButton";
 import IconButton from "@/components/iconButton/IconButton";
+import { Category } from "@/components/button/Button";
 
 const TaskPage: React.FC = () => {
     const task = useLoaderData() as Task;
@@ -46,11 +47,18 @@ const TaskPage: React.FC = () => {
                                 type="submit"
                                 className={styles.trashButton} />
                         </Form>
+                        <IconButton
+                            icon="bi bi-save"
+                            category={Category.info}
+                            form="taskForm"
+                        />
                     </>
                 </TopBar>
             </div>
 
             <Form
+                id="taskForm"
+                name="taskForm"
                 method="post"
                 action={`/task/${task._id}`}
                 className={styles.form}>

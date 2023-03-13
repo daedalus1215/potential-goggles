@@ -20,8 +20,9 @@ interface ButtonProps {
   testid?: string;
   title?: string;
   type?: string;
-  disabled?: boolean
-  category?: keyof typeof Category
+  disabled?: boolean;
+  category?: keyof typeof Category;
+  form?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({ className, onClick, value, children, testid, title, type, disabled, category, ...rest }) => {

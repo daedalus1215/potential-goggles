@@ -10,10 +10,11 @@ interface props {
   icon: string;
   title?: string;
   className?: string;
-  type?: "submit";
+  type?: 'submit';
+  form?: 'string';
   category?: keyof typeof Category
 }
-const IconButton: React.FC<props> = ({ onClick, icon, title, className, type, category }) => {
+const IconButton: React.FC<props> = ({ onClick, icon, title, className, type, category,form }) => {
 
   return (<Button
     data-testid="icon-button"
@@ -21,7 +22,8 @@ const IconButton: React.FC<props> = ({ onClick, icon, title, className, type, ca
     type={type ?? "a"}
     category={category}
     className={cn(styles.IconButton, className, { [styles.hasTitle]: title })}
-    onClick={onClick}>
+    onClick={onClick}
+    form={form}>
     <i className={cn(icon, styles.icon)}></i>
     {title && <span className={styles.title}>{title}</span>}
 
