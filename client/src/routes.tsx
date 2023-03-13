@@ -15,7 +15,6 @@ import { dateTimeLoader, searchLoader, tagLoader, tagsLoader, taskLoader, tasksL
 import EditDateTimeForm from './pages/EditDateTimeForm/EditDateTimeForm';
 
 import './index.css'
-import './App.css';
 import TagPage from './pages/tagPage/TagPage';
 import EditTagPage from './pages/tagPage/EditTagPage';
 

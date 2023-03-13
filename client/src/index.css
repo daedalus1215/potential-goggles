@@ -89,3 +89,69 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+html {
+  overflow: scroll;
+  /* Remove scrollbar space */
+  overflow-x: hidden;
+  /* Remove scrollbar space */
+  height: 90%
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+
+
+ul {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  /* Increase/decrease this value for cross-browser compatibility */
+  box-sizing: content-box;
+  /* So the width will be 100% + 17px */
+}
+
+#root {
+  display: flex;
+  width: 100%;
+}
+
+
+/* Contact Page */
+
+.avatar {
+  margin-left: 3em;
+}
+
+.avatar>img {
+  border-radius: 24px;
+}
+
+.contactRight {
+  margin-left: 2em;
+}
+
+.contact {
+  display: flex;
+  margin-left: 2em;
+  margin-top: 4em;
+}
+
+.contactTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.favoriteForm {
+  display: inline;
+}
+

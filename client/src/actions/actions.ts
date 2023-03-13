@@ -99,7 +99,7 @@ export const updateTaskAction: ActionInterface = async ({ request }) => {
             })
         case forms.deleteTask:
             //@TODO:
-            await fetchApiData(`task/${formData.get('id')}`, { method: 'DELETE' });
+            await fetchApiData(`${api}task/${formData.get('id')}`, { method: 'DELETE' });
             return redirect("/")
     }
 }
