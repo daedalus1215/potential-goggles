@@ -1,4 +1,4 @@
-import { redirect } from 'react-router-dom'
+import { redirect, useNavigate } from 'react-router-dom'
 import { ActionInterface, Params, Tag, Task } from '@/interfaces'
 import fetchApiData from '@/utils/fetchApiData'
 import getCurrentDateTimeEstFormat from '@/utils/getCurrentDateTimeEstFormat'
@@ -54,7 +54,6 @@ export const updateDateTime: ActionInterface = async ({ request }) => {
 }
 
 const forms = {
-    newTaskForm: 'newTaskForm',
     searchContacts: 'searchContacts',
     deleteTask: "deleteTask",
     updateTask: "updateTask",
@@ -106,11 +105,16 @@ export const updateTaskAction: ActionInterface = async ({ request }) => {
 }
 
 export const newTaskAction: ActionInterface = async () => {
-    await fetchApiData(`${api}task`, {
+    return await fetchApiData(`${api}task`, {
         method: 'POST',
+    }).then(data => {
+        const id = data._id;
+        console.log('data', id)
+        return redirect(`task/${id}`)
+
     });
 
-    return redirect("/")
+
 }
 
 // @TODO: Replace `any` here with a type!
