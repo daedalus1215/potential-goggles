@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from './button/Button';
+import IconButton from './iconButton/IconButton';
 
 type props = {
     path: string;
@@ -8,12 +9,11 @@ type props = {
 
 const BackButton: React.FC<props> = ({ path }) => {
     const navigate = useNavigate();
-    return <Button
+    return <IconButton
+        icon='bi bi-backspace'
         onClick={() => {
             navigate(path)
-        }}>
-        <i className="bi bi-backspace"></i>
-    </Button>
+        }} />
 }
 
 export default BackButton;
