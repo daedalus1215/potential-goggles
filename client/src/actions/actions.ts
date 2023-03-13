@@ -105,13 +105,10 @@ export const updateTaskAction: ActionInterface = async ({ request }) => {
 }
 
 export const newTaskAction: ActionInterface = async () => {
-    return await fetchApiData(`${api}task`, {
+    return await fetchApiData<Task>(`${api}task`, {
         method: 'POST',
-    }).then(data => {
-        const id = data._id;
-        console.log('data', id)
-        return redirect(`task/${id}`)
-
+    }).then((data) => {
+        return redirect(`task/${data._id}`)
     });
 
 
