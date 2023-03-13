@@ -3,7 +3,6 @@ import cn from 'classnames'
 import { Task } from '../../interfaces'
 import Sidebar from './sidebar/Sidebar'
 import { useState } from 'react'
-import ListTaskButton from '@/components/listTaskButton/ListTaskButton'
 import IconButton from '@/components/iconButton/IconButton'
 
 import styles from './MainPage.module.css';

@@ -5,7 +5,6 @@ import ms from 'pretty-ms';
 import TextAreaAdapter from "@/components/textAreaAdapter/TextAreaAdapter";
 import { Task } from "@/interfaces";
 import styles from './TaskPage.module.css';
-import classNames from "classnames";
 import HomeButton from "@/components/homeButton/HomeButton";
 import IconButton from "@/components/iconButton/IconButton";
 

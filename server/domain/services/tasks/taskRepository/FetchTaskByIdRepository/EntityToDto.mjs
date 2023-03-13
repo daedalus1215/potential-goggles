@@ -1,3 +1,5 @@
+import striptags from 'striptags';
+
 //@TODO: Need to UT these conditionals
 export default (doc) => {
     const task = {};
@@ -6,9 +8,10 @@ export default (doc) => {
     task.tags = doc?.tags || [];
     task.date = doc?.date || '';
     task.contractId = doc.contractId || '';
-    task.title = doc.title
+    
+    task.title = doc?.title
         ?? (doc?.description
-            ? striptags(dto.description.split("</p>")[0]?.split("<p>")[1])
+            ? striptags(doc.description.split("</p>")[0]?.split("<p>")[1])
             : '');
 
 
