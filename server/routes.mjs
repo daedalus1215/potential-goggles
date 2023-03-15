@@ -18,6 +18,7 @@ import deleteTagAction from  './application/requestHandlers/tags/deleteTagAction
 import AddTagAction from  './application/requestHandlers/tags/AddTagAction.mjs';
 import UpdateTagAction from  './application/requestHandlers/tags/UpdateTagAction.mjs';
 import getTagByIdAction from  './application/requestHandlers/tags/getTagByIdAction.mjs';
+import { FetchTodaysTasksAction } from './application/requestHandlers/tasks/dateTime/FetchTodaysTasksAction.mjs';
 
 const routes = (app) => {
     // TASKS
@@ -63,6 +64,7 @@ const routes = (app) => {
     // TASKS > DATE TIME
     app.put('/api/task/:taskId/dateTime/:id', updateDateTimeAction);
     app.post('/api/task/:taskId/dateTime', postDateTimeAction);
+    app.get('/api/sds/today', FetchTodaysTasksAction)
 
     // TAGS
     app.get('/api/tags', getAllTagsAction);
