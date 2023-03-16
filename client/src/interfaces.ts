@@ -44,6 +44,14 @@ export interface Tag {
     description: string;
 }
 
+export interface TodaysActivity  {
+    _id:string;
+    title:string;
+    date: Date,
+    totalTimeToday: number;
+    times: DateTime[]
+}
+
 /**
  * https://dev.to/iamandrewluca/typed-fetch-response-in-typescript-1eh1
  */
