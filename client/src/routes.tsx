@@ -11,7 +11,7 @@ import { createDateTime, createTag, newTaskAction, updateDateTime, updateTagActi
 import IndexPage from './pages/indexPage/IndexPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import DateTimePage from './pages/dateTimePage/page/DateTimePage';
-import { dateTimeLoader, searchLoader, tagLoader, tagsLoader, taskLoader, tasksLoader } from './actions/loaders';
+import { dateTimeLoader, searchLoader, tagLoader, tagsLoader, taskLoader, tasksLoader, todaysLoader } from './actions/loaders';
 import EditDateTimeForm from './pages/EditDateTimeForm/EditDateTimeForm';
 
 import './index.css'
@@ -37,6 +37,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                 {
                   index: true,
                   element: <IndexPage />,
+                  loader: todaysLoader,
                 },
                 {
                   path: "task/:taskId",
