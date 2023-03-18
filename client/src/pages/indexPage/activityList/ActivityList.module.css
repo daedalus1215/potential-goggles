@@ -1,0 +1,13 @@
+.activity {
+    cursor: pointer;
+    color: #ddd;
+    margin: 10px;
+    padding:10px;
+    background: linear-gradient(to bottom, #0F182E 5%, #0F182E 100%);
+}
+
+.activity:hover {
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to bottom, #0F182E 10%, #0F182E 70%);
+    color: #ddd;
+}
