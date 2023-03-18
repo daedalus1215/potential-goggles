@@ -6,8 +6,10 @@ const getDate = (date) => {
 
 export const FetchTodaysTasks = async () => {
     const today = getDate(new Date());
-    console.log(today)
-    const tasks = await TaskModel.find({ '$where': `this.date.toJSON().slice(0, 10) == "${today}"` }).sort('-_id');
+    const tasks = await TaskModel.find({
+        '$where': `this.date.toJSON().slice(0, 10) == "${today}"`
+    }
+    ).sort('-_id');
     return tasks
         .map((task) => ({
             _id: task?._id ?? 'stubAnId',
