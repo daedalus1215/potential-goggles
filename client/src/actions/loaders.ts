@@ -1,6 +1,6 @@
 import { fetchTag, fetchTags, fetchTask, fetchTasks } from './actions'
 import type { LoaderFunctionArgs } from "@remix-run/router";
-import { Task, TodaysActivity, TypedResponse } from '../interfaces';
+import { AggregateActivity, Task, TodaysActivity, TypedResponse } from '../interfaces';
 import { api } from '@/config.json';
 import { fetchApiData } from '@/utils';
 
@@ -34,8 +34,8 @@ export const tasksLoader = async ({ params }: LoaderFunctionArgs) => {
     return tasks
 }
 
-export const todaysLoader = async (): Promise<TodaysActivity[]> => {
-    const activity = await fetchApiData<TodaysActivity[]>(`${api}sds/today`, {})
+export const todaysLoader = async (): Promise<AggregateActivity> => {
+    const activity = await fetchApiData<AggregateActivity>(`${api}sds/today`, {})
     return activity
 }
 
