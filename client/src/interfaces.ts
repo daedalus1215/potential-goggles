@@ -4,7 +4,7 @@ export interface Params {
     };
 }
 
-export interface DateParams extends Params{
+export interface DateParams extends Params {
     params: {
         taskId: string,
         dateTimeId: string
@@ -26,7 +26,7 @@ export interface Contact {
     favorite: boolean;
 };
 
-export interface DateTime { id:string, date: string, time: string }
+export interface DateTime { id: string, date: string, time: string }
 
 export interface Task {
     _id: string;
@@ -44,9 +44,14 @@ export interface Tag {
     description: string;
 }
 
-export interface TodaysActivity  {
-    _id:string;
-    title:string;
+export interface AggregateActivity {
+    activities: TodaysActivity[],
+    total: number;
+}
+
+export interface TodaysActivity {
+    _id: string;
+    title: string;
     date: Date,
     totalTimeToday: number;
     times: DateTime[]
