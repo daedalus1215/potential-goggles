@@ -5,10 +5,10 @@ import TagButton from '../../components/tagButton/TagButton';
 import styles from './IndexPage.module.css';
 import { useLoaderData } from 'react-router-dom';
 import ActivityList from './activityList/ActivityList';
-import { TodaysActivity } from '@/interfaces';
+import { AggregateActivity } from '@/interfaces';
 
 export default function IndexPage() {
-  const todaysActivities = useLoaderData() as TodaysActivity[];
+  const todaysActivities = useLoaderData() as AggregateActivity;
   return (
     <p id="zero-state">
       <br />
@@ -18,7 +18,7 @@ export default function IndexPage() {
         <UploadButton />
         <DownloadButton />
       </div>
-      <ActivityList activities={todaysActivities} />
+      <ActivityList aggregate={todaysActivities} />
     </p>
   )
 }
