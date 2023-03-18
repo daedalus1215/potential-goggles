@@ -7,3 +7,7 @@
 .newForm {
     display: inline;
 }
+
+.row {
+    display: flex;
+}

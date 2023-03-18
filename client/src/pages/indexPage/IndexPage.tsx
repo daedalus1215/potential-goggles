@@ -4,7 +4,7 @@ import TagButton from '../../components/tagButton/TagButton';
 
 import styles from './IndexPage.module.css';
 import { useLoaderData } from 'react-router-dom';
-import ActivityList from './ActivityList';
+import ActivityList from './activityList/ActivityList';
 import { TodaysActivity } from '@/interfaces';
 
 export default function IndexPage() {
@@ -14,9 +14,11 @@ export default function IndexPage() {
       <br />
       <TagButton />
       <div className={styles.underline}></div>
-      <UploadButton />
-      <DownloadButton />
-      <ActivityList activities={todaysActivities}/>
+      <div className={styles.row}>
+        <UploadButton />
+        <DownloadButton />
+      </div>
+      <ActivityList activities={todaysActivities} />
     </p>
   )
 }
