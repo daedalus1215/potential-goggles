@@ -1,6 +1,5 @@
 /* Sidebar */
 .sidebar {
-  /* flex: 2; */
   margin: 0;
   height: 95vh;
   width: 0px;
@@ -13,9 +12,10 @@
   width: 240px;
 }
 
+
 .searchAndNew {
   display: flex;
-} 
+}
 
 .searchFormWrapper {
   display: flex;
@@ -187,4 +187,10 @@ li {
     min-width: 100%;
     width: 100%;
   }
+}
+
+
+.smallScreenSidebar {
+  width: 100%;
+  max-width: 100%;
 }

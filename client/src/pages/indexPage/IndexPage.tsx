@@ -12,7 +12,6 @@ export default function IndexPage() {
   return (
     <p id="zero-state">
       <br />
-      <TagButton />
       <div className={styles.underline}></div>
       <div className={styles.row}>
         <UploadButton />
