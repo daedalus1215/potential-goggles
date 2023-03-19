@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { RefObject, useEffect, useRef } from 'react';
 import { Form, NavLink, useSubmit } from 'react-router-dom';
 import cn from 'classnames';
 import { Task } from '@/interfaces';
@@ -10,14 +10,17 @@ type props = {
     q?: string;
     selectedId?: string;
     isExpanded: boolean
+    setIsExpanded: (isExpanded: boolean) => void;
+    classNames:string
 }
 
-const Sidebar: React.FC<props> = ({ tasks, q, selectedId, isExpanded }) => {
+const Sidebar: React.FC<props> = ({ classNames, tasks, q, selectedId, isExpanded, setIsExpanded }) => {
     const submit = useSubmit()
+    const searchRef: RefObject<HTMLInputElement> = useRef<string>('');
 
     useEffect(() => {
         const element = document.getElementById('q') as unknown as { value: string }
-        if (element.value && q) {
+        if (element?.value && q) {
             element.value = q;
         }
     }, [q])
@@ -30,17 +33,18 @@ const Sidebar: React.FC<props> = ({ tasks, q, selectedId, isExpanded }) => {
     }
 
     const render = () => {
-        return isExpanded ? (<div id="sidebar" className={cn(styles.sidebar, { [styles.isExpanded]: isExpanded })}>
+        return isExpanded ? (<div id="sidebar" className={cn(styles.sidebar, { [styles.isExpanded]: isExpanded }, classNames)}>
             <div className={styles.searchAndNew}>
-                <div className={styles.searchFormWrapper}>
+                <div className={cn(styles.searchFormWrapper, classNames)}>
                     <Form id="search-form" role="search" className={styles.formSearch}>
                         <i className={cn('bi-search', styles.searchIcon)} />
                         <input
                             id="q"
+                            ref={searchRef}
                             aria-label="Search contacts"
                             placeholder="Search"
                             type="search"
-                            className={styles.search}
+                            className={cn(styles.search, classNames)}
                             name="q"
                             defaultValue={q}
                             onChange={onChange}
@@ -52,13 +56,21 @@ const Sidebar: React.FC<props> = ({ tasks, q, selectedId, isExpanded }) => {
 
             {/* <nav className={styles.navbar}> */}
             {tasks.length ? (
-                <ul className={cn(styles.taskListView, { [styles.isExpanded]: isExpanded })}>
+                <ul className={cn(styles.taskListView, { [styles.isExpanded]: isExpanded }, classNames)}>
                     {tasks.map((task: any) => (
-                        <li key={task._id} className={styles.taskItemContainer}>
+                        <li key={task._id} className={cn(styles.taskItemContainer, classNames)}>
                             <NavLink
                                 key={task.id}
                                 to={`task/${task._id}`}
-                                className={cn(styles.taskItem, styles.isActive, styles.isPending)}
+                                onClick={() => {
+                                    const stricterTypeRef = searchRef as { current?: { value?: '' } };
+                                    // clear the search 
+                                    if (stricterTypeRef?.current?.value) {
+                                        stricterTypeRef.current.value = '';
+                                    }
+                                    setIsExpanded(!isExpanded);
+                                }}
+                                className={cn(styles.taskItem, styles.isActive, styles.isPending, classNames)}
                             >
                                 {task?.title ? <>{task.title}</> : <i>No Name</i>}{' '}
                             </NavLink>
