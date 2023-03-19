@@ -1,7 +1,8 @@
 .underline {
     height: 1px;
     background-color: #333;
-    margin-top: 1em;
+    margin: 1em 0;
+    width: 100vw;
 }
 
 .newForm {
