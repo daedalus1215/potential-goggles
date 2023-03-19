@@ -10,8 +10,8 @@ interface props {
   icon: string;
   title?: string;
   className?: string;
-  type?: 'submit';
-  form?: 'string';
+  type?: string;
+  form?: string;
   category?: keyof typeof Category
 }
 const IconButton: React.FC<props> = ({ onClick, icon, title, className, type, category,form }) => {
