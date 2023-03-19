@@ -8,11 +8,14 @@ import styles from './TaskPage.module.css';
 import HomeButton from "@/components/homeButton/HomeButton";
 import IconButton from "@/components/iconButton/IconButton";
 import { Category } from "@/components/button/Button";
+import cn from "classnames";
+import { useSmallScreenSize } from "@/hooks/useSmallScreenSize";
 
 const TaskPage: React.FC = () => {
     const task = useLoaderData() as Task;
     const descRef = useRef(null);
     const navigate = useNavigate();
+    const isSmallScreen = useSmallScreenSize();
 
     if (!task) {
         throw new Response("", {
@@ -23,7 +26,6 @@ const TaskPage: React.FC = () => {
     const original = (task?.time && ms(task.time, { secondsDecimalDigits: 2 })) ?? 0
     return (
         <div className="contactRight">
-            <HomeButton />
             <h2 className={styles.h2}>{task.title}</h2>
             <div className="contactButtons">
                 <div data-test-id="fractionHour">{`Hours: ${original}`}</div>
@@ -31,6 +33,7 @@ const TaskPage: React.FC = () => {
                     <>
                         <IconButton
                             icon="bi bi-clock"
+                            form="taskForm"
                             onClick={() => {
                                 navigate(`/date-time/${task._id}`);
                             }} />
@@ -61,12 +64,11 @@ const TaskPage: React.FC = () => {
                 name="taskForm"
                 method="post"
                 action={`/task/${task._id}`}
-                className={styles.form}>
+                className={cn({[styles.form]: isSmallScreen})}>
                 <input type="hidden" name="id" value={task._id} />
                 <input type="hidden" name="formId" value="updateTask" />
 
                 <TextAreaAdapter reference={descRef} value={task.description} />
-                <SaveButton className={styles.left} />
             </Form>
         </div>
     );

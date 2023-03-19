@@ -2,6 +2,10 @@
     color: white;
 }
 
+.form {
+    width: 100vw;
+}
+
 .input {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
