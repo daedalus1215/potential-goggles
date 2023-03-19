@@ -135,10 +135,10 @@ ul {
   border-radius: 24px;
 }
 
-.contactRight {
+/* .contactRight {
   margin-left: 2em;
   width: 85vw;
-}
+} */
 
 .contact {
   display: flex;
