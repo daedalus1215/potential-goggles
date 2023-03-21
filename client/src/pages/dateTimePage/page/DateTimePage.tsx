@@ -22,8 +22,6 @@ const DateTimePage: React.FC = () => {
 
   // const millisecondsInFractionalHourFormat = displayMsInFractionalHourFormat(task.time);
   return (<div className='contactRight'>
-    <HomeButton />
-
     <div className={styles.header}>
 
       <h2 className={styles.h2}>{task.title}</h2>
