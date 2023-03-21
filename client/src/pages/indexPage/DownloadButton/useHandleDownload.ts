@@ -9,7 +9,7 @@ const useHandleDownload = async () => {
     const assembleTask = tasks?.map(task =>
         ({ ...task, time: displayMsInFractionalHourFormat(task.time) })
     );
-    console.log('assembledTasked', assembleTask)
+    // console.log('assembledTasked', assembleTask)
     return (e?:any) => {
         writeJsonFile(assembleTask);
     };
