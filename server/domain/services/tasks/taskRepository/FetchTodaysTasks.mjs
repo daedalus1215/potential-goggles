@@ -6,8 +6,9 @@ const getDate = (date) => {
 
 export const FetchTodaysTasks = async () => {
     const today = getDate(new Date());
+    // console.log('today', today)
     const tasks = await TaskModel.find({
-        '$where': `this.date.toJSON().slice(0, 10) == "${today}"`
+        '$where': `this.date.toJSON().slice(0, 10) >= "${today}"`
     }
     ).sort('-_id');
     const aggActivities = {
@@ -29,7 +30,7 @@ export const FetchTodaysTasks = async () => {
     aggActivities.total = aggActivities.activities
         .map(activity => activity.totalTimeToday)
         .reduce((a1, a2) => a1 + a2, 0);
-
+    // console.log('tasks', tasks)
     return aggActivities;
 };
 
