@@ -10,6 +10,7 @@ const CreateDateTimeRepository = async (taskId) => {
     });
 
     task.time = time;
+    task.date = new Date();
     const updatedTask = await task.save();
     return updatedTask;
 };
