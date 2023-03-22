@@ -1,9 +1,9 @@
 .grid {
-	/* display: grid; */
-	grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
 	/* This is better for small screens, once min() is better supported */
 	/* grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); */
-	grid-gap: 10px;
+	grid-gap: 2px;
 	/* width: 90%; */
 }
 
@@ -17,10 +17,11 @@
 	cursor: pointer;
 	color: #000;
 	font-family: 'Open Sans Condensed', sans-serif;
-	font-size: 14px;
-	padding: 8px 18px;
+	font-size: 12px;
+	padding: 4px;
+	width: 70px;
+	border-radius: 4px;
 	text-decoration: none;
-	margin: 2px;
 }
 
 .content:hover {

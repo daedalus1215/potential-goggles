@@ -32,8 +32,8 @@ const DateTimeItem: React.FC<DateTimeItemInterface> = ({ dateTime, taskId }) => 
       onClick={rippleClick}
       data-testid="DateTimeItem">
       <input type="hidden" value={dateTime.id} name="id" />
-      <div className={styles.date}>Date: {myDatetimeString}</div>
-      <div className={styles.time}>Mins: {dateTime.time}</div>
+      <div className={styles.date}>{myDatetimeString}</div>
+      <div className={styles.time}>{dateTime.time}</div>
     </Link>
   );
 };

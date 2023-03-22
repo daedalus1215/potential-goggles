@@ -6,3 +6,9 @@
 .header {
   margin-left: 3em;
 }
+
+.childrenContent {
+  width: 90vw;
+  margin: auto;
+  margin-left: 1.5em
+}
