@@ -1,5 +1,5 @@
 import React from 'react';
-import { Task } from '../../../interfaces';
+import { Task } from '@/interfaces';
 import DateTimeItem from './DateTimeItem';
 import styles from './DateTimeListView.module.css';
 
