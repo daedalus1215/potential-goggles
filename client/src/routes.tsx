@@ -17,62 +17,65 @@ import EditDateTimeForm from './pages/EditDateTimeForm/EditDateTimeForm';
 import './index.css'
 import TagPage from './pages/tagPage/TagPage';
 import EditTagPage from './pages/tagPage/EditTagPage';
+import { ExpandedContextProvider } from './contexts/ExpandedContext';
 
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={createBrowserRouter([
-        {
-          path: "/",
-          element: <MainPage />,
-          loader: searchLoader,
-          errorElement: <ErrorPage />,
-          action: newTaskAction,
-          children: [
-            {
-              errorElement: <ErrorPage />,
-              children: [
-                {
-                  index: true,
-                  element: <IndexPage />,
-                  loader: todaysLoader,
-                },
-                {
-                  path: "task/:taskId",
-                  loader: taskLoader,
-                  element: <TaskPage />,
-                  action: updateTaskAction,
-                },
-                {
-                  path: "date-time/:taskId",
-                  loader: taskLoader,
-                  element: <DateTimePage />,
-                  action: createDateTime
-                },
-                {
-                  path: "date-time/:taskId/edit/:dateTimeId",
-                  loader: dateTimeLoader,
-                  element: <EditDateTimeForm />,
-                  action: updateDateTime,
-                },
-                {
-                  path: "tags/",
-                  loader: tagsLoader,
-                  action: createTag,
-                  element: <TagPage />,
-                },
-                {
-                  path: "tag/:tagId",
-                  loader: tagLoader,
-                  action: updateTagAction,
-                  element: <EditTagPage />,
-                },
-              ]
-            }
-          ],
-        }])} />
+      <ExpandedContextProvider>
+        <RouterProvider router={createBrowserRouter([
+          {
+            path: "/",
+            element: <MainPage />,
+            loader: searchLoader,
+            errorElement: <ErrorPage />,
+            action: newTaskAction,
+            children: [
+              {
+                errorElement: <ErrorPage />,
+                children: [
+                  {
+                    index: true,
+                    element: <IndexPage />,
+                    loader: todaysLoader,
+                  },
+                  {
+                    path: "task/:taskId",
+                    loader: taskLoader,
+                    element: <TaskPage />,
+                    action: updateTaskAction,
+                  },
+                  {
+                    path: "date-time/:taskId",
+                    loader: taskLoader,
+                    element: <DateTimePage />,
+                    action: createDateTime
+                  },
+                  {
+                    path: "date-time/:taskId/edit/:dateTimeId",
+                    loader: dateTimeLoader,
+                    element: <EditDateTimeForm />,
+                    action: updateDateTime,
+                  },
+                  {
+                    path: "tags/",
+                    loader: tagsLoader,
+                    action: createTag,
+                    element: <TagPage />,
+                  },
+                  {
+                    path: "tag/:tagId",
+                    loader: tagLoader,
+                    action: updateTagAction,
+                    element: <EditTagPage />,
+                  },
+                ]
+              }
+            ],
+          }])} />
+      </ExpandedContextProvider>
     </QueryClientProvider>
   </React.StrictMode>,
 )
