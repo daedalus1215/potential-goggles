@@ -11,8 +11,9 @@ interface props {
 const ActivityList: React.FC<props> = ({ aggregate }) => {
     const navigate = useNavigate();
     return <>
-        {aggregate.activities.map(activity => {
+        {aggregate.activities.map((activity: TodaysActivity) => {
             return <div
+                key={activity._id}
                 className={styles.activity}
                 onClick={() => {
                     navigate(`/task/${activity._id}`);
