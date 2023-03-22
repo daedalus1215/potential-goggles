@@ -5,10 +5,10 @@ import { Task } from '@/interfaces';
 import DateTimeListView from '../dateTimeListView/DateTimeListView';
 import AddButton from '@/components/addButton/AddButton';
 import { TopBar } from '@/components';
-
-import styles from './DateTimePage.module.css';
 import HomeButton from '@/components/homeButton/HomeButton';
 import BackButton from '@/components/BackButton';
+
+import styles from './DateTimePage.module.css';
 
 const DateTimePage: React.FC = () => {
   const task = useLoaderData() as Task;
