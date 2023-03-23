@@ -78,12 +78,11 @@
 
 .detail {
   flex: 8;
-  padding: 0;
-  margin: 0;
-  margin-top: 2em;
-  width: 600px;
+  width: 100%;
 }
-
+.isExpanded {
+  margin: 0 auto;
+}
 
 .taskListView {
   margin: 0;

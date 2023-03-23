@@ -1,12 +1,16 @@
 .form {
 	font-family: 'Open Sans Condensed', arial, sans;
-	width: 500px;
+	width: 300px;
 	padding: 30px;
+	margin-top: 2em;
 	background: #FFFFFF;
-	margin: 50px auto;
 	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
 	-moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
 	-webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+}
+
+.notExpanded {
+	margin: 2em auto;
 }
 
 .h2 {
@@ -35,4 +39,8 @@
 	margin-bottom: 10px;
 	font: 16px Arial, Helvetica, sans-serif;
 	height: 45px;
+}
+
+.editDateTimeForm {
+	width: 100%;
 }

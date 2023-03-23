@@ -21,7 +21,7 @@ const MainPage = () => {
 
   return (<>
     <Sidebar classNames={cn({ [styles.smallScreenSidebar]: isSmallScreen })} tasks={tasks} q={q} selectedId={selectedId} isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
-    <div id="detail" className={cn('detail', navigation.state === 'loading' ? 'loading' : '')}>
+    <div id="detail" className={cn(styles.detail, navigation.state === 'loading' ? 'loading' : '')}>
       {!dontShowOutlet && (<div className={styles.homeButtons}>
         <IconButton
           category={Category.info}
