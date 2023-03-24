@@ -1,24 +1,25 @@
 import { body } from 'express-validator';
 
 // TASK ACTION imports
-import getAllTasksAction from  './application/requestHandlers/tasks/getAllTasksAction.mjs';
-import getAllTaskTitlesAction from  './application/requestHandlers/tasks/getAllTaskTitlesAction.mjs';
-import getTaskByIdAction from  './application/requestHandlers/tasks/getTaskByIdAction.mjs';
-import putTaskAction from  './application/requestHandlers/tasks/putTaskAction.mjs';
-import getAllTagsAction from  './application/requestHandlers/tags/getAllTagsAction.mjs';
-import addTaskAction from  './application/requestHandlers/tasks/addTaskAction.mjs';
-import deleteTaskByIdAction from  './application/requestHandlers/tasks/deleteTaskByIdAction.mjs';
-import deleteAllTaskAction from  './application/requestHandlers/tasks/deleteAllTaskAction.mjs';
+import getAllTasksAction from './application/requestHandlers/tasks/getAllTasksAction.mjs';
+import getAllTaskTitlesAction from './application/requestHandlers/tasks/getAllTaskTitlesAction.mjs';
+import getTaskByIdAction from './application/requestHandlers/tasks/getTaskByIdAction.mjs';
+import putTaskAction from './application/requestHandlers/tasks/putTaskAction.mjs';
+import getAllTagsAction from './application/requestHandlers/tags/getAllTagsAction.mjs';
+import addTaskAction from './application/requestHandlers/tasks/addTaskAction.mjs';
+import deleteTaskByIdAction from './application/requestHandlers/tasks/deleteTaskByIdAction.mjs';
+import deleteAllTaskAction from './application/requestHandlers/tasks/deleteAllTaskAction.mjs';
 // TASK > IMPORT ACTION imports
-import importAction from  './application/requestHandlers/tasks/importAction.mjs';
-import updateDateTimeAction from  './application/requestHandlers/tasks/dateTime/updateDateTimeAction.mjs';
-import postDateTimeAction from  './application/requestHandlers/tasks/dateTime/postDateTimeAction.mjs';
+import importAction from './application/requestHandlers/tasks/importAction.mjs';
+import updateDateTimeAction from './application/requestHandlers/tasks/dateTime/updateDateTimeAction.mjs';
+import postDateTimeAction from './application/requestHandlers/tasks/dateTime/postDateTimeAction.mjs';
 // TAG ACTION imports
-import deleteTagAction from  './application/requestHandlers/tags/deleteTagAction.mjs';
-import AddTagAction from  './application/requestHandlers/tags/AddTagAction.mjs';
-import UpdateTagAction from  './application/requestHandlers/tags/UpdateTagAction.mjs';
-import getTagByIdAction from  './application/requestHandlers/tags/getTagByIdAction.mjs';
+import deleteTagAction from './application/requestHandlers/tags/deleteTagAction.mjs';
+import AddTagAction from './application/requestHandlers/tags/AddTagAction.mjs';
+import UpdateTagAction from './application/requestHandlers/tags/UpdateTagAction.mjs';
+import getTagByIdAction from './application/requestHandlers/tags/getTagByIdAction.mjs';
 import { FetchTodaysActivity } from './application/requestHandlers/tasks/dateTime/FetchTodaysTasksAction.mjs';
+import FetchAllDayTasksAction from './application/requestHandlers/supports/FetchAllDayTasksAction.mjs';
 
 const routes = (app) => {
     // TASKS
@@ -65,6 +66,7 @@ const routes = (app) => {
     app.put('/api/task/:taskId/dateTime/:id', updateDateTimeAction);
     app.post('/api/task/:taskId/dateTime', postDateTimeAction);
     app.get('/api/sds/today', FetchTodaysActivity)
+    app.get('/api/sds/check', FetchAllDayTasksAction)
 
     // TAGS
     app.get('/api/tags', getAllTagsAction);
