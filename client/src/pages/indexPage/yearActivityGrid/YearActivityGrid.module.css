@@ -1,0 +1,25 @@
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+	/* This is better for small screens, once min() is better supported */
+	/* grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); */
+	grid-gap: 2px;
+	/* width: 90%; */
+	width: 90vw;
+}
+.content {
+	-moz-box-shadow: inset 0px 1px 0px 0px #DFD6C6;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #DFD6C6;
+	box-shadow: inset 0px 1px 0px 0px #DFD6C6;
+	background-color: #FFFBF2;
+	border: 1px solid #DFD6C6;
+	display: inline-block;
+	cursor: pointer;
+	color: #fff;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 12px;
+	padding: 4px;
+	width: 70px;
+	border-radius: 4px;
+	text-decoration: none;
+}
