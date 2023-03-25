@@ -32,3 +32,9 @@ export type TaskTitle = {
     title:string;
     id: string;
 }
+
+export type DayActivity = {
+    titles: string[];
+    date: Date;
+    time: number;
+}

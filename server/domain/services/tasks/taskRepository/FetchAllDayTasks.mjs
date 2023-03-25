@@ -28,8 +28,17 @@ export const FetchAllDayTasks = async () => {
 
                 });
         });
+    const newResults = [];
+    const keys = Object.keys(results);
 
-    return results;
+    for (let key of keys) {
+        newResults.push({
+            date: key,
+            ...results[key]
+        })
+    }
+
+    return newResults.sort((res, res2) => res.date - res2.date);
 };
 
 export default FetchAllDayTasks;
