@@ -2,13 +2,13 @@ import { AggregateActivity, TodaysActivity } from "@/interfaces";
 import { displayMsInFractionalHourFormat } from "@/utils";
 import { useNavigate } from "react-router-dom";
 
-import styles from './ActivityList.module.css';
+import styles from './TodaysActivityList.module.css';
 
 interface props {
     aggregate: AggregateActivity
 }
 
-const ActivityList: React.FC<props> = ({ aggregate }) => {
+const TodaysActivityList: React.FC<props> = ({ aggregate }) => {
     const navigate = useNavigate();
     return <>
         {aggregate.activities.map((activity: TodaysActivity) => {
@@ -25,4 +25,4 @@ const ActivityList: React.FC<props> = ({ aggregate }) => {
     </>;
 }
 
-export default ActivityList;
+export default TodaysActivityList;
