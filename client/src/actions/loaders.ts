@@ -34,9 +34,16 @@ export const tasksLoader = async ({ params }: LoaderFunctionArgs) => {
     return tasks
 }
 
-export const todaysLoader = async (): Promise<AggregateActivity> => {
-    const activity = await fetchApiData<AggregateActivity>(`${api}sds/today`, {})
+export const todayActivitiesLoader = async (): Promise<AggregateActivity> => {
+    const activity = await fetchApiData<AggregateActivity>(`${api}activities/today`, {})
     return activity
+}
+
+export const allActivitiesLoader = async (): Promise<any> => {
+    const allActivities = await fetchApiData<any>(`${api}activities/all`, {})
+    const todaysActivities = await fetchApiData<AggregateActivity>(`${api}activities/today`, {})
+
+    return { allActivities, todaysActivities };
 }
 
 export const dateTimeLoader = async ({ params }: LoaderFunctionArgs) => {
