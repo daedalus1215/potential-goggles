@@ -1,7 +1,15 @@
 import TaskModel from "../../../../infrastructure/models/TaskModel.mjs";
 
 const getDate = (date) => {
-    return `${date.getUTCFullYear()}-0${date.getUTCMonth() + 1}-${date.getDate()}`;
+    let month = date.getUTCMonth() + 1;
+    if (month < 10) {
+        month = `0${month}`
+    }
+    let day = date.getDate();
+    if (day < 10) {
+        day = `0${day}`
+    }
+    return `${date.getUTCFullYear()}-${month}-${day}`;
 }
 
 export const FetchAllDayTasks = async () => {
@@ -38,7 +46,7 @@ export const FetchAllDayTasks = async () => {
         })
     }
 
-    return newResults.sort((res, res2) => res.date - res2.date);
+    return newResults.sort((res, res2) => new Date(res2.date) - new Date(res.date));
 };
 
 export default FetchAllDayTasks;
