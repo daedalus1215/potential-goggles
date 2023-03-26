@@ -1,9 +1,9 @@
 .grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(20px, 1fr));
 	/* This is better for small screens, once min() is better supported */
 	/* grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); */
-	grid-gap: 0px;
+	grid-gap: 4px;
 	/* width: 90%; */
 	width: 60vw;
     height: 100px;
@@ -19,7 +19,7 @@
 	color: #000;
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 12px;
-	padding: 4px;
+	/* padding: 4px; */
 	width: 20px;
     height: 20px;
 	border-radius: 4px;
