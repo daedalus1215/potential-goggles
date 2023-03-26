@@ -5,10 +5,10 @@
 	/* grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); */
 	grid-gap: 0px;
 	/* width: 90%; */
-	width: 600px;
+	width: 60vw;
     height: 100px;
 }
-.content {
+.contentOutline {
 	-moz-box-shadow: inset 0px 1px 0px 0px #DFD6C6;
 	-webkit-box-shadow: inset 0px 1px 0px 0px #DFD6C6;
 	box-shadow: inset 0px 1px 0px 0px #DFD6C6;
@@ -16,7 +16,7 @@
 	border: 1px solid #DFD6C6;
 	display: inline-block;
 	cursor: pointer;
-	color: #fff;
+	color: #000;
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 12px;
 	padding: 4px;
@@ -24,4 +24,50 @@
     height: 20px;
 	border-radius: 4px;
 	text-decoration: none;
+}
+
+
+.brightGold{
+    background-color:rgb(242, 206, 5)
+
+}
+
+.gold{
+    background-color:rgb(244, 221, 96)
+
+}
+
+.lightGold{
+    background-color:rgb(247, 235, 165)
+
+}
+
+.darkestGreen{
+    background-color:rgb(0, 76, 0)
+
+}
+
+.darkGreen{
+    background-color:rgb(10, 123, 10)
+}
+
+.medGreen{
+    background-color:rgb(44, 123, 44)
+}
+
+.lightGreen{
+    background-color:yellowgreen;
+}
+
+.yellow{
+    background-color:yellow;
+}
+
+.red{
+    background-color:#FF2E2E;
+}
+
+
+.hoverTitle li {
+    font-size: 8px;
 }
