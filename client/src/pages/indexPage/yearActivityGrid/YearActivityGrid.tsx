@@ -7,11 +7,10 @@ interface props {
 const YearActivityGrid: React.FC<props> = ({ allActivities }) => {
     console.log('allActivities', allActivities)
     return <div className={styles.grid}>
-        {allActivities.map((activity: any) => {
-            (<div className={styles.content}>
-                {activity.date}
-            </div>)
-        })}
+        {allActivities.map((index: number, activity: any) => (<div key={activity.date} className={styles.content}>
+            <span>{activity.date}</span>
+        </div>)
+        )}
     </div>;
 }
 
