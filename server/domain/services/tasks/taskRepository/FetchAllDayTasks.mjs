@@ -46,7 +46,11 @@ export const FetchAllDayTasks = async () => {
         })
     }
 
-    return newResults.sort((res, res2) => new Date(res2.date) - new Date(res.date));
+
+
+    return newResults
+        .sort((res, res2) => new Date(res2.date) - new Date(res.date))
+        .slice(0, 30);
 };
 
 export default FetchAllDayTasks;
