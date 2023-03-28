@@ -1,72 +1,49 @@
+.gridContainer {
+    width: 400px;
+}
+
 .grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(20px, 1fr));
-	/* This is better for small screens, once min() is better supported */
-	/* grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); */
-	grid-gap: 4px;
-	/* width: 90%; */
-	width: 60vw;
-    height: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10px, 1fr));
+    grid-gap: 4px;
+    /* width: 90%; */
+    width: 100%;
+    flex-wrap: wrap;
 }
+
 .contentOutline {
-	-moz-box-shadow: inset 0px 1px 0px 0px #DFD6C6;
-	-webkit-box-shadow: inset 0px 1px 0px 0px #DFD6C6;
-	box-shadow: inset 0px 1px 0px 0px #DFD6C6;
-	background-color: #FFFBF2;
-	border: 1px solid #DFD6C6;
-	display: inline-block;
-	cursor: pointer;
-	color: #000;
-	font-family: 'Open Sans Condensed', sans-serif;
-	font-size: 12px;
-	/* padding: 4px; */
-	width: 20px;
-    height: 20px;
-	border-radius: 4px;
-	text-decoration: none;
+    -moz-box-shadow: inset 0px 1px 0px 0px #DFD6C6;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #DFD6C6;
+    /* box-shadow: inset 0px 1px 0px 0px #DFD6C6; */
+    background-color: #FFFBF2;
+    border: .1px solid #DFD6C6;
+    display: inline-block;
+    cursor: pointer;
+    color: #000;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 12px;
+    /* padding: 4px; */
+    width: 10px;
+    height: 10px;
+    /* border-radius: 4px; */
+    text-decoration: none;
 }
 
-
-.brightGold{
-    background-color:rgb(0, 53, 0)
-
+.darkestGreen {
+    background-color: rgb(0, 164, 0)
 }
 
-.gold{
-    background-color:rgb(1, 59, 1)
-
+.darkGreen {
+    background-color: #00fc4c;
 }
 
-.lightGold{
-    background-color:rgb(1, 113, 1)
-
+.medGreen {
+    background-color: #56fa87;
 }
 
-.darkestGreen{
-    background-color:rgb(0, 164, 0)
-
+.red {
+    background-color: #bffdd2;
 }
-
-.darkGreen{
-    background-color:#00fc4c;
-}
-
-.medGreen{
-    background-color:#56fa87;
-}
-
-.lightGreen{
-    background-color:#7efca4;
-}
-
-.yellow{
-    background-color:#9cfcb9;
-}
-
-.red{
-    background-color:#bffdd2;
-}
-
 
 .hoverTitle li {
     font-size: 8px;
