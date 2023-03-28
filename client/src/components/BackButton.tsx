@@ -10,7 +10,7 @@ type props = {
 const BackButton: React.FC<props> = ({ path }) => {
     const navigate = useNavigate();
     return <IconButton
-        icon='bi bi-backspace'
+        icon='bi bi-arrow-left'
         onClick={() => {
             navigate(path)
         }} />
