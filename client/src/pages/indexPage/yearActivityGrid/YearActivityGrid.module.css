@@ -1,20 +1,18 @@
+
 .gridContainer {
-    width: 400px;
+    margin: auto;
+    display: inline;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(10px, 1fr));
     grid-gap: 4px;
-    /* width: 90%; */
     width: 100%;
     flex-wrap: wrap;
 }
 
 .contentOutline {
-    -moz-box-shadow: inset 0px 1px 0px 0px #DFD6C6;
-    -webkit-box-shadow: inset 0px 1px 0px 0px #DFD6C6;
-    /* box-shadow: inset 0px 1px 0px 0px #DFD6C6; */
     background-color: #FFFBF2;
     border: .1px solid #DFD6C6;
     display: inline-block;
@@ -22,27 +20,24 @@
     color: #000;
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 12px;
-    /* padding: 4px; */
     width: 10px;
     height: 10px;
-    /* border-radius: 4px; */
     text-decoration: none;
 }
 
 .darkestGreen {
-    background-color: rgb(0, 164, 0)
+    background-color: #533CD2;
 }
 
 .darkGreen {
-    background-color: #00fc4c;
+    background-color: #3e80ed;
 }
-
 .medGreen {
-    background-color: #56fa87;
+    background-color: #45D6D6;
 }
 
 .red {
-    background-color: #bffdd2;
+    background-color: #FF7979;
 }
 
 .hoverTitle li {
