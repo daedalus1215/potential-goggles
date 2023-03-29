@@ -1,5 +1,6 @@
 import TagService from "../../../domain/services/tags/TagService.mjs";
 import hydrateAndResponse from "../../../infrastructure/hydrators/hydrateAndResponse.mjs";
+import TaskModel from "../../../infrastructure/models/TaskModel.mjs";
 
 const doesTagExist = (tag) => {
     if (TagService.fetchTagById(tag._id, getTag).error) {
@@ -13,7 +14,7 @@ const getTag = (items) => items.items;
 
 
 const assembleTask = (task) => {
-    const saveableTask = new Task();
+    const saveableTask = new TaskModel();
 
     saveableTask.toObject();
     saveableTask.time = task.time;
@@ -27,7 +28,8 @@ const assembleTask = (task) => {
 
 
 export default (req, res) => {
-    [...req.body.WorkUnit].map(taskDto => {
+    console.log('req', req);
+    [...req.body].map(taskDto => {
         taskDto?.tags.map(tag => {
             if (!doesTagExist(tag)) {
                 TagService.addTag(tag, getTag);
