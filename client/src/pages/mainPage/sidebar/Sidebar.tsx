@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { Task } from '@/interfaces';
 
 import styles from '../MainPage.module.css'
+import { useSmallScreenSize } from '@/hooks/useSmallScreenSize';
 
 type props = {
     tasks: Task[];
@@ -16,6 +17,8 @@ type props = {
 
 const Sidebar: React.FC<props> = ({ classNames, tasks, q, selectedId, isExpanded, setIsExpanded }) => {
     const submit = useSubmit()
+    const isSmallScreenSize = useSmallScreenSize();
+
     const searchRef: RefObject<HTMLInputElement> = useRef<string>('');
 
     useEffect(() => {
@@ -68,7 +71,9 @@ const Sidebar: React.FC<props> = ({ classNames, tasks, q, selectedId, isExpanded
                                     if (stricterTypeRef?.current?.value) {
                                         stricterTypeRef.current.value = '';
                                     }
-                                    setIsExpanded(!isExpanded);
+                                    if (isSmallScreenSize) {
+                                        setIsExpanded(!isExpanded);
+                                    }
                                 }}
                                 className={cn(styles.taskItem, styles.isActive, styles.isPending, classNames)}
                             >
