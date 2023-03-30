@@ -1,3 +1,9 @@
+.TodaysActivityList {
+    margin: 10px;
+    height: 300px;
+    overflow: scroll;
+}
+
 .activity {
     cursor: pointer;
     color: #ddd;

@@ -22,7 +22,7 @@ export default function IndexPage() {
         </div>
 
 
-        <TodaysActivityList aggregate={todaysActivities} />
+        <TodaysActivityList aggregate={todaysActivities}/>
         <div className={styles.underline}></div>
 
 

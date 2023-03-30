@@ -10,7 +10,7 @@ interface props {
 
 const TodaysActivityList: React.FC<props> = ({ aggregate }) => {
     const navigate = useNavigate();
-    return <>
+    return <><div className={styles.TodaysActivityList}>
         {aggregate.activities.map((activity: TodaysActivity) => {
             return <div
                 key={activity._id}
@@ -21,6 +21,7 @@ const TodaysActivityList: React.FC<props> = ({ aggregate }) => {
                 <span><>{activity.title} - {displayMsInFractionalHourFormat(activity.totalTimeToday)}</></span>
             </div>
         })}
+    </div>
         <div>Total: {displayMsInFractionalHourFormat(aggregate.total)}</div>
     </>;
 }
