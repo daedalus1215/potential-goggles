@@ -32,7 +32,6 @@ const assembleTask = (task) => {
 
 
 export default (req, res) => {
-    console.log('req', req);
     [...req.body].map(taskDto => {
         taskDto?.tags.map(tag => {
             if (!doesTagExist(tag)) {

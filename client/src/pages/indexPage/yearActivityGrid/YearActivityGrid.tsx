@@ -8,8 +8,6 @@ interface props {
 }
 
 const YearActivityGrid: React.FC<props> = ({ allActivities }) => {
-    console.log('allActivities', allActivities)
-
     const hover = (date: string, time: number, titles: string[]) => {
         return (<div className={styles.hoverTitle}>
             <div>Date: {date}</div>
