@@ -22,6 +22,10 @@ const assembleTask = (task) => {
     saveableTask.description = task.description;
     saveableTask.date = task.date;
     saveableTask.tags = task.tags;
+    saveableTask.title =  task?.title
+    ?? (task?.description
+        ? striptags(doc.description.split("</p>")[0]?.split("<p>")[1])
+        : '')
 
     return saveableTask;
 };
