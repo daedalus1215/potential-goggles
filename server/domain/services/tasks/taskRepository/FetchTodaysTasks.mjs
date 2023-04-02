@@ -1,12 +1,9 @@
 import TaskModel from "../../../../infrastructure/models/TaskModel.mjs";
-
-const getDate = (date) => {
-    return `${date.getUTCFullYear()}-0${date.getUTCMonth() + 1}-${date.getDate()}`;
-}
+import { getDate } from '../../../../utils/getDate.mjs'
 
 export const FetchTodaysTasks = async () => {
     const today = getDate(new Date());
-    // console.log('today', today)
+    console.log('today', today)
     const tasks = await TaskModel.find({
         '$where': `this.date.toJSON().slice(0, 10) >= "${today}"`
     }
