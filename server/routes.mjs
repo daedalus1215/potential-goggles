@@ -65,7 +65,7 @@ const routes = (app) => {
     // TASKS > DATE TIME
     app.put('/api/task/:taskId/dateTime/:id', updateDateTimeAction);
     app.post('/api/task/:taskId/dateTime', postDateTimeAction);
-    
+
     // ACTIVITIES
     app.get('/api/activities/today', FetchTodaysActivity)
     app.get('/api/activities/all', FetchAllDayTasksAction)
