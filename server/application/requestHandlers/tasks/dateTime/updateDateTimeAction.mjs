@@ -9,8 +9,8 @@ export default async (req, res) => {
         res.jsonp({ success: false, message: "Too many characters in time " });
         return;
     }
-    const pattern = new RegExp(/[0-9][0-9]:[0-9][0-9]/);
-    if (!pattern.test(dateTime)) {
+    const pattern = new RegExp(/([0-9]\d|2[0-9]):([0-9]\d|2[0-9])/gs);
+    if (pattern.test(dateTime)) {
         res.jsonp({ success: false, message: "Required {minute:second} format, like: 00:00" });
         return;
     }
