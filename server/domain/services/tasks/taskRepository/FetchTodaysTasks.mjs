@@ -5,7 +5,7 @@ export const FetchTodaysTasks = async () => {
     const today = getDate(new Date());
     // console.log('today', today)
     const tasks = await TaskModel.find({});
-    const filtered = tasks.filter(task => task.date.toJSON().slice(0, 10) == today)
+    const filtered = tasks.filter(task => task?.date.toJSON().slice(0, 10) == today)
         
     const aggActivities = {
         activities: filtered
