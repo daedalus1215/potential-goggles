@@ -9,6 +9,7 @@ import { Form, redirect, useLoaderData } from 'react-router-dom';
 import styles from './EditDateTimeForm.module.css';
 import { ExpandedContext } from '@/contexts/ExpandedContext';
 import BackButton from '@/components/BackButton';
+import stripSecondsAway from '@/utils/formatters/stripSecondsAway';
 
 interface EditDateTimeFormProp {
   taskId: string,
@@ -18,7 +19,7 @@ interface EditDateTimeFormProp {
 const EditDateTimeForm: React.FC = () => {
   const { dateTime, taskId } = useLoaderData() as EditDateTimeFormProp;
   const { isExpanded } = useContext(ExpandedContext);
-  const minsAndSecs = formatMinsAndSecsForDisplay(dateTime.time);
+  const minsAndSecs = stripSecondsAway(dateTime.time);
 
   if (!dateTime) {
     throw new Response("", {
