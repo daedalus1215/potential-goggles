@@ -17,7 +17,7 @@ const assembleAndSave = (dto) => async (err, doc) => {
     }
 
     doc.description = dto.description;
-    doc.date = dto.date;
+    doc.date = new Date();
     doc.contractId = dto.contractId;
     doc.tags = dto.tags;
     doc.title = striptags(dto.description.split("</p>")[0].split("<p>")[1]);
