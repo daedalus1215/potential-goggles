@@ -34,6 +34,8 @@ export const Adapter: React.FC<AdapterProps> = ({ reference, value }) => {
       menubar: true,
       plugins,
       toolbar,
+      skin: "oxide-dark",
+      content_css: "dark"
     }
     : {
       height: '70vh',
@@ -41,6 +43,8 @@ export const Adapter: React.FC<AdapterProps> = ({ reference, value }) => {
       menubar: true,
       plugins,
       toolbar,
+      skin: "oxide-dark",
+      content_css: "dark"
     };
 
   return (
