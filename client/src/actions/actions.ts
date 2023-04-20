@@ -47,7 +47,7 @@ export const updateDateTime: ActionInterface = async ({ request }) => {
         body: {
             id,
             date: formData.get('date'),
-            time: formData.get('minutes'),
+            time: formData.get('minutes') || '00', // ?? won't work because we are checking against '' value
         },
     })
     return redirect(`/date-time/${taskId}`);
