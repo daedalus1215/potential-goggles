@@ -18,7 +18,7 @@ const UpdateDateTimeRepository = async (taskId, dateTime) => {
     });
 
     task.time = dateTimes;
-    task.date = new Date();
+    task.date = dateTime.date;
     const updatedTask = await task.save();
     return updatedTask;
 };
