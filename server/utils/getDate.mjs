@@ -1,4 +1,5 @@
 export const getDate = (date) => {
+    if (date === undefined) return null;
     let month = date.getUTCMonth() + 1;
     if (month < 10) {
         month = `0${month}`
