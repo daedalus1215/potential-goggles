@@ -45,7 +45,7 @@ const EditDateTimeForm: React.FC = () => {
         <input hidden={true} name="taskId" value={taskId} readOnly />
         <input hidden={true} name="id" value={dateTime.id} readOnly />
         <input className={styles.input} type="text" name="date" defaultValue={dateTime.date} />
-        <input className={styles.input} type="text" name="minutes" defaultValue={minsAndSecs} />
+        <input className={styles.input} type="number" name="minutes" defaultValue={minsAndSecs} />
         <SaveButton />
       </Form>
     </div>
