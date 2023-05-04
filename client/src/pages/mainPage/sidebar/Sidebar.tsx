@@ -12,7 +12,7 @@ type props = {
     selectedId?: string;
     isExpanded: boolean
     setIsExpanded: (isExpanded: boolean) => void;
-    classNames:string
+    classNames: string
 }
 
 const Sidebar: React.FC<props> = ({ classNames, tasks, q, selectedId, isExpanded, setIsExpanded }) => {
@@ -28,18 +28,15 @@ const Sidebar: React.FC<props> = ({ classNames, tasks, q, selectedId, isExpanded
         }
     }, [q])
 
-    const onChange = (event: any) => {
-        const isFirstSearch = q == null
-        submit(event.currentTarget.form, {
-            replace: !isFirstSearch,
-        })
-    }
-
     const render = () => {
         return isExpanded ? (<div id="sidebar" className={cn(styles.sidebar, { [styles.isExpanded]: isExpanded }, classNames)}>
             <div className={styles.searchAndNew}>
                 <div className={cn(styles.searchFormWrapper, classNames)}>
-                    <Form id="search-form" role="search" className={styles.formSearch}>
+                    <Form id="search-form" role="search" className={styles.formSearch} onSubmit={(event) => {
+                        submit(event.currentTarget.form, {
+                            replace: true,
+                        })
+                    }}>
                         <i className={cn('bi-search', styles.searchIcon)} />
                         <input
                             id="q"
@@ -50,7 +47,6 @@ const Sidebar: React.FC<props> = ({ classNames, tasks, q, selectedId, isExpanded
                             className={cn(styles.search, classNames)}
                             name="q"
                             defaultValue={q}
-                            onChange={onChange}
                         />
                     </Form>
                 </div>
