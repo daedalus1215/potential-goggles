@@ -12,7 +12,7 @@ const YearActivityGrid: React.FC<props> = ({ allActivities }) => {
         return (<div className={styles.hoverTitle}>
             <div>Date: {date}</div>
             <div>Hours: {(time / 1000 / 60 / 60).toFixed(4)}</div>
-            <ul >{titles.map((title: string) => <li>{title}</li>)}</ul>
+            <ul >{titles.map((title: string) => <li key={title}>{title}</li>)}</ul>
         </div>)
     }
     return <div className={styles.gridContainer}>
