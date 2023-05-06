@@ -30,25 +30,24 @@ const EditDateTimeForm: React.FC = () => {
 
   return (
     <>
-          <TopBar>
+      <TopBar>
         <>
           <BackButton path={`/date-time/${taskId}`} />
         </>
       </TopBar>
 
-
-    <div className={styles.editDateTimeForm}>
-      <Form
-        method='post'
-        className={cn(styles.form, { [styles.notExpanded]: !isExpanded })}>
-        <h2 className={styles.h2}>Edit Date Time</h2>
-        <input hidden={true} name="taskId" value={taskId} readOnly />
-        <input hidden={true} name="id" value={dateTime.id} readOnly />
-        <input className={styles.input} type="text" name="date" defaultValue={dateTime.date} />
-        <input className={styles.input} type="number" name="minutes" defaultValue={minsAndSecs} />
-        <SaveButton />
-      </Form>
-    </div>
+      <div className={styles.editDateTimeForm}>
+        <Form
+          method='post'
+          className={cn(styles.form, { [styles.notExpanded]: !isExpanded })}>
+          <h2 className={styles.h2}>Edit Date Time</h2>
+          <input hidden={true} name="taskId" value={taskId} readOnly />
+          <input hidden={true} name="id" value={dateTime.id} readOnly />
+          <input className={styles.input} pattern="\d{4}-[0-1]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-6]\d.\d{3}[A-Z]" type="text" name="date" defaultValue={dateTime.date} />
+          <input className={styles.input} type="number" name="minutes" defaultValue={minsAndSecs} />
+          <SaveButton />
+        </Form>
+      </div>
     </>
   );
 };
