@@ -12,3 +12,8 @@
 .row {
     display: flex;
 }
+
+.isSmallScreenSize {
+    width: 90%;
+    margin: auto;
+}

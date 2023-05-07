@@ -1,7 +1,8 @@
 
 .gridContainer {
     margin: auto;
-    display: inline;
+    display: block;
+    width: 90%;
 }
 
 .grid {
