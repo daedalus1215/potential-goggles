@@ -24,6 +24,19 @@ const selectSearchResult = async (results: TypedResponse<Task[]>, name?: string)
     }
 }
 
+export const taskAndTagLoader = async ({ params }: LoaderFunctionArgs) => {
+    const task = await fetchTask(params?.taskId ?? '')
+    const tags = await fetchTags();
+    const taskTags = task.tags;
+    tags.map(tag => {
+        const checkboxTag = { ...tag };
+        if (task.tags.find(tag => tag._id === tag._id)) {
+            checkboxTag.checked = true;
+        }
+    });
+    return { task, tags }
+}
+
 export const taskLoader = async ({ params }: LoaderFunctionArgs) => {
     const task = await fetchTask(params?.taskId ?? '')
     return task

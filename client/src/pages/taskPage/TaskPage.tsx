@@ -12,11 +12,12 @@ import cn from "classnames";
 import { useSmallScreenSize } from "@/hooks/useSmallScreenSize";
 
 const TaskPage: React.FC = () => {
-    const task = useLoaderData() as Task;
+    const { task, tags } = useLoaderData() as any;
     const descRef = useRef(null);
     const navigate = useNavigate();
     const isSmallScreen = useSmallScreenSize();
-
+    
+    console.log('tags', tags);
     if (!task) {
         throw new Response("", {
             status: 404,
@@ -64,10 +65,12 @@ const TaskPage: React.FC = () => {
                 name="taskForm"
                 method="post"
                 action={`/task/${task._id}`}
-                className={cn({[styles.form]: isSmallScreen})}>
+                className={cn({ [styles.form]: isSmallScreen })}>
                 <input type="hidden" name="id" value={task._id} />
                 <input type="hidden" name="formId" value="updateTask" />
-
+                
+                {tags.map((tag: any) => <label>{tag.name}<input type="checkbox" key={tag._id} checked={false}/></label>)}
+                
                 <TextAreaAdapter reference={descRef} value={task.description} />
             </Form>
         </div>
