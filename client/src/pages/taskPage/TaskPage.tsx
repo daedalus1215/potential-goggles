@@ -12,7 +12,7 @@ import cn from "classnames";
 import { useSmallScreenSize } from "@/hooks/useSmallScreenSize";
 
 const TaskPage: React.FC = () => {
-    const task = useLoaderData() as Task;
+    const { task, options } = useLoaderData() as any;
     const descRef = useRef(null);
     const navigate = useNavigate();
     const isSmallScreen = useSmallScreenSize();
@@ -64,9 +64,19 @@ const TaskPage: React.FC = () => {
                 name="taskForm"
                 method="post"
                 action={`/task/${task._id}`}
-                className={cn({[styles.form]: isSmallScreen})}>
+                className={cn({ [styles.form]: isSmallScreen })}>
                 <input type="hidden" name="id" value={task._id} />
                 <input type="hidden" name="formId" value="updateTask" />
+                {/* Need to make this multi select */}
+                <select name="tags">
+                    {options?.map((tag: any) => <option
+                        key={tag._id}
+                        id={tag.name}
+                        value={tag.name}
+                        selected={tag.selected}>
+                        {tag.name}
+                    </option>)}
+                </select>
 
                 <TextAreaAdapter reference={descRef} value={task.description} />
             </Form>

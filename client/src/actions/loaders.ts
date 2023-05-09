@@ -24,6 +24,23 @@ const selectSearchResult = async (results: TypedResponse<Task[]>, name?: string)
     }
 }
 
+export const taskAndTagLoader = async ({ params }: LoaderFunctionArgs) => {
+    const task = await fetchTask(params?.taskId ?? '')
+    const tags = await fetchTags();
+    
+    const hash: any = {};
+    task.tags.forEach(tag => hash[tag] = true);
+
+    const options = tags.map(tag => {
+        const option = { ...tag, selected: false };
+        if (hash[tag.name]) {
+            option.selected = true;
+        }
+        return option;
+    });
+    return { task, options }
+}
+
 export const taskLoader = async ({ params }: LoaderFunctionArgs) => {
     const task = await fetchTask(params?.taskId ?? '')
     return task

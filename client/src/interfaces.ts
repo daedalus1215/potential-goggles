@@ -36,8 +36,10 @@ export interface Task {
     time: number;
     favorite?: boolean;
     dateTimes: DateTime[];
+    tags: string[]
 }
 
+//@TODO: Declare a Checkbox Tag here
 export interface Tag {
     _id: string;
     name: string;

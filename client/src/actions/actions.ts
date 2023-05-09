@@ -87,7 +87,7 @@ export const updateTagAction: ActionInterface = async ({ request }) => {
 export const updateTaskAction: ActionInterface = async ({ request }) => {
     const formData = await request.formData()
     const formId: keyof typeof forms = formData.get('formId');
-
+    console.log('submit tags', formData.get('tags'))
     //@TODO: Could of done this over the verbs in the form.
     switch (formId) {
         case forms.updateTask:
@@ -110,8 +110,6 @@ export const newTaskAction: ActionInterface = async () => {
     }).then((data) => {
         return redirect(`task/${data._id}`)
     });
-
-
 }
 
 // @TODO: Replace `any` here with a type!
