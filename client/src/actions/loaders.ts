@@ -27,14 +27,16 @@ const selectSearchResult = async (results: TypedResponse<Task[]>, name?: string)
 export const taskAndTagLoader = async ({ params }: LoaderFunctionArgs) => {
     const task = await fetchTask(params?.taskId ?? '')
     const tags = await fetchTags();
-    const taskTags = task.tags;
-    tags.map(tag => {
-        const checkboxTag = { ...tag };
-        if (task.tags.find(tag => tag._id === tag._id)) {
+    console.log('tasktags', task.tags)
+    const checkboxes = tags.map(tag => {
+        const checkboxTag = { ...tag, checked: false };
+        if (task.tags.filter(taskTag => taskTag === tag.name).length > 0) {
+            console.log('true')
             checkboxTag.checked = true;
         }
+        return checkboxTag;
     });
-    return { task, tags }
+    return { task, checkboxes }
 }
 
 export const taskLoader = async ({ params }: LoaderFunctionArgs) => {

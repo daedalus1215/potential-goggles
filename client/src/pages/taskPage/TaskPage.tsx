@@ -12,12 +12,12 @@ import cn from "classnames";
 import { useSmallScreenSize } from "@/hooks/useSmallScreenSize";
 
 const TaskPage: React.FC = () => {
-    const { task, tags } = useLoaderData() as any;
+    const { task, checkboxes } = useLoaderData() as any;
     const descRef = useRef(null);
     const navigate = useNavigate();
     const isSmallScreen = useSmallScreenSize();
     
-    console.log('tags', tags);
+    console.log('tags', checkboxes);
     if (!task) {
         throw new Response("", {
             status: 404,
@@ -69,7 +69,7 @@ const TaskPage: React.FC = () => {
                 <input type="hidden" name="id" value={task._id} />
                 <input type="hidden" name="formId" value="updateTask" />
                 
-                {tags.map((tag: any) => <label>{tag.name}<input type="checkbox" key={tag._id} checked={false}/></label>)}
+                {checkboxes?.map((tag: any) => <label>{tag.name}<input type="checkbox" key={tag._id} checked={tag.checked}/></label>)}
                 
                 <TextAreaAdapter reference={descRef} value={task.description} />
             </Form>
