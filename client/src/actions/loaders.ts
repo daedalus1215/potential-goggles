@@ -27,11 +27,9 @@ const selectSearchResult = async (results: TypedResponse<Task[]>, name?: string)
 export const taskAndTagLoader = async ({ params }: LoaderFunctionArgs) => {
     const task = await fetchTask(params?.taskId ?? '')
     const tags = await fetchTags();
-    console.log('tasktags', task.tags)
     const checkboxes = tags.map(tag => {
         const checkboxTag = { ...tag, checked: false };
         if (task.tags.filter(taskTag => taskTag === tag.name).length > 0) {
-            console.log('true')
             checkboxTag.checked = true;
         }
         return checkboxTag;
