@@ -12,12 +12,11 @@ import cn from "classnames";
 import { useSmallScreenSize } from "@/hooks/useSmallScreenSize";
 
 const TaskPage: React.FC = () => {
-    const { task, checkboxes } = useLoaderData() as any;
+    const { task, options } = useLoaderData() as any;
     const descRef = useRef(null);
     const navigate = useNavigate();
     const isSmallScreen = useSmallScreenSize();
-    
-    console.log('tags', checkboxes);
+
     if (!task) {
         throw new Response("", {
             status: 404,
@@ -68,9 +67,17 @@ const TaskPage: React.FC = () => {
                 className={cn({ [styles.form]: isSmallScreen })}>
                 <input type="hidden" name="id" value={task._id} />
                 <input type="hidden" name="formId" value="updateTask" />
-                
-                {checkboxes?.map((tag: any) => <label>{tag.name}<input type="checkbox" key={tag._id} checked={tag.checked}/></label>)}
-                
+                {/* Need to make this multi select */}
+                <select name="tags">
+                    {options?.map((tag: any) => <option
+                        key={tag._id}
+                        id={tag.name}
+                        value={tag.name}
+                        selected={tag.selected}>
+                        {tag.name}
+                    </option>)}
+                </select>
+
                 <TextAreaAdapter reference={descRef} value={task.description} />
             </Form>
         </div>
