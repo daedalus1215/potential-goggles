@@ -20,10 +20,12 @@ import UpdateTagAction from './application/requestHandlers/tags/UpdateTagAction.
 import getTagByIdAction from './application/requestHandlers/tags/getTagByIdAction.mjs';
 import { FetchTodaysActivity } from './application/requestHandlers/tasks/dateTime/FetchTodaysTasksAction.mjs';
 import FetchAllDayTasksAction from './application/requestHandlers/supports/FetchAllDayTasksAction.mjs';
+import getAllMonthTasksAction from './application/requestHandlers/tasks/getAllMonthTasksAction.mjs';
 
 const routes = (app) => {
     // TASKS
     app.get('/api/tasks', getAllTasksAction);
+    app.get('/api/tasks-months', getAllMonthTasksAction);
     app.get('/api/tasks-titles', getAllTaskTitlesAction);
     app.get('/api/task/:id', getTaskByIdAction);
     app.post('/api/task/', [
