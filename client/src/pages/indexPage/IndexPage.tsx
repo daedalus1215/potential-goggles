@@ -1,16 +1,16 @@
 import DownloadButton from './DownloadButton/DownloadButton';
 import UploadButton from './UploadButton/UploadButton';
-
-import styles from './IndexPage.module.css';
 import { useLoaderData } from 'react-router-dom';
 import TodaysActivityList from './todaysActivityList/TodaysActivityList';
 import { AggregateActivity } from '@/interfaces';
-import YearActivityGrid from './yearActivityGrid/YearActivityGrid';
+import YearMonthActivityGrid from './yearMonthActivityGrid/YearMonthActivityGrid';
 import { useSmallScreenSize } from '@/hooks/useSmallScreenSize';
 import classNames from 'classnames';
 
+import styles from './IndexPage.module.css';
+
 export default function IndexPage() {
-  const { allActivities, todaysActivities } = useLoaderData() as { allActivities: any, todaysActivities: AggregateActivity };
+  const { allActivities, todaysActivities, monthActivities } = useLoaderData() as { allActivities: any, monthActivities: any, todaysActivities: AggregateActivity };
   const isSmallScreenSize = useSmallScreenSize();
 
   return (
@@ -20,7 +20,7 @@ export default function IndexPage() {
       </p>
 
       <div className={styles.underline}></div>
-      <div className={classNames(styles.row, {[styles.isSmallScreenSize]: isSmallScreenSize})}>
+      <div className={classNames(styles.row, { [styles.isSmallScreenSize]: isSmallScreenSize })}>
         <UploadButton />
         <DownloadButton />
       </div>
@@ -29,8 +29,10 @@ export default function IndexPage() {
       <TodaysActivityList aggregate={todaysActivities} />
       <div className={styles.underline}></div>
 
+      <YearMonthActivityGrid allActivities={monthActivities} />
+      <div className={styles.underline}></div>
 
-      <YearActivityGrid allActivities={allActivities} />
+      <YearMonthActivityGrid allActivities={allActivities} />
       <div className={styles.underline}></div>
 
     </>
