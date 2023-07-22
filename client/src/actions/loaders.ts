@@ -59,8 +59,9 @@ export const todayActivitiesLoader = async (): Promise<AggregateActivity> => {
 export const allActivitiesLoader = async (): Promise<any> => {
     const allActivities = await fetchApiData<any>(`${api}activities/all`, {})
     const todaysActivities = await fetchApiData<AggregateActivity>(`${api}activities/today`, {})
+    const monthActivities = await fetchApiData<any>(`${api}activities/months`, {})
 
-    return { allActivities, todaysActivities };
+    return { allActivities, todaysActivities, monthActivities };
 }
 
 export const dateTimeLoader = async ({ params }: LoaderFunctionArgs) => {
