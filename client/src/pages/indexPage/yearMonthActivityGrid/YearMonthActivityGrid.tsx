@@ -1,13 +1,13 @@
 import Tooltip from '@/components/toolTip/Tooltip';
 import classNames from 'classnames';
 import React from 'react';
-import styles from './YearActivityGrid.module.css';
+import styles from './YearMonthActivityGrid.module.css';
 
 interface props {
     allActivities: any;
 }
 
-const YearActivityGrid: React.FC<props> = ({ allActivities }) => {
+const YearMonthActivityGrid: React.FC<props> = ({ allActivities }) => {
     const hover = (date: string, time: number, titles: string[]) => {
         return (<div className={styles.hoverTitle}>
             <div>Date: {date}</div>
@@ -34,4 +34,4 @@ const YearActivityGrid: React.FC<props> = ({ allActivities }) => {
     </div>;
 }
 
-export default YearActivityGrid;
+export default YearMonthActivityGrid;
