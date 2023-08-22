@@ -1,21 +1,24 @@
 import React, { useRef } from "react";
+import cn from "classnames";
 import { Form, useLoaderData, useNavigate } from "react-router-dom";
-import { SaveButton, TopBar } from "@/components";
+// @TODO: Consolidate the @/components
+import { TopBar } from "@/components";
 import ms from 'pretty-ms';
 import TextAreaAdapter from "@/components/textAreaAdapter/TextAreaAdapter";
-import { Task } from "@/interfaces";
-import styles from './TaskPage.module.css';
-import HomeButton from "@/components/homeButton/HomeButton";
 import IconButton from "@/components/iconButton/IconButton";
 import { Category } from "@/components/button/Button";
-import cn from "classnames";
-import { useSmallScreenSize } from "@/hooks/useSmallScreenSize";
+import { useListenForSave, useSmallScreenSize } from '@/hooks';
+
+import styles from './TaskPage.module.css';
+
+const FORM_ID = "taskForm";
 
 const TaskPage: React.FC = () => {
     const { task, options } = useLoaderData() as any;
     const descRef = useRef(null);
     const navigate = useNavigate();
     const isSmallScreen = useSmallScreenSize();
+    useListenForSave(FORM_ID);
 
     if (!task) {
         throw new Response("", {
@@ -33,16 +36,18 @@ const TaskPage: React.FC = () => {
                     <>
                         <IconButton
                             icon="bi bi-clock"
-                            form="taskForm"
+                            form={FORM_ID}
                             onClick={() => {
                                 navigate(`/date-time/${task._id}`);
                             }} />
 
-                        <Form method="delete" onSubmit={(event) => {
-                            if (!confirm("Please confirm you want to delete this task.")) {
-                                event.preventDefault();
-                            }
-                        }}>
+                        <Form
+                            method="delete"
+                            onSubmit={(event) => {
+                                if (!confirm("Please confirm you want to delete this task.")) {
+                                    event.preventDefault();
+                                }
+                            }}>
                             <input type="hidden" name="formId" value="deleteTask" />
                             <input type="hidden" name="id" value={task._id} />
                             <IconButton
@@ -53,15 +58,15 @@ const TaskPage: React.FC = () => {
                         <IconButton
                             icon="bi bi-save"
                             category={Category.info}
-                            form="taskForm"
+                            form={FORM_ID}
                         />
                     </>
                 </TopBar>
             </div>
 
             <Form
-                id="taskForm"
-                name="taskForm"
+                id={FORM_ID}
+                name={FORM_ID}
                 method="post"
                 action={`/task/${task._id}`}
                 className={cn({ [styles.form]: isSmallScreen })}>
