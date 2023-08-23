@@ -1,11 +1,8 @@
 import React, { useRef } from "react";
+import ms from 'pretty-ms';
 import cn from "classnames";
 import { Form, useLoaderData, useNavigate } from "react-router-dom";
-// @TODO: Consolidate the @/components
-import { TopBar } from "@/components";
-import ms from 'pretty-ms';
-import TextAreaAdapter from "@/components/textAreaAdapter/TextAreaAdapter";
-import IconButton from "@/components/iconButton/IconButton";
+import {TextAreaAdapter, IconButton, TopBar} from "@/components";
 import { Category } from "@/components/button/Button";
 import { useListenForSave, useSmallScreenSize } from '@/hooks';
 
