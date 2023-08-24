@@ -2,11 +2,10 @@ import AddButton from '@/components/addButton/AddButton';
 import React from 'react';
 import { Form, useLoaderData } from 'react-router-dom';
 import { Tag as TagInterface } from '@/interfaces';
+import { TopBar } from '@/components';
 import Tag from './tagItem/TagItem';
 
 import styles from './TagPage.module.css';
-import HomeButton from '@/components/homeButton/HomeButton';
-import { Button, TopBar } from '@/components';
 
 const TagePage: React.FC = () => {
     const tags = useLoaderData() as TagInterface[];
@@ -20,7 +19,6 @@ const TagePage: React.FC = () => {
 
     return (
         <div className='contactRight'>
-            <HomeButton />
             <TopBar />
             <div className={styles.page}>
                 <Form
