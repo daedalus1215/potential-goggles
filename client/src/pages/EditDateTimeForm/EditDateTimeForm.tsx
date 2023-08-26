@@ -19,8 +19,8 @@ interface EditDateTimeFormProp {
 const EditDateTimeForm: React.FC = () => {
   const { dateTime, taskId } = useLoaderData() as EditDateTimeFormProp;
   const { isExpanded } = useContext(ExpandedContext);
-  console.log('hi', dateTime)
-  const minsAndSecs = !dateTime && stripSecondsAway(dateTime.time);
+
+  const minsAndSecs = dateTime !== undefined && stripSecondsAway(dateTime.time);
 
   if (!dateTime) {
     throw new Response("", {
