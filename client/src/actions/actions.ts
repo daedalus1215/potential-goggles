@@ -1,5 +1,5 @@
 import { redirect } from 'react-router-dom'
-import { ActionInterface, Tag, Task } from '@/interfaces'
+import { ActionInterface, DateTimeTaskResponse, Tag, Task } from '@/interfaces'
 import fetchApiData from '@/utils/fetchApiData'
 import getCurrentDateTimeEstFormat from '@/utils/getCurrentDateTimeEstFormat'
 import { api } from '@/config.json';
@@ -21,9 +21,14 @@ export const fetchTasksTitles = async (): Promise<Task[]> => {
 
 export const createDateTime: ActionInterface = async ({ request }) => {
     const formData = await request.formData()
-
     const taskId = formData.get('taskId')
-    return await fetchApiData(`${api}task/${taskId}/dateTime`, { method: 'POST' })
+
+    const task =  await fetchApiData<DateTimeTaskResponse>(`${api}task/${taskId}/dateTime`, { method: 'POST' })
+    if (task?.time?.length > 0) {
+        console.log(task.time)
+        return redirect(`/date-time/${taskId}/edit/${task.time[task.time.length -1]._id}`);
+    }
+    return task;    
 }
 
 export const createTag: ActionInterface = async ({ request }) => {

@@ -5,11 +5,9 @@ import { Task } from '@/interfaces';
 import DateTimeListView from '../dateTimeListView/DateTimeListView';
 import AddButton from '@/components/addButton/AddButton';
 import { TopBar } from '@/components';
-import HomeButton from '@/components/homeButton/HomeButton';
 import BackButton from '@/components/BackButton';
 
 import styles from './DateTimePage.module.css';
-import classNames from 'classnames';
 
 const DateTimePage: React.FC = () => {
   const task = useLoaderData() as Task;
@@ -21,10 +19,8 @@ const DateTimePage: React.FC = () => {
     });
   }
 
-  // const millisecondsInFractionalHourFormat = displayMsInFractionalHourFormat(task.time);
   return (<div className='contactRight'>
     <div className={styles.header}>
-
       <h2 className={styles.h2}>{task.title}</h2>
       <TopBar>
         <>
