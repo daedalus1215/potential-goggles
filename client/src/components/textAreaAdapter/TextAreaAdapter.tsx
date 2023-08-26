@@ -24,7 +24,7 @@ export const Adapter: React.FC<AdapterProps> = ({ reference, value }) => {
     'searchreplace visualblocks code fullscreen',
     'insertdatetime media table paste code help wordcount',
   ];
-  
+    
   // const adapterChange = onChange as unknown as (a: string, editor: any) => void;
 
   const init = useSmallScreenSize()

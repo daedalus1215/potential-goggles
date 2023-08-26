@@ -71,3 +71,19 @@ export interface TypedResponse<T = any> extends Response {
      */
     json<P = T>(): Promise<P>
 }
+
+export type DateTimeTaskResponse = {
+    tags: Tag[];
+    _id: string;
+    time: DateTimeDateTime[];
+    contractId: number;
+    description: string;
+    date: string;
+    title: string;
+}
+
+export type DateTimeDateTime = {
+    _id: string;
+    date: string;
+    time: number;
+}
