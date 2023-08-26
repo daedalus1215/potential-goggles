@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { Task } from '@/interfaces';
-import DateTimeItem from './DateTimeItem';
-import styles from './DateTimeListView.module.css';
-import { ExpandedContext } from '@/contexts/ExpandedContext';
 import classNames from 'classnames';
+import { Task } from '@/interfaces';
+import { ExpandedContext } from '@/contexts/ExpandedContext';
+import DateTimeItem from './DateTimeItem';
+
+import styles from './DateTimeListView.module.css';
 
 interface DateTimeListViewProp {
   task: Task

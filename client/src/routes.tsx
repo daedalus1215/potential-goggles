@@ -13,11 +13,11 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import DateTimePage from './pages/dateTimePage/page/DateTimePage';
 import { allActivitiesLoader, dateTimeLoader, searchLoader, tagLoader, tagsLoader, taskAndTagLoader, taskLoader } from './actions/loaders';
 import EditDateTimeForm from './pages/EditDateTimeForm/EditDateTimeForm';
-
-import './index.css'
 import TagPage from './pages/tagPage/TagPage';
 import EditTagPage from './pages/tagPage/EditTagPage';
 import { ExpandedContextProvider } from './contexts/ExpandedContext';
+
+import './index.css'
 
 const queryClient = new QueryClient();
 

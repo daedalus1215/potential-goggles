@@ -2,15 +2,16 @@ import { Outlet, useNavigation, useLoaderData, useSubmit, Form } from 'react-rou
 import cn from 'classnames'
 import { Task } from '../../interfaces'
 import Sidebar from './sidebar/Sidebar'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext } from 'react'
 import IconButton from '@/components/iconButton/IconButton'
 
-import styles from './MainPage.module.css';
 import { Category } from '@/components/button/Button'
 import { useSmallScreenSize } from '@/hooks/useSmallScreenSize'
 import TagButton from '@/components/tagButton/TagButton'
 import HomeButton from '@/components/homeButton/HomeButton'
-import { ExpandedContext, ExpandedContextProvider } from '@/contexts/ExpandedContext'
+import { ExpandedContext } from '@/contexts/ExpandedContext'
+
+import styles from './MainPage.module.css';
 
 const MainPage = () => {
   const { tasks, q, selectedId } = useLoaderData() as { tasks: Task[]; q: string; selectedId: string }
@@ -21,7 +22,12 @@ const MainPage = () => {
 
   return (<>
     <Sidebar classNames={cn({ [styles.smallScreenSidebar]: isSmallScreen })} tasks={tasks} q={q} selectedId={selectedId} isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
-    <div id="detail" className={cn(styles.detail, navigation.state === 'loading' ? 'loading' : '')}>
+    <div id="detail" className={cn(
+      styles.detail,
+      {
+        [styles.loading]: navigation.state === 'loading'
+      })
+    }>
       {!dontShowOutlet && (<div className={styles.homeButtons}>
         <IconButton
           category={Category.info}

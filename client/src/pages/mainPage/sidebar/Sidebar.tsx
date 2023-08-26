@@ -2,9 +2,9 @@ import React, { RefObject, useEffect, useRef } from 'react';
 import { Form, NavLink, useSubmit } from 'react-router-dom';
 import cn from 'classnames';
 import { Task } from '@/interfaces';
+import { useSmallScreenSize } from '@/hooks/useSmallScreenSize';
 
 import styles from '../MainPage.module.css'
-import { useSmallScreenSize } from '@/hooks/useSmallScreenSize';
 
 type props = {
     tasks: Task[];
