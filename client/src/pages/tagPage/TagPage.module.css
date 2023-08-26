@@ -1,12 +1,28 @@
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    /* This is better for small screens, once min() is better supported */
-    /* grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); */
-    grid-gap: 10px;
-    width: 90%;
-    margin: auto;
-  }
+.page {}
 
+.DateTimeListView {
+  max-width: 400px;
+}
 
-  
+.content {
+  -moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+  box-shadow: inset 0px 1px 0px 0px #45D6D6;
+  background-color: #2CBBBB;
+  border: 1px solid #27A0A0;
+  display: block;
+  margin: 10px 0;
+  cursor: pointer;
+  color: #FFFFFF;
+  font-size: 14px;
+  padding: 8px 18px;
+  text-decoration: none;
+}
+
+.content:hover {
+  background-color: #208686;
+  border: 1px solid #1d7373;
+  -moz-box-shadow: inset 0px 1px 0px 0px #1d7373;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #1d7373;
+  box-shadow: inset 0px 1px 0px 0px #1d7373;
+}
