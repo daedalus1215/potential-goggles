@@ -1,3 +1,12 @@
+html {
+  overflow: scroll;
+  /* Remove scrollbar space */
+  overflow-x: hidden;
+  /* Remove scrollbar space */
+  height: 90%;
+  overflow-x: hidden;
+}
+
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -14,6 +23,16 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  place-items: center;
+  /* min-width: 320px; */
+  font-size: 14px;
+  /* width: 100%; */
+  position: relative;
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 
 li {
@@ -84,13 +103,6 @@ button:focus-visible {
 }
 
 
-html {
-  overflow: scroll;
-  /* Remove scrollbar space */
-  overflow-x: hidden;
-  /* Remove scrollbar space */
-  height: 90%
-}
 
 ::-webkit-scrollbar {
   width: 0;
@@ -148,4 +160,3 @@ ul {
 .favoriteForm {
   display: inline;
 }
-
