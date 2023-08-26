@@ -5,13 +5,13 @@
   width: 0px;
   padding: 1em;
   display: flex;
+  flex: 0;
   flex-direction: column;
 }
 
 .isExpanded {
   width: 240px;
 }
-
 
 .searchAndNew {
   display: flex;
@@ -80,6 +80,7 @@
   flex: 8;
   width: 100%;
 }
+
 .isExpanded {
   margin: 0 auto;
 }

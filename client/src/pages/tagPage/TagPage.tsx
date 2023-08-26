@@ -1,8 +1,8 @@
-import AddButton from '@/components/addButton/AddButton';
 import React from 'react';
+import AddButton from '@/components/addButton/AddButton';
+import { TopBar } from '@/components';
 import { Form, useLoaderData } from 'react-router-dom';
 import { Tag as TagInterface } from '@/interfaces';
-import { TopBar } from '@/components';
 import Tag from './tagItem/TagItem';
 
 import styles from './TagPage.module.css';
@@ -25,11 +25,15 @@ const TagePage: React.FC = () => {
                     method='post'>
                     <AddButton />
 
-                    <div className={styles.grid}>
+                    <ul className={styles.DateTimeListView}>
                         {tags.map((tag: TagInterface) => {
-                            return <Tag key={tag._id} _id={tag._id} name={tag.name} />
+                            return <Tag 
+                            key={tag._id} 
+                            _id={tag._id} 
+                            name={tag.name} 
+                            classNames={styles.content}/>
                         })}
-                    </div>
+                    </ul>
                 </Form>
             </div>
         </div>
