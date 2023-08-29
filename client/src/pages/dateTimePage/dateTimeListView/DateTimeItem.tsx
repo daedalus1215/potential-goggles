@@ -25,7 +25,7 @@ const DateTimeItem: React.FC<DateTimeItemInterface> = ({ dateTime, taskId }) => 
 
   return (
     <Link
-      to={`/date-time/${taskId}/edit/${dateTime.id}`}
+      to={`/task/${taskId}/date-time/edit/${dateTime.id}`}
       id={dateTime.id}
       className={styles.content}
       key={key}
