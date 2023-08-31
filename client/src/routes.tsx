@@ -48,13 +48,13 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                     action: updateTaskAction,
                   },
                   {
-                    path: "date-time/:taskId",
+                    path: "task/:taskId/date-time",
                     loader: taskLoader,
                     element: <DateTimePage />,
                     action: createDateTime
                   },
                   {
-                    path: "date-time/:taskId/edit/:dateTimeId",
+                    path: "task/:taskId/date-time/edit/:dateTimeId",
                     loader: dateTimeLoader,
                     element: <EditDateTimeForm />,
                     action: updateDateTime,

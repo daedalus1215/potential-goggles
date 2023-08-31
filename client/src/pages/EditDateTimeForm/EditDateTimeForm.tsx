@@ -33,7 +33,7 @@ const EditDateTimeForm: React.FC = () => {
     <>
       <TopBar>
         <>
-          <BackButton path={`/date-time/${taskId}`} />
+          <BackButton path={`/task/${taskId}/date-time`} />
         </>
       </TopBar>
 

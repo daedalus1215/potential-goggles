@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
+import React, { Suspense, useRef } from "react";
 import ms from 'pretty-ms';
 import cn from "classnames";
 import { Form, useLoaderData, useNavigate } from "react-router-dom";
-import {TextAreaAdapter, IconButton, TopBar} from "@/components";
+import { TextAreaAdapter, IconButton, TopBar } from "@/components";
 import { Category } from "@/components/button/Button";
 import { useListenForSave, useSmallScreenSize } from '@/hooks';
 
@@ -35,7 +35,7 @@ const TaskPage: React.FC = () => {
                             icon="bi bi-clock"
                             form={FORM_ID}
                             onClick={() => {
-                                navigate(`/date-time/${task._id}`);
+                                navigate(`/task/${task._id}/date-time`);
                             }} />
 
                         <Form
@@ -60,7 +60,6 @@ const TaskPage: React.FC = () => {
                     </>
                 </TopBar>
             </div>
-
             <Form
                 id={FORM_ID}
                 name={FORM_ID}
@@ -79,8 +78,7 @@ const TaskPage: React.FC = () => {
                         {tag.name}
                     </option>)}
                 </select>
-
-                <TextAreaAdapter reference={descRef} value={task.description} />
+                    <TextAreaAdapter reference={descRef} value={task.description} />
             </Form>
         </div>
     );
