@@ -26,7 +26,7 @@ export const createDateTime: ActionInterface = async ({ request }) => {
     const task =  await fetchApiData<DateTimeTaskResponse>(`${api}task/${taskId}/dateTime`, { method: 'POST' })
     if (task?.time?.length > 0) {
         console.log(task.time)
-        return redirect(`task/${task._id}/date-time/${taskId}/edit/${task.time[task.time.length -1]._id}`);
+        return redirect(`/date-time/${taskId}/edit/${task.time[task.time.length -1]._id}`);
     }
     return task;    
 }
@@ -55,7 +55,7 @@ export const updateDateTime: ActionInterface = async ({ request }) => {
             time: formData.get('minutes') || '00', // ?? won't work because we are checking against '' value
         },
     })
-    return redirect(`task/${id}/date-time/${taskId}`);
+    return redirect(`/task/${taskId}`);
 }
 
 const forms = {
