@@ -6,7 +6,10 @@ const getTaskByIdAction = async (req, res) => {
     res.jsonp({ error: 'Need Id' });
   }
   const task = await TaskService.fetchTaskById(req.params.id);
-  res.jsonp(task);
+  //@TODO: Absolutely remove me!
+  setTimeout(() => {
+    res.jsonp(task);
+  }, 3000);
 };
 
 export default getTaskByIdAction;
