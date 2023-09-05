@@ -15,10 +15,6 @@ export default function IndexPage() {
 
   return (
     <>
-      <p id="zero-state">
-        <br />
-      </p>
-
       <div className={styles.underline}></div>
       <div className={classNames(styles.row, { [styles.isSmallScreenSize]: isSmallScreenSize })}>
         <UploadButton />
@@ -27,14 +23,8 @@ export default function IndexPage() {
 
 
       <TodaysActivityList aggregate={todaysActivities} />
-      <div className={styles.underline}></div>
-
       <YearMonthActivityGrid allActivities={monthActivities} />
-      <div className={styles.underline}></div>
-
       <YearMonthActivityGrid allActivities={allActivities} />
-      <div className={styles.underline}></div>
-
     </>
   )
 }
