@@ -57,7 +57,6 @@ export const fetchTask = async (index: string): Promise<Task> => await fetchApiD
 export const fetchTasksTitles = async (): Promise<Task[]> => await fetchApiData<Task[]>(`${api}tasks-titles`, {});
 
 export const todayActivitiesLoader = async (): Promise<AggregateActivity> => await fetchTodaysActivities();
-
 export const allActivitiesLoader = async (): Promise<any> => {
     const allActivities = await fetchApiData<any>(`${api}activities/all`, {})
     const todaysActivities = await fetchTodaysActivities();
@@ -67,7 +66,6 @@ export const allActivitiesLoader = async (): Promise<any> => {
 
     return { allActivities, todaysActivities, monthActivities, tags, options };
 }
-
 export const dateTimeLoader = async ({ params }: LoaderFunctionArgs) => {
     const task = await fetchTask(params?.taskId ?? '')
 
@@ -76,11 +74,10 @@ export const dateTimeLoader = async ({ params }: LoaderFunctionArgs) => {
         taskId: params.taskId,
     }
 }
+export const fetchTag = async (tagId: string): Promise<Tag> => await fetchApiData<Tag>(`${api}tag/${tagId}`, {});
+export const fetchTags = async (): Promise<Tag[]> => await fetchApiData<Tag[]>(`${api}tags`, {});
 
-export const tagsLoader = async () => {
-    const tags = await fetchTags()
-    return tags
-}
+export const tagsLoader = fetchTags;
 
 export const tagLoader = async ({ params }: LoaderFunctionArgs) => {
     const tagId = params.tagId ?? ''
