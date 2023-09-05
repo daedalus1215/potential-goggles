@@ -1,8 +1,9 @@
-import { fetchTag, fetchTags, fetchTask, fetchTasks } from './actions'
 import type { LoaderFunctionArgs } from "@remix-run/router";
-import { AggregateActivity, Tag, Task, TodaysActivity, TypedResponse } from '../interfaces';
+import { AggregateActivity, Tag, Task, TypedResponse } from '../interfaces';
 import { api } from '@/config.json';
 import { fetchApiData } from '@/utils';
+
+// Loaders = GET
 
 export const searchLoader = async ({ request, params }: LoaderFunctionArgs) => {
     const url = new URL(request.url)
@@ -51,14 +52,15 @@ export const tasksLoader = async ({ params }: LoaderFunctionArgs) => {
     return tasks
 }
 
-export const todayActivitiesLoader = async (): Promise<AggregateActivity> => {
-    const activity = await fetchApiData<AggregateActivity>(`${api}activities/today`, {})
-    return activity
-}
+export const fetchTasks = async (): Promise<Task[]> => await fetchApiData<Task[]>(`${api}tasks`, {});
+export const fetchTask = async (index: string): Promise<Task> => await fetchApiData<Task>(`${api}task/${index}`, {});
+export const fetchTasksTitles = async (): Promise<Task[]> => await fetchApiData<Task[]>(`${api}tasks-titles`, {});
+
+export const todayActivitiesLoader = async (): Promise<AggregateActivity> => await fetchTodaysActivities();
 
 export const allActivitiesLoader = async (): Promise<any> => {
     const allActivities = await fetchApiData<any>(`${api}activities/all`, {})
-    const todaysActivities = await fetchApiData<AggregateActivity>(`${api}activities/today`, {})
+    const todaysActivities = await fetchTodaysActivities();
     const monthActivities = await fetchApiData<any>(`${api}activities/months`, {})
     const tags = await fetchApiData<Tag[]>(`${api}tags`, {})
     const options = tags.map(tag => tag.name);
