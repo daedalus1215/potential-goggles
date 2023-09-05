@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchTasks } from '@/actions/actions';
+import { fetchTasks } from '@/actionsAndLoaders/actions';
 import IconButton from '@/components/iconButton/IconButton';
 import writeJsonFile from './writeJsonFile';
 

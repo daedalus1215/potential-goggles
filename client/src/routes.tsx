@@ -7,11 +7,11 @@ import {
 import ErrorPage from "./pages/ErrorPage";
 import TaskPage from './pages/taskPage/TaskPage';
 import MainPage from "./pages/mainPage/MainPage";
-import { createDateTime, createTag, newTaskAction, updateDateTime, updateTagAction, updateTaskAction as updateTaskAction } from './actions/actions';
+import { createDateTime, createTag, newTaskAction, updateDateTime, updateTagAction, updateTaskAction as updateTaskAction } from './actionsAndLoaders/actions';
 import IndexPage from './pages/indexPage/IndexPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import DateTimePage from './pages/dateTimePage/page/DateTimePage';
-import { allActivitiesLoader, dateTimeLoader, searchLoader, tagLoader, tagsLoader, taskAndTagLoader, taskLoader } from './actions/loaders';
+import { allActivitiesLoader, dateTimeLoader, searchLoader, tagLoader, tagsLoader, taskAndTagLoader, taskLoader } from './actionsAndLoaders/loaders';
 import EditDateTimeForm from './pages/EditDateTimeForm/EditDateTimeForm';
 import TagPage from './pages/tagPage/TagPage';
 import EditTagPage from './pages/tagPage/EditTagPage';
