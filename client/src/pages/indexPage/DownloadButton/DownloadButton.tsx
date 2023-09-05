@@ -1,7 +1,7 @@
 import React from 'react';
-import { fetchTasks } from '@/actions/actions';
 import IconButton from '@/components/iconButton/IconButton';
 import writeJsonFile from './writeJsonFile';
+import { fetchTasks } from '@/actionsAndLoaders/loaders';
 
 const DownloadButton: React.FC = (...tasks) => {
   const handleDownload = async () => {
@@ -12,12 +12,12 @@ const DownloadButton: React.FC = (...tasks) => {
   return (
     <>
       {tasks?.length && (
-        <IconButton 
+        <IconButton
           category='primary2nd'
           onClick={handleDownload}
           icon="bi bi-cloud-download"
           title="Download"
-        />        
+        />
       )}
     </>
   );

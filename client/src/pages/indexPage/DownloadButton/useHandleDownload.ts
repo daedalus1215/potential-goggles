@@ -1,7 +1,7 @@
 import writeJsonFile from './writeJsonFile';
 import { Task } from '../../../interfaces';
 import { displayMsInFractionalHourFormat } from '../../../utils';
-import { fetchTasks } from '../../../actions/actions';
+import { fetchTasks } from '../../../actionsAndLoaders/actions';
 
 const useHandleDownload = async () => {
     const tasks = await fetchTasks();

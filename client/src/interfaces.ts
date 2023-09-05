@@ -1,3 +1,7 @@
+import { FORMS } from "./utils/constants";
+
+export type formIds = keyof typeof FORMS;
+
 export interface Params {
     params: {
         taskId: string

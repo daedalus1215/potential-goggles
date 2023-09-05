@@ -1,6 +1,6 @@
 .TodaysActivityList {
     margin: 10px;
-    height: 300px;
+    max-height: 300px;
     overflow: scroll;
 }
 
