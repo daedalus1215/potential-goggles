@@ -1,6 +1,6 @@
 import { fetchTag, fetchTags, fetchTask, fetchTasks } from './actions'
 import type { LoaderFunctionArgs } from "@remix-run/router";
-import { AggregateActivity, Task, TodaysActivity, TypedResponse } from '../interfaces';
+import { AggregateActivity, Tag, Task, TodaysActivity, TypedResponse } from '../interfaces';
 import { api } from '@/config.json';
 import { fetchApiData } from '@/utils';
 
@@ -27,7 +27,7 @@ const selectSearchResult = async (results: TypedResponse<Task[]>, name?: string)
 export const taskAndTagLoader = async ({ params }: LoaderFunctionArgs) => {
     const task = await fetchTask(params?.taskId ?? '')
     const tags = await fetchTags();
-    
+
     const hash: any = {};
     task.tags.forEach(tag => hash[tag] = true);
 
@@ -60,8 +60,10 @@ export const allActivitiesLoader = async (): Promise<any> => {
     const allActivities = await fetchApiData<any>(`${api}activities/all`, {})
     const todaysActivities = await fetchApiData<AggregateActivity>(`${api}activities/today`, {})
     const monthActivities = await fetchApiData<any>(`${api}activities/months`, {})
+    const tags = await fetchApiData<Tag[]>(`${api}tags`, {})
+    const options = tags.map(tag => tag.name);
 
-    return { allActivities, todaysActivities, monthActivities };
+    return { allActivities, todaysActivities, monthActivities, tags, options };
 }
 
 export const dateTimeLoader = async ({ params }: LoaderFunctionArgs) => {
