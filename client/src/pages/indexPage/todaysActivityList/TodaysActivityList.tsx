@@ -23,6 +23,7 @@ const TodaysActivityList: React.FC<props> = ({ aggregate }) => {
         })}
     </div>
         <div>Total: {displayMsInFractionalHourFormat(aggregate.total)}</div>
+        <div className={styles.underline}></div>
     </>;
 }
 

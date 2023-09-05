@@ -31,6 +31,7 @@ const YearMonthActivityGrid: React.FC<props> = ({ allActivities }) => {
             )
             )}
         </div>
+        <div className={styles.underline}></div>
     </div>;
 }
 
