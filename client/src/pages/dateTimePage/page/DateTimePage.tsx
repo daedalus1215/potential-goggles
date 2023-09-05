@@ -26,7 +26,6 @@ const DateTimePage: React.FC = () => {
         <>
         <BackButton path={`/task/${task._id}`}/>
           <Form
-            // action={`/date-time/${task._id}`}
             method='post'>
             <input type="hidden" name="taskId" value={task._id} />
             <input type="hidden" name="date" value={getCurrentDateTimeEstFormat()} />
