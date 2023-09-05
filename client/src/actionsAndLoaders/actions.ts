@@ -5,7 +5,7 @@ import getCurrentDateTimeEstFormat from '@/utils/getCurrentDateTimeEstFormat'
 import { api } from '@/config.json';
 import { FORMS } from '@/utils/constants';
 
-// Actions = POST|PUT|DELETE|PATCH
+// Actions = POST|PUT|DELETE|PATCH \\
 
 export const newTaskAction: ActionInterface = async () => await fetchApiData<Task>(`${api}task`, { method: 'POST', })
     .then((data) => {
