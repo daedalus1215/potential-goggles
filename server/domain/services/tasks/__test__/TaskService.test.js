@@ -4,7 +4,7 @@ const updateTask = require('../../../../infrastructure/repositories/tasks/Reposi
 const FetchTaskByIdRepository = require('../../../../infrastructure/repositories/tasks/Repositories/FetchTaskByIdRepository/FetchTaskByIdRepository');
 const FetchAllTasksRepository = require('../../../../infrastructure/repositories/tasks/Repositories/FetchAllTasksRepository');
 
-jest.mock('../../../../infrastructure/repositories/tasks/Repositories/UpdateDateTimeRepository');
+jest.mock('../../../../infrastructure/repositories/tasks/Repositories/UpdateDateTimeRepository.mjs');
 jest.mock('../../../../infrastructure/repositories/tasks/Repositories/updateTask/updateTask');
 jest.mock('../../../../infrastructure/repositories/tasks/Repositories/FetchTaskByIdRepository/FetchTaskByIdRepository');
 jest.mock('../../../../infrastructure/repositories/tasks/Repositories/FetchAllTasksRepository');

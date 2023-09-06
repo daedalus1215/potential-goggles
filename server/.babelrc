@@ -1,0 +1,12 @@
+{
+    "presets": [
+      ["@babel/preset-env", {
+        "targets": {
+          "node": "16.18.0" // Adjust to match your Node.js version
+        }
+      }]
+    ],
+    "plugins": [
+      "@babel/plugin-transform-modules-commonjs"
+    ]
+  }

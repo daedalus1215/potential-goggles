@@ -1,7 +1,7 @@
-const hydrate = require('../hydrate');
-const logger = require('../../logger');
+import hydrate from '../hydrate.mjs';
+import logger from '../../logger.mjs';
 
-jest.mock('../../logger');
+jest.mock('../../logger.mjs');
 
 describe('server/infrastructure/hydrators/__test__/hydrate.test.js', () => {
   describe('hydrate', () => {
