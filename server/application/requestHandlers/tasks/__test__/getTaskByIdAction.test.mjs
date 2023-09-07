@@ -41,7 +41,7 @@ describe('server/application/requestHandlers/tasks/__test__/getTaskByIdAction.te
 
       // Assert
       expect(TaskService.fetchTaskById)
-        .not.toHaveBeenCalled();
+        .not.toBeCalled();
 
       expect(resSpy.jsonp)
         .toHaveBeenNthCalledWith(1, expectedError);
