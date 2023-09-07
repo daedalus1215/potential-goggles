@@ -1,11 +1,18 @@
 import TaskModel from "../../../../infrastructure/models/TaskModel.mjs";
 import { getDate } from '../../../../utils/getDate.mjs'
 
-export const FetchTodaysTasks = async () => {
+/**
+ * 
+ * @param {string[]} tagIds 
+ * @returns 
+ */
+export const FetchTodaysTasks = async (tagIds) => {
     const today = getDate(new Date());
     const tasks = await TaskModel.find({});
-    const filtered = tasks.filter(task => getDate(task.date) == today)
-        
+    const filtered = tasks
+        .filter(task => getDate(task.date) == today)
+        // .filter(task => task.tags.name.includes())
+
     const aggActivities = {
         activities: filtered
             .map((task) => ({

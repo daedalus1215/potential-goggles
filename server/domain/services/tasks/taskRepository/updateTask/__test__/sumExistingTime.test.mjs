@@ -1,4 +1,4 @@
-const sumExistingTime = require("../sumExistingTime");
+const sumExistingTime = require("../sumExistingTime.mjs");
 
 describe('aggregateExistingTime', () => {
     it('should return time summed up, when doc has time', () => {

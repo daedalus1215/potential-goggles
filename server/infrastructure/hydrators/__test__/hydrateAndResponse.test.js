@@ -1,9 +1,9 @@
-const hydrateAndResponse = require('../hydrateAndResponse');
-const hydrate = require('../hydrate');
-const logger = require('../../logger');
+const hydrateAndResponse = require('../hydrateAndResponse.mjs');
+const hydrate = require('../hydrate.mjs');
+const logger = require('../../logger.mjs');
 
-jest.mock('../../logger');
-jest.mock('../hydrate');
+jest.mock('../../logger.mjs');
+jest.mock('../hydrate.mjs');
 
 describe('server/infrastructure/hydrators/__test__/hydrateAndResponse.test.js', () => {
   describe('hydrateAndResponse', () => {
