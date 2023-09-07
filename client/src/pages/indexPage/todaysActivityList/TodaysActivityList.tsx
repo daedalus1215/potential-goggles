@@ -8,20 +8,14 @@ import { useState } from "react";
 
 interface props {
     aggregate: AggregateActivity;
-    options: string[];
 }
 
-const TodaysActivityList: React.FC<props> = ({ aggregate, options }) => {
+const TodaysActivityList: React.FC<props> = ({ aggregate }) => {
     const navigate = useNavigate();
-    const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
     return <>
         <div>Total: {displayMsInFractionalHourFormat(aggregate.total)}</div>
         <div className={styles.underline}></div>
-        <MultiSelect
-            options={options}
-            selectedOptions={selectedOptions}
-            setSelectedOptions={setSelectedOptions}
-        />
+
         <div className={styles.TodaysActivityList}>
             {aggregate.activities.map((activity: TodaysActivity) => {
                 return <div

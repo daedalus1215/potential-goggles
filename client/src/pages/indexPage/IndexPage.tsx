@@ -8,6 +8,8 @@ import { useSmallScreenSize } from '@/hooks/useSmallScreenSize';
 import classNames from 'classnames';
 
 import styles from './IndexPage.module.css';
+import MultiSelect from '@/components/multiselect/Multiselect';
+import { useState } from 'react';
 
 // @TODO: 1. Fetch tags
 // @TODO: 2 Replace options with the tags
@@ -17,6 +19,7 @@ import styles from './IndexPage.module.css';
 export default function IndexPage() {
   const { allActivities, todaysActivities, monthActivities, options } = useLoaderData() as { options: string[], allActivities: any, monthActivities: any, todaysActivities: AggregateActivity };
   const isSmallScreenSize = useSmallScreenSize();
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
   return (
     <>
@@ -26,11 +29,14 @@ export default function IndexPage() {
         <DownloadButton />
       </div>
       <div className={styles.underline}></div>
-
-
-      <TodaysActivityList aggregate={todaysActivities} options={options} />
-      <YearMonthActivityGrid allActivities={monthActivities} options={options} />
-      <YearMonthActivityGrid allActivities={allActivities} options={options} />
+      <MultiSelect
+            options={options}
+            selectedOptions={selectedOptions}
+            setSelectedOptions={setSelectedOptions}
+        />
+      <TodaysActivityList aggregate={todaysActivities} />
+      <YearMonthActivityGrid allActivities={monthActivities} />
+      <YearMonthActivityGrid allActivities={allActivities} />
     </>
   )
 }
