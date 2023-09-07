@@ -3,7 +3,7 @@ import TaskService from "../../../domain/services/tasks/TaskService.mjs";
 
 const getTaskByIdAction = async (req, res) => {
   if (!req?.params?.id) {
-    res.jsonp({ error: 'Need Id' });
+    return res.jsonp({ error: 'Need Id' });
   }
   const task = await TaskService.fetchTaskById(req.params.id);
   res.jsonp(task);
