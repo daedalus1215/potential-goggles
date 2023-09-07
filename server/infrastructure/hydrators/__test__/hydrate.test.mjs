@@ -31,14 +31,15 @@ describe('server/infrastructure/hydrators/__test__/hydrate.test.js', () => {
       const docs = {
         id: 1,
       };
-      const expected = `Error hydrating: ${err}`;
+      const expectedError = `Error hydrating: ${err}`;
+      const expected = {"error": err};
 
       // Act
       const actual = hydrate(err, docs);
 
       // Assert
-      expect(actual).toEqual(docs);
-      expect(logger.error).toHaveBeenNthCalledWith(1, expected);
+      expect(logger.error).toHaveBeenNthCalledWith(1, expectedError);
+      expect(actual).toEqual(expected);
     });
   });
 });
