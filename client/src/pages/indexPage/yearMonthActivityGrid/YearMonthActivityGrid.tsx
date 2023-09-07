@@ -1,17 +1,13 @@
 import Tooltip from '@/components/toolTip/Tooltip';
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './YearMonthActivityGrid.module.css';
-import MultiSelect from '@/components/multiselect/Multiselect';
 
 interface props {
     allActivities: any;
-    options: string[];
 }
 
-const YearMonthActivityGrid: React.FC<props> = ({ allActivities, options }) => {
-    const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-
+const YearMonthActivityGrid: React.FC<props> = ({ allActivities }) => {
     const hover = (date: string, time: number, titles: string[]) => {
         return (<div className={styles.hoverTitle}>
             <div>Date: {date}</div>
@@ -20,11 +16,6 @@ const YearMonthActivityGrid: React.FC<props> = ({ allActivities, options }) => {
         </div>)
     }
     return <div className={styles.gridContainer}>
-        <MultiSelect
-            options={options}
-            selectedOptions={selectedOptions}
-            setSelectedOptions={setSelectedOptions}
-        />
         <div className={styles.grid}>
             {allActivities.map((activity: any) => (
                 <Tooltip key={activity.date} hover={hover(activity.date, activity.time, activity.titles)}>
