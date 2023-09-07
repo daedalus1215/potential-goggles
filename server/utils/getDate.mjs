@@ -4,7 +4,7 @@ export const getDate = (date) => {
     if (month < 10) {
         month = `0${month}`
     }
-    let day = date.getDate();
+    let day = date.getDate() + 1;
     if (day < 10) {
         day = `0${day}`
     }

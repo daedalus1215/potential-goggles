@@ -11,7 +11,9 @@ export const FetchAllDayTasks = async () => {
                 .filter(time => time?.date)
                 .map(time => {
                     const theDate = getDate(time.date);
-
+                    if (theDate === '2023-09-31') {
+                        console.log('theDate is 09 - 31', time.date)
+                    }
                     if (!results[theDate]) {
                         results[theDate] = { time: 0, titles: [] };
                     }
