@@ -1,4 +1,4 @@
-const sumExistingTime = require("../sumExistingTime.mjs");
+import sumExistingTime from "../sumExistingTime.mjs";
 
 describe('aggregateExistingTime', () => {
     it('should return time summed up, when doc has time', () => {
@@ -17,7 +17,7 @@ describe('aggregateExistingTime', () => {
 
     it('should return 0, when doc has no time', () => {
         // Arrange
-        const doc = {time:[]};
+        const doc = { time: [] };
         const expected = 0;
 
         // Act

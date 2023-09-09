@@ -1,5 +1,5 @@
-import TaskModel from "../../../../infrastructure/models/TaskModel.mjs";
-import { getDate, getMonthDate } from '../../../../utils/getDate.mjs'
+import TaskModel from "../../../../../infrastructure/models/TaskModel.mjs";
+import { getMonthDate } from '../../../../../utils/getDate.mjs'
 
 export const FetchMonthsTasks = async () => {
     const today = getMonthDate(new Date());
