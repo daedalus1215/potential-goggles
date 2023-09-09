@@ -3,7 +3,7 @@ import { Category } from '@/components/button/Button';
 import IconButton from '@/components/iconButton/IconButton';
 import UploadModal from './UploadModal';
 
-const UploadButton = () => {
+const UploadButton: React.FC = () => {
     const [isModalShowing, setIsModalShowing] = useState(false);
 
     return (<>
