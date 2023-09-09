@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import './ripple-style.css';
+// import './ripple-style.css';
 
 //@TODO: This does not have the complete effect I am looking for.
 //@TODO: When we scroll and click on a button in the content that is being scrolled...

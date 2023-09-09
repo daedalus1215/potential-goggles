@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import cn from 'classnames';
 import useRippleEffect from './useRippleEffect/useRippleEffect';
 
@@ -14,7 +14,7 @@ export const Category = {
 
 interface ButtonProps {
   className?: string;
-  onClick?: (e?: any) => void;
+  onClick?: (e?: MouseEventHandler<HTMLButtonElement>) => void;
   value?: string | number;
   children?: any;
   testid?: string;

@@ -1,7 +1,7 @@
 import { redirect } from 'react-router-dom'
 import { ActionInterface, DateTimeTaskResponse, Task, formIds } from '@/interfaces'
 import fetchApiData from '@/utils/fetchApiData'
-import getCurrentDateTimeEstFormat from '@/utils/getCurrentDateTimeEstFormat'
+import getCurrentDateTimeEstFormat from '@/utils/formatters/getCurrentDateTimeEstFormat'
 import { api } from '@/config.json';
 import { FORMS } from '@/utils/constants';
 

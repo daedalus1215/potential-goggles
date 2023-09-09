@@ -15,7 +15,7 @@ import { allActivitiesLoader, dateTimeLoader, searchLoader, tagLoader, tagsLoade
 import EditDateTimeForm from './pages/EditDateTimeForm/EditDateTimeForm';
 import TagPage from './pages/tagPage/TagPage';
 import EditTagPage from './pages/tagPage/EditTagPage';
-import { ExpandedContextProvider } from './contexts/ExpandedContext';
+import { ExpandedContextProvider } from './contexts/ExpandedContext.tsx';
 
 import './index.css'
 
