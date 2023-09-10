@@ -1,24 +1,26 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import cn from 'classnames';
-import {SaveButton, TopBar } from '@/components';
+import { SaveButton, TopBar } from '@/components';
 import { DateTime } from '../../interfaces';
 import { Form, useLoaderData } from 'react-router-dom';
-
-import styles from './EditDateTimeForm.module.css';
-import { ExpandedContext } from '@/contexts/ExpandedContext';
 import BackButton from '@/components/BackButton';
 import stripSecondsAway from '@/utils/formatters/stripSecondsAway';
+import useExpandedContext from '@/hooks/useExpandedContext';
 
-interface EditDateTimeFormProp {
+import styles from './EditDateTimeForm.module.css';
+
+type EditDateTimeFormProp = {
   taskId: string,
   dateTime: DateTime
 }
 
 const EditDateTimeForm: React.FC = () => {
   const { dateTime, taskId } = useLoaderData() as EditDateTimeFormProp;
-  const { isExpanded } = useContext(ExpandedContext);
+  console.log('dateTime', dateTime);
+  console.log('taskId', taskId);
+  const { isExpanded } = useExpandedContext();
 
-  const minsAndSecs = dateTime !== undefined && stripSecondsAway(dateTime.time);
+  const minsAndSecs = dateTime !== undefined ? stripSecondsAway(dateTime.time) : 0;
 
   if (!dateTime) {
     throw new Response("", {
@@ -43,7 +45,7 @@ const EditDateTimeForm: React.FC = () => {
           <input hidden={true} name="taskId" value={taskId} readOnly />
           <input hidden={true} name="id" value={dateTime.id} readOnly />
           <input className={styles.input} pattern="\d{4}-[0-1]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-6]\d.\d{3}[A-Z]" type="text" name="date" defaultValue={dateTime.date} />
-          <input className={styles.input} type="number" name="minutes" defaultValue={minsAndSecs} autoFocus={true}/>
+          <input className={styles.input} type="number" name="minutes" defaultValue={minsAndSecs} autoFocus={true} />
           <SaveButton />
         </Form>
       </div>
