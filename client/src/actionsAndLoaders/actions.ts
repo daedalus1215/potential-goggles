@@ -1,7 +1,7 @@
 import { redirect } from 'react-router-dom'
 import { ActionInterface, DateTimeTaskResponse, Task, formIds } from '@/interfaces'
 import fetchApiData from '@/utils/fetchApiData'
-import getCurrentDateTimeEstFormat from '@/utils/formatters/getCurrentDateTimeEstFormat'
+import convertDateTimeToLocalTime from '@/utils/formatters/convertDateTimeToLocalTime'
 import { api } from '@/config.json';
 import { FORMS } from '@/utils/constants';
 
@@ -18,7 +18,7 @@ export const updateTaskAction: ActionInterface = async ({ request }) => {
         case FORMS.updateTask:
             const prepareAndSendTask = async (updates: any) => {
                 const { _id, description, projectId, tags } = updates;
-                const dateFormatted = getCurrentDateTimeEstFormat()
+                const dateFormatted = convertDateTimeToLocalTime(new Date());
                 return await fetchApiData(`${api}task`, {
                     method: 'PUT',
                     body: {

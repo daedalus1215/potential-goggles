@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, useLoaderData } from 'react-router-dom';
-import { getCurrentDateTimeEstFormat } from '@/utils';
+import { convertDateTimeToLocalTime } from '@/utils';
 import { Task } from '@/interfaces';
 import DateTimeListView from '../dateTimeListView/DateTimeListView';
 import AddButton from '@/components/addButton/AddButton';
@@ -18,7 +18,7 @@ const DateTimePage: React.FC = () => {
       statusText: "Task not found!",
     });
   }
-
+  const date = convertDateTimeToLocalTime(new Date());
   return (<div className='contactRight'>
     <div className={styles.header}>
       <h2 className={styles.h2}>{task.title}</h2>
@@ -28,7 +28,7 @@ const DateTimePage: React.FC = () => {
           <Form
             method='post'>
             <input type="hidden" name="taskId" value={task._id} />
-            <input type="hidden" name="date" value={getCurrentDateTimeEstFormat()} />
+            <input type="hidden" name="date" value={date} />
             <input type="hidden" name="minutes" value='00:00' />
             <input type="hidden" name="id" value='' />
             <AddButton />
