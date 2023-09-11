@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
-import { getCurrentDateTimeEstFormat } from 'utils';
+import { convertDateTimeToLocalTime } from 'utils';
 import { useTaskEditContext, useLoadinSpinnerContext } from 'hooks';
 import useTaskAssembler from '../useTaskAssembler';
 
@@ -39,7 +39,7 @@ describe('src/pages/tasks/TaskListView/ControlButtons/DownloadButton/__test__/us
         it('should return an assembled Time Task with all the appropriate work units', () => {
             // Arrange
             const expected = {
-                date: getCurrentDateTimeEstFormat(new Date()),
+                date: convertDateTimeToLocalTime(new Date()),
                 WorkUnit: [
                     {
                         _id: 1,

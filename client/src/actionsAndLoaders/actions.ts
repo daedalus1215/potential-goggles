@@ -1,7 +1,7 @@
 import { redirect } from 'react-router-dom'
 import { ActionInterface, DateTimeTaskResponse, Task, formIds } from '@/interfaces'
 import fetchApiData from '@/utils/fetchApiData'
-import getCurrentDateTimeEstFormat from '@/utils/getCurrentDateTimeEstFormat'
+import convertDateTimeToLocalTime from '@/utils/formatters/convertDateTimeToLocalTime'
 import { api } from '@/config.json';
 import { FORMS } from '@/utils/constants';
 
@@ -18,7 +18,7 @@ export const updateTaskAction: ActionInterface = async ({ request }) => {
         case FORMS.updateTask:
             const prepareAndSendTask = async (updates: any) => {
                 const { _id, description, projectId, tags } = updates;
-                const dateFormatted = getCurrentDateTimeEstFormat()
+                const dateFormatted = convertDateTimeToLocalTime(new Date());
                 return await fetchApiData(`${api}task`, {
                     method: 'PUT',
                     body: {
@@ -75,14 +75,13 @@ export const updateTagAction: ActionInterface = async ({ request }) => {
             return redirect("/")
     }
 }
+
 // date time
 export const createDateTime: ActionInterface = async ({ request }) => {
     const formData = await request.formData()
     const taskId = formData.get('taskId')
-
     const task = await fetchApiData<DateTimeTaskResponse>(`${api}task/${taskId}/dateTime`, { method: 'POST' })
     if (task?.time?.length > 0) {
-        console.log(task.time)
         return redirect(`/task/${taskId}/date-time/edit/${task.time[task.time.length - 1]._id}`);
     }
     return task;

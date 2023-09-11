@@ -6,7 +6,7 @@ import { Button } from '..';
 import { Category } from '../button/Button';
 
 interface props {
-  onClick?: any;
+  onClick?: (e?: any) => void;
   icon: string;
   title?: string;
   className?: string;

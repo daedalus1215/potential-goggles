@@ -1,11 +1,8 @@
 import React from 'react';
 import { Form, useLoaderData } from 'react-router-dom';
-import { getCurrentDateTimeEstFormat } from '@/utils';
 import { Task } from '@/interfaces';
+import { TopBar, BackButton, AddButton } from '@/components';
 import DateTimeListView from '../dateTimeListView/DateTimeListView';
-import AddButton from '@/components/addButton/AddButton';
-import { TopBar } from '@/components';
-import BackButton from '@/components/BackButton';
 
 import styles from './DateTimePage.module.css';
 
@@ -18,19 +15,15 @@ const DateTimePage: React.FC = () => {
       statusText: "Task not found!",
     });
   }
-
   return (<div className='contactRight'>
     <div className={styles.header}>
       <h2 className={styles.h2}>{task.title}</h2>
       <TopBar>
         <>
-        <BackButton path={`/task/${task._id}`}/>
+          <BackButton path={`/task/${task._id}`} />
           <Form
             method='post'>
             <input type="hidden" name="taskId" value={task._id} />
-            <input type="hidden" name="date" value={getCurrentDateTimeEstFormat()} />
-            <input type="hidden" name="minutes" value='00:00' />
-            <input type="hidden" name="id" value='' />
             <AddButton />
           </Form>
         </>

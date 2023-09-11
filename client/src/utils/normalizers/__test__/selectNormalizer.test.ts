@@ -1,10 +1,10 @@
-import selectNormalizer from '../selectNormalizer';
+import selectNormalizer, { EntityLabelOption, EntityNameOption } from '../selectNormalizer';
 
 describe('src/utils/__test__/selectNormalizer.test.js', () => {
   describe('selectNormalizer', () => {
     it("should return 'value' and 'label' instead of '_id' and 'name' are present", () => {
       // Arrange
-      const object = [
+      const object: EntityNameOption[] = [
         { _id: 1, name: 'name 1' },
         { _id: 2, name: 'name 2' }
       ];
@@ -21,7 +21,7 @@ describe('src/utils/__test__/selectNormalizer.test.js', () => {
 
     it("should return 'value' and 'label', when of 'value' and 'label' are present", () => {
       // Arrange
-      const object = [
+      const object: EntityLabelOption[] = [
         { value: 1, label: 'name 1' },
         { value: 2, label: 'name 2' }
       ];

@@ -1,10 +1,9 @@
-import { BaseSyntheticEvent, useEffect } from 'react';
+import { MouseEvent, MouseEventHandler, useEffect } from 'react';
 
-import './ripple-style.css';
+type EventExtend = MouseEventHandler<HTMLButtonElement> & Touch & { currentTarget: any };
 
-type EventExtend = BaseSyntheticEvent & Touch & Event;
-
-const useRippleEffect = (tagName: string, onClick: (event: EventExtend) => void) => {
+type useRippleEffectType = (tagName: string, onClick: (e: any) => void) => MouseEventHandler<HTMLButtonElement>;
+const useRippleEffect: useRippleEffectType = (tagName: string, onClick) => {
     const BUTTON_DELAY_FOR_MATERIAL_EFFECT = 250;
 
     const createRipple: any = (event: EventExtend) => {
@@ -41,8 +40,8 @@ const useRippleEffect = (tagName: string, onClick: (event: EventExtend) => void)
         /* eslint-disable-next-line react-hooks/exhaustive-deps */
     }, []);
 
-    return (event: EventExtend) => {
-        setTimeout(() => onClick(event), BUTTON_DELAY_FOR_MATERIAL_EFFECT);
+    return (e: MouseEvent) => {
+        setTimeout(() => onClick(e), BUTTON_DELAY_FOR_MATERIAL_EFFECT);
     }
 };
 

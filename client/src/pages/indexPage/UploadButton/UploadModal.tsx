@@ -12,7 +12,7 @@ const UploadModal: React.FC<props> = ({ isShowing, setIsShowing }) => {
         ? (<Modal setIsShowing={setIsShowing} >
             <DropZone onClick={setIsShowing} />
         </Modal>)
-        : <React.Fragment></React.Fragment>;
+        : <></>;
 };
 
 export default UploadModal;
