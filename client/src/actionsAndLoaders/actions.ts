@@ -75,14 +75,13 @@ export const updateTagAction: ActionInterface = async ({ request }) => {
             return redirect("/")
     }
 }
+
 // date time
 export const createDateTime: ActionInterface = async ({ request }) => {
     const formData = await request.formData()
     const taskId = formData.get('taskId')
-
     const task = await fetchApiData<DateTimeTaskResponse>(`${api}task/${taskId}/dateTime`, { method: 'POST' })
     if (task?.time?.length > 0) {
-        console.log(task.time)
         return redirect(`/task/${taskId}/date-time/edit/${task.time[task.time.length - 1]._id}`);
     }
     return task;

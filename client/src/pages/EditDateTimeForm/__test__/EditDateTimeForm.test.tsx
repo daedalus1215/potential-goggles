@@ -27,8 +27,8 @@ describe('src/pages/tasks/TaskForm/dateTimeDetail/EditDateTimeForm/__test__/Edit
             const target = render(<EditDateTimeForm />);
 
             // Assert
-            expect(target.queryByTestId("BackButton")).toBeInTheDocument(); // Check if the BackButton component exists
-            expect(target.queryByTestId("BackButton")).toHaveTextContent(`/task/randoTaskId/date-time`); // Replace "ExpectedButtonText" w
+            expect(target.queryByTestId("BackButton")).toBeInTheDocument();
+            expect(target.queryByTestId("BackButton")).toHaveTextContent(`/task/randoTaskId/date-time`);
             expect(target).toMatchSnapshot();
         });
     });
