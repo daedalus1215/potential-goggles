@@ -1,9 +1,9 @@
-/**
- * @TODO: rename
- * @param date 
- * @returns 
- */
-export default function convertDateTimeToLocalTime(date: Date): Date {
-  const dtDateOnly = new Date(date.valueOf() + date.getTimezoneOffset() * 60 * 1000);
-  return dtDateOnly;
-}
+type convertDateTimeToLocalTimeType = (date: Date) => Date;
+
+export const SIXTY = 60;
+export const THOUSAND = 1000;
+
+const convertDateTimeToLocalTime: convertDateTimeToLocalTimeType = (date) =>
+  new Date(date.valueOf() + date.getTimezoneOffset() * SIXTY * THOUSAND)
+
+export default convertDateTimeToLocalTime;

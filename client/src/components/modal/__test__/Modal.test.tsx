@@ -1,13 +1,15 @@
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom'
 
-// mock components
+// target
+import Modal from '../Modal';
+
+// mocks
 jest.mock('@/components', () => ({
     Button: () => <div data-testid="Button">{"Button"}</div>,
 }));
-import Modal from '../Modal';
 
-describe('Modal.test.js', () => {
+describe('Modal.test.tsx', () => {
     it('should render, with children, when children', () => {
         // Arrange
         const setIsShowingSpy = jest.fn();
