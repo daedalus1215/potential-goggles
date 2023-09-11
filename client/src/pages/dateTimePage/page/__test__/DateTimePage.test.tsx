@@ -35,6 +35,5 @@ describe('DateTimePage.test.tsx', () => {
         expect(target.queryByTestId("DateTimeListView")).toBeInTheDocument();
         expect(target.queryByTestId("DateTimeListView")).toHaveTextContent('randoTaskId');
         expect(target).toMatchSnapshot();
-
     });
 });
