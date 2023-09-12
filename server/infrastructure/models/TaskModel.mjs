@@ -1,4 +1,4 @@
-import  Mongoose  from "mongoose";
+import Mongoose from "mongoose";
 
 const TaskSchema = new Mongoose.Schema({
   date: {
@@ -15,7 +15,7 @@ const TaskSchema = new Mongoose.Schema({
   contractId: {
     type: Number,
   },
-  time: [{ date: { type: Date }, time: { type: Number } }],
+  time: [{ date: { type: Date }, time: { type: Number }, unix: { type: Number }, readableDate: { type: String }, readableDateTime: { type: String } }],
   tags: [],
 });
 
