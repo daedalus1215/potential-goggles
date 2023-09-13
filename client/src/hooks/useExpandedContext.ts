@@ -1,4 +1,4 @@
-import { ExpandedContext } from "@/contexts/ExpandedContext";
+import { ExpandedContext } from "@/ExpandedContext";
 import { useContext } from "react";
 
 const useExpandedContext = () => useContext(ExpandedContext);

@@ -9,7 +9,7 @@ import { Category } from '@/components/button/Button'
 import { useSmallScreenSize } from '@/hooks/useSmallScreenSize'
 import TagButton from '@/components/tagButton/TagButton'
 import HomeButton from '@/components/homeButton/HomeButton'
-import { ExpandedContext } from '@/contexts/ExpandedContext'
+import { ExpandedContext } from '@/ExpandedContext'
 
 import styles from './MainPage.module.css';
 

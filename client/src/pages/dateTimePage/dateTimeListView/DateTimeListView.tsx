@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames';
 import { Task } from '@/interfaces';
-import { ExpandedContext } from '@/contexts/ExpandedContext';
+import { ExpandedContext } from '@/ExpandedContext';
 import DateTimeItem from './DateTimeItem';
 
 import styles from './DateTimeListView.module.css';
