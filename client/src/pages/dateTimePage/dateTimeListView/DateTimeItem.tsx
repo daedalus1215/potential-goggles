@@ -1,9 +1,10 @@
 import React from 'react';
 import moment from 'moment-timezone';
-import useRippleEffectById from '../../../components/button/useRippleEffect/useRippleEffectById';
-import styles from './DateTimeListView.module.css';
-import { DateTime } from '../../../interfaces';
+import useRippleEffectById from '@/components/button/useRippleEffect/useRippleEffectById';
+import { DateTime } from '@/interfaces';
 import { Link } from 'react-router-dom';
+
+import styles from './DateTimeListView.module.css';
 
 const myTimezone = 'America/New_York';
 const myDatetimeFormat = 'YYYY-MM-DD hh:mm:ss a';
