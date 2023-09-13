@@ -1,5 +1,5 @@
 import TaskModel from "../../../../../infrastructure/models/TaskModel.mjs";
-import { formatDate, parseDate } from '../../../../../utils/getDate.mjs'
+import { compareFormattedDate, parseDate } from '../../../../../utils/getDate.mjs'
 
 /**
  * 
@@ -12,7 +12,7 @@ export const FetchTodaysTasks = async (tagIds) => {
     const newTasks = tasks.filter(task => {
         return task.time
             .filter(t1 => !!t1?.date)
-            .find(date => formatDate(date.date) === today)
+            .find(t1 => compareFormattedDate(t1.date, today))
     })
 
     const aggActivities = {
@@ -23,12 +23,12 @@ export const FetchTodaysTasks = async (tagIds) => {
                 date: task.date,
                 totalTimeToday: task.time
                     .filter(t1 => !!t1?.date)
-                    .filter(t1 => formatDate(t1.date) == today)
+                    .filter(t1 => compareFormattedDate(t1.date, today))
                     .map(t1 => t1.time)
                     .reduce((t1, t2) => t1 + t2, 0),
                 times: task.time
                     .filter(t1 => !!t1?.date)
-                    .filter(t1 => formatDate(t1.date) == today)
+                    .filter(t1 => compareFormattedDate(t1.date, today))
             }))
     };
     aggActivities.total = aggActivities.activities

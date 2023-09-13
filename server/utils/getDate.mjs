@@ -45,3 +45,7 @@ export const getMonthDateMoment = (date) => {
     return formatMonth(getMonthDate(date))
 };
 
+export const compareFormattedDate = (date, day) => {
+    return formatDate(date) === day
+}
+
