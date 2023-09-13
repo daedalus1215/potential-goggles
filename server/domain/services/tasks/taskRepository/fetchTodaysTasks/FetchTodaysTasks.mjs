@@ -1,5 +1,5 @@
 import TaskModel from "../../../../../infrastructure/models/TaskModel.mjs";
-import { getDate } from '../../../../../utils/getDate.mjs'
+import { compareFormattedDate, parseDate } from '../../../../../utils/getDate.mjs'
 
 /**
  * 
@@ -7,26 +7,28 @@ import { getDate } from '../../../../../utils/getDate.mjs'
  * @returns 
  */
 export const FetchTodaysTasks = async (tagIds) => {
-    const today = getDate(new Date());
+    const today = parseDate(new Date());
     const tasks = await TaskModel.find({});
-    const filtered = tasks
-        .filter(task => getDate(task.date) == today)
-        // .filter(task => task.tags.name.includes())
+    const newTasks = tasks.filter(task => {
+        return task.time
+            .filter(t1 => !!t1?.date)
+            .find(t1 => compareFormattedDate(t1.date, today))
+    })
 
     const aggActivities = {
-        activities: filtered
+        activities: newTasks
             .map((task) => ({
                 _id: task?._id ?? 'stubAnId',
                 title: task?.title ?? 'no title',
                 date: task.date,
                 totalTimeToday: task.time
-                    .filter(t1 => t1?.date)
-                    .filter(t1 => getDate(t1.date) == today)
+                    .filter(t1 => !!t1?.date)
+                    .filter(t1 => compareFormattedDate(t1.date, today))
                     .map(t1 => t1.time)
                     .reduce((t1, t2) => t1 + t2, 0),
                 times: task.time
-                    .filter(t1 => t1?.date)
-                    .filter(t1 => getDate(t1.date) == today)
+                    .filter(t1 => !!t1?.date)
+                    .filter(t1 => compareFormattedDate(t1.date, today))
             }))
     };
     aggActivities.total = aggActivities.activities

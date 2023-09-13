@@ -1,5 +1,5 @@
 import TaskModel from "../../../../infrastructure/models/TaskModel.mjs";
-import { getDate, getMonthDate } from '../../../../utils/getDate.mjs'
+import { formatMonth, getDate, getMonthDate } from '../../../../utils/getDate.mjs'
 
 export const fetchAllMonthTasks = async () => {
     const tasks = await TaskModel.find();
@@ -10,7 +10,7 @@ export const fetchAllMonthTasks = async () => {
             task.time
                 .filter(time => time?.date)
                 .map(time => {
-                    const theDate = getMonthDate(time.date);
+                    const theDate = formatMonth(time.date);
 
                     if (!results[theDate]) {
                         results[theDate] = { time: 0, titles: [] };

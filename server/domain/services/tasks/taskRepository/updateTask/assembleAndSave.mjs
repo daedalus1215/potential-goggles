@@ -12,10 +12,16 @@ const assembleAndSave = (dto) => async (err, doc) => {
     if (timeOffset > 0) {
         doc.time = [
             ...doc.time,
-            { date: dto.date, time: timeOffset }
+            {
+                date: dto.date,
+                time: timeOffset,
+                
+            }
         ];
     }
 
+    // @TODO: SPIKE
+    //@TODO: END SPIKE
     doc.description = dto.description;
     doc.date = new Date();
     doc.contractId = dto.contractId;
