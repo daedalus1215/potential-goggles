@@ -1,22 +1,43 @@
 import TaskModel from "../../../../../infrastructure/models/TaskModel.mjs";
-import { compareFormattedDate, parseDate } from '../../../../../utils/getDate.mjs'
+import { compareFormattedDate, getDate, parseDate } from '../../../../../utils/getDate.mjs'
 
+
+const filterOutTags = (tasks, tagIds) => {
+    if (tagIds) {
+        return tasks.filter(task => task.tags
+            // .find(tag => tagIds
+            .find(tag => tagIds !== tag._id));
+    }
+    return tasks;
+};
+
+const getDateds = (reqDate) => {
+    return (reqDate != null && reqDate != undefined && reqDate != "null")
+        ? new Date(reqDate)
+        : new Date();
+}
 /**
  * 
  * @param {string[]} tagIds 
+ * @param {string} date format yyyy-MM-dd
  * @returns 
  */
-export const FetchTodaysTasks = async (tagIds) => {
-    const today = parseDate(new Date());
+export const FetchTodaysTasks = async (tagIds, reqDate) => {
+    console.log('pre ', reqDate)
+    const date = getDateds(reqDate);
+    console.log('date1', date)
+    const today = parseDate(date);
     const tasks = await TaskModel.find({});
-    const newTasks = tasks.filter(task => {
-        return task.time
-            .filter(t1 => !!t1?.date)
-            .find(t1 => compareFormattedDate(t1.date, today))
-    })
+    const newTasks = tasks
+        .filter(task => {
+            return task.time
+                .filter(t1 => !!t1?.date)
+                .find(t1 => compareFormattedDate(t1.date, today))
+        });
+    const filteredTasks = filterOutTags(newTasks, tagIds);
 
     const aggActivities = {
-        activities: newTasks
+        activities: filteredTasks
             .map((task) => ({
                 _id: task?._id ?? 'stubAnId',
                 title: task?.title ?? 'no title',
