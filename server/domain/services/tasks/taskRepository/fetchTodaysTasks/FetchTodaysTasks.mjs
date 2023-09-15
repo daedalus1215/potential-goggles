@@ -4,9 +4,9 @@ import { compareFormattedDate, getDate, parseDate } from '../../../../../utils/g
 
 const filterOutTags = (tasks, tagIds) => {
     if (tagIds) {
-        return tasks.filter(task => task.tags
-            // .find(tag => tagIds
-            .find(tag => tagIds !== tag._id));
+        return tasks.filter(task => {
+            return !task.tags.find(tag => tag === tagIds)
+        });
     }
     return tasks;
 };
@@ -35,7 +35,7 @@ export const FetchTodaysTasks = async (tagIds, reqDate) => {
                 .find(t1 => compareFormattedDate(t1.date, today))
         });
     const filteredTasks = filterOutTags(newTasks, tagIds);
-
+    
     const aggActivities = {
         activities: filteredTasks
             .map((task) => ({
