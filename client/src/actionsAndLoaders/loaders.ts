@@ -9,7 +9,7 @@ import { fetchApiData } from '@/utils';
 export const fetchTasks = async (): Promise<Task[]> => await fetchApiData<Task[]>(`${api}tasks`, {});
 export const fetchTask = async (index: string): Promise<Task> => await fetchApiData<Task>(`${api}task/${index}`, {});
 export const fetchTasksTitles = async (): Promise<Task[]> => await fetchApiData<Task[]>(`${api}tasks-titles`, {});
-export const fetchTodaysActivities = async (date?: string, tags: string): Promise<AggregateActivity> => await fetchApiData<AggregateActivity>(`${api}activities/today?date=${date}&tags=${tags}`, {})
+export const fetchTodaysActivities = async (date?: string, tags?: string): Promise<AggregateActivity> => await fetchApiData<AggregateActivity>(`${api}activities/today?date=${date}&tags=${tags}`, {})
 
 export const fetchTag = async (tagId: string): Promise<Tag> => await fetchApiData<Tag>(`${api}tag/${tagId}`, {});
 export const fetchTags = async (): Promise<Tag[]> => await fetchApiData<Tag[]>(`${api}tags`, {});
@@ -43,7 +43,7 @@ export const allActivitiesLoader = async ({ request }: LoaderFunctionArgs): Prom
     const url = new URL(request.url)
     const date = url.searchParams.get('date') as string
     const queryTags = url.searchParams.get('tags') as string;
-    
+
     console.log('queryTags', queryTags)
     const allActivities = await fetchApiData<any>(`${api}activities/all`, {})
     const todaysActivities = await fetchTodaysActivities(date, queryTags);
