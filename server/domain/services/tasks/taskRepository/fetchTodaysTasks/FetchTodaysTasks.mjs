@@ -2,10 +2,11 @@ import TaskModel from "../../../../../infrastructure/models/TaskModel.mjs";
 import { compareFormattedDate, getDate, parseDate } from '../../../../../utils/getDate.mjs'
 
 
-const filterOutTags = (tasks, tagIds) => {
-    if (tagIds) {
+const filterOutTags = (tasks, tagNames) => {
+    if (tagNames) {
+        const tags = tagNames.split(',');
         return tasks.filter(task => {
-            return !task.tags.find(tag => tag === tagIds)
+            return !task.tags.find(tag => tags.find(tagName => tag === tagName))
         });
     }
     return tasks;
