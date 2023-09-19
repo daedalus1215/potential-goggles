@@ -9,8 +9,7 @@ import { fetchApiData } from '@/utils';
 export const fetchTasks = async (): Promise<Task[]> => await fetchApiData<Task[]>(`${api}tasks`, {});
 export const fetchTask = async (index: string): Promise<Task> => await fetchApiData<Task>(`${api}task/${index}`, {});
 export const fetchTasksTitles = async (): Promise<Task[]> => await fetchApiData<Task[]>(`${api}tasks-titles`, {});
-export const fetchTodaysActivities = async (date?: string, tags?: string|null): Promise<AggregateActivity> => await fetchApiData<AggregateActivity>(`${api}activities/today?date=${date}&tags=${tags}`, {})
-
+export const fetchTodaysActivities = async (date?: string | null, tags?: string | null): Promise<AggregateActivity> => await fetchApiData<AggregateActivity>(`${api}activities/today?date=${date}&tags=${tags}`, {})
 
 export const fetchTag = async (tagId: string): Promise<Tag> => await fetchApiData<Tag>(`${api}tag/${tagId}`, {});
 export const fetchTags = async (): Promise<Tag[]> => await fetchApiData<Tag[]>(`${api}tags`, {});
@@ -42,8 +41,8 @@ export const taskAndTagLoader = async ({ params }: LoaderFunctionArgs) => {
  */
 export const allActivitiesLoader = async ({ request }: LoaderFunctionArgs): Promise<any> => {
     const url = new URL(request.url)
-    const date: string|null = url.searchParams.get('date');
-    const queryTags: string|null = url.searchParams.get('tags');
+    const date: string | null = url.searchParams.get('date');
+    const queryTags: string | null = url.searchParams.get('tags');
     const allActivities = await fetchApiData<any>(`${api}activities/all`, {})
     const todaysActivities = await fetchTodaysActivities(date, queryTags);
     const monthActivities = await fetchApiData<any>(`${api}activities/months`, {})
