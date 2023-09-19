@@ -43,9 +43,9 @@ export const allActivitiesLoader = async ({ request }: LoaderFunctionArgs): Prom
     const url = new URL(request.url)
     const date: string | null = url.searchParams.get('date');
     const queryTags: string | null = url.searchParams.get('tags');
-    const allActivities = await fetchApiData<any>(`${api}activities/all`, {})
+    const allActivities = await fetchApiData<any>(`${api}activities/all?tags=${queryTags}`, {})
     const todaysActivities = await fetchTodaysActivities(date, queryTags);
-    const monthActivities = await fetchApiData<any>(`${api}activities/months`, {})
+    const monthActivities = await fetchApiData<any>(`${api}activities/months?tags=${queryTags}`, {})
     const tags = await fetchApiData<Tag[]>(`${api}tags`, {})
     const options = tags.map(tag => tag.name);
 
