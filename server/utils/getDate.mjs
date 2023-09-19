@@ -25,7 +25,6 @@ export const formatMonth = (date) => {
 
 export const getMonthDate = (date) => {
     if (date === undefined) return null;
-
     return format(date, 'yyyy-MM');
 };
 
