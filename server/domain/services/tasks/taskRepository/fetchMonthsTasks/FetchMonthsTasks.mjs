@@ -1,13 +1,15 @@
 import TaskModel from "../../../../../infrastructure/models/TaskModel.mjs";
+import { filterOutTags } from "../../../../../utils/filterOutTags.mjs";
 import { getMonthDate } from '../../../../../utils/getDate.mjs'
 
-export const FetchMonthsTasks = async () => {
-    const today = getMonthDate(new Date());
+export const FetchMonthsTasks = async (tags) => {
+    const today = getMonthDate(getDate());
     const tasks = await TaskModel.find({});
     const filtered = tasks.filter(task => getMonthDate(task.date) == today)
-        
+    const tasksFilteredByTags = filterOutTags(filtered, tags);
+
     const aggActivities = {
-        activities: filtered
+        activities: tasksFilteredByTags
             .map((task) => ({
                 _id: task?._id ?? 'stubAnId',
                 title: task?.title ?? 'no title',
@@ -25,7 +27,7 @@ export const FetchMonthsTasks = async () => {
     aggActivities.total = aggActivities.activities
         .map(activity => activity.totalTimeToday)
         .reduce((a1, a2) => a1 + a2, 0);
-    // console.log('tasks', tasks)
+
     return aggActivities;
 };
 

@@ -1,30 +1,31 @@
 import TaskModel from "../../../../infrastructure/models/TaskModel.mjs";
-import { formatMonth, getDate, getMonthDate } from '../../../../utils/getDate.mjs'
+import { filterOutTags } from "../../../../utils/filterOutTags.mjs";
+import { formatMonth } from '../../../../utils/getDate.mjs'
 
-export const fetchAllMonthTasks = async () => {
+export const fetchAllMonthTasks = async (tags) => {
     const tasks = await TaskModel.find();
     const results = {};
-    tasks
-        .filter(task => task?.date)
-        .forEach(task => {
-            task.time
-                .filter(time => time?.date)
-                .map(time => {
-                    const theDate = formatMonth(time.date);
+    const filteredTasks = filterOutTags(tasks.filter(task => task?.date), tags);
 
-                    if (!results[theDate]) {
-                        results[theDate] = { time: 0, titles: [] };
-                    }
+    filteredTasks.forEach(task => {
+        task.time
+            .filter(time => time?.date)
+            .map(time => {
+                const theDate = formatMonth(time.date);
 
-                    results[theDate].time += time.time;
+                if (!results[theDate]) {
+                    results[theDate] = { time: 0, titles: [] };
+                }
 
-                    const title = task?.title ?? 'no title';
-                    if (results[theDate]?.titles.indexOf(title) === -1) {
-                        results[theDate].titles.push(title);
-                    }
+                results[theDate].time += time.time;
 
-                });
-        });
+                const title = task?.title ?? 'no title';
+                if (results[theDate]?.titles.indexOf(title) === -1) {
+                    results[theDate].titles.push(title);
+                }
+
+            });
+    });
     const newResults = [];
     const keys = Object.keys(results);
 

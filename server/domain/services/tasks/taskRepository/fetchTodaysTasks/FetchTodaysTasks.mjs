@@ -4,18 +4,18 @@ import { compareFormattedDate, getDateInISOFormat, parseDate } from '../../../..
 
 /**
  * 
- * @param {string[]} tagIds 
+ * @param {string[]} tagNames 
  * @param {string} date format yyyy-MM-dd
  * @returns 
  */
-export const FetchTodaysTasks = async (tagIds, reqDate) => {
+export const FetchTodaysTasks = async (tagNames, reqDate) => {
     const tasks = await TaskModel.find({});
     const date = getDateInISOFormat(reqDate);
     const today = parseDate(date);
     const newTasks = tasks.filter(task => task.time
         .filter(t1 => !!t1?.date)
         .find(t1 => compareFormattedDate(t1.date, today)));
-    const filteredTasks = filterOutTags(newTasks, tagIds);
+    const filteredTasks = filterOutTags(newTasks, tagNames);
 
     const aggActivities = {
         activities: filteredTasks
@@ -36,7 +36,6 @@ export const FetchTodaysTasks = async (tagIds, reqDate) => {
     aggActivities.total = aggActivities.activities
         .map(activity => activity.totalTimeToday)
         .reduce((a1, a2) => a1 + a2, 0);
-    // console.log('tasks', tasks)
     return aggActivities;
 };
 
