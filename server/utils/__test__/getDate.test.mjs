@@ -1,4 +1,4 @@
-import { getDateInISOFormat, getDate, getMonthDate } from "../getDate.mjs";
+import { getDateInISOFormat, getDate, getMonthDate, compareFormattedDate, formatDate } from "../getDate.mjs";
 
 describe('server/utils/__test__/getDate.test.mjs', () => {
     describe('getDate', () => {
@@ -103,6 +103,53 @@ describe('server/utils/__test__/getDate.test.mjs', () => {
         });
     });
 
+    describe('formatDate', () => {
+        it('should be equal to 2023-02-01', () => {
+            // Arrange
+            const date = new Date("2023-02-02T01:00:00.000Z");
+
+            // Act
+            const actual = formatDate(date);
+
+            // Assert
+            expect(actual).toEqual("2023-02-01");
+        });
+        it('should be equal to 2023-02-02', () => {
+            // Arrange
+            const date = new Date("2023-02-02T12:00:00.000Z");
+
+            // Act
+            const actual = formatDate(date);
+
+            // Assert
+            expect(actual).toEqual("2023-02-02");
+        });
+    });
+
+    describe('compareFormattedDate', () => {
+        it('should be true, with a equal date and day', () => {
+            // Arrange
+            const date = new Date('2023-02-02T12:00:00.000Z');
+            const day = "2023-02-02";
+
+            // Act
+            const actual = compareFormattedDate(date, day);
+
+            // Assert
+            expect(actual).toBe(true);
+        });
+        it('should be false, with a unequal date and day', () => {
+            // Arrange
+            const date = new Date('2023-02-01T12:00:00.000Z');
+            const day = "2023-02-02";
+
+            // Act
+            const actual = compareFormattedDate(date, day);
+
+            // Assert
+            expect(actual).not.toBe(true);
+        });
+    });
     describe('getCurrentDate', () => {
         it('should return currentDate in ISO standard, if no date provided', () => {
             // Arrange
