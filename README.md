@@ -13,3 +13,6 @@ module.exports = () => ({
     "address": "127.0.0.1" // address we want to listen for requests
 })
 ```
+* Can pass in the url tags to exclude them. Also can pass in date.
+    * `?tags=asdas,dtes`
+    * `?date=2023-09-14`

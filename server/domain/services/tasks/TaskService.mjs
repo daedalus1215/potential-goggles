@@ -7,8 +7,8 @@ import FetchTaskByIdRepository from "./taskRepository/FetchTaskByIdRepository/Fe
 import updateTask from "./taskRepository/updateTask/updateTask.mjs";
 
 export const TaskService = {
-  fetchAllTasks: () => FetchAllTasksRepository(),
-  fetchAllMonthTasks: () => fetchAllMonthTasks(),
+  fetchAllTasks: (tags) => FetchAllTasksRepository(tags),
+  fetchAllMonthTasks: (tags) => fetchAllMonthTasks(tags),
   fetchTaskById: (taskId) => FetchTaskByIdRepository(taskId),
   updateTask: (dto) => updateTask(dto),
   updateDateTimeOfTask: (taskId, dateTime) => UpdateDateTimeRepository(taskId, dateTime),

@@ -1,10 +1,12 @@
 import TaskModel from "../../../../infrastructure/models/TaskModel.mjs";
+import { filterOutTags } from "../../../../utils/filterOutTags.mjs";
 import { formatDate } from '../../../../utils/getDate.mjs'
 
-export const FetchAllDayTasks = async () => {
+export const FetchAllDayTasks = async (tags) => {
     const tasks = await TaskModel.find();
+    const filtered = tasks.filter(task => task?.date);
     const results = {};
-    tasks.filter(task => task?.date)
+    filterOutTags(filtered, tags)
         .forEach(task => {
             task.time
                 .filter(time => time?.date)

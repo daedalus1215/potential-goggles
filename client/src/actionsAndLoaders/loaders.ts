@@ -9,7 +9,7 @@ import { fetchApiData } from '@/utils';
 export const fetchTasks = async (): Promise<Task[]> => await fetchApiData<Task[]>(`${api}tasks`, {});
 export const fetchTask = async (index: string): Promise<Task> => await fetchApiData<Task>(`${api}task/${index}`, {});
 export const fetchTasksTitles = async (): Promise<Task[]> => await fetchApiData<Task[]>(`${api}tasks-titles`, {});
-export const fetchTodaysActivities = async (): Promise<AggregateActivity> => await fetchApiData<AggregateActivity>(`${api}activities/today`, {})
+export const fetchTodaysActivities = async (date?: string | null, tags?: string | null): Promise<AggregateActivity> => await fetchApiData<AggregateActivity>(`${api}activities/today?date=${date}&tags=${tags}`, {})
 
 export const fetchTag = async (tagId: string): Promise<Tag> => await fetchApiData<Tag>(`${api}tag/${tagId}`, {});
 export const fetchTags = async (): Promise<Tag[]> => await fetchApiData<Tag[]>(`${api}tags`, {});
@@ -35,18 +35,17 @@ export const taskAndTagLoader = async ({ params }: LoaderFunctionArgs) => {
     return { task, options }
 }
 
-
-// loaders - activities
-export const todayActivitiesLoader = fetchTodaysActivities;
-
 /**
  * @TODO: Might decommission for smaller ones that can be reused
  * @returns 
  */
-export const allActivitiesLoader = async (): Promise<any> => {
-    const allActivities = await fetchApiData<any>(`${api}activities/all`, {})
-    const todaysActivities = await fetchTodaysActivities();
-    const monthActivities = await fetchApiData<any>(`${api}activities/months`, {})
+export const allActivitiesLoader = async ({ request }: LoaderFunctionArgs): Promise<any> => {
+    const url = new URL(request.url)
+    const date: string | null = url.searchParams.get('date');
+    const queryTags: string | null = url.searchParams.get('tags');
+    const allActivities = await fetchApiData<any>(`${api}activities/all?tags=${queryTags}`, {})
+    const todaysActivities = await fetchTodaysActivities(date, queryTags);
+    const monthActivities = await fetchApiData<any>(`${api}activities/months?tags=${queryTags}`, {})
     const tags = await fetchApiData<Tag[]>(`${api}tags`, {})
     const options = tags.map(tag => tag.name);
 

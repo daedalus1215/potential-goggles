@@ -25,11 +25,19 @@ export const formatMonth = (date) => {
 
 export const getMonthDate = (date) => {
     if (date === undefined) return null;
-
     return format(date, 'yyyy-MM');
 };
 
 export const compareFormattedDate = (date, day) => {
     return formatDate(date) === day
 }
+
+/**
+ * 
+ * @param String currentDate format yyyy-MM-dd
+ * @returns Date
+ */
+export const getDateInISOFormat = (currentDate) => (!!currentDate && currentDate != "null")
+        ? new Date(currentDate)
+        : new Date();
 
