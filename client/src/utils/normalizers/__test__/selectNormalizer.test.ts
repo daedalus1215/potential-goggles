@@ -8,7 +8,7 @@ describe('src/utils/__test__/selectNormalizer.test.js', () => {
         { _id: 1, name: 'name 1' },
         { _id: 2, name: 'name 2' }
       ];
-      const expected = [
+      const expected = [ 
         { value: 1, label: 'name 1' },
         { value: 2, label: 'name 2' }
       ];
