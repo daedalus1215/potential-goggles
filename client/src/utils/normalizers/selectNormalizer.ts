@@ -10,7 +10,6 @@ export type EntityNameOption = {
 
 export type CombinedOptions = EntityNameOption | EntityLabelOption;
 
-
 type ReturnedOption = {
   value: string | number;
   label: string;
