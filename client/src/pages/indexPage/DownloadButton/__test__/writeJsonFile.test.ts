@@ -1,6 +1,7 @@
-import { writeJsonFile } from '../writeJsonFile';
+import writeJsonFile  from '../writeJsonFile';
 // must import the way library is being imported in function
-var FileSaver = require('file-saver');
+// var FileSaver = require('file-saver');
+import * as FileSaver from 'file-saver';
 
 describe('src/components/TaskListView/__test__/writeJsonFile.test.js', () => {
   /**
@@ -12,17 +13,22 @@ describe('src/components/TaskListView/__test__/writeJsonFile.test.js', () => {
    */
   function setupFileSaverMock() {
     jest.mock('file-saver');
-    global.URL = { createObjectURL: jest.fn() };
+  
+    global.URL = {
+      createObjectURL: jest.fn(),
+      revokeObjectURL: jest.fn(), 
+      prototype: {href: '', searchParams: {}}
+    };
+  
     FileSaver.createObjectURL = jest.fn();
     return jest.spyOn(FileSaver, 'saveAs');
   }
-
   /**
    * writeJsonFile has a dependency on the global Blob and
    * we just need to be able to simulate the function
    */
   function mockBlob() {
-    global.Blob = function(content, options) {
+    global.Blob = function(content:any, options:any) {
       return { content, options };
     };
   }
