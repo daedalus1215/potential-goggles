@@ -1,21 +1,23 @@
 import React from "react";
-import { render, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom'
 
 // target
 import DateTimeItem from "../DateTimeItem";
 
 // dependencies
-import { useRippleEffectById } from 'hooks';
-
-// mock dependencies
-jest.mock('hooks/useRippleEffect/useRippleEffectById');
-
+jest.mock("react-router-dom", () => ({
+    ...(jest.requireActual("react-router-dom") as any),
+    Link: ({ children }: any) => <div data-testid="Link">({children})</div>,
+}));
+jest.mock("moment-timezone", () => ({
+    default: () => ({tz: () => ({format: () => {}})})
+}));
 
 describe('DateTimeItem.test.js', () => {
     it('should render', () => {
         // Arrange
-        const setEditDateTimeSpy = jest.fn();
+        const taskId = "taskId";
         const dateTime = {
             id: 'dateTimeID',
             date: 'dateTimeDate',
@@ -23,30 +25,9 @@ describe('DateTimeItem.test.js', () => {
         };
 
         // Act
-        const { queryByTestId } = render(<DateTimeItem dateTime={dateTime} setEditDateTime={setEditDateTimeSpy} />);
+        const target = render(<DateTimeItem dateTime={dateTime} taskId={taskId} />);
 
         // Assert
-        expect(queryByTestId('DateTimeItem')).toBeInTheDocument();
-    });
-
-    it('should call setEditDateTimeSpy on click', () => {
-        // Arrange
-        const setEditDateTimeSpy = jest.fn();
-        const dateTime = {
-            id: 'dateTimeID',
-            date: 'dateTimeDate',
-            time: 'dateTimeTime',
-        };
-        const onClick = setEditDateTimeSpy;
-        useRippleEffectById.mockImplementation(onClick);
-
-        // Act
-        const { getByTestId } = render(<DateTimeItem dateTime={dateTime} setEditDateTime={setEditDateTimeSpy} />);
-        fireEvent.click(getByTestId("DateTimeItem"));
-
-        // Assert
-        expect(useRippleEffectById).toBeCalledWith(dateTime.id, expect.anything());
-        expect(getByTestId('DateTimeItem')).toBeInTheDocument();
-        expect(setEditDateTimeSpy).toBeCalledWith(dateTime.id, expect.anything());
+        expect(target.queryByTestId('Link')).toBeInTheDocument();
     });
 });
