@@ -1,16 +1,7 @@
 import writeJsonFile  from '../writeJsonFile';
-// must import the way library is being imported in function
-// var FileSaver = require('file-saver');
 import * as FileSaver from 'file-saver';
 
-describe('src/components/TaskListView/__test__/writeJsonFile.test.js', () => {
-  /**
-   * 1. mock the file-saver module
-   * 2. mock global.URL, b/c FileSaver.saveAs depends on it.
-   * 3. FileSaver.saveAs depends on FileSaver.createObjectURL
-   *    method so we mock it.
-   * 4. We create spy on FileSaver.saveAs method.
-   */
+describe('src/components/TaskListView/__test__/writeJsonFile.test.ts', () => {
   function setupFileSaverMock() {
     jest.mock('file-saver');
   

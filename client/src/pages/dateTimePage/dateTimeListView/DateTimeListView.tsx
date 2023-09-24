@@ -12,7 +12,6 @@ interface DateTimeListViewProp {
 
 export const DateTimeListView: React.FC<DateTimeListViewProp> = ({ task }) => {
   const { isExpanded } = useExpandedContext();
-  console.log('task', task)
   return (
     <div className={classNames(styles.grid, { [styles.isExpanded]: isExpanded })}>
       {task.dateTimes?.map((dateTime) => <DateTimeItem

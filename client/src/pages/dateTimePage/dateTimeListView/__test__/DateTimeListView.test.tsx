@@ -7,11 +7,10 @@ import '@testing-library/jest-dom'
 import DateTimeListView from '../DateTimeListView';
 import { TaskFixture } from '@/dataFixtures/TaskFixture';
 
-// mock components
+// mocks
 jest.mock('../DateTimeItem', () => ({
     default: () => <div data-testid="DateTimeItem">DateTimeItem</div>
 }));
-
 jest.mock('@/hooks/useExpandedContext', () => ({
     default: () => ({ isExpanded: false })
 }));
