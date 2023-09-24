@@ -1,28 +1,25 @@
-import { writeJsonFile } from '../writeJsonFile';
-// must import the way library is being imported in function
-var FileSaver = require('file-saver');
+import writeJsonFile  from '../writeJsonFile';
+import * as FileSaver from 'file-saver';
 
-describe('src/components/TaskListView/__test__/writeJsonFile.test.js', () => {
-  /**
-   * 1. mock the file-saver module
-   * 2. mock global.URL, b/c FileSaver.saveAs depends on it.
-   * 3. FileSaver.saveAs depends on FileSaver.createObjectURL
-   *    method so we mock it.
-   * 4. We create spy on FileSaver.saveAs method.
-   */
+describe('src/components/TaskListView/__test__/writeJsonFile.test.ts', () => {
   function setupFileSaverMock() {
     jest.mock('file-saver');
-    global.URL = { createObjectURL: jest.fn() };
+  
+    global.URL = {
+      createObjectURL: jest.fn(),
+      revokeObjectURL: jest.fn(), 
+      prototype: {href: '', searchParams: {}}
+    };
+  
     FileSaver.createObjectURL = jest.fn();
     return jest.spyOn(FileSaver, 'saveAs');
   }
-
   /**
    * writeJsonFile has a dependency on the global Blob and
    * we just need to be able to simulate the function
    */
   function mockBlob() {
-    global.Blob = function(content, options) {
+    global.Blob = function(content:any, options:any) {
       return { content, options };
     };
   }

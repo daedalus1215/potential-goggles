@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { Task } from '@/interfaces';
-import { ExpandedContext } from '@/ExpandedContext';
 import DateTimeItem from './DateTimeItem';
+import useExpandedContext from '@/hooks/useExpandedContext';
 
 import styles from './DateTimeListView.module.css';
 
@@ -10,9 +10,8 @@ interface DateTimeListViewProp {
   task: Task
 }
 
-const DateTimeListView: React.FC<DateTimeListViewProp> = ({ task }) => {
-  const { isExpanded } = useContext(ExpandedContext);
-
+export const DateTimeListView: React.FC<DateTimeListViewProp> = ({ task }) => {
+  const { isExpanded } = useExpandedContext();
   return (
     <div className={classNames(styles.grid, { [styles.isExpanded]: isExpanded })}>
       {task.dateTimes?.map((dateTime) => <DateTimeItem
