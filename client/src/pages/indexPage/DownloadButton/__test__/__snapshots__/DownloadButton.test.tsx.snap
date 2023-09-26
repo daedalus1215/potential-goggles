@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`src/pages/indexPage/DownloadButton/__test__/DownloadButton.test.tsx DownloadButton should render 1`] = `
+<button
+  class="baseBtn IconButton hasTitle primary2nd"
+  data-testid="icon-button"
+>
+  <i
+    class="bi bi-cloud-download icon"
+  />
+  <span
+    class="title"
+  >
+    Download
+  </span>
+</button>
+`;
