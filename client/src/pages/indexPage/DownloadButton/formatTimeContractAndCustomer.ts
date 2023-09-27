@@ -1,5 +1,5 @@
-import { Task } from '../../../interfaces';
-import { displayMsInFractionalHourFormat } from '../../../utils';
+import { Task } from '@/interfaces';
+import { displayMsInFractionalHourFormat } from '@/utils';
 
 /**
  * Take a task object and an array of projects and reformat the
