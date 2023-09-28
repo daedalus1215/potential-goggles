@@ -1,4 +1,4 @@
-import FileSaver from "file-saver";
+import * as FileSaver from "file-saver";
 
 /**
  * Not exporting default, so we can spyOn
