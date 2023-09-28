@@ -4,12 +4,15 @@ import useUpdateCurrentTime from '../useUpdateCurrentTime';
 describe('src/hooks/__test__/useUpdateCurrentTime.test.js', () => {
   describe('#useUpdateCurrentTime', () => {
     // Mock the clearInterval the browser provides us.
-    global.clearInterval = jest.fn();
     const setTimeSpy = jest.fn();
-
+    const clearIntervalSpy = jest.fn();
+    Object.defineProperty(global, 'clearInterval', {
+      value: clearIntervalSpy,
+      writable: true
+    })
     beforeEach(() => {
       setTimeSpy.mockClear();
-      global.clearInterval.mockClear();
+      clearIntervalSpy.mockClear();
     });
 
     describe('isActive is false', () => {
@@ -37,15 +40,20 @@ describe('src/hooks/__test__/useUpdateCurrentTime.test.js', () => {
         const currentTime = Date.now();
         const expectedTime = currentTime - 1000;
         // Mock the setInterval the browser provides us.
-        global.setInterval = jest
-          .fn()
-          .mockImplementation(() => setTimeSpy(expectedTime));
+        const setIntervalSpy = jest
+        .fn()
+        .mockImplementation(() => setTimeSpy(expectedTime));
+
+        Object.defineProperty(global, 'setInterval', {
+          value: setIntervalSpy,
+          writable: true
+        });
 
         const { result } = renderHook(() =>
           useUpdateCurrentTime(1000, true, setTimeSpy),
         );
 
-        expect(global.setInterval).toBeCalled();
+        expect(setIntervalSpy).toBeCalled();
         expect(setTimeSpy).toBeCalledWith(expectedTime);
       });
     });

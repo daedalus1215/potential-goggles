@@ -6,9 +6,11 @@ import { useEffect } from 'react';
  * @param {Boolean} isActive 
  * @param {Function} setTime 
  */
-const useUpdateCurrentTime = (time, isActive, setTime) => {
+type useUpdateCurrentTimeT = (time:number, isActive: boolean, setTime: (time:number) => void) => void;
+
+const useUpdateCurrentTime:useUpdateCurrentTimeT = (time, isActive, setTime) => {
     return useEffect(() => {
-        let interval;
+        let interval: string | number | NodeJS.Timeout | undefined;
 
         if (isActive) {
             let timeOffset = Date.now() - time;
