@@ -4,7 +4,7 @@ import IconButton from '../iconButton/IconButton';
 
 import styles from './TagButton.module.css';
 
-const TagButton = () => {
+const TagButton: React.FC = () => {
     const navigate = useNavigate();
     return <IconButton
         icon="bi bi-tag"

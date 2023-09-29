@@ -189,8 +189,16 @@ li {
   }
 }
 
-
 .smallScreenSidebar {
   width: 100%;
   max-width: 100%;
+}
+
+
+.bar {
+  background-color: rgb(237, 62, 164);
+}
+
+.bar:hover {
+  background-color: rgb(211, 65, 150);
 }

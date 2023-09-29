@@ -12,6 +12,7 @@ import HomeButton from '@/components/homeButton/HomeButton'
 import { ExpandedContext } from '@/ExpandedContext'
 
 import styles from './MainPage.module.css';
+import NavigateButton from '@/components/navigateButton/NavigateButton'
 
 const MainPage = () => {
   const { tasks, q, selectedId } = useLoaderData() as { tasks: Task[]; q: string; selectedId: string }
@@ -40,6 +41,7 @@ const MainPage = () => {
           <IconButton type="submit" icon="bi-plus-square-fill" category={Category.accent} />
         </Form>
         <TagButton />
+        <NavigateButton icon={'bi bi-bar-chart-fill'} url={'stats'} style={styles.bar} />
       </div>)}
       {!dontShowOutlet && <Outlet />}
     </div>

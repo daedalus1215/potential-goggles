@@ -1,0 +1,7 @@
+.tagButton {
+    background-color: rgb(237, 160, 62);
+  }
+  
+  .tagButton:hover {
+    background-color: #937b1b;
+  }
