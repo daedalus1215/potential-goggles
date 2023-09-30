@@ -60,6 +60,11 @@ export const dateTimeLoader = async ({ params }: LoaderFunctionArgs) => {
     }
 }
 
+export const activityGraphLoader = async () => {
+    const activityForGraph = await (fetch(`${api}activity-graph`)) as TypedResponse<unknown[]>;
+    return activityForGraph;
+};
+
 // loaders - tags
 export const tagsLoader = fetchTags;
 
