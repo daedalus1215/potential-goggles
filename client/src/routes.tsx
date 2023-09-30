@@ -18,6 +18,7 @@ import { ExpandedContextProvider } from './ExpandedContext';
 import EditTagPage from './pages/tagPage/EditTagPage';
 
 import './index.css'
+import StatPage from './pages/statPage/StatPage';
 
 const queryClient = new QueryClient();
 
@@ -70,6 +71,12 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                     loader: tagLoader,
                     action: updateTagAction,
                     element: <EditTagPage />,
+                  },
+                  {
+                    path: "stats/",
+                    // loader: tagLoader,
+                    // action: updateTagAction,
+                    element: <StatPage />,
                   },
                 ]
               }
