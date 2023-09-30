@@ -1,5 +1,4 @@
-import logger from "../logger.mjs";
-
+import logger from "../../infrastructure/logger.mjs";
 
 export default function hydrate(err, docs) {
   if (err) {

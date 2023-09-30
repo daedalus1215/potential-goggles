@@ -1,4 +1,4 @@
-import { getDateInISOFormat, getDate, getMonthDate, compareFormattedDate, formatDate } from "../getDate.mjs";
+import { getDateInISOFormat, getDate, getMonthDate, compareFormattedDate, formatDate, getDatesOfPastWeek } from "../getDate.mjs";
 
 describe('server/utils/__test__/getDate.test.mjs', () => {
     describe('getDate', () => {
@@ -184,5 +184,26 @@ describe('server/utils/__test__/getDate.test.mjs', () => {
             // Assert
             expect(actual).toEqual(expected);
         });
+    });
+    describe('getPastDatesOfPastWeek', () => {
+        it('should return week ', () => {
+            // Arrange
+            const date = new Date('2023-09-29T00:00:00');
+            const expected = [
+                '2023-09-29',
+                '2023-09-28',
+                '2023-09-27',
+                '2023-09-26',
+                '2023-09-25',
+                '2023-09-24',
+                '2023-09-23',
+            ];
+
+            // Act
+            const actual = getDatesOfPastWeek(date);
+
+            // Assert
+            expect(actual).toEqual(expected);
+        })
     });
 });
