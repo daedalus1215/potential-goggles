@@ -1,6 +1,7 @@
-import Tag from "../../models/Tag.mjs";
+import TagModel from "../../../../infrastructure/models/TagModel.mjs";
 
-const fetchAllTags = async () => await Tag.find({})
+``
+const fetchAllTags = async () => await TagModel.find({})
     .sort('-_id');
 
 export default fetchAllTags;

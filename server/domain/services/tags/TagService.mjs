@@ -1,6 +1,6 @@
-import addTag from "../../../infrastructure/repositories/tags/addTag.mjs";
-import fetchAllTags from "../../../infrastructure/repositories/tags/fetchAllTags.mjs";
-import TagRepository from "../../../infrastructure/repositories/tags/TagRepository.mjs";
+import TagRepository from "./tagRepository/TagRepository.mjs";
+import addTag from "./tagRepository/addTag.mjs";
+import fetchAllTags from "./tagRepository/fetchAllTags.mjs";
 
 const TagService = {
   fetchTagById: async (tagId, res) =>

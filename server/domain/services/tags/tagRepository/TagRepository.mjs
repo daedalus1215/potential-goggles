@@ -1,4 +1,3 @@
-import Tag from "../../models/Tag.mjs";
 
 const TagRepository = {
   deleteTag: (id) => Tag.deleteOne({ _id: id }),
