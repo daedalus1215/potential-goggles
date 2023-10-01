@@ -10,6 +10,6 @@ const TagSchema = new Mongoose.Schema({
   },
 });
 
-const Tag = Mongoose.model('tags', TagSchema);
+const TagModel = Mongoose.model('tags', TagSchema);
 
-export default Tag;
+export default TagModel;

@@ -1,4 +1,4 @@
-import logger from "../logger.mjs";
+import logger from "../../infrastructure/logger.mjs";
 import hydrate from "./hydrate.mjs";
 
 const hydrateAndResponse = responder => (err, docs) => {

@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { addDays, format, subDays } from 'date-fns';
 
 const dateRegExp = /\d{4}-\d{2}-\d{2}/;
 const monthRegExp = /\d{4}-\d{2}/;
@@ -34,10 +34,25 @@ export const compareFormattedDate = (date, day) => {
 
 /**
  * 
+ * @param {Date} date 
+ * @returns 
+ */
+export const getDatesOfPastWeek = (date) => {
+    const dates = [];
+    dates.push(formatDate(date));
+    let tDate = date;
+    for (let i = 0; i < 6; i++) {
+        tDate = subDays(tDate, 1);
+        dates.push(formatDate(tDate))
+    }
+    return dates;
+};
+
+/**
+ * 
  * @param String currentDate format yyyy-MM-dd
  * @returns Date
  */
 export const getDateInISOFormat = (currentDate) => (!!currentDate && currentDate != "null")
         ? new Date(currentDate)
         : new Date();
-

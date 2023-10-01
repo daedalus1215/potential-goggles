@@ -1,6 +1,6 @@
 import TagService from "../../../domain/services/tags/TagService.mjs";
-import hydrateAndResponse from "../../../infrastructure/hydrators/hydrateAndResponse.mjs";
 import TaskModel from "../../../infrastructure/models/TaskModel.mjs";
+import hydrateAndResponse from "../../../utils/hydrators/hydrateAndResponse.mjs";
 
 const doesTagExist = (tag) => {
     if (TagService.fetchTagById(tag._id, getTag).error) {
@@ -22,10 +22,10 @@ const assembleTask = (task) => {
     saveableTask.description = task.description;
     saveableTask.date = task.date;
     saveableTask.tags = task.tags;
-    saveableTask.title =  task?.title
-    ?? (task?.description
-        ? striptags(doc.description.split("</p>")[0]?.split("<p>")[1])
-        : '')
+    saveableTask.title = task?.title
+        ?? (task?.description
+            ? striptags(doc.description.split("</p>")[0]?.split("<p>")[1])
+            : '')
 
     return saveableTask;
 };

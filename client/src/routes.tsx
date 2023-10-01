@@ -11,13 +11,14 @@ import { createDateTime, createTag, newTaskAction, updateDateTime, updateTagActi
 import IndexPage from './pages/indexPage/IndexPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import DateTimePage from './pages/dateTimePage/page/DateTimePage';
-import { allActivitiesLoader, dateTimeLoader, searchLoader, tagLoader, tagsLoader, taskAndTagLoader, taskLoader } from './actionsAndLoaders/loaders';
+import { activityGraphLoader, allActivitiesLoader, dateTimeLoader, searchLoader, tagLoader, tagsLoader, taskAndTagLoader, taskLoader } from './actionsAndLoaders/loaders';
 import EditDateTimeForm from './pages/EditDateTimeForm/EditDateTimeForm';
 import TagPage from './pages/tagPage/TagPage';
 import { ExpandedContextProvider } from './ExpandedContext';
 import EditTagPage from './pages/tagPage/EditTagPage';
 
 import './index.css'
+import StatPage from './pages/statPage/StatPage';
 
 const queryClient = new QueryClient();
 
@@ -70,6 +71,12 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                     loader: tagLoader,
                     action: updateTagAction,
                     element: <EditTagPage />,
+                  },
+                  {
+                    path: "stats/",
+                    loader: activityGraphLoader,
+                    // action: updateTagAction,
+                    element: <StatPage />,
                   },
                 ]
               }

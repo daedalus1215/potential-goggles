@@ -1,16 +1,15 @@
-const minutesToMilliseconds = require("../../../../../utils/minutesToMilliseconds");
-const hydrate = require("../../../../hydrators/hydrate");
-const Task = require("../../../../models/TaskModel");
-const UpdateDateTimeRepository = require("../UpdateDateTimeRepository");
+import minutesToMilliseconds from "../../../../../utils/minutesToMilliseconds";
 
-jest.mock("../../../../hydrators/hydrate");
+import TaskModel from "../../../../../infrastructure/models/TaskModel.mjs";
+import UpdateDateTimeRepository from "../dateTime/UpdateDateTimeRepository.mjs";
+
+jest.mock("../../../../../utils/hydrators/hydrate");
 jest.mock("../../../../../utils/minutesToMilliseconds");
 
 describe('server/infrastructure/repositories/tasks/repositories/__test__/UpdateDateTimeRepository.test.js', () => {
     describe('UpdateDateTimeRepository', () => {
         it('should...', async () => {
             // Arrange
-            hydrate.mockImplementation(() => jest.fn());
             const taskId = 'taskId';
             const dateTime = { id: 'dateId', minutes: 1000, date: 'some date' };
             const task = {
@@ -27,7 +26,7 @@ describe('server/infrastructure/repositories/tasks/repositories/__test__/UpdateD
                 }],
                 save: jest.fn()
             };
-            Task.findOne = jest.fn().mockImplementation(() => task);
+            TaskModel.findOne = jest.fn().mockImplementation(() => task);
             minutesToMilliseconds.mockImplementation(() => 100);
             const expected = [{
                 _id: dateTime.id,
@@ -44,8 +43,8 @@ describe('server/infrastructure/repositories/tasks/repositories/__test__/UpdateD
             const waiting = await UpdateDateTimeRepository(taskId, dateTime);
 
             // Assert
-            expect(Task.findOne).toBeCalledWith({ _id: taskId });
-            expect(minutesToMilliseconds).toBeCalledWith(dateTime.minutes);
+            expect(TaskModel.findOne).toBeCalledWith({ _id: taskId });
+            expect(minutesToMilliseconds).toBeCalledWith(dateTime.time);
 
             expect(task.time).toEqual(expected);
         });
