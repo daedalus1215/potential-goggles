@@ -1,5 +1,5 @@
 import TaskModel from "../../../../../infrastructure/models/TaskModel.mjs";
-import minutesToMilliseconds from "../../../../../utils/minutesToMilliseconds.mjs";
+import minutesToMilliseconds from "../../../../../utils/millisecondConversions/minutesToMilliseconds.mjs";
 
 
 const UpdateDateTimeRepository = async (taskId, dateTime) => {

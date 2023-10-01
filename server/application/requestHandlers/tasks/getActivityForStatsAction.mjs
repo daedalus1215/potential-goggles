@@ -20,7 +20,7 @@ const options = {
     },
 };
 
-const getActivityForGraphAction = (req, res) => {
+const getActivityForStatsAction = (req, res) => {
 
     const data = {
         labels,
@@ -46,4 +46,4 @@ const getActivityForGraphAction = (req, res) => {
     res.jsonp({ data, options });
 };
 
-export default getActivityForGraphAction;
+export default getActivityForStatsAction;
