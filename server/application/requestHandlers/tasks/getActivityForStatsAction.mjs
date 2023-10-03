@@ -28,12 +28,12 @@ const getActivityForStatsAction = (req, res) => {
             {
                 label: 'Dataset 1',
                 data: labels.map(() => faker.number.int({ min: -1000, max: 1000 })),
-                backgroundColor: `rgb(${faker.number.int({ min: 100, max: 255 })}, ${faker.number.int({ min: 100, max: 255 })}, ${faker.number.int({ min: 100, max: 255 })})`,
+                backgroundColor: 'rgb(197, 125, 206)',
             },
             {
                 label: 'Dataset 2',
                 data: labels.map(() => faker.number.int({ min: -1000, max: 1000 })),
-                backgroundColor: `rgb(${faker.number.int({ min: 100, max: 255 })}, ${faker.number.int({ min: 100, max: 255 })}, ${faker.number.int({ min: 100, max: 255 })})`
+                backgroundColor: `rgb(202, 249, 211)`
             },
             {
                 label: 'Dataset 3',
