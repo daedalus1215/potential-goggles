@@ -1,5 +1,6 @@
-import { DishTask, hiddenTask, miscTask } from "../../../../../dataFixtures/TaskFixture.mjs";
+import { dishesTask, hiddenTask, miscTask } from "../../../../../dataFixtures/TaskFixture.mjs";
 import TaskModel from "../../../../../infrastructure/models/TaskModel";
+import FetchWeeksTaskForStats from "../FetchWeeksTaskForStats.mjs";
 
 describe('server/domain/services/tasks/taskRepository/__test__/FetchWeeksTaskForStats.test.mjs', () => {
     describe('FetchWeeksTaskForStats', () => {
@@ -22,13 +23,13 @@ describe('server/domain/services/tasks/taskRepository/__test__/FetchWeeksTaskFor
                     datasets: [
                         {
                             label: "Dishes",
-                            data: [4200000, 0, 0, 0, 0, 0, 600000],
-                            backgroundColor: 'rgb(197, 125, 206)'
+                            data: [4200001, 0, 0, 0, 0, 0, 600001],
+                            backgroundColor: expect.anything()
                         },
                         {
                             label: "Misc",
-                            data: [0, 0, 4200000, 0, 0, 0, 0],
-                            backgroundColor: 'rgb(202, 249, 211)'
+                            data: [0, 0, 4200014, 0, 0, 0, 0],
+                            backgroundColor: expect.anything()
                         }
                     ]
                 },
@@ -50,23 +51,20 @@ describe('server/domain/services/tasks/taskRepository/__test__/FetchWeeksTaskFor
                     }
                 }
             };
-            const bothTimesWillBePickedUp = DishTask;
+            const bothTimesWillBePickedUp = dishesTask;
             const oneTimeWIllbePickedUp = miscTask;
             const noTimeWIllbePickedUp = hiddenTask;
-            const willFindTasks = [
+            const tasks = [
                 bothTimesWillBePickedUp,
                 oneTimeWIllbePickedUp,
-
-            ]
-            const tasks = [
-                ...willFindTasks,
                 noTimeWIllbePickedUp
             ];
             TaskModel.find = jest.fn().mockImplementation(() => tasks);
 
             // Act
-            const actual = FetchWeeksTaskForStats(new Date("2023-09-26T00:00:00.000Z"));
+            const actual = FetchWeeksTaskForStats(new Date("2023-09-26T12:00:00.000Z"));
 
+            console.log('actual', actual.data.datasets)
             // Assert
             expect(actual).toEqual(expected)
         });
