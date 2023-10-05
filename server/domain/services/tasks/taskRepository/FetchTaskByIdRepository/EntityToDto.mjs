@@ -1,5 +1,5 @@
-import striptags from 'striptags';
 import { millisToMinutesAndSeconds } from '../../../../../utils/millisecondConversions/millisToMinutesAndSeconds.mjs';
+import { getTitle } from '../../../../../utils/getTitle.mjs';
 
 //@TODO: Need to UT these conditionals
 export default (doc) => {
@@ -11,11 +11,7 @@ export default (doc) => {
     console.log('task.date', task.date)
     task.contractId = doc.contractId || '';
 
-    task.title = doc?.title
-        ?? (doc?.description
-            ? striptags(doc.description.split("</p>")[0]?.split("<p>")[1])
-            : '');
-
+    task.title = getTitle(doc);
 
     task.time = doc?.time
         .map(a => parseInt(a.time))
