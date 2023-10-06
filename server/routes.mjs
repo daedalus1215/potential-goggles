@@ -72,7 +72,7 @@ const routes = (app) => {
     app.get('/api/activities/today', FetchTodaysActivity)
     app.get('/api/activities/all', FetchAllDayTasksAction)
     app.get('/api/activities/months', getAllMonthTasksAction);
-    app.get('/api/activity-graph', getActivityForStatsAction);
+    app.get('/api/stack-graph/:date/:days', getActivityForStatsAction);
 
     // TAGS
     app.get('/api/tags', getAllTagsAction);
