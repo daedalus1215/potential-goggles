@@ -60,8 +60,10 @@ export const dateTimeLoader = async ({ params }: LoaderFunctionArgs) => {
     }
 }
 
-export const activityGraphLoader = async () => {
-    const activityForGraph = await (fetch(`${api}activity-graph`)) as TypedResponse<unknown[]>;
+export const stackGraphLoader = async ({ params }: LoaderFunctionArgs): Promise<any> => {
+    const date = params?.date ?? '2023-10-05';
+    const days = params?.days ?? 7;
+    const activityForGraph = await (fetch(`${api}stack-graph/${date}/${days}`)) as TypedResponse<unknown[]>;
     return activityForGraph;
 };
 
