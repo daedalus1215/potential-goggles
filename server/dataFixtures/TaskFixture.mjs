@@ -49,7 +49,6 @@ export const miscTask = {
         },
     ],
     contractId: 0,
-    title: 'Misc',
     description: "<p>Misc</p>\n<p>some paragraphs</p>",
     date: "2023-09-12T11:33:12.362Z"
 };

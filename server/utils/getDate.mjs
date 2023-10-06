@@ -44,15 +44,16 @@ export const isEvenOrGreaterThan = (date1, date2) => {
 };
 
 /**
- * 
- * @param {Date} date 
+ * With a date and an iteration, we know the range of dates to give.
+ * @param {Date} date the date we start from, that we are going back from.
+ * @param {number} days how far back we want to go
  * @returns 
  */
-export const getDatesOfPastWeek = (date) => {
+export const getRangeOfDates = (date, days) => {
     const dates = [];
     dates.push(formatDate(date));
     let tDate = date;
-    for (let i = 0; i < 6; i++) {
+    for (let i = 1; i < days; i++) {
         tDate = subDays(tDate, 1);
         dates.push(formatDate(tDate))
     }

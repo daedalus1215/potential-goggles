@@ -1,9 +1,9 @@
 import { dishesTask, hiddenTask, miscTask } from "../../../../../dataFixtures/TaskFixture.mjs";
 import TaskModel from "../../../../../infrastructure/models/TaskModel";
-import FetchWeeksTaskForStats from "../FetchWeeksTaskForStats.mjs";
+import FetchStatsForStackForRangeOfDates from "../FetchStatsForStackForRangeOfDates.mjs";
 
-describe('server/domain/services/tasks/taskRepository/__test__/FetchWeeksTaskForStats.test.mjs', () => {
-    describe('FetchWeeksTaskForStats', () => {
+describe('server/domain/services/tasks/taskRepository/__test__/FetchStatsForStackForRangeOfDates.test.mjs', () => {
+    describe('FetchStatsForStackForRangeOfDates', () => {
         beforeEach(() => {
             jest.mock("../../../../../infrastructure/models/TaskModel");
         });
@@ -37,7 +37,7 @@ describe('server/domain/services/tasks/taskRepository/__test__/FetchWeeksTaskFor
                     "plugins": {
                         "title": {
                             "display": true,
-                            "text": "Chart.js Bar Chart - Stacked"
+                            "text": "Stacked Activity over 7 days"
                         }
                     },
                     "responsive": true,
@@ -62,7 +62,7 @@ describe('server/domain/services/tasks/taskRepository/__test__/FetchWeeksTaskFor
             TaskModel.find = jest.fn().mockImplementation(() => tasks);
 
             // Act
-            const actual = FetchWeeksTaskForStats(new Date("2023-09-26T12:00:00.000Z"));
+            const actual = FetchStatsForStackForRangeOfDates(new Date("2023-09-26T12:00:00.000Z"), 7);
 
             console.log('actual', actual.data.datasets)
             // Assert

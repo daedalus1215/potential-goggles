@@ -1,4 +1,4 @@
-import { getDateInISOFormat, getDate, getMonthDate, compareFormattedDate, formatDate, getDatesOfPastWeek, isEvenOrGreaterThan } from "../getDate.mjs";
+import { getDateInISOFormat, getDate, getMonthDate, compareFormattedDate, formatDate, getRangeOfDates, isEvenOrGreaterThan } from "../getDate.mjs";
 
 describe('server/utils/__test__/getDate.test.mjs', () => {
     describe('getDate', () => {
@@ -185,7 +185,7 @@ describe('server/utils/__test__/getDate.test.mjs', () => {
             expect(actual).toEqual(expected);
         });
     });
-    describe('getPastDatesOfPastWeek', () => {
+    describe('getRangeOfDates', () => {
         it('should return week ', () => {
             // Arrange
             const date = new Date('2023-09-29T00:00:00');
@@ -197,10 +197,13 @@ describe('server/utils/__test__/getDate.test.mjs', () => {
                 '2023-09-25',
                 '2023-09-24',
                 '2023-09-23',
+                '2023-09-22',
+                '2023-09-21',
+                '2023-09-20',
             ];
 
             // Act
-            const actual = getDatesOfPastWeek(date);
+            const actual = getRangeOfDates(date, 10);
 
             // Assert
             expect(actual).toEqual(expected);

@@ -3,6 +3,7 @@ import UpdateDateTimeRepository from "./taskRepository/dateTime/UpdateDateTimeRe
 import fetchAllMonthTasks from "./taskRepository/FetchAllMonthTasks.mjs";
 import FetchAllTasksRepository from "./taskRepository/FetchAllTasksRepository.mjs";
 import FetchAllTaskTitlesRepository from "./taskRepository/FetchAllTaskTitlesRepository.mjs";
+import FetchStatsForStackForRangeOfDates from "./taskRepository/FetchStatsForStackForRangeOfDates.mjs";
 import FetchTaskByIdRepository from "./taskRepository/FetchTaskByIdRepository/FetchTaskByIdRepository.mjs";
 import updateTask from "./taskRepository/updateTask/updateTask.mjs";
 
@@ -14,6 +15,7 @@ export const TaskService = {
   updateDateTimeOfTask: (taskId, dateTime) => UpdateDateTimeRepository(taskId, dateTime),
   createDateTimeOfTask: (taskId) => CreateDateTimeRepository(taskId),
   fetchAllTaskTitles: () => FetchAllTaskTitlesRepository(),
+  fetchStackGraph: (date, days) => FetchStatsForStackForRangeOfDates(date, days),
 };
 
 export default TaskService;
