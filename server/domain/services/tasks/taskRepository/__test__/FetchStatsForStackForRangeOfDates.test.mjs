@@ -7,7 +7,7 @@ describe('server/domain/services/tasks/taskRepository/__test__/FetchStatsForStac
         beforeEach(() => {
             jest.mock("../../../../../infrastructure/models/TaskModel");
         });
-        it('should...', () => {
+        it('should...', async () => {
             // Arrange
             const expected = {
                 data: {
@@ -23,12 +23,12 @@ describe('server/domain/services/tasks/taskRepository/__test__/FetchStatsForStac
                     datasets: [
                         {
                             label: "Dishes",
-                            data: [4200001, 0, 0, 0, 0, 0, 600001],
+                            data: [4200001 / 1000 / 60, 0, 0, 0, 0, 0, 600001 / 1000 / 60],
                             backgroundColor: expect.anything()
                         },
                         {
                             label: "Misc",
-                            data: [0, 0, 4200014, 0, 0, 0, 0],
+                            data: [0, 0, 4200000 / 1000 / 60 + 4200000 / 1000 / 60, 0, 0, 0, 0],
                             backgroundColor: expect.anything()
                         }
                     ]
@@ -62,9 +62,8 @@ describe('server/domain/services/tasks/taskRepository/__test__/FetchStatsForStac
             TaskModel.find = jest.fn().mockImplementation(() => tasks);
 
             // Act
-            const actual = FetchStatsForStackForRangeOfDates(new Date("2023-09-26T12:00:00.000Z"), 7);
+            const actual = await FetchStatsForStackForRangeOfDates(new Date("2023-09-26T12:00:00.000Z"), 7);
 
-            console.log('actual', actual.data.datasets)
             // Assert
             expect(actual).toEqual(expected)
         });

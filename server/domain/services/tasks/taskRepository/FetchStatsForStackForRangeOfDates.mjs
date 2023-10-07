@@ -10,18 +10,25 @@ export const FetchStatsForStackForRangeOfDates = async (date, days) => {
     for (let task of tasks) {
         const dataset = {
             label: getTitle(task),
-            data: new Array(days).fill(0),
+            data: Array(days).fill(0),
             backgroundColor: `rgb(${faker.number.int({ min: 100, max: 255 })}, ${faker.number.int({ min: 100, max: 255 })}, ${faker.number.int({ min: 100, max: 255 })})`
         };
 
         for (let time of task.time) {
             const currentDate = formatDate(time.date);
+            if (currentDate === null || currentDate < dates[dates.length - 1] ) {
+                continue;
+            }
+
             let index = dates.findIndex(item => {
                 return item === currentDate;
             });
-
-            if (index !== -1) {
-                dataset.data[index] += time.time
+            if (index !== -1) { 
+                if (dataset.data[index] >= 0) {
+                    dataset.data[index] = dataset.data[index] + (time?.time / 1000 / 60 ?? 0)
+                } else {
+                    dataset.data[index] = (time?.time / 1000 / 60 ?? 0)
+                }
             }
         }
 

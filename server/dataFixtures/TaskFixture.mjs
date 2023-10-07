@@ -40,12 +40,12 @@ export const miscTask = {
         {
             _id: "64decee8de58d7e77212f4cc",
             date: new Date("2023-09-24T12:38:45.000Z"),
-            time: 4200002
+            time: 4200000
         },
         {
             _id: "64decee8de58d7e77212f4cc",
             date: new Date("2023-09-24T12:38:45.000Z"),
-            time: 12
+            time: 4200000
         },
     ],
     contractId: 0,
