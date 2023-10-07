@@ -8,7 +8,6 @@ export default (doc) => {
     task.description = doc?.description || '';
     task.tags = doc?.tags || [];
     task.date = doc?.date || '';
-    console.log('task.date', task.date)
     task.contractId = doc.contractId || '';
 
     task.title = getTitle(doc);

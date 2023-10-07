@@ -7,7 +7,7 @@ describe('server/domain/services/tasks/taskRepository/__test__/FetchStatsForStac
         beforeEach(() => {
             jest.mock("../../../../../infrastructure/models/TaskModel");
         });
-        it('should...', async () => {
+        it('should fetch tasks from model and do dataset munging', async () => {
             // Arrange
             const expected = {
                 data: {
