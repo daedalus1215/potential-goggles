@@ -22,6 +22,7 @@ const DateTimeItem: React.FC<DateTimeItemInterface> = ({ dateTime, taskId }) => 
 
   const rippleClick = useRippleEffectById(dateTime.id, () => {});
 
+  // @TODO: Revisit this, why must I concatinate. Ids should be unique enough.
   const key = dateTime.id + dateTime.time;
 
   return (

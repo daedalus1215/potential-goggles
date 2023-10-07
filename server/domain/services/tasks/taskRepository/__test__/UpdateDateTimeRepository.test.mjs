@@ -1,10 +1,11 @@
-import minutesToMilliseconds from "../../../../../utils/minutesToMilliseconds";
+
 
 import TaskModel from "../../../../../infrastructure/models/TaskModel.mjs";
+import minutesToMilliseconds from "../../../../../utils/millisecondConversions/minutesToMilliseconds.mjs";
 import UpdateDateTimeRepository from "../dateTime/UpdateDateTimeRepository.mjs";
 
 jest.mock("../../../../../utils/hydrators/hydrate");
-jest.mock("../../../../../utils/minutesToMilliseconds");
+jest.mock("../../../../../utils/millisecondConversions/minutesToMilliseconds.mjs");
 
 describe('server/infrastructure/repositories/tasks/repositories/__test__/UpdateDateTimeRepository.test.js', () => {
     describe('UpdateDateTimeRepository', () => {

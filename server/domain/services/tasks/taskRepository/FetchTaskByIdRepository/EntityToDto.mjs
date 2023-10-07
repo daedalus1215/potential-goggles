@@ -1,4 +1,5 @@
-import striptags from 'striptags';
+import { millisToMinutesAndSeconds } from '../../../../../utils/millisecondConversions/millisToMinutesAndSeconds.mjs';
+import { getTitle } from '../../../../../utils/getTitle.mjs';
 
 //@TODO: Need to UT these conditionals
 export default (doc) => {
@@ -8,12 +9,8 @@ export default (doc) => {
     task.tags = doc?.tags || [];
     task.date = doc?.date || '';
     task.contractId = doc.contractId || '';
-    
-    task.title = doc?.title
-        ?? (doc?.description
-            ? striptags(doc.description.split("</p>")[0]?.split("<p>")[1])
-            : '');
 
+    task.title = getTitle(doc);
 
     task.time = doc?.time
         .map(a => parseInt(a.time))
@@ -32,12 +29,4 @@ export default (doc) => {
         || [];
 
     return task;
-}
-
-const millisToMinutesAndSeconds = (millis) => {
-    const minutes = Math.floor(millis / 60000);
-    const seconds = ((millis % 60000) / 1000).toFixed(0);
-    //ES6 interpolated literals/template literals 
-    //If seconds is less than 10 put a zero in front.
-    return `${minutes}:${(seconds < 10 ? "0" : "")}${seconds}`;
 }

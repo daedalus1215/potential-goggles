@@ -1,4 +1,4 @@
-const minutesToMilliseconds = require('../minutesToMilliseconds.mjs');
+import minutesToMilliseconds from "../minutesToMilliseconds.mjs";
 
 describe('server/utils/__test__/minutesToMilliseconds.test.js', () => {
     describe('minutesToMilliseconds', () => {

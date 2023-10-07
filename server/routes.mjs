@@ -21,7 +21,7 @@ import getTagByIdAction from './application/requestHandlers/tags/getTagByIdActio
 import { FetchTodaysActivity } from './application/requestHandlers/tasks/dateTime/FetchTodaysTasksAction.mjs';
 import FetchAllDayTasksAction from './application/requestHandlers/supports/FetchAllDayTasksAction.mjs';
 import getAllMonthTasksAction from './application/requestHandlers/tasks/getAllMonthTasksAction.mjs';
-import getActivityForGraphAction from './application/requestHandlers/tasks/getActivityForGraphAction.mjs';
+import getActivityForStatsAction from './application/requestHandlers/tasks/getActivityForStatsAction.mjs';
 
 const routes = (app) => {
     // TASKS
@@ -72,7 +72,7 @@ const routes = (app) => {
     app.get('/api/activities/today', FetchTodaysActivity)
     app.get('/api/activities/all', FetchAllDayTasksAction)
     app.get('/api/activities/months', getAllMonthTasksAction);
-    app.get('/api/activity-graph', getActivityForGraphAction);
+    app.get('/api/stack-graph/:date/:days', getActivityForStatsAction);
 
     // TAGS
     app.get('/api/tags', getAllTagsAction);

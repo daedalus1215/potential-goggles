@@ -11,7 +11,7 @@ import { createDateTime, createTag, newTaskAction, updateDateTime, updateTagActi
 import IndexPage from './pages/indexPage/IndexPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import DateTimePage from './pages/dateTimePage/page/DateTimePage';
-import { activityGraphLoader, allActivitiesLoader, dateTimeLoader, searchLoader, tagLoader, tagsLoader, taskAndTagLoader, taskLoader } from './actionsAndLoaders/loaders';
+import { stackGraphLoader, allActivitiesLoader, dateTimeLoader, searchLoader, tagLoader, tagsLoader, taskAndTagLoader, taskLoader } from './actionsAndLoaders/loaders';
 import EditDateTimeForm from './pages/EditDateTimeForm/EditDateTimeForm';
 import TagPage from './pages/tagPage/TagPage';
 import { ExpandedContextProvider } from './ExpandedContext';
@@ -74,7 +74,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                   },
                   {
                     path: "stats/",
-                    loader: activityGraphLoader,
+                    loader: stackGraphLoader,
                     // action: updateTagAction,
                     element: <StatPage />,
                   },
