@@ -15,7 +15,7 @@ export const TaskService = {
   updateDateTimeOfTask: (taskId, dateTime) => UpdateDateTimeRepository(taskId, dateTime),
   createDateTimeOfTask: (taskId) => CreateDateTimeRepository(taskId),
   fetchAllTaskTitles: () => FetchAllTaskTitlesRepository(),
-  fetchStackGraph: (date, days) => FetchStatsForStackForRangeOfDates(date, days),
+  fetchStackGraph: (date, days, predicates) => FetchStatsForStackForRangeOfDates(date, days, predicates),
 };
 
 export default TaskService;
