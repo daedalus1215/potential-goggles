@@ -1,16 +1,11 @@
 import { faker } from '@faker-js/faker';
-import TaskModel from "../../../../infrastructure/models/TaskModel.mjs";
 import { formatDate, getRangeOfDates } from "../../../../utils/getDate.mjs";
 import { getTitle } from "../../../../utils/getTitle.mjs";
+import { getTaskBasedOnTags } from '../../../../infrastructure/getTaskBasedOnTags.mjs';
 
 export const FetchStatsForStackForRangeOfDates = async (date, days, predicates) => {
     const dates = getRangeOfDates(date, days);
-    // const {includeTags, excludeTags} = predicates;
-
-    // if (includeTags) {
-    // } 
-    const tasks = await TaskModel.find({ tags: { $ne: {$or: ['Chores', 'Discover']} } });
-    
+    const tasks = await getTaskBasedOnTags(predicates);
 
     let datasets = [];
     for (let task of tasks) {

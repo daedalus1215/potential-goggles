@@ -1,12 +1,16 @@
 import { dishesTask, hiddenTask, miscTask } from "../../../../../dataFixtures/TaskFixture.mjs";
-import TaskModel from "../../../../../infrastructure/models/TaskModel";
+import { getTaskBasedOnTags } from '../../../../../infrastructure/getTaskBasedOnTags';
 import FetchStatsForStackForRangeOfDates from "../FetchStatsForStackForRangeOfDates.mjs";
 
+// Mock the getTaskBasedOnTags function
+jest.mock('../../../../../infrastructure/getTaskBasedOnTags', () => {
+    return {
+      __esModule: true,
+      getTaskBasedOnTags: jest.fn()
+    };
+  });
 describe('server/domain/services/tasks/taskRepository/__test__/FetchStatsForStackForRangeOfDates.test.mjs', () => {
     describe('FetchStatsForStackForRangeOfDates', () => {
-        beforeEach(() => {
-            jest.mock("../../../../../infrastructure/models/TaskModel");
-        });
         it('should fetch tasks from model and do dataset munging', async () => {
             // Arrange
             const expected = {
@@ -59,7 +63,7 @@ describe('server/domain/services/tasks/taskRepository/__test__/FetchStatsForStac
                 oneTimeWIllbePickedUp,
                 noTimeWIllbePickedUp
             ];
-            TaskModel.find = jest.fn().mockImplementation(() => tasks);
+            getTaskBasedOnTags.mockImplementation(() => tasks);
 
             // Act
             const actual = await FetchStatsForStackForRangeOfDates(new Date("2023-09-26T12:00:00.000Z"), 7);

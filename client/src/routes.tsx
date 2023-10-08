@@ -73,7 +73,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                     element: <EditTagPage />,
                   },
                   {
-                    path: "stats/",
+                    path: "stats",
                     loader: stackGraphLoader,
                     // action: updateTagAction,
                     element: <StatPage />,
