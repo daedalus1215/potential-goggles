@@ -6,7 +6,6 @@ import { getTaskBasedOnTags } from '../../../../infrastructure/getTaskBasedOnTag
 export const FetchStatsForStackForRangeOfDates = async (date, days, predicates) => {
     const dates = getRangeOfDates(date, days);
     const tasks = await getTaskBasedOnTags(predicates);
-
     let datasets = [];
     for (let task of tasks) {
         const dataset = {
