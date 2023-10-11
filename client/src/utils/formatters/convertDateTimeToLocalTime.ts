@@ -1,7 +1,6 @@
-type convertDateTimeToLocalTimeType = (date: Date) => Date;
+import { SIXTY, THOUSAND } from "../constants";
 
-export const SIXTY = 60;
-export const THOUSAND = 1000;
+type convertDateTimeToLocalTimeType = (date: Date) => Date;
 
 const convertDateTimeToLocalTime: convertDateTimeToLocalTimeType = (date) =>
   new Date(date.valueOf() + date.getTimezoneOffset() * SIXTY * THOUSAND)

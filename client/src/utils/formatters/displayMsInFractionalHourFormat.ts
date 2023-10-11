@@ -1,3 +1,5 @@
+import { SIXTY, THOUSAND } from "./convertDateTimeToLocalTime";
+
 /**
  * Takes in milliseconds and formats the time into a fractional hour format
  *
@@ -10,7 +12,7 @@
  * @returns {String} in '0.00' format.
  */
 const displayMsInFractionalHourFormat = (milliseconds: number): string => {
-  return (milliseconds / 1000 / 60 / 60).toFixed(2);
+  return (milliseconds / THOUSAND / SIXTY / SIXTY).toFixed(2);
 }
 
 export default displayMsInFractionalHourFormat;
