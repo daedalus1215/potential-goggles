@@ -62,13 +62,10 @@ export const dateTimeLoader = async ({ params }: LoaderFunctionArgs) => {
 }
 
 export const stackGraphLoader = async ({ request, params }: LoaderFunctionArgs): Promise<any> => {
-    console.log('request', request)
-    console.log('param', params)
     const url = new URL(request.url)
     const date: string = url.searchParams.get('date') ?? (formatDate(new Date()) as string);
     const days: number = url.searchParams.get('days') && parseInt(url.searchParams.get('days') as string) || 7;
     const includeTags: string[] = url.searchParams.getAll('includeTags') ?? [];
-    console.log('includeTags', includeTags);
     const excludeTags: string[] = url.searchParams.getAll('excludeTags') ?? [];
 
     const activityForGraph = await (fetch(`${api}stack-graph/?date=${date}&days=${days}&includeTags=${includeTags}&excludeTags=${excludeTags}`)) as TypedResponse<unknown[]>;
