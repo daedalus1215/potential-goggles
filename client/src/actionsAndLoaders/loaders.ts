@@ -2,6 +2,7 @@ import type { LoaderFunctionArgs } from "@remix-run/router";
 import { AggregateActivity, Tag, Task, TypedResponse } from '../interfaces';
 import { api } from '@/config.json';
 import { fetchApiData } from '@/utils';
+import { formatDate } from "@/utils/formatters/formatDate";
 
 // Loaders = GET \\ 
 
@@ -60,10 +61,14 @@ export const dateTimeLoader = async ({ params }: LoaderFunctionArgs) => {
     }
 }
 
-export const stackGraphLoader = async ({ params }: LoaderFunctionArgs): Promise<any> => {
-    const date = params?.date ?? '2023-10-05';
-    const days = params?.days ?? 7;
-    const activityForGraph = await (fetch(`${api}stack-graph/${date}/${days}`)) as TypedResponse<unknown[]>;
+export const stackGraphLoader = async ({ request, params }: LoaderFunctionArgs): Promise<any> => {
+    const url = new URL(request.url)
+    const date: string = url.searchParams.get('date') ?? (formatDate(new Date()) as string);
+    const days: number = url.searchParams.get('days') && parseInt(url.searchParams.get('days') as string) || 7;
+    const includeTags: string[] = url.searchParams.getAll('includeTags') ?? [];
+    const excludeTags: string[] = url.searchParams.getAll('excludeTags') ?? [];
+
+    const activityForGraph = await (fetch(`${api}stack-graph/?date=${date}&days=${days}&includeTags=${includeTags}&excludeTags=${excludeTags}`)) as TypedResponse<unknown[]>;
     return activityForGraph;
 };
 

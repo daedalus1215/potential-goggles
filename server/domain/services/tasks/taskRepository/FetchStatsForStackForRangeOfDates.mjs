@@ -1,11 +1,11 @@
 import { faker } from '@faker-js/faker';
-import TaskModel from "../../../../infrastructure/models/TaskModel.mjs";
 import { formatDate, getRangeOfDates } from "../../../../utils/getDate.mjs";
 import { getTitle } from "../../../../utils/getTitle.mjs";
+import { getTaskBasedOnTags } from '../../../../infrastructure/getTaskBasedOnTags.mjs';
 
-export const FetchStatsForStackForRangeOfDates = async (date, days) => {
+export const FetchStatsForStackForRangeOfDates = async (date, days, predicates) => {
     const dates = getRangeOfDates(date, days);
-    const tasks = await TaskModel.find({});
+    const tasks = await getTaskBasedOnTags(predicates);
     let datasets = [];
     for (let task of tasks) {
         const dataset = {
@@ -16,14 +16,14 @@ export const FetchStatsForStackForRangeOfDates = async (date, days) => {
 
         for (let time of task.time) {
             const currentDate = formatDate(time.date);
-            if (currentDate === null || currentDate < dates[dates.length - 1] ) {
+            if (currentDate === null || currentDate < dates[dates.length - 1]) {
                 continue;
             }
 
             let index = dates.findIndex(item => {
                 return item === currentDate;
             });
-            if (index !== -1) { 
+            if (index !== -1) {
                 if (dataset.data[index] >= 0) {
                     dataset.data[index] = dataset.data[index] + (time?.time / 1000 / 60 ?? 0)
                 } else {

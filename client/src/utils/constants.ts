@@ -9,4 +9,7 @@ export const FORMS = {
     updateTask: "updateTask",
     updateTag: "updateTag",
     deleteTag: "deleteTag"
-}
+};
+
+export const SIXTY = 60;
+export const THOUSAND = 1000;
