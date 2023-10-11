@@ -1,4 +1,4 @@
-import { SIXTY, THOUSAND } from "./convertDateTimeToLocalTime";
+import { SIXTY, THOUSAND } from "../constants";
 
 /**
  * Takes in milliseconds and formats the time into a fractional hour format
