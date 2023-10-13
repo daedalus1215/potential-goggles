@@ -5,6 +5,7 @@ import { fetchApiData } from '@/utils';
 import { formatDate } from "@/utils/formatters/formatDate";
 
 // Loaders = GET \\ 
+type LoaderSignature = ({ params, request }: LoaderFunctionArgs) => Promise<any>;
 
 // fetch
 export const fetchTasks = async (): Promise<Task[]> => await fetchApiData<Task[]>(`${api}tasks`, {});
@@ -17,9 +18,9 @@ export const fetchTags = async (): Promise<Tag[]> => await fetchApiData<Tag[]>(`
 
 
 // loaders - task
-export const taskLoader = async ({ params }: LoaderFunctionArgs) => await fetchTask(params?.taskId ?? '');
+export const taskLoader: LoaderSignature = async ({ params }) => await fetchTask(params?.taskId ?? '');
 export const tasksLoader = fetchTasks;
-export const taskAndTagLoader = async ({ params }: LoaderFunctionArgs) => {
+export const taskAndTagLoader: LoaderSignature = async ({ params }) => {
     const task = await fetchTask(params?.taskId ?? '')
     const tags = await fetchTags();
 
@@ -40,7 +41,7 @@ export const taskAndTagLoader = async ({ params }: LoaderFunctionArgs) => {
  * @TODO: Might decommission for smaller ones that can be reused
  * @returns 
  */
-export const allActivitiesLoader = async ({ request }: LoaderFunctionArgs): Promise<any> => {
+export const allActivitiesLoader: LoaderSignature = async ({ request }) => {
     const url = new URL(request.url)
     const date: string | null = url.searchParams.get('date');
     const queryTags: string | null = url.searchParams.get('tags');
@@ -52,7 +53,7 @@ export const allActivitiesLoader = async ({ request }: LoaderFunctionArgs): Prom
 
     return { allActivities, todaysActivities, monthActivities, tags, options };
 }
-export const dateTimeLoader = async ({ params }: LoaderFunctionArgs) => {
+export const dateTimeLoader: LoaderSignature = async ({ params }) => {
     const task = await fetchTask(params?.taskId ?? '')
 
     return {
@@ -61,15 +62,37 @@ export const dateTimeLoader = async ({ params }: LoaderFunctionArgs) => {
     }
 }
 
-export const stackGraphLoader = async ({ request, params }: LoaderFunctionArgs): Promise<any> => {
+export const stackGraphLoader: LoaderSignature = async ({ request }) => {
     const url = new URL(request.url)
     const date: string = url.searchParams.get('date') ?? (formatDate(new Date()) as string);
     const days: number = url.searchParams.get('days') && parseInt(url.searchParams.get('days') as string) || 7;
     const includeTags: string[] = url.searchParams.getAll('includeTags') ?? [];
     const excludeTags: string[] = url.searchParams.getAll('excludeTags') ?? [];
 
-    const activityForGraph = await (fetch(`${api}stack-graph/?date=${date}&days=${days}&includeTags=${includeTags}&excludeTags=${excludeTags}`)) as TypedResponse<unknown[]>;
-    return activityForGraph;
+    return await fetchApiData(`${api}stack-graph/?date=${date}&days=${days}&includeTags=${includeTags}&excludeTags=${excludeTags}`, {})
+    
+};
+
+export const stackGraphLoaders: LoaderSignature = async ({ params, request }) => {
+    // @TODO: Make sure there is no date param, because we will be injecting it.
+    const date = formatDate(new Date());
+
+    const weekStack = await stackGraphLoader({
+        params, request: {
+            ...request,
+            url: `${request.url}&date=2023-10-10`,
+        }
+    });
+
+    const monthStack = await stackGraphLoader({
+        params,
+        request: {
+            ...request,
+            url: `${request.url}&date=2023-10-10&days=30`,
+        }
+    });
+
+    return { weekStack,monthStack };
 };
 
 // loaders - tags
