@@ -1,4 +1,4 @@
-import * as fetchApiData from "../../utils/fetchApiData";
+import * as fetchApiData from "@/utils/fetchApiData";
 import { addQuestionMarkIfRequired, fetchTasks } from "../loaders";
 import { api } from '@/config.json';
 
