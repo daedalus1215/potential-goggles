@@ -1,8 +1,8 @@
+import { api } from '@/config.json';
+import fetchApiData from "@/utils/fetchApiData";
 import type { LoaderFunctionArgs } from "@remix-run/router";
 import { AggregateActivity, Tag, Task, TypedResponse } from '../interfaces';
-import { api } from '@/config.json';
-import { fetchApiData } from '@/utils';
-import { formatDate } from "@/utils/formatters/formatDate";
+import { formatDate } from "../../../server/utils/getDate.mjs";
 
 // Loaders = GET \\ 
 
@@ -15,6 +15,7 @@ export const fetchTodaysActivities = async (date?: string | null, tags?: string 
 export const fetchTag = async (tagId: string): Promise<Tag> => await fetchApiData<Tag>(`${api}tag/${tagId}`, {});
 export const fetchTags = async (): Promise<Tag[]> => await fetchApiData<Tag[]>(`${api}tags`, {});
 
+type LoaderSignature = ({ params, request }: LoaderFunctionArgs) => Promise<any>;
 
 // loaders - task
 export const taskLoader = async ({ params }: LoaderFunctionArgs) => await fetchTask(params?.taskId ?? '');
@@ -67,9 +68,43 @@ export const stackGraphLoader = async ({ request, params }: LoaderFunctionArgs):
     const days: number = url.searchParams.get('days') && parseInt(url.searchParams.get('days') as string) || 7;
     const includeTags: string[] = url.searchParams.getAll('includeTags') ?? [];
     const excludeTags: string[] = url.searchParams.getAll('excludeTags') ?? [];
+    return await fetchApiData(`${api}stack-graph/?date=${date}&days=${days}&includeTags=${includeTags}&excludeTags=${excludeTags}`, {})
+};
 
-    const activityForGraph = await (fetch(`${api}stack-graph/?date=${date}&days=${days}&includeTags=${includeTags}&excludeTags=${excludeTags}`)) as TypedResponse<unknown[]>;
-    return activityForGraph;
+export const addQuestionMarkIfRequired = (request: Request): Request => {
+    if (request.url.includes('?')) {
+        return {
+            ...request,
+            url: request.url + "&",
+        };
+    }
+    return {
+        ...request,
+        url: request.url + "?",
+    };
+};
+
+export const stackGraphLoaders: LoaderSignature = async ({ params, request }) => {
+    const date = formatDate(new Date());
+    const validatedRequest = addQuestionMarkIfRequired(request);
+
+    const weekStack = await stackGraphLoader({
+        params,
+        request: {
+            ...validatedRequest,
+            url: `${validatedRequest.url}date=2023-10-10`,
+        }
+    });
+
+    const monthStack = await stackGraphLoader({
+        params,
+        request: {
+            ...validatedRequest,
+            url: `${validatedRequest.url}date=2023-10-10&days=30`,
+        }
+    });
+
+    return { weekStack, monthStack };
 };
 
 // loaders - tags
