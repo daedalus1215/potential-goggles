@@ -73,9 +73,7 @@ export const stackGraphLoader: LoaderSignature = async ({ request }) => {
 
 };
 
-export const addQuestionMarkIfRequired = (request: Request): Request => {
-    console.log('request', request.url);
-    
+export const addQuestionMarkIfRequired = (request: Request): Request => {    
     if (request.url.includes('?')) {
         return {
             ...request,
