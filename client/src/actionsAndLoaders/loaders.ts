@@ -70,29 +70,45 @@ export const stackGraphLoader: LoaderSignature = async ({ request }) => {
     const excludeTags: string[] = url.searchParams.getAll('excludeTags') ?? [];
 
     return await fetchApiData(`${api}stack-graph/?date=${date}&days=${days}&includeTags=${includeTags}&excludeTags=${excludeTags}`, {})
+
+};
+
+export const addQuestionMarkIfRequired = (request: Request): Request => {
+    console.log('request', request.url);
     
+    if (request.url.includes('?')) {
+        return {
+            ...request,
+            url: request.url + "&",
+        };
+    }
+    return {
+        ...request,
+        url: request.url + "?",
+    };
 };
 
 export const stackGraphLoaders: LoaderSignature = async ({ params, request }) => {
-    // @TODO: Make sure there is no date param, because we will be injecting it.
     const date = formatDate(new Date());
+    const validatedRequest = addQuestionMarkIfRequired(request);
 
     const weekStack = await stackGraphLoader({
-        params, request: {
-            ...request,
-            url: `${request.url}&date=2023-10-10`,
+        params,
+        request: {
+            ...validatedRequest,
+            url: `${validatedRequest.url}date=2023-10-10`,
         }
     });
 
     const monthStack = await stackGraphLoader({
         params,
         request: {
-            ...request,
-            url: `${request.url}&date=2023-10-10&days=30`,
+            ...validatedRequest,
+            url: `${validatedRequest.url}date=2023-10-10&days=30`,
         }
     });
 
-    return { weekStack,monthStack };
+    return { weekStack, monthStack };
 };
 
 // loaders - tags
