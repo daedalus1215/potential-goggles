@@ -1,6 +1,7 @@
 import * as fetchApiData from "@/utils/fetchApiData";
-import { addQuestionMarkIfRequired, fetchTask, fetchTasks } from "../loaders";
+import { addQuestionMarkIfRequired, fetchTask, fetchTasks, taskLoader } from "../loaders";
 import { api } from '@/config.json';
+import { LoaderFunctionArgs } from "react-router-dom";
 
 describe('client/src/actionsAndLoaders/loaders.ts', () => {
     describe('loaders', () => {
@@ -37,6 +38,20 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expected, {})
             });
+        });
+
+        describe('taskLoader', () => {
+            it('should invoke fetchApiSpy with expected url and no argument, when no argument passed in', () => {
+                // Arrange
+                const params = {} as LoaderFunctionArgs;
+                const expected = `${api}task/`;
+
+                // Act
+                taskLoader(params);
+
+                // Assert
+                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expected, {});
+            })
         });
 
         describe('addQuestionMarkIfRequired', () => {
