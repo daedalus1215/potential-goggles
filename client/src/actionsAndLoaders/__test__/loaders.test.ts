@@ -1,23 +1,44 @@
 import * as fetchApiData from "@/utils/fetchApiData";
-import { addQuestionMarkIfRequired, fetchTasks } from "../loaders";
+import { addQuestionMarkIfRequired, fetchTask, fetchTasks } from "../loaders";
 import { api } from '@/config.json';
 
 describe('client/src/actionsAndLoaders/loaders.ts', () => {
     describe('loaders', () => {
+        let fetchApiDataSpy: any;
+        beforeEach(() => {
+            fetchApiDataSpy = jest.spyOn(fetchApiData, 'default');
+            fetchApiDataSpy.mockReturnValueOnce(false, jest.fn());
+        });
+        afterEach(() => {
+            fetchApiDataSpy.mockRestore();
+        });
         describe('fetchTasks', () => {
-            let fetchApiDataSpy: any;
-            beforeEach(() => {
-                fetchApiDataSpy = jest.spyOn(fetchApiData, 'default');
-                fetchApiDataSpy.mockReturnValueOnce(false, jest.fn());
-            });
+            it('should invoke fetchApiData with expected url once', async () => {
+                // Arrange
+                const expected = `${api}tasks`;
 
-            it('should...', () => {
-                // Arrange & Act
-                fetchTasks();
+                // Act
+                await fetchTasks();
+
                 // Assert
-                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, `${api}tasks`, {})
+                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expected, {})
             });
         });
+
+        describe('fetchTask', () => {
+            it('should invoke fetchAPiDataSpy with expected once', async () => {
+                // Arrange 
+                const argument = "1";
+                const expected = `${api}task/${argument}`
+
+                // Act
+                await fetchTask(argument);
+
+                // Assert
+                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expected, {})
+            });
+        });
+
         describe('addQuestionMarkIfRequired', () => {
             it('should return with a "?" if none given', () => {
                 // Arrange
