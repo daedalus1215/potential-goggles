@@ -1,4 +1,5 @@
-import convertDateTimeToLocalTime, { SIXTY, THOUSAND } from '../convertDateTimeToLocalTime';
+import { SIXTY, THOUSAND } from '@/utils/constants';
+import convertDateTimeToLocalTime from '../convertDateTimeToLocalTime';
 
 describe('src/utils/__test__/convertDateTimeToLocalTime.test.ts', () => {
   describe('convertDateTimeToLocalTime', () => {

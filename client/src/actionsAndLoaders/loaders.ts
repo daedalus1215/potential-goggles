@@ -2,7 +2,7 @@ import { api } from '@/config.json';
 import fetchApiData from "@/utils/fetchApiData";
 import type { LoaderFunctionArgs } from "@remix-run/router";
 import { AggregateActivity, Tag, Task, TypedResponse } from '../interfaces';
-import { formatDate } from "../../../server/utils/getDate.mjs";
+import { formatDate } from '@/utils/formatters/formatDate';
 
 // Loaders = GET \\ 
 
