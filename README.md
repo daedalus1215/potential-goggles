@@ -14,5 +14,6 @@ module.exports = () => ({
 })
 ```
 * Can pass in the url tags to exclude them. Also can pass in date.
-    * `?tags=asdas,dtes`
-    * `?date=2023-09-14`
+    * `/stats?excludeTags=Chores` = stats page filtering
+    * `?date=2023-09-14` = stats page and homepage filter 
+    * `/?tags=Chores` = home page filtering of tags

@@ -11,6 +11,7 @@ client/node_modules
 client/dist
 client/dist-ssr
 client/*.local
+client/src/config.json
 client/config.json
 
 # Editor directories and files
