@@ -6,7 +6,7 @@ import TagService from "../../../domain/services/tags/TagService.mjs";
  * @param {*} req 
  * @param {*} res 
  */
-const deleteTagAction = async (req, res) => {
+export const deleteTagAction = async (req, res) => {
     const model = await TagService.deleteTag(req.params.id);
     if (model.ok) {
         res.jsonp(model);
@@ -14,5 +14,3 @@ const deleteTagAction = async (req, res) => {
         throw Error('Something went wrong deleting tag.')
     }
 };
-
-export default deleteTagAction;

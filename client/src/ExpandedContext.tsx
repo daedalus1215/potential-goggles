@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import { useSmallScreenSize } from './hooks';
 
 
 interface props {
     children: any;
 }
 export const ExpandedContextProvider: React.FC<props> = ({ children }) => {
-    const [isExpanded, setIsExpanded] = useState(true);
+    const isSmallScreen = useSmallScreenSize();
+    const [isExpanded, setIsExpanded] = useState(!isSmallScreen);
 
     return (
         <ExpandedContext.Provider value={{

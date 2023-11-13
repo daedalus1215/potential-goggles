@@ -10,16 +10,16 @@ import addTaskAction from './application/requestHandlers/tasks/addTaskAction.mjs
 import deleteTaskByIdAction from './application/requestHandlers/tasks/deleteTaskByIdAction.mjs';
 import deleteAllTaskAction from './application/requestHandlers/tasks/deleteAllTaskAction.mjs';
 // TASK > IMPORT ACTION imports
-import importAction from './application/requestHandlers/tasks/importAction.mjs';
-import updateDateTimeAction from './application/requestHandlers/tasks/dateTime/updateDateTimeAction.mjs';
-import postDateTimeAction from './application/requestHandlers/tasks/dateTime/postDateTimeAction.mjs';
+import { importAction } from './application/requestHandlers/tasks/importAction.mjs';
+import { updateDateTimeAction } from './application/requestHandlers/tasks/dateTime/updateDateTimeAction.mjs';
+import { postDateTimeAction } from './application/requestHandlers/tasks/dateTime/postDateTimeAction.mjs';
 // TAG ACTION imports
-import deleteTagAction from './application/requestHandlers/tags/deleteTagAction.mjs';
-import AddTagAction from './application/requestHandlers/tags/AddTagAction.mjs';
-import UpdateTagAction from './application/requestHandlers/tags/UpdateTagAction.mjs';
-import getTagByIdAction from './application/requestHandlers/tags/getTagByIdAction.mjs';
-import { FetchTodaysActivity } from './application/requestHandlers/tasks/dateTime/FetchTodaysTasksAction.mjs';
-import FetchAllDayTasksAction from './application/requestHandlers/supports/FetchAllDayTasksAction.mjs';
+import { deleteTagAction } from './application/requestHandlers/tags/deleteTagAction.mjs';
+import { addTagAction } from './application/requestHandlers/tags/addTagAction.mjs';
+import { putTagAction } from './application/requestHandlers/tags/putTagAction.mjs';
+import { getTagByIdAction } from './application/requestHandlers/tags/getTagByIdAction.mjs';
+import { getTodaysActivityAction } from './application/requestHandlers/tasks/dateTime/getTodaysActivityAction.mjs';
+import { getAllDayTasksAction } from './application/requestHandlers/supports/getAllDayTasksAction.mjs';
 import getAllMonthTasksAction from './application/requestHandlers/tasks/getAllMonthTasksAction.mjs';
 import getStatsForStackForRangeOfDatesAction from './application/requestHandlers/tasks/getStatsForStackForRangeOfDatesAction.mjs';
 
@@ -69,16 +69,16 @@ const routes = (app) => {
     app.post('/api/task/:taskId/dateTime', postDateTimeAction);
 
     // ACTIVITIES
-    app.get('/api/activities/today', FetchTodaysActivity)
-    app.get('/api/activities/all', FetchAllDayTasksAction)
+    app.get('/api/activities/today', getTodaysActivityAction)
+    app.get('/api/activities/all', getAllDayTasksAction)
     app.get('/api/activities/months', getAllMonthTasksAction);
     app.get('/api/stack-graph', getStatsForStackForRangeOfDatesAction);
 
     // TAGS
     app.get('/api/tags', getAllTagsAction);
     app.get('/api/tag/:id', getTagByIdAction);
-    app.post('/api/tag', AddTagAction);
-    app.put('/api/tag/:id', UpdateTagAction);
+    app.post('/api/tag', addTagAction);
+    app.put('/api/tag/:id', putTagAction);
     app.delete('/api/tag/:id', deleteTagAction);
 }
 
