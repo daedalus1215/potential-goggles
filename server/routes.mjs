@@ -15,7 +15,7 @@ import { updateDateTimeAction } from './application/requestHandlers/tasks/dateTi
 import { postDateTimeAction } from './application/requestHandlers/tasks/dateTime/postDateTimeAction.mjs';
 // TAG ACTION imports
 import { deleteTagAction } from './application/requestHandlers/tags/deleteTagAction.mjs';
-import { addTagAction } from './application/requestHandlers/tags/addTagAction.mjs';
+import { addTagAction } from './application/requestHandlers/tags/eddTagAction.mjs';
 import { putTagAction } from './application/requestHandlers/tags/putTagAction.mjs';
 import { getTagByIdAction } from './application/requestHandlers/tags/getTagByIdAction.mjs';
 import { getTodaysActivityAction } from './application/requestHandlers/tasks/dateTime/getTodaysActivityAction.mjs';
