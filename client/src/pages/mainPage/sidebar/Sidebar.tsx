@@ -29,7 +29,9 @@ const Sidebar: React.FC<props> = ({ classNames, tasks, q, selectedId, isExpanded
     }, [q])
 
     const render = () => {
-        return isExpanded ? (<div id="sidebar" className={cn(styles.sidebar, { [styles.isExpanded]: isExpanded }, classNames)}>
+        return isExpanded ? (<div
+            id="sidebar"
+            className={cn(styles.sidebar, { [styles.isExpanded]: isExpanded }, classNames)}>
             <div className={styles.searchAndNew}>
                 <div className={cn(styles.searchFormWrapper, classNames)}>
                     <Form id="search-form" role="search" className={styles.formSearch} onSubmit={(event) => {
