@@ -6,11 +6,11 @@ import { parseArrayString } from "./parseArrayString.mjs";
  * @param {string[]} tagNames list of tag names
  * @returns 
  */
-export const filterOutTags = (tasks, tagNames) => {
-    if (tagNames) {
+export const inclusivelyFilter = (tasks, tagNames) => {
+    if (tagNames && tagNames !== "null") {
         const tags = parseArrayString(tagNames);
         return tasks.filter(task => {
-            return !tags.some(tag => task.tags.includes(tag));
+            return tags.some(tag => task.tags.includes(tag));
         });
     }
     return tasks;

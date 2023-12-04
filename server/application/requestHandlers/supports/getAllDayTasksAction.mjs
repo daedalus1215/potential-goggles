@@ -1,7 +1,9 @@
 import FetchAllDayTasks from "../../../domain/services/tasks/taskRepository/FetchAllDayTasks.mjs"
 
 export const getAllDayTasksAction = async (req, res) => {
-    const { tags } = req.query;
-    const tasks = await FetchAllDayTasks(tags);
+    const { includeTags, excludeTags } = req.query;
+    console.log('includeTags', includeTags)
+    console.log('excludeTags', excludeTags)
+    const tasks = await FetchAllDayTasks(includeTags, excludeTags);
     res.jsonp(tasks);
 };

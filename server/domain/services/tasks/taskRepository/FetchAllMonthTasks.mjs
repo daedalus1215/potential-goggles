@@ -1,13 +1,15 @@
 import TaskModel from "../../../../infrastructure/models/TaskModel.mjs";
-import { filterOutTags } from "../../../../utils/filterOutTags.mjs";
+import { inclusivelyFilter } from "../../../../utils/inclusivelyFilter.mjs";
+import { exclusivelyFilter } from "../../../../utils/exclusivelyFilter.mjs";
 import { formatMonth } from '../../../../utils/getDate.mjs'
 
-export const fetchAllMonthTasks = async (tags) => {
+export const fetchAllMonthTasks = async (includeTags, excludeTags) => {
     const tasks = await TaskModel.find();
     const results = {};
-    const filteredTasks = filterOutTags(tasks.filter(task => task?.date), tags);
+    const tagsWithoutExcluded = exclusivelyFilter(tasks.filter(task => task?.date), excludeTags);
+    const includedAndExcludedTags = inclusivelyFilter(tagsWithoutExcluded, includeTags);
 
-    filteredTasks.forEach(task => {
+    includedAndExcludedTags.forEach(task => {
         task.time
             .filter(time => time?.date)
             .map(time => {
