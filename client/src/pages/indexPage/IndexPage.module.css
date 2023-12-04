@@ -17,3 +17,7 @@
     width: 90%;
     margin: auto;
 }
+
+.filters {
+    display: flex;
+}

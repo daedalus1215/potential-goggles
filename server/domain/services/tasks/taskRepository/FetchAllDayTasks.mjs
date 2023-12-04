@@ -1,13 +1,19 @@
 import TaskModel from "../../../../infrastructure/models/TaskModel.mjs";
-import { filterOutTags } from "../../../../utils/filterOutTags.mjs";
+import { exclusivelyFilter } from "../../../../utils/exclusivelyFilter.mjs";
 import { formatDate } from '../../../../utils/getDate.mjs'
+import { inclusivelyFilter } from "../../../../utils/inclusivelyFilter.mjs";
 
-export const FetchAllDayTasks = async (tags) => {
+export const FetchAllDayTasks = async (includeTags, excludeTags) => {
     const tasks = await TaskModel.find();
     const filtered = tasks.filter(task => task?.date);
     const results = {};
-    filterOutTags(filtered, tags)
-        .forEach(task => {
+    console.log('includeTags', includeTags)
+    console.log('excludeTags', excludeTags)
+    const f = exclusivelyFilter(filtered, excludeTags)
+    // console.log('f', f)
+    const d = inclusivelyFilter(f, includeTags)
+    console.log('d', d)
+        d.forEach(task => {
             task.time
                 .filter(time => time?.date)
                 .map(time => {

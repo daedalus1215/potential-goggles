@@ -1,24 +1,25 @@
 import TaskModel from "../../../../../infrastructure/models/TaskModel.mjs";
-import { filterOutTags } from "../../../../../utils/filterOutTags.mjs";
+import { exclusivelyFilter } from "../../../../../utils/exclusivelyFilter.mjs";
 import { compareFormattedDate, getDateInISOFormat, parseDate } from '../../../../../utils/getDate.mjs'
+import { inclusivelyFilter } from "../../../../../utils/inclusivelyFilter.mjs";
 
 /**
  * 
- * @param {string[]} tagNames 
+ * @param {string[]} includeTags 
+ * @param {string[]} excludeTags 
  * @param {string} date format yyyy-MM-dd
  * @returns 
  */
-export const FetchTodaysTasks = async (tagNames, reqDate) => {
+export const FetchTodaysTasks = async (includeTags, excludeTags, reqDate) => {
     const tasks = await TaskModel.find({});
     const date = getDateInISOFormat(reqDate);
     const today = parseDate(date);
     const newTasks = tasks.filter(task => task.time
         .filter(t1 => !!t1?.date)
         .find(t1 => compareFormattedDate(t1.date, today)));
-    const filteredTasks = filterOutTags(newTasks, tagNames);
 
     const aggActivities = {
-        activities: filteredTasks
+        activities: inclusivelyFilter(exclusivelyFilter(newTasks, excludeTags), includeTags)
             .map((task) => ({
                 _id: task?._id ?? 'stubAnId',
                 title: task?.title ?? 'no title',

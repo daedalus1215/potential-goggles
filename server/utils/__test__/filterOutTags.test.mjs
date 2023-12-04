@@ -1,4 +1,4 @@
-import { filterOutTags } from "../filterOutTags.mjs";
+import { exclusivelyFilter } from "../exclusivelyFilter.mjs";
 
 describe('server/utils/__test__/filterOutTags.test.mjs', () => {
     describe('filterOutTags', () => {
@@ -10,7 +10,7 @@ describe('server/utils/__test__/filterOutTags.test.mjs', () => {
             ];
 
             // Act
-            const actual = filterOutTags(expected, null);
+            const actual = exclusivelyFilter(expected, null);
 
             // Assert
             expect(actual).toEqual(expected);
@@ -30,7 +30,7 @@ describe('server/utils/__test__/filterOutTags.test.mjs', () => {
             const tags = "tagName1";
 
             // Act
-            const actual = filterOutTags(tasks, tags);
+            const actual = exclusivelyFilter(tasks, tags);
 
             // Assert
             expect(actual).toEqual(expected);
@@ -45,7 +45,7 @@ describe('server/utils/__test__/filterOutTags.test.mjs', () => {
             const tags = "tagName1, tagName3";
 
             // Act
-            const actual = filterOutTags(tasks, tags);
+            const actual = exclusivelyFilter(tasks, tags);
 
             // Assert
             expect(actual).toEqual(expected);

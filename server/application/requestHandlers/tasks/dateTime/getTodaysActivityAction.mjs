@@ -2,7 +2,7 @@ import FetchTodaysTasks from "../../../../domain/services/tasks/taskRepository/f
 
 
 export const getTodaysActivityAction = async (req, res) => {
-    const { date, tags } = req.query;
-    const updatedTaskWithDateTime = await FetchTodaysTasks(tags, date);
+    const { date, includeTags, excludeTags } = req.query;
+    const updatedTaskWithDateTime = await FetchTodaysTasks(includeTags, excludeTags, date);
     res.jsonp(updatedTaskWithDateTime);
 };
