@@ -52,7 +52,7 @@ export const allActivitiesLoader = async ({ request }: LoaderFunctionArgs): Prom
     const tags = await fetchApiData<Tag[]>(`${api}tags`, {})
     const options = tags.map(tag => tag.name);
 
-    return { allActivities, todaysActivities, monthActivities, tags, options };
+    return { allActivities, todaysActivities, monthActivities, tags, options, queryDate: date, queryIncludeTags: includeTags, queryExcludeTags: excludeTags };
 }
 export const dateTimeLoader = async ({ params }: LoaderFunctionArgs) => {
     const task = await fetchTask(params?.taskId ?? '')

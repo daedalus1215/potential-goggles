@@ -40,7 +40,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                   {
                     index: true,
                     element: <IndexPage />,
-                    loader: allActivitiesLoader,
+                    loader: allActivitiesLoader
                   },
                   {
                     path: "task/:taskId",

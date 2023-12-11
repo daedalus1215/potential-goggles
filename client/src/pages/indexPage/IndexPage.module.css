@@ -21,3 +21,11 @@
 .filters {
     display: flex;
 }
+
+.filtersSmall {
+    flex-direction: column;
+}
+
+.inputSmall {
+    width: 100%;
+}
