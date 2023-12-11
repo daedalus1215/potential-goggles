@@ -1,0 +1,19 @@
+.submit {
+  -moz-box-shadow: inset 0px 1px 0px 0px #1447BE;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #1447BE;
+  box-shadow: inset 0px 1px 0px 0px #1447BE;
+  background-color: #5780DD;
+  display: inline-block;
+  cursor: pointer;
+  color: #FFFFFF;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 14px;
+  padding: 8px 18px;
+  width: 150px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.submit:hover {
+  background: linear-gradient(to bottom, #7C9DE9 5%, #ABC1F4 100%);
+}

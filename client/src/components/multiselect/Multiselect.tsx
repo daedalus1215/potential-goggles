@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 
 import styles from './Multiselect.module.css';
-import classNames from 'classnames';
+import cn from 'classnames';
 
 interface MultiSelectProps {
     options: string[];
     selectedOptions: string[];
     setSelectedOptions: (options: string[]) => void;
+    classNames?:string;
 }
 
-const MultiSelect = ({ options, selectedOptions, setSelectedOptions }: MultiSelectProps) => {
+const MultiSelect = ({ options, selectedOptions, setSelectedOptions, classNames }: MultiSelectProps) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
     const handleOptionClick = (option: string) => {
@@ -25,23 +26,25 @@ const MultiSelect = ({ options, selectedOptions, setSelectedOptions }: MultiSele
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
     };
-    const text = selectedOptions.length > 0
-        ? selectedOptions.join(', ')
-        : 'Select options...';
+    console.log('selectedOptions', selectedOptions)
+    const text = (selectedOptions.length > 0 && selectedOptions?.join)
+    ? selectedOptions?.join(', ')
+    : selectedOptions
+    console.log('text', text)
 
     return (
-        <div className={styles.multiSelect}>
+        <div className={cn(styles.multiSelect, classNames)}>
             <div
-                className={classNames(styles.dropdown, { [styles.open]: isDropdownOpen })}
+                className={cn(styles.dropdown, { [styles.open]: isDropdownOpen})}
                 onClick={toggleDropdown}>
                 <div className={styles.selectedOptions}>
                     {text}
                 </div>
-                <div className={classNames(styles.options, { [styles.visible]: isDropdownOpen })}>
+                <div className={cn(styles.options, { [styles.visible]: isDropdownOpen })}>
                     {options.map((option) => (
                         <div key={option}
                             onClick={() => handleOptionClick(option)}
-                            className={classNames(styles.option, {
+                            className={cn(styles.option, {
                                 [styles.selected]: selectedOptions.includes(option)
                             })}>
                             {option}

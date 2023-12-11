@@ -7,30 +7,26 @@ export const FetchAllDayTasks = async (includeTags, excludeTags) => {
     const tasks = await TaskModel.find();
     const filtered = tasks.filter(task => task?.date);
     const results = {};
-    console.log('includeTags', includeTags)
-    console.log('excludeTags', excludeTags)
     const f = exclusivelyFilter(filtered, excludeTags)
-    // console.log('f', f)
     const d = inclusivelyFilter(f, includeTags)
-    console.log('d', d)
-        d.forEach(task => {
-            task.time
-                .filter(time => time?.date)
-                .map(time => {
-                    const theDate = formatDate(time.date);
-                    if (!results[theDate]) {
-                        results[theDate] = { time: 0, titles: [] };
-                    }
+    d.forEach(task => {
+        task.time
+            .filter(time => time?.date)
+            .map(time => {
+                const theDate = formatDate(time.date);
+                if (!results[theDate]) {
+                    results[theDate] = { time: 0, titles: [] };
+                }
 
-                    results[theDate].time += time.time;
+                results[theDate].time += time.time;
 
-                    // because we do not need to add the title more than once
-                    const title = task?.title ?? 'no title';
-                    if (results[theDate]?.titles.indexOf(title) === -1) {
-                        results[theDate].titles.push(title);
-                    }
-                });
-        });
+                // because we do not need to add the title more than once
+                const title = task?.title ?? 'no title';
+                if (results[theDate]?.titles.indexOf(title) === -1) {
+                    results[theDate].titles.push(title);
+                }
+            });
+    });
     const newResults = [];
     const keys = Object.keys(results);
 

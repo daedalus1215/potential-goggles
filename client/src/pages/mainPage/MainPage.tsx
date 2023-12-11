@@ -23,8 +23,6 @@ const MainPage = () => {
   const { isExpanded, setIsExpanded } = useContext(ExpandedContext);
   const dontShowOutlet = isSmallScreen && isExpanded;
 
-  console.log('navigation path', params?.taskId)
-
   return (<>
     <Sidebar
       classNames={cn({ [styles.smallScreenSidebar]: isSmallScreen })}
