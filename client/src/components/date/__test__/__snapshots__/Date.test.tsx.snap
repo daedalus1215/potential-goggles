@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`client/src/components/date/__test__/Date.test.tsx should render 1`] = `Promise {}`;
+
+exports[`client/src/components/date/__test__/Date.test.tsx should... 1`] = `Promise {}`;

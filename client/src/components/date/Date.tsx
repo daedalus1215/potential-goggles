@@ -8,6 +8,7 @@ export const Date: React.FC<DateInterface> = ({ date, setDate, classNames }) => 
     type='date'
     name='date'
     id='date'
+    data-testid="date"
     value={date}
     onChange={e => setDate(e?.target.value)}
 />

@@ -39,7 +39,7 @@ export default function IndexPage() {
         <fieldset>
           <label>Include Tags</label>
           <MultiSelect
-            classNames={classNames({ [styles.isSmallScreenSize]: isSmallScreenSize })}
+            classNames={classNames({ [styles.inputSmall]: isSmallScreenSize })}
             options={options}
             selectedOptions={includeTags}
             setSelectedOptions={setIncludeTags}
