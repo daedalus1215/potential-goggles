@@ -13,6 +13,7 @@ describe('src/pages/tasks/TaskListView/ControlButtons/UploadButton/__test__/Uplo
 
             // Assert
             expect(target.getByRole("button")).toBeTruthy();
+            expect(target.getByRole("button")).toMatchSnapshot();
         });
     });
 });
