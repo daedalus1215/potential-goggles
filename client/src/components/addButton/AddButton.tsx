@@ -4,6 +4,7 @@ import Button from '../button/Button';
 import styles from './AddButton.module.css';
 
 const AddButton: React.FC<{ onClick?: () => void }> = ({ onClick }) => <Button
+    data-testid="AddButton"
     type="submit"
     className={styles.submit}
     value="Add"
