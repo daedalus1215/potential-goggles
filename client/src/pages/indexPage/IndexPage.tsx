@@ -13,11 +13,6 @@ import { useState } from 'react';
 import { Date } from '@/components/date/Date';
 import { LabelButton } from '@/components/labelButton/LabelButton';
 
-// @TODO: 1.[x] Fetch tags 
-// @TODO: 2.[x] Replace options with the tags
-// @TODO: 3.[] Integrate submitting a form.
-// @TODO: 4.[] styling multiselect correctly
-
 export default function IndexPage() {
   const { allActivities, todaysActivities, monthActivities, options, queryDate, queryIncludeTags, queryExcludeTags } = useLoaderData() as { options: string[], allActivities: any, monthActivities: any, todaysActivities: AggregateActivity, queryDate: any, queryIncludeTags: any, queryExcludeTags: any };
   const isSmallScreenSize = useSmallScreenSize();
@@ -26,7 +21,6 @@ export default function IndexPage() {
   const [date, setDate] = useState<string>(queryDate ?? '');
   const navigate = useNavigate();
 
-  // console.log('excludeTags',queryExcludeTags[0] )
   return (
     <>
       <div className={styles.underline}></div>
