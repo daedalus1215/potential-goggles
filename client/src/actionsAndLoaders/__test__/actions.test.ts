@@ -1,5 +1,5 @@
 import { updateDateTime } from "../actions";
-
+import { api } from '@/config.json';
 import * as fetchApiData from "@/utils/fetchApiData";
 import { redirect } from 'react-router-dom'
 
@@ -20,7 +20,12 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
     describe('#updateDateTime', () => {
         it('updateDateTime', async () => {
             // Arrange
-
+            const mockTaskId = 'mockTaskId';
+            const mockId = 'mockId';
+            const mockDate = 'mockDate';
+            const mockMinutes = 'mockMinutes';
+            const expectedUrl = `${api}/task/${mockTaskId}/dateTime/${mockId}`; 
+            const expectedBody = {"body": {"date": mockDate,taskId:mockTaskId, "time": mockMinutes}, "method": "PUT"};
             // Act
             await updateDateTime({
                 params: {},
@@ -28,8 +33,10 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
                     formData: () => ({
                         get: (key: string): any => {
                             const hashing: { [key: string]: string } = {
-                                'id': 'mockId',
-                                'taskId': 'mockTaskId'
+                                'id': mockId,
+                                'taskId': mockTaskId,
+                                'date': mockDate,
+                                'minutes': mockMinutes
                             };
                             return hashing[key];
                         }
@@ -38,7 +45,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
             });
 
             // Assert
-            expect(fetchApiDataSpy).toHaveBeenCalledTimes(1);
+            expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
         });
     });
 });
