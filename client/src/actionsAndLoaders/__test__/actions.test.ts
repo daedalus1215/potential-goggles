@@ -1,33 +1,44 @@
 import { updateDateTime } from "../actions";
 
-const fetchApiData = jest.fn()
+import * as fetchApiData from "@/utils/fetchApiData";
+import { redirect } from 'react-router-dom'
 
-jest.mock('@/utils/fetchApiData', () => ({
-    default: () => fetchApiData
+jest.mock('react-router-dom', () => ({
+    'redirect': jest.fn()
 }));
 
-jest.mock('@/config.json', () => ({
-    'api': 'apiMock/'
-}))
-
 describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
+    let fetchApiDataSpy: any;
+    beforeEach(() => {
+        fetchApiDataSpy = jest.spyOn(fetchApiData, 'default');
+        fetchApiDataSpy.mockReturnValueOnce(false, jest.fn());
+    });
+    afterEach(() => {
+        fetchApiDataSpy.mockRestore();
+    });
+
     describe('#updateDateTime', () => {
-        it('updateDateTime', () => {
+        it('updateDateTime', async () => {
             // Arrange
 
             // Act
-            updateDateTime({
+            await updateDateTime({
                 params: {},
                 request: {
-                    formData: () => new Promise(() => ({
-                        get: (key:string): any => {
-                            const hashing: { [key: string]: string } = { 'id': 'someId' };                            const d = hashing[key] as string
-                            return d;
+                    formData: () => ({
+                        get: (key: string): any => {
+                            const hashing: { [key: string]: string } = {
+                                'id': 'mockId',
+                                'taskId': 'mockTaskId'
+                            };
+                            return hashing[key];
                         }
-                    }))
+                    })
                 }
-            })
+            });
+
             // Assert
+            expect(fetchApiDataSpy).toHaveBeenCalledTimes(1);
         });
     });
 });
