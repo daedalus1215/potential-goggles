@@ -88,9 +88,9 @@ export const createDateTime: ActionInterface = async ({ request }) => {
 }
 export const updateDateTime: ActionInterface = async ({ request }) => {
     const formData = await request.formData()
-
     const taskId = formData.get('taskId')
     const id = formData.get('id')
+    console.log('id', id)
     await fetchApiData(`${api}task/${taskId}/dateTime/${id}`, {
         method: 'PUT',
         body: {
