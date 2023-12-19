@@ -18,15 +18,17 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
     });
 
     describe('#updateDateTime', () => {
-        it('updateDateTime', async () => {
+        it('should invoke fetchApiData with expected url and body. Body should have minutes passed in', async () => {
             // Arrange
             const mockTaskId = 'mockTaskId';
             const mockId = 'mockId';
             const mockDate = 'mockDate';
             const mockMinutes = 'mockMinutes';
-            const expectedUrl = `${api}/task/${mockTaskId}/dateTime/${mockId}`; 
-            const expectedBody = {"body": {"date": mockDate,taskId:mockTaskId, "time": mockMinutes}, "method": "PUT"};
+            const expectedUrl = `${api}task/${mockTaskId}/dateTime/${mockId}`;
+            const expectedBody = { "body": { "date": mockDate, id: mockId, "time": mockMinutes }, "method": "PUT" };
+
             // Act
+            //@TODO: This needs to be abstracted
             await updateDateTime({
                 params: {},
                 request: {
@@ -37,6 +39,36 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
                                 'taskId': mockTaskId,
                                 'date': mockDate,
                                 'minutes': mockMinutes
+                            };
+                            return hashing[key];
+                        }
+                    })
+                }
+            });
+
+            // Assert
+            expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
+        });
+
+        it('should invoke fetchApiData with expected url and body. Body should have minutes "00", since minutes are not set', async () => {
+            // Arrange
+            const mockTaskId = 'mockTaskId';
+            const mockId = 'mockId';
+            const mockDate = 'mockDate';
+            const expectedUrl = `${api}task/${mockTaskId}/dateTime/${mockId}`;
+            const expectedBody = { "body": { "date": mockDate, id: mockId, "time": '00' }, "method": "PUT" };
+
+            // Act
+            //@TODO: This needs to be abstracted
+            await updateDateTime({
+                params: {},
+                request: {
+                    formData: () => ({
+                        get: (key: string): any => {
+                            const hashing: { [key: string]: string } = {
+                                'id': mockId,
+                                'taskId': mockTaskId,
+                                'date': mockDate
                             };
                             return hashing[key];
                         }
