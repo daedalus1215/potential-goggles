@@ -1,10 +1,12 @@
 import { createDateTime, updateDateTime } from "../actions";
 import { api } from '@/config.json';
+import { createRequest } from "@/testUtils/createRequest";
 import * as fetchApiData from "@/utils/fetchApiData";
-import { redirect } from 'react-router-dom'
+import { redirect } from "react-router-dom";
 
 jest.mock('react-router-dom', () => ({
-    'redirect': jest.fn()
+    ...jest.requireActual('react-router-dom'),  // Use the actual module for everything else
+    redirect: jest.fn(),  // Mock the 'redirect' function
 }));
 
 describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
@@ -14,6 +16,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
     });
     afterEach(() => {
         fetchApiDataSpy.mockRestore();
+        jest.clearAllMocks();  // Clear all mock calls between tests
     });
 
     describe('#createDateTime', () => {
@@ -25,24 +28,29 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
             fetchApiDataSpy.mockReturnValueOnce({ time: [] });
 
             // Act
-            //@TODO: This needs to be abstracted
-            const actual = await createDateTime({
-                params: {},
-                request: {
-                    formData: () => ({
-                        get: (key: string): any => {
-                            const hashing: { [key: string]: string } = {
-                                'taskId': taskId
-                            };
-                            return hashing[key];
-                        }
-                    })
-                }
-            });
+            const actual = await createDateTime(createRequest({ taskId }));
 
             // Assert
             expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
             expect(actual).toEqual({ time: [] });
+        });
+
+        it('should invoke redirect when task is returned with time', async () => {
+            // Arrange
+            const taskId = 'mockTaskId';
+            const expectedUrl = `${api}task/${taskId}/dateTime`;
+            const expectedBody = { method: 'POST' };
+            const expectedTask = { time: [{_id: 'mockId3'}, {_id: 'mockId4'}] };
+            fetchApiDataSpy.mockReturnValueOnce({ time: [{_id: 'mockId1'}, {_id: 'mockId2'}] });
+            (redirect as jest.Mock).mockImplementationOnce(() => expectedTask);
+            
+            // Act
+            const actual = await createDateTime(createRequest({ taskId }));
+
+            // Assert
+            expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
+            expect(redirect).toHaveBeenCalledWith(`/task/${taskId}/date-time/edit/mockId2`);  // Adjust the expected URL based on your logic
+            expect(actual).toEqual(expectedTask);
         });
     });
 
@@ -58,23 +66,12 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
             fetchApiDataSpy.mockReturnValueOnce(false, jest.fn());
 
             // Act
-            //@TODO: This needs to be abstracted
-            await updateDateTime({
-                params: {},
-                request: {
-                    formData: () => ({
-                        get: (key: string): any => {
-                            const hashing: { [key: string]: string } = {
-                                'id': mockId,
-                                'taskId': mockTaskId,
-                                'date': mockDate,
-                                'minutes': mockMinutes
-                            };
-                            return hashing[key];
-                        }
-                    })
-                }
-            });
+            await updateDateTime(createRequest({
+                'id': mockId,
+                'taskId': mockTaskId,
+                'date': mockDate,
+                'minutes': mockMinutes
+            }));
 
             // Assert
             expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
@@ -90,22 +87,11 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
             fetchApiDataSpy.mockReturnValueOnce(false, jest.fn());
 
             // Act
-            //@TODO: This needs to be abstracted
-            await updateDateTime({
-                params: {},
-                request: {
-                    formData: () => ({
-                        get: (key: string): any => {
-                            const hashing: { [key: string]: string } = {
-                                'id': mockId,
-                                'taskId': mockTaskId,
-                                'date': mockDate
-                            };
-                            return hashing[key];
-                        }
-                    })
-                }
-            });
+            await updateDateTime(createRequest({
+                'id': mockId,
+                'taskId': mockTaskId,
+                'date': mockDate
+            }));
 
             // Assert
             expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
