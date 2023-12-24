@@ -3,7 +3,7 @@ import { ActionInterface, DateTimeTaskResponse, Task, formIds } from '@/interfac
 import fetchApiData from '@/utils/fetchApiData'
 import convertDateTimeToLocalTime from '@/utils/formatters/convertDateTimeToLocalTime'
 import { api } from '@/config.json';
-import { FORMS } from '@/utils/constants';
+import { DELETE, FORMS, PUT } from '@/utils/constants';
 
 // Actions = POST|PUT|DELETE|PATCH \\
 
@@ -62,7 +62,7 @@ export const updateTagAction: ActionInterface = async ({ request }) => {
     switch (formId) {
         case FORMS.updateTag:
             await fetchApiData(`${api}tag/${id}`, {
-                method: 'PUT',
+                method: PUT,
                 body: {
                     _id: id,
                     description: formData.get('description') ?? '',
@@ -71,7 +71,7 @@ export const updateTagAction: ActionInterface = async ({ request }) => {
             });
             return redirect(`/tags`)
         case FORMS.deleteTag:
-            await fetchApiData(`${api}tag/${id}`, { method: 'DELETE' });
+            await fetchApiData(`${api}tag/${id}`, { method: DELETE });
             return redirect("/")
     }
 }

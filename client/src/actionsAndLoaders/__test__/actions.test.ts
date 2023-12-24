@@ -2,7 +2,7 @@ import { createDateTime, updateDateTime, updateTagAction } from "../actions";
 import { api } from '@/config.json';
 import { createRequest } from "@/testUtils/createRequest";
 import { mockRedirect } from "@/testUtils/mockRedirect";
-import { FORMS } from "@/utils/constants";
+import { DELETE, FORMS } from "@/utils/constants";
 import * as fetchApiData from "@/utils/fetchApiData";
 import { redirect } from "react-router-dom";
 
@@ -43,6 +43,30 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody)
                 expect(redirect).toHaveBeenNthCalledWith(1, '/tags')
+                expect(actual).toEqual(expectedResponse)
+            });
+        });
+        describe('#deleteTag', () => {
+            it('should delete a tag and then redirect to the home page', async () => {
+                // Arrange
+                const id = 'mockId';
+                const expectedBody =  {"method": DELETE};
+                const expectedUrl = `${api}tag/${id}`;
+                
+                const expectedResponse = {tag: 'tagMockId'};
+                fetchApiDataSpy.mockReturnValueOnce({ time: [] });
+                mockRedirect(redirect, expectedResponse);
+                
+                // Act
+                const actual = await updateTagAction(createRequest({
+                    formId: FORMS.deleteTag,
+                    id,
+                }))
+
+                
+                // Assert
+                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody)
+                expect(redirect).toHaveBeenNthCalledWith(1, '/')
                 expect(actual).toEqual(expectedResponse)
             });
         });
