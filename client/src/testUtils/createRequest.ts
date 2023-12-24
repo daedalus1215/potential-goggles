@@ -1,4 +1,10 @@
-export const createRequest = (setup: { [key: string]: string }) => {
+export const createRequest = (setup?: { [key: string]: string }) => {
+    if (!setup) {
+        return {
+            params: {},
+            request: {}
+        };
+    }
     return ({
         params: {},
         request: {
