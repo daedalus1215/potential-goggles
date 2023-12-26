@@ -1,11 +1,13 @@
-import { createDateTime, createTag, newTaskAction, updateDateTime, updateTagAction } from "../actions";
+import { createDateTime, createTag, newTaskAction, updateDateTime, updateTagAction, updateTaskAction } from "../actions";
 import { api } from '@/config.json';
 import { createRequest } from "@/testUtils/createRequest";
 import { mockFetchApiResponse } from "@/testUtils/mockFetchApiResponse";
 import { mockRedirect } from "@/testUtils/mockRedirect";
-import { DELETE, FORMS, POST } from "@/utils/constants";
+import { DELETE, FORMS, POST, PUT } from "@/utils/constants";
 import * as fetchApiData from "@/utils/fetchApiData";
 import { redirect } from "react-router-dom";
+import * as convertDateTimeToLocalTime from '@/utils/formatters/convertDateTimeToLocalTime'
+
 
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),  // Use the actual module for everything else
@@ -14,8 +16,10 @@ jest.mock('react-router-dom', () => ({
 
 describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
     let fetchApiDataSpy: any;
+    let convertDateTimeToLocalTimeSpy: any;
     beforeEach(() => {
         fetchApiDataSpy = jest.spyOn(fetchApiData, 'default');
+        convertDateTimeToLocalTimeSpy = jest.spyOn(convertDateTimeToLocalTime, 'default');
     });
     afterEach(() => {
         fetchApiDataSpy.mockRestore();
@@ -58,6 +62,49 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
             // Assert
             expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody)
             expect(actual).toEqual(expected);
+        });
+    });
+
+    describe('#updateTaskAction', () => {
+        it('should...', async () => {
+            // Arrange
+            const expectedUrl = `${api}task`;
+            const mockDate = 'mockingDate';
+            const mockProjectId = 'mockProjectId';
+            const mockDescription = 'mockDescription';
+            const mockTags = 'mockTags';
+            const mockId = 'mockId';
+            const expectedBody = {
+                body: {
+                    WorkUnit: [
+                        {
+                            contractId: mockProjectId,
+                            description: mockDescription,
+                            tags: mockTags,
+                            time: 0
+                        }],
+                    _id: mockId,
+                    date: mockDate
+                },
+                method: PUT
+            };
+            const expectedTask = { _id: mockId };
+
+            mockFetchApiResponse(fetchApiDataSpy, expectedTask)
+            convertDateTimeToLocalTimeSpy.mockReturnValueOnce(mockDate);
+
+            // Act
+            const actual = await updateTaskAction(createRequest({
+                formId: FORMS.updateTask,
+                id: mockId,
+                description: mockDescription,
+                projectId: mockProjectId,
+                tags: mockTags
+            }));
+
+            // Assert
+            expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
+            expect(actual).toEqual(expectedTask);
         });
     });
 
