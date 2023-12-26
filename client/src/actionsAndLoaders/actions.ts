@@ -7,10 +7,10 @@ import { DELETE, FORMS, PUT } from '@/utils/constants';
 
 // Actions = POST|PUT|DELETE|PATCH \\
 
-export const newTaskAction: ActionInterface = async () => await fetchApiData<Task>(`${api}task`, { method: 'POST', })
-    .then((data) => {
-        return redirect(`task/${data._id}`)
-    });
+export const newTaskAction: ActionInterface = async () => {
+    const response = await fetchApiData<Task>(`${api}task`, { method: 'POST', });
+    return redirect(`task/${response._id}`);
+}
 export const updateTaskAction: ActionInterface = async ({ request }) => {
     const formData = await request.formData()
     const formId: formIds = formData.get('formId');
