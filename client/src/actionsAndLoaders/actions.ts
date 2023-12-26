@@ -1,5 +1,5 @@
 import { redirect } from 'react-router-dom'
-import { ActionInterface, DateTimeTaskResponse, Task, formIds } from '@/interfaces'
+import { ActionInterface, DateTimeTaskResponse, Tag, Task, formIds } from '@/interfaces'
 import fetchApiData from '@/utils/fetchApiData'
 import convertDateTimeToLocalTime from '@/utils/formatters/convertDateTimeToLocalTime'
 import { api } from '@/config.json';
@@ -16,11 +16,11 @@ export const updateTaskAction: ActionInterface = async ({ request }) => {
     const formId: formIds = formData.get('formId');
     switch (formId) {
         case FORMS.updateTask:
-            const prepareAndSendTask = async (updates: any) => {
+            const prepareAndSendTask = async (updates: { _id: string, description: string, projectId?: number, tags?: Tag[] }) => {
                 const { _id, description, projectId, tags } = updates;
                 const dateFormatted = convertDateTimeToLocalTime(new Date());
                 return await fetchApiData(`${api}task`, {
-                    method: 'PUT',
+                    method: PUT,
                     body: {
                         _id,
                         date: dateFormatted,
