@@ -1,4 +1,4 @@
-import { createDateTime, createTag, updateDateTime, updateTagAction } from "../actions";
+import { createDateTime, createTag, newTaskAction, updateDateTime, updateTagAction } from "../actions";
 import { api } from '@/config.json';
 import { createRequest } from "@/testUtils/createRequest";
 import { mockFetchApiResponse } from "@/testUtils/mockFetchApiResponse";
@@ -19,16 +19,38 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
     });
     afterEach(() => {
         fetchApiDataSpy.mockRestore();
-        jest.clearAllMocks();  // Clear all mock calls between tests
+        // Check if the redirect function is mocked and restore it if necessary
+        if (jest.isMockFunction(redirect)) {
+            redirect.mockRestore();
+        }
+    });
+
+    describe('#newTaskAction', () => {
+        it('should create new task and redirect to that task when response returns with an _id', async () => {
+            // Arrange
+            const expectedUrl = `${api}task`
+            const requestParams = { "method": POST };
+            const mockId = 'mockId';
+            const mockReturn = { _id: mockId };
+            mockFetchApiResponse(fetchApiDataSpy, mockReturn)
+            mockRedirect(redirect, mockReturn);
+
+            // Act
+            const actual = await newTaskAction(createRequest());
+
+            // Assert
+            expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, requestParams)
+            expect(actual).toEqual(mockReturn);
+        });
     });
 
     describe('#createTag', () => {
-        it('should post a new ', async () => {
+        it('should post a new task with no description or name', async () => {
             // Arrange
             const expected = { time: [] };
             const expectedUrl = `${api}tag`
             const expectedBody = { "body": { "description": "", "name": "" }, "method": POST };
-            fetchApiDataSpy.mockReturnValueOnce(expected, expectedUrl, expectedBody);
+            mockFetchApiResponse(fetchApiDataSpy, expected)
 
             // Act
             const actual = await createTag(createRequest());
