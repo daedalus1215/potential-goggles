@@ -48,6 +48,85 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
         });
     });
 
+    describe('#updateTaskAction', () => {
+        describe('#updateTask', () => {
+            it('should...', async () => {
+                // Arrange
+                const expectedUrl = `${api}task`;
+                const mockDate = 'mockingDate';
+                const mockProjectId = 'mockProjectId';
+                const mockDescription = 'mockDescription';
+                const mockTags = 'mockTags';
+                const mockId = 'mockId';
+                const expectedBody = {
+                    body: {
+                        WorkUnit: [
+                            {
+                                contractId: mockProjectId,
+                                description: mockDescription,
+                                tags: mockTags,
+                                time: 0
+                            }],
+                        _id: mockId,
+                        date: mockDate
+                    },
+                    method: PUT
+                };
+                const expectedTask = { _id: mockId };
+    
+                mockFetchApiResponse(fetchApiDataSpy, expectedTask)
+                convertDateTimeToLocalTimeSpy.mockReturnValueOnce(mockDate);
+
+                // Act
+                const actual = await updateTaskAction(createRequest({
+                    formId: FORMS.updateTask,
+                    id: mockId,
+                    description: mockDescription,
+                    projectId: mockProjectId,
+                    tags: mockTags
+                }));
+    
+                // Assert
+                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
+                expect(actual).toEqual(expectedTask);
+            });
+        });
+
+        describe('#deleteTask', () => {
+            it('should...', async () => {
+                // Arrange
+                const mockDate = 'mockingDate';
+                const mockProjectId = 'mockProjectId';
+                const mockDescription = 'mockDescription';
+                const mockTags = 'mockTags';
+                const mockId = 'mockId';
+                const expectedUrl = `${api}task/${mockId}`;
+                const expectedBody = {
+                    method: DELETE
+                };
+                const expectedTask = { _id: mockId };
+    
+                mockFetchApiResponse(fetchApiDataSpy, {})
+                convertDateTimeToLocalTimeSpy.mockReturnValueOnce(mockDate);
+                mockRedirect(redirect, expectedTask);
+
+                // Act
+                const actual = await updateTaskAction(createRequest({
+                    formId: FORMS.deleteTask,
+                    id: mockId,
+                    description: mockDescription,
+                    projectId: mockProjectId,
+                    tags: mockTags
+                }));
+    
+                // Assert
+                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
+                expect(actual).toEqual(expectedTask);
+                expect(redirect).toHaveBeenNthCalledWith(1, '/')
+            });
+        });
+    });
+
     describe('#createTag', () => {
         it('should post a new task with no description or name', async () => {
             // Arrange
@@ -62,49 +141,6 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
             // Assert
             expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody)
             expect(actual).toEqual(expected);
-        });
-    });
-
-    describe('#updateTaskAction', () => {
-        it('should...', async () => {
-            // Arrange
-            const expectedUrl = `${api}task`;
-            const mockDate = 'mockingDate';
-            const mockProjectId = 'mockProjectId';
-            const mockDescription = 'mockDescription';
-            const mockTags = 'mockTags';
-            const mockId = 'mockId';
-            const expectedBody = {
-                body: {
-                    WorkUnit: [
-                        {
-                            contractId: mockProjectId,
-                            description: mockDescription,
-                            tags: mockTags,
-                            time: 0
-                        }],
-                    _id: mockId,
-                    date: mockDate
-                },
-                method: PUT
-            };
-            const expectedTask = { _id: mockId };
-
-            mockFetchApiResponse(fetchApiDataSpy, expectedTask)
-            convertDateTimeToLocalTimeSpy.mockReturnValueOnce(mockDate);
-
-            // Act
-            const actual = await updateTaskAction(createRequest({
-                formId: FORMS.updateTask,
-                id: mockId,
-                description: mockDescription,
-                projectId: mockProjectId,
-                tags: mockTags
-            }));
-
-            // Assert
-            expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
-            expect(actual).toEqual(expectedTask);
         });
     });
 
