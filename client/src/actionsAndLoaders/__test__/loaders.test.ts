@@ -2,13 +2,13 @@ import * as fetchApiData from "@/utils/fetchApiData";
 import { addQuestionMarkIfRequired, fetchTask, fetchTasks, taskLoader } from "../loaders";
 import { api } from '@/config.json';
 import { LoaderFunctionArgs } from "react-router-dom";
+import { mockFetchApiResponse } from "@/testUtils/mockFetchApiResponse";
 
 describe('client/src/actionsAndLoaders/loaders.ts', () => {
     describe('loaders', () => {
         let fetchApiDataSpy: any;
         beforeEach(() => {
             fetchApiDataSpy = jest.spyOn(fetchApiData, 'default');
-            fetchApiDataSpy.mockReturnValueOnce(false, jest.fn());
         });
         afterEach(() => {
             fetchApiDataSpy.mockRestore();
@@ -16,13 +16,16 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
         describe('fetchTasks', () => {
             it('should invoke fetchApiData with expected url once', async () => {
                 // Arrange
-                const expected = `${api}tasks`;
+                const expectedUrl = `${api}tasks`;
+                const expected = { _id: 'mockTaskId' };
+                mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
-                await fetchTasks();
+                const actual = await fetchTasks();
 
                 // Assert
-                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expected, {})
+                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
+                expect(actual).toEqual(expected);
             });
         });
 
@@ -30,28 +33,34 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
             it('should invoke fetchAPiDataSpy with expected once', async () => {
                 // Arrange 
                 const argument = "1";
-                const expected = `${api}task/${argument}`
+                const expectedUrl = `${api}task/${argument}`
+                const expected = { _id: 'mockTaskId' };
+                mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
-                await fetchTask(argument);
+                const actual = await fetchTask(argument);
 
                 // Assert
-                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expected, {})
+                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
+                expect(actual).toEqual(expected);
             });
         });
 
         describe('taskLoader', () => {
-            it('should invoke fetchApiSpy with expected url and no argument, when no argument passed in', () => {
+            it('should invoke fetchApiSpy with expected url and no argument, when no argument passed in', async () => {
                 // Arrange
                 const params = {} as LoaderFunctionArgs;
-                const expected = `${api}task/`;
+                const expectedUrl = `${api}task/`;
+                const expected = { _id: 'mockTaskId' };
+                mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
-                taskLoader(params);
+                const actual = await taskLoader(params);
 
                 // Assert
-                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expected, {});
-            })
+                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {});
+                expect(actual).toEqual(expected);
+            });
         });
 
         describe('addQuestionMarkIfRequired', () => {

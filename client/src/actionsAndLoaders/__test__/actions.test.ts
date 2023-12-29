@@ -28,29 +28,9 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
             redirect.mockRestore();
         }
     });
-
-    describe('#newTaskAction', () => {
-        it('should create new task and redirect to that task when response returns with an _id', async () => {
-            // Arrange
-            const expectedUrl = `${api}task`
-            const requestParams = { "method": POST };
-            const mockId = 'mockId';
-            const mockReturn = { _id: mockId };
-            mockFetchApiResponse(fetchApiDataSpy, mockReturn)
-            mockRedirect(redirect, mockReturn);
-
-            // Act
-            const actual = await newTaskAction(createRequest());
-
-            // Assert
-            expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, requestParams)
-            expect(actual).toEqual(mockReturn);
-        });
-    });
-
     describe('#updateTaskAction', () => {
         describe('#updateTask', () => {
-            it('should...', async () => {
+            it('should update task and return the updated task response', async () => {
                 // Arrange
                 const expectedUrl = `${api}task`;
                 const mockDate = 'mockingDate';
@@ -93,7 +73,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
         });
 
         describe('#deleteTask', () => {
-            it('should...', async () => {
+            it('should delete task and redirect user to home page', async () => {
                 // Arrange
                 const mockDate = 'mockingDate';
                 const mockProjectId = 'mockProjectId';
@@ -107,7 +87,6 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
                 const expectedTask = { _id: mockId };
     
                 mockFetchApiResponse(fetchApiDataSpy, {})
-                convertDateTimeToLocalTimeSpy.mockReturnValueOnce(mockDate);
                 mockRedirect(redirect, expectedTask);
 
                 // Act
@@ -124,6 +103,24 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
                 expect(actual).toEqual(expectedTask);
                 expect(redirect).toHaveBeenNthCalledWith(1, '/')
             });
+        });
+    });
+    describe('#newTaskAction', () => {
+        it('should create new task and redirect to that task when response returns with an _id', async () => {
+            // Arrange
+            const expectedUrl = `${api}task`
+            const requestParams = { "method": POST };
+            const mockId = 'mockId';
+            const mockReturn = { _id: mockId };
+            mockFetchApiResponse(fetchApiDataSpy, mockReturn)
+            mockRedirect(redirect, mockReturn);
+
+            // Act
+            const actual = await newTaskAction(createRequest());
+
+            // Assert
+            expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, requestParams)
+            expect(actual).toEqual(mockReturn);
         });
     });
 
