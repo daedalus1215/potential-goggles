@@ -5,12 +5,18 @@ import { AggregateActivity, Tag, Task, TypedResponse } from '../interfaces';
 import { formatDate } from '@/utils/formatters/formatDate';
 
 // Loaders = GET \\ 
+type LoaderTypes<E> = () => Promise<E>;
+type StringLoaderTypes<E> = (index: string) => Promise<E>;
+type DateIncludeExcludeTagsLoaderTypes<E> = (index: string) => Promise<E>;
 
 // fetch
-export const fetchTasks = async (): Promise<Task[]> => await fetchApiData<Task[]>(`${api}tasks`, {});
-export const fetchTask = async (index: string): Promise<Task> => await fetchApiData<Task>(`${api}task/${index}`, {});
-export const fetchTasksTitles = async (): Promise<Task[]> => await fetchApiData<Task[]>(`${api}tasks-titles`, {});
-export const fetchTodaysActivities = async (date?: string | null, includeTags?: string | null, excludeTags?: string | null): Promise<AggregateActivity> => await fetchApiData<AggregateActivity>(`${api}activities/today?date=${date}&includeTags=${includeTags}&excludeTags=${excludeTags}`, {})
+export const fetchTasks: LoaderTypes<Task[]> = async () => await fetchApiData(`${api}tasks`, {});
+export const fetchTask: StringLoaderTypes<Task> = async (index) => await fetchApiData(`${api}task/${index}`, {});
+export const fetchTasksTitles: LoaderTypes<Task[]> = async () => await fetchApiData(`${api}tasks-titles`, {});
+export const fetchTodaysActivities:DateIncludeExcludeTagsLoaderTypes<AggregateActivity> =
+    async (date?: string | null,
+        includeTags?: string | null,
+        excludeTags?: string | null) => await fetchApiData(`${api}activities/today?date=${date}&includeTags=${includeTags}&excludeTags=${excludeTags}`, {})
 
 export const fetchTag = async (tagId: string): Promise<Tag> => await fetchApiData<Tag>(`${api}tag/${tagId}`, {});
 export const fetchTags = async (): Promise<Tag[]> => await fetchApiData<Tag[]>(`${api}tags`, {});
@@ -47,7 +53,7 @@ export const allActivitiesLoader = async ({ request }: LoaderFunctionArgs): Prom
     const includeTags: string | null = url.searchParams.get('includeTags');
     const excludeTags: string | null = url.searchParams.get('excludeTags');
     const allActivities = await fetchApiData<any>(`${api}activities/all?includeTags=${includeTags}&excludeTags=${excludeTags}`, {})
-    const todaysActivities = await fetchTodaysActivities(date, includeTags,excludeTags);
+    const todaysActivities = await fetchTodaysActivities(date, includeTags, excludeTags);
     const monthActivities = await fetchApiData<any>(`${api}activities/months?includeTags=${includeTags}&excludeTags=${excludeTags}`, {})
     const tags = await fetchApiData<Tag[]>(`${api}tags`, {})
     const options = tags.map(tag => tag.name);
