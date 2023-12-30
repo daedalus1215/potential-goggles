@@ -1,5 +1,5 @@
 import * as fetchApiData from "@/utils/fetchApiData";
-import { addQuestionMarkIfRequired, fetchTask, fetchTasks, taskLoader } from "../loaders";
+import { addQuestionMarkIfRequired, fetchTask, fetchTasks, fetchTasksTitles, taskLoader } from "../loaders";
 import { api } from '@/config.json';
 import { LoaderFunctionArgs } from "react-router-dom";
 import { mockFetchApiResponse } from "@/testUtils/mockFetchApiResponse";
@@ -39,6 +39,38 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
 
                 // Act
                 const actual = await fetchTask(argument);
+
+                // Assert
+                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
+                expect(actual).toEqual(expected);
+            });
+        });
+
+        describe('fetchTasksTitles', () => {
+            it('should fetch title of tasks', async () => {
+                // Arrange 
+                const expectedUrl = `${api}tasks-titles`
+                const expected = { _id: 'mockTaskId' };
+                mockFetchApiResponse(fetchApiDataSpy, expected);
+
+                // Act
+                const actual = await fetchTasksTitles();
+
+                // Assert
+                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
+                expect(actual).toEqual(expected);
+            });
+        });
+
+        describe('fetchTodaysActivities', () => {
+            it('should fetch title of tasks', async () => {
+                // Arrange 
+                const expectedUrl = `${api}tasks-titles`
+                const expected = { _id: 'mockTaskId' };
+                mockFetchApiResponse(fetchApiDataSpy, expected);
+
+                // Act
+                const actual = await fetchTasksTitles();
 
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
