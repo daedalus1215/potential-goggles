@@ -90,10 +90,10 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
                 expect(actual).toEqual(expected);
             });
-            it('should fetch title of tasks when date and includeTags is passed in', async () => {
+            it('should fetch title of tasks when date and includeTags are passed in', async () => {
                 // Arrange 
                 const date = '2023-12-12';
-                const includeTags = ['tag1', 'tag2'];
+                const includeTags = 'tag1'
                 const expectedUrl = `${api}activities/today?date=${date}&includeTags=${includeTags}`;
                 const expected = { _id: 'mockTaskId' };
                 mockFetchApiResponse(fetchApiDataSpy, expected);
@@ -105,11 +105,11 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
                 expect(actual).toEqual(expected);
             });
-            it('should fetch title of tasks when date and includeTags is passed in', async () => {
+            it('should fetch title of tasks when date, includeTags, and excludeTags are passed in', async () => {
                 // Arrange 
                 const date = '2023-12-12';
-                const includeTags = ['tag1', 'tag2'];
-                const excludeTags = ['tag3', 'tag4'];
+                const includeTags = 'tag2';
+                const excludeTags = 'tag4';
                 const expectedUrl = `${api}activities/today?date=${date}&includeTags=${includeTags}&excludeTags=${excludeTags}`;
                 const expected = { _id: 'mockTaskId' };
                 mockFetchApiResponse(fetchApiDataSpy, expected);

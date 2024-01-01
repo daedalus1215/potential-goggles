@@ -7,7 +7,7 @@ import { formatDate } from '@/utils/formatters/formatDate';
 // Loaders = GET \\ 
 type LoaderTypes<E> = () => Promise<E>;
 type StringLoaderTypes<E> = (index: string) => Promise<E>;
-type DateIncludeExcludeTagsLoaderTypes<E> = (date?: string | null, includeTags?: string[] | null, excludeTags?: string[] | null) => Promise<E>;
+type DateIncludeExcludeTagsLoaderTypes<E> = (date?: string | null, includeTags?: string | null, excludeTags?: string | null) => Promise<E>;
 
 // fetch
 export const fetchTasks: LoaderTypes<Task[]> = async () => await fetchApiData(`${api}tasks`, {});
