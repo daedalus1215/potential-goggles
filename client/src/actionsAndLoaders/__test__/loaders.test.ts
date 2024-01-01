@@ -1,5 +1,5 @@
 import * as fetchApiData from "@/utils/fetchApiData";
-import { addQuestionMarkIfRequired, fetchTask, fetchTasks, fetchTasksTitles, fetchTodaysActivities, taskLoader } from "../loaders";
+import { addQuestionMarkIfRequired, fetchTag, fetchTask, fetchTasks, fetchTasksTitles, fetchTodaysActivities, taskLoader } from "../loaders";
 import { api } from '@/config.json';
 import { LoaderFunctionArgs } from "react-router-dom";
 import { mockFetchApiResponse } from "@/testUtils/mockFetchApiResponse";
@@ -28,7 +28,6 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 expect(actual).toEqual(expected);
             });
         });
-
         describe('fetchTask', () => {
             it('should invoke fetchAPiDataSpy with expected once', async () => {
                 // Arrange 
@@ -45,7 +44,6 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 expect(actual).toEqual(expected);
             });
         });
-
         describe('fetchTasksTitles', () => {
             it('should fetch title of tasks', async () => {
                 // Arrange 
@@ -61,7 +59,6 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 expect(actual).toEqual(expected);
             });
         });
-
         describe('fetchTodaysActivities', () => {
             it('should fetch title of tasks when no arguments passed in', async () => {
                 // Arrange 
@@ -122,7 +119,21 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 expect(actual).toEqual(expected);
             });
         });
+        describe('fetchTag', () => {
+            it('should fetch tag with tagId', async () => {
+                // Arrange 
+                const expected = 'mockTagId';
+                const expectedUrl = `${api}tag/${expected}`
+                mockFetchApiResponse(fetchApiDataSpy, expected);
 
+                // Act
+                const actual = await fetchTag(expected);
+
+                // Assert
+                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
+                expect(actual).toEqual(expected);
+            });
+        });
         describe('taskLoader', () => {
             it('should invoke fetchApiSpy with expected url and no argument, when no argument passed in', async () => {
                 // Arrange
@@ -139,7 +150,6 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 expect(actual).toEqual(expected);
             });
         });
-
         describe('addQuestionMarkIfRequired', () => {
             it('should return with a "?" if none given', () => {
                 // Arrange
