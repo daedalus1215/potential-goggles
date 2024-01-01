@@ -1,5 +1,5 @@
 import * as fetchApiData from "@/utils/fetchApiData";
-import { addQuestionMarkIfRequired, fetchTask, fetchTasks, fetchTasksTitles, taskLoader } from "../loaders";
+import { addQuestionMarkIfRequired, fetchTask, fetchTasks, fetchTasksTitles, fetchTodaysActivities, taskLoader } from "../loaders";
 import { api } from '@/config.json';
 import { LoaderFunctionArgs } from "react-router-dom";
 import { mockFetchApiResponse } from "@/testUtils/mockFetchApiResponse";
@@ -63,14 +63,59 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
         });
 
         describe('fetchTodaysActivities', () => {
-            it('should fetch title of tasks', async () => {
+            it('should fetch title of tasks when no arguments passed in', async () => {
                 // Arrange 
-                const expectedUrl = `${api}tasks-titles`
+                const expectedUrl = `${api}activities/today`
                 const expected = { _id: 'mockTaskId' };
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
-                const actual = await fetchTasksTitles();
+                const actual = await fetchTodaysActivities();
+
+                // Assert
+                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
+                expect(actual).toEqual(expected);
+            });
+            it('should fetch title of tasks when date is passed in', async () => {
+                // Arrange 
+                const date = '2023-12-12';
+                const expectedUrl = `${api}activities/today?date=${date}`
+                const expected = { _id: 'mockTaskId' };
+                mockFetchApiResponse(fetchApiDataSpy, expected);
+
+                // Act
+                const actual = await fetchTodaysActivities(date);
+
+                // Assert
+                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
+                expect(actual).toEqual(expected);
+            });
+            it('should fetch title of tasks when date and includeTags is passed in', async () => {
+                // Arrange 
+                const date = '2023-12-12';
+                const includeTags = ['tag1', 'tag2'];
+                const expectedUrl = `${api}activities/today?date=${date}&includeTags=${includeTags}`;
+                const expected = { _id: 'mockTaskId' };
+                mockFetchApiResponse(fetchApiDataSpy, expected);
+
+                // Act
+                const actual = await fetchTodaysActivities(date, includeTags);
+
+                // Assert
+                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
+                expect(actual).toEqual(expected);
+            });
+            it('should fetch title of tasks when date and includeTags is passed in', async () => {
+                // Arrange 
+                const date = '2023-12-12';
+                const includeTags = ['tag1', 'tag2'];
+                const excludeTags = ['tag3', 'tag4'];
+                const expectedUrl = `${api}activities/today?date=${date}&includeTags=${includeTags}&excludeTags=${excludeTags}`;
+                const expected = { _id: 'mockTaskId' };
+                mockFetchApiResponse(fetchApiDataSpy, expected);
+
+                // Act
+                const actual = await fetchTodaysActivities(date, includeTags, excludeTags);
 
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
