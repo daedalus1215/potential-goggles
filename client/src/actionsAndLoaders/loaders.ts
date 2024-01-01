@@ -7,16 +7,22 @@ import { formatDate } from '@/utils/formatters/formatDate';
 // Loaders = GET \\ 
 type LoaderTypes<E> = () => Promise<E>;
 type StringLoaderTypes<E> = (index: string) => Promise<E>;
-type DateIncludeExcludeTagsLoaderTypes<E> = (index: string) => Promise<E>;
+type DateIncludeExcludeTagsLoaderTypes<E> = (date?: string | null, includeTags?: string | null, excludeTags?: string | null) => Promise<E>;
 
 // fetch
 export const fetchTasks: LoaderTypes<Task[]> = async () => await fetchApiData(`${api}tasks`, {});
 export const fetchTask: StringLoaderTypes<Task> = async (index) => await fetchApiData(`${api}task/${index}`, {});
 export const fetchTasksTitles: LoaderTypes<Task[]> = async () => await fetchApiData(`${api}tasks-titles`, {});
-export const fetchTodaysActivities:DateIncludeExcludeTagsLoaderTypes<AggregateActivity> =
-    async (date?: string | null,
-        includeTags?: string | null,
-        excludeTags?: string | null) => await fetchApiData(`${api}activities/today?date=${date}&includeTags=${includeTags}&excludeTags=${excludeTags}`, {})
+export const fetchTodaysActivities: DateIncludeExcludeTagsLoaderTypes<AggregateActivity> = async (date, includeTags, excludeTags) => {
+    if (date && includeTags && excludeTags) {
+        return await fetchApiData(`${api}activities/today?date=${date}&includeTags=${includeTags}&excludeTags=${excludeTags}`, {})
+    } else if (date && includeTags) {
+        return await fetchApiData(`${api}activities/today?date=${date}&includeTags=${includeTags}`, {})
+    } else if (date) {
+        return await fetchApiData(`${api}activities/today?date=${date}`, {})
+    }
+    return await fetchApiData(`${api}activities/today`, {})
+}
 
 export const fetchTag = async (tagId: string): Promise<Tag> => await fetchApiData<Tag>(`${api}tag/${tagId}`, {});
 export const fetchTags = async (): Promise<Tag[]> => await fetchApiData<Tag[]>(`${api}tags`, {});
