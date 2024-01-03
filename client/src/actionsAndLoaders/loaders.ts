@@ -6,6 +6,7 @@ import { formatDate } from '@/utils/formatters/formatDate';
 
 // Loaders = GET \\ 
 type LoaderTypes<E> = () => Promise<E>;
+type LoaderSignature<E> = ({ params, request }: LoaderFunctionArgs) => Promise<E>;
 type StringLoaderTypes<E> = (index: string) => Promise<E>;
 type DateIncludeExcludeTagsLoaderTypes<E> = (date?: string | null, includeTags?: string | null, excludeTags?: string | null) => Promise<E>;
 
@@ -26,8 +27,6 @@ export const fetchTodaysActivities: DateIncludeExcludeTagsLoaderTypes<AggregateA
 
 export const fetchTag = async (tagId: string): Promise<Tag> => await fetchApiData<Tag>(`${api}tag/${tagId}`, {});
 export const fetchTags = async (): Promise<Tag[]> => await fetchApiData<Tag[]>(`${api}tags`, {});
-
-type LoaderSignature = ({ params, request }: LoaderFunctionArgs) => Promise<any>;
 
 // loaders - task
 export const taskLoader = async ({ params }: LoaderFunctionArgs) => await fetchTask(params?.taskId ?? '');
@@ -97,7 +96,7 @@ export const addQuestionMarkIfRequired = (request: Request): Request => {
     };
 };
 
-export const stackGraphLoaders: LoaderSignature = async ({ params, request }) => {
+export const stackGraphLoaders: LoaderSignature<any> = async ({ params, request }) => {
     const date = formatDate(new Date());
     const validatedRequest = addQuestionMarkIfRequired(request);
 
