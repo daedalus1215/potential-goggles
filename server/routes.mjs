@@ -42,8 +42,7 @@ const routes = (app) => {
     ],
         addTaskAction
     );
-    app.put(
-        '/api/task',
+    app.put('/api/task',
         [
             body('_id').isString().trim().escape(),
             body('WorkUnit[0].description').isString().trim(),

@@ -8,6 +8,7 @@ import { formatDate } from '@/utils/formatters/formatDate';
 type LoaderTypes<E> = () => Promise<E>;
 type LoaderSignature<E> = ({ params, request }: LoaderFunctionArgs) => Promise<E>;
 type StringLoaderTypes<E> = (index: string) => Promise<E>;
+type IncludeExcludeTagsLoaderTypes<E> = (includeTags?: string | null, excludeTags?: string | null) => Promise<E>;
 type DateIncludeExcludeTagsLoaderTypes<E> = (date?: string | null, includeTags?: string | null, excludeTags?: string | null) => Promise<E>;
 
 // fetch
@@ -24,6 +25,18 @@ export const fetchTodaysActivities: DateIncludeExcludeTagsLoaderTypes<AggregateA
     }
     return await fetchApiData(`${api}activities/today`, {})
 }
+export const fetchAllDayTasks: IncludeExcludeTagsLoaderTypes<AggregateActivity> = async (includeTags, excludeTags) => {
+    if (includeTags && excludeTags) {
+        return await fetchApiData(`${api}activities/all?includeTags=${includeTags}&excludeTags=${excludeTags}`, {})
+    } else if (includeTags) {
+        return await fetchApiData(`${api}activities/all?includeTags=${includeTags}`, {})
+    } else if (excludeTags) {
+        return await fetchApiData(`${api}activities/all?excludeTags=${excludeTags}`, {})
+    }
+    return await fetchApiData(`${api}activities/all`, {})
+}
+export const fetchAllMonthTasksAction: IncludeExcludeTagsLoaderTypes<AggregateActivity> = async (includeTags, excludeTags) =>
+    await fetchApiData<any>(`${api}activities/months?includeTags=${includeTags}&excludeTags=${excludeTags}`, {})
 
 export const fetchTag = async (tagId: string): Promise<Tag> => await fetchApiData<Tag>(`${api}tag/${tagId}`, {});
 export const fetchTags = async (): Promise<Tag[]> => await fetchApiData<Tag[]>(`${api}tags`, {});
@@ -32,23 +45,6 @@ export const fetchTags = async (): Promise<Tag[]> => await fetchApiData<Tag[]>(`
 export const taskLoader = async ({ params }: LoaderFunctionArgs) => await fetchTask(params?.taskId ?? '');
 export const tasksLoader = fetchTasks;
 
-/**
- * @TODO: Might decommission for smaller ones that can be reused
- * @returns 
- */
-export const allActivitiesLoader = async ({ request }: LoaderFunctionArgs): Promise<any> => {
-    const url = new URL(request.url)
-    const date: string | null = url.searchParams.get('date');
-    const includeTags: string | null = url.searchParams.get('includeTags');
-    const excludeTags: string | null = url.searchParams.get('excludeTags');
-    const allActivities = await fetchApiData<any>(`${api}activities/all?includeTags=${includeTags}&excludeTags=${excludeTags}`, {})
-    const todaysActivities = await fetchTodaysActivities(date, includeTags, excludeTags);
-    const monthActivities = await fetchApiData<any>(`${api}activities/months?includeTags=${includeTags}&excludeTags=${excludeTags}`, {})
-    const tags = await fetchApiData<Tag[]>(`${api}tags`, {})
-    const options = tags.map(tag => tag.name);
-
-    return { allActivities, todaysActivities, monthActivities, tags, options, queryDate: date, queryIncludeTags: includeTags, queryExcludeTags: excludeTags };
-}
 export const dateTimeLoader = async ({ params }: LoaderFunctionArgs) => {
     const task = await fetchTask(params?.taskId ?? '')
 
