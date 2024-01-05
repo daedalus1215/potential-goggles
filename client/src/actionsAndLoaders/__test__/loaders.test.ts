@@ -1,8 +1,9 @@
 import * as fetchApiData from "@/utils/fetchApiData";
-import { addQuestionMarkIfRequired, fetchTag, fetchTags, fetchTask, fetchTasks, fetchTasksTitles, fetchTodaysActivities, taskLoader, tasksLoader } from "../loaders";
+import { addQuestionMarkIfRequired, allActivitiesLoader, fetchTag, fetchTags, fetchTask, fetchTasks, fetchTasksTitles, fetchTodaysActivities, taskLoader, tasksLoader } from "../loaders";
 import { api } from '@/config.json';
 import { LoaderFunctionArgs } from "react-router-dom";
 import { mockFetchApiResponse } from "@/testUtils/mockFetchApiResponse";
+import { createRequest } from "@/testUtils/createRequest";
 
 describe('client/src/actionsAndLoaders/loaders.ts', () => {
     describe('loaders', () => {

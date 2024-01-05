@@ -65,6 +65,6 @@ describe('taskAndTagLoader', () => {
         const actual = await taskAndTagLoader(params);
 
         // Assert
-        expect(actual).toEqual({ task, options: expectedTags })
+        expect(actual).toEqual({ task, options: expectedTags });
     });
 });
