@@ -17,5 +17,14 @@ export const allActivitiesLoader = async ({ request }: LoaderFunctionArgs): Prom
 
     const tags = await fetchTags();
     const options = tags.map(tag => tag.name);
-    return { allActivities, todaysActivities, monthActivities, tags, options, queryDate: date, queryIncludeTags: includeTags, queryExcludeTags: excludeTags };
+    return {
+        allActivities,
+        todaysActivities,
+        monthActivities,
+        tags,
+        options,
+        queryDate: date,
+        queryIncludeTags: includeTags,
+        queryExcludeTags: excludeTags
+    };
 }

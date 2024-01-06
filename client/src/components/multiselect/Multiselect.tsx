@@ -26,11 +26,11 @@ const MultiSelect = ({ options, selectedOptions, setSelectedOptions, classNames 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
     };
-    console.log('selectedOptions', selectedOptions)
+    // console.log('selectedOptions', selectedOptions)
     const text = (selectedOptions.length > 0 && selectedOptions?.join)
     ? selectedOptions?.join(', ')
     : selectedOptions
-    console.log('text', text)
+    // console.log('text', text)
 
     return (
         <div className={cn(styles.multiSelect, classNames)}>
