@@ -2,8 +2,8 @@ import { LoaderFunctionArgs } from "react-router-dom";
 import { api } from '@/config.json';
 
 export const createRequest = (
-    url?: string,
-    formSetup?: { [key: string]: string }) => {
+    formSetup?: { [key: string]: string },
+    url?: string) => {
     const postUrl = `${api}${url}`;
 
     if (!formSetup) {

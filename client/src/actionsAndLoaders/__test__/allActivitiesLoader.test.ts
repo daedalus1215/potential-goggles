@@ -1,6 +1,5 @@
 import { LoaderFunctionArgs } from "react-router-dom";
 import { allActivitiesLoader } from "../allActivitiesLoader";
-import { api } from '@/config.json';
 import { createRequest } from "@/testUtils/createRequest";
 
 import {

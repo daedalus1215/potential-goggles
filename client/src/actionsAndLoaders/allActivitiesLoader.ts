@@ -14,7 +14,7 @@ export const allActivitiesLoader = async ({ request }: LoaderFunctionArgs): Prom
     const allActivities = await fetchAllDayTasks(includeTags, excludeTags)
     const todaysActivities = await fetchTodaysActivities(date, includeTags, excludeTags);
     const monthActivities = await fetchAllMonthTasksAction(includeTags, excludeTags);
-    
+
     const tags = await fetchTags();
     const options = tags.map(tag => tag.name);
     return { allActivities, todaysActivities, monthActivities, tags, options, queryDate: date, queryIncludeTags: includeTags, queryExcludeTags: excludeTags };
