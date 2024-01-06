@@ -8,7 +8,6 @@ jest.mock('../loaders', () => ({
 }));
 
 describe('taskAndTagLoader', () => {
-
     it('should fetch task and all tags, when given task id in request. Expect task and set of options. The Options should be all false, except the tags in the task.', async () => {
         // Arrange 
         const params = {
