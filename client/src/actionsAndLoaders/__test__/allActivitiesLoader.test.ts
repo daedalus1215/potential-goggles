@@ -10,6 +10,7 @@ import {
 } from "../loaders";
 import { AggregateActivity } from "@/interfaces";
 import { createMock } from "@/testUtils/createMock";
+import { aggregateActivityFixture } from "@/dataFixtures/aggregateActivityFixture";
 
 jest.mock('../loaders', () => ({
     fetchAllDayTasks: jest.fn(),
@@ -23,18 +24,9 @@ describe('allActivitiesLoader', () => {
         it('should ', async () => {
             // Arrange
             const request = createRequest();
-            const allActivities: AggregateActivity = {
-                activities: [],
-                total: 0
-            };
-            const todaysActivities: AggregateActivity = {
-                activities: [],
-                total: 2
-            };
-            const expectedAllMonthTasks: AggregateActivity = {
-                activities: [],
-                total: 3
-            };
+            const allActivities: AggregateActivity = aggregateActivityFixture();
+            const todaysActivities: AggregateActivity = aggregateActivityFixture();
+            const expectedAllMonthTasks: AggregateActivity = aggregateActivityFixture();
             const tags = [{ id: 'tagId' }];
             const expected = {
                 allActivities: allActivities,
