@@ -1,10 +1,6 @@
 import { LoaderFunctionArgs } from "react-router-dom";
 import { fetchAllDayTasks, fetchAllMonthTasksAction, fetchTags, fetchTodaysActivities } from "./loaders";
 
-/**
- * @TODO: Might decommission for smaller ones that can be reused
- * @returns 
- */
 export const allActivitiesLoader = async ({ request }: LoaderFunctionArgs): Promise<any> => {
     const url = new URL(request.url)
     const date: string | null = url.searchParams.get('date');
