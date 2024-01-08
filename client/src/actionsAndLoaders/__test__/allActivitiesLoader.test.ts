@@ -5,7 +5,7 @@ import { createRequest } from "@/testUtils/createRequest";
 import {
     fetchAllDayTasks,
     fetchTodaysActivities,
-    fetchAllMonthTasksAction,
+    fetchAllMonthTasks,
     fetchTags
 } from "../loaders";
 import { AggregateActivity } from "@/interfaces";
@@ -15,7 +15,7 @@ import { aggregateActivityFixture } from "@/dataFixtures/aggregateActivityFixtur
 jest.mock('../loaders', () => ({
     fetchAllDayTasks: jest.fn(),
     fetchTodaysActivities: jest.fn(),
-    fetchAllMonthTasksAction: jest.fn(),
+    fetchAllMonthTasks: jest.fn(),
     fetchTags: jest.fn(),
 }));
 
@@ -40,7 +40,7 @@ describe('allActivitiesLoader', () => {
             };
             createMock(fetchAllDayTasks, allActivities);
             createMock(fetchTodaysActivities, todaysActivities);
-            createMock(fetchAllMonthTasksAction, expectedAllMonthTasks);
+            createMock(fetchAllMonthTasks, expectedAllMonthTasks);
             createMock(fetchTags, tags);
 
             // Act
@@ -70,7 +70,7 @@ describe('allActivitiesLoader', () => {
             };
             createMock(fetchAllDayTasks, allActivities);
             createMock(fetchTodaysActivities, todaysActivities);
-            createMock(fetchAllMonthTasksAction, expectedAllMonthTasks);
+            createMock(fetchAllMonthTasks, expectedAllMonthTasks);
             createMock(fetchTags, tags);
 
             // Act
@@ -100,7 +100,7 @@ describe('allActivitiesLoader', () => {
             };
             createMock(fetchAllDayTasks, allActivities);
             createMock(fetchTodaysActivities, todaysActivities);
-            createMock(fetchAllMonthTasksAction, expectedAllMonthTasks);
+            createMock(fetchAllMonthTasks, expectedAllMonthTasks);
             createMock(fetchTags, tags);
 
             // Act
@@ -133,7 +133,7 @@ describe('allActivitiesLoader', () => {
             };
             createMock(fetchAllDayTasks, allActivities);
             createMock(fetchTodaysActivities, todaysActivities);
-            createMock(fetchAllMonthTasksAction, expectedAllMonthTasks);
+            createMock(fetchAllMonthTasks, expectedAllMonthTasks);
             createMock(fetchTags, tags);
 
             // Act

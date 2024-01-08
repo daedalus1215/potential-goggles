@@ -1,5 +1,5 @@
 import { LoaderFunctionArgs } from "react-router-dom";
-import { fetchAllDayTasks, fetchAllMonthTasksAction, fetchTags, fetchTodaysActivities } from "./loaders";
+import { fetchAllDayTasks, fetchAllMonthTasks, fetchTags, fetchTodaysActivities } from "./loaders";
 
 export const allActivitiesLoader = async ({ request }: LoaderFunctionArgs): Promise<any> => {
     const url = new URL(request.url)
@@ -9,7 +9,7 @@ export const allActivitiesLoader = async ({ request }: LoaderFunctionArgs): Prom
 
     const allActivities = await fetchAllDayTasks(includeTags, excludeTags)
     const todaysActivities = await fetchTodaysActivities(date, includeTags, excludeTags);
-    const monthActivities = await fetchAllMonthTasksAction(includeTags, excludeTags);
+    const monthActivities = await fetchAllMonthTasks(includeTags, excludeTags);
 
     const tags = await fetchTags();
     const options = tags.map(tag => tag.name);

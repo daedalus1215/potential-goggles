@@ -5,7 +5,7 @@ import { mockFetchApiResponse } from "@/testUtils/mockFetchApiResponse";
 import { mockRedirect } from "@/testUtils/mockRedirect";
 import { DELETE, FORMS, POST, PUT } from "@/utils/constants";
 import * as fetchApiData from "@/utils/fetchApiData";
-import { redirect } from "react-router-dom";
+import { LoaderFunctionArgs, redirect } from "react-router-dom";
 import * as convertDateTimeToLocalTime from '@/utils/formatters/convertDateTimeToLocalTime'
 
 
@@ -64,7 +64,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
                     description: mockDescription,
                     projectId: mockProjectId,
                     tags: mockTags
-                }));
+                }) as unknown as LoaderFunctionArgs);
     
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
@@ -96,7 +96,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
                     description: mockDescription,
                     projectId: mockProjectId,
                     tags: mockTags
-                }));
+                })as unknown as LoaderFunctionArgs);
     
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
@@ -116,7 +116,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
             mockRedirect(redirect, mockReturn);
 
             // Act
-            const actual = await newTaskAction(createRequest());
+            const actual = await newTaskAction(createRequest()as unknown as LoaderFunctionArgs);
 
             // Assert
             expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, requestParams)
@@ -133,7 +133,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
             mockFetchApiResponse(fetchApiDataSpy, expected)
 
             // Act
-            const actual = await createTag(createRequest());
+            const actual = await createTag(createRequest()as unknown as LoaderFunctionArgs);
 
             // Assert
             expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody)
@@ -157,7 +157,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
                 const actual = await updateTagAction(createRequest({
                     formId: FORMS.updateTag,
                     id,
-                }))
+                })as unknown as LoaderFunctionArgs)
 
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody)
@@ -180,7 +180,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
                 const actual = await updateTagAction(createRequest({
                     formId: FORMS.deleteTag,
                     id,
-                }))
+                })as unknown as LoaderFunctionArgs)
 
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody)
@@ -199,7 +199,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
             mockFetchApiResponse(fetchApiDataSpy, { time: [] })
 
             // Act
-            const actual = await createDateTime(createRequest({ taskId }));
+            const actual = await createDateTime(createRequest({ taskId })as unknown as LoaderFunctionArgs);
 
             // Assert
             expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
@@ -215,7 +215,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
             mockRedirect(redirect, expectedTask);
 
             // Act
-            const actual = await createDateTime(createRequest({ taskId }));
+            const actual = await createDateTime(createRequest({ taskId })as unknown as LoaderFunctionArgs);
 
             // Assert
             expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
@@ -244,7 +244,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
                 'taskId': mockTaskId,
                 'date': mockDate,
                 'minutes': mockMinutes
-            }));
+            })as unknown as LoaderFunctionArgs);
 
             // Assert
             expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
@@ -269,7 +269,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
                 'id': mockId,
                 'taskId': mockTaskId,
                 'date': mockDate
-            }));
+            }) as unknown as LoaderFunctionArgs);
 
             // Assert
             expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);

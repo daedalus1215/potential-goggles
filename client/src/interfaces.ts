@@ -1,3 +1,4 @@
+import { LoaderFunctionArgs } from "react-router-dom";
 import { FORMS } from "./utils/constants";
 
 export type formIds = keyof typeof FORMS;
@@ -15,7 +16,7 @@ export interface DateParams extends Params {
     }
 }
 
-export type ActionInterface = ({ request, params }: { request: any, params: any }) => void;
+export type ActionInterface<T> = (requestObject: LoaderFunctionArgs) => Promise<T>;
 export type ErrorInterface = {
     statusText: string;
     message: string;
