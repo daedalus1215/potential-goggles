@@ -7,16 +7,16 @@ import { DELETE, FORMS, PUT } from '@/utils/constants';
 
 // Actions = POST|PUT|DELETE|PATCH \\
 
-export const newTaskAction: ActionInterface = async () => {
+export const newTaskAction: ActionInterface<any> = async () => {
     const response = await fetchApiData<Task>(`${api}task`, { method: 'POST', });
     return redirect(`task/${response._id}`);
 }
-export const updateTaskAction: ActionInterface = async ({ request }) => {
+export const updateTaskAction: ActionInterface<any> = async ({ request }) => {
     const formData = await request.formData()
-    const formId: formIds = formData.get('formId');
+    const formId = formData.get('formId') as formIds;
     switch (formId) {
         case FORMS.updateTask:
-            const prepareAndSendTask = async (updates: { _id: string, description: string, projectId?: number, tags?: Tag[] }) => {
+            const prepareAndSendTask = async (updates: any) => {
                 const { _id, description, projectId, tags } = updates;
                 const dateFormatted = convertDateTimeToLocalTime(new Date());
                 return await fetchApiData(`${api}task`, {
@@ -46,16 +46,16 @@ export const updateTaskAction: ActionInterface = async ({ request }) => {
             return redirect("/")
     }
 };
-export const createTag: ActionInterface = async () => await fetchApiData(`${api}tag`, {
+export const createTag: ActionInterface<any> = async () => await fetchApiData(`${api}tag`, {
     method: 'POST',
     body: {
         description: '',
         name: ''
     }
 });
-export const updateTagAction: ActionInterface = async ({ request }) => {
+export const updateTagAction: ActionInterface<any> = async ({ request }) => {
     const formData = await request.formData()
-    const formId: formIds = formData.get('formId');
+    const formId = formData.get('formId') as formIds;
     const id = formData.get('id');
 
     //@TODO: Could of done this over the verbs in the form.
@@ -77,7 +77,7 @@ export const updateTagAction: ActionInterface = async ({ request }) => {
 }
 
 // date time
-export const createDateTime: ActionInterface = async ({ request }) => {
+export const createDateTime: ActionInterface<any> = async ({ request }) => {
     const formData = await request.formData();
     const taskId = formData.get('taskId');
     const task = await fetchApiData<DateTimeTaskResponse>(`${api}task/${taskId}/dateTime`, { method: 'POST' })
@@ -87,7 +87,7 @@ export const createDateTime: ActionInterface = async ({ request }) => {
     return task;
 }
 
-export const updateDateTime: ActionInterface = async ({ request }) => {
+export const updateDateTime: ActionInterface<any> = async ({ request }) => {
     const formData = await request.formData()
     const taskId = formData.get('taskId')
     const id = formData.get('id')

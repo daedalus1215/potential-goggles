@@ -107,7 +107,7 @@ const request: LoaderFunctionArgs = {
         },
         text: function (): Promise<string> {
             throw new Error("Function not implemented.");
-        }
+        },
     },
     params: {}
 };

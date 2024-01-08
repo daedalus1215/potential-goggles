@@ -35,7 +35,7 @@ export const fetchAllDayTasks: IncludeExcludeTagsLoaderTypes<AggregateActivity> 
     }
     return await fetchApiData(`${api}activities/all`, {})
 }
-export const fetchAllMonthTasksAction: IncludeExcludeTagsLoaderTypes<AggregateActivity> = async (includeTags, excludeTags) =>
+export const fetchAllMonthTasks: IncludeExcludeTagsLoaderTypes<AggregateActivity> = async (includeTags, excludeTags) =>
     await fetchApiData<any>(`${api}activities/months?includeTags=${includeTags}&excludeTags=${excludeTags}`, {})
 
 export const fetchTag = async (tagId: string): Promise<Tag> => await fetchApiData<Tag>(`${api}tag/${tagId}`, {});
