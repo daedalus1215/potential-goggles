@@ -1,5 +1,5 @@
 import * as fetchApiData from "@/utils/fetchApiData";
-import { addQuestionMarkIfRequired, fetchTag, fetchTags, fetchTask, fetchTasks, fetchTasksTitles, fetchTodaysActivities, taskLoader, tasksLoader } from "../loaders";
+import { addQuestionMarkIfRequired, createQueryParams, fetchAllMonthTasks, fetchTag, fetchTags, fetchTask, fetchTasks, fetchTasksTitles, fetchTodaysActivities, taskLoader, tasksLoader } from "../loaders";
 import { api } from '@/config.json';
 import { LoaderFunctionArgs } from "react-router-dom";
 import { mockFetchApiResponse } from "@/testUtils/mockFetchApiResponse";
@@ -59,6 +59,54 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 expect(actual).toEqual(expected);
             });
         });
+        describe('createQueryParams', () => {
+            it('should return empty string if empty string is passed in', async () => {
+                // Arrange     
+                const expected = '';
+
+                // Act
+                const actual = await createQueryParams();
+
+                // Assert
+                expect(actual).toEqual(expected);
+            });
+            it('should return date query param when date is passed in', async () => {
+                // Arrange 
+                const date = '2023-12-12';
+                const expected = `?date=${date}`;
+
+                // Act
+                const actual = await createQueryParams(date);
+
+                // Assert
+                expect(actual).toEqual(expected);
+            });
+            it('should return date and includeTags query params when date and includeTags passed in', async () => {
+                // Arrange 
+                const includeTags = 'tag1'
+                const date = '2023-12-12';
+                const expected = `?date=${date}&includeTags=${includeTags}`;
+
+                // Act
+                const actual = await createQueryParams(date, includeTags);
+
+                // Assert
+                expect(actual).toEqual(expected);
+            });
+            it('should return date, includeTags, and exclude tags in query params when all three are passed in', async () => {
+                // Arrange 
+                const date = '2023-12-12';
+                const includeTags = 'tag2';
+                const excludeTags = 'tag4';
+                const expected = `?date=${date}&includeTags=${includeTags}&excludeTags=${excludeTags}`;
+
+                // Act
+                const actual = await createQueryParams(date, includeTags, excludeTags);
+
+                // Assert
+                expect(actual).toEqual(expected);
+            });
+        });
         describe('fetchTodaysActivities', () => {
             it('should fetch title of tasks when no arguments passed in', async () => {
                 // Arrange 
@@ -113,6 +161,50 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
 
                 // Act
                 const actual = await fetchTodaysActivities(date, includeTags, excludeTags);
+
+                // Assert
+                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
+                expect(actual).toEqual(expected);
+            });
+        });
+        describe('fetchAllMonthTasks', () => {
+            it('should fetch months when includeTags and excludeTags not passed in', async () => {
+                // Arrange 
+                const expectedUrl = `${api}activities/months?includeTags=undefined&excludeTags=undefined`
+                const expected = { _id: 'mockTaskId' };
+                mockFetchApiResponse(fetchApiDataSpy, expected);
+
+                // Act
+                const actual = await fetchAllMonthTasks();
+
+                // Assert
+                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
+                expect(actual).toEqual(expected);
+            });
+            it('should fetch months when includeTags are, but exclude tags are not, passed in', async () => {
+                // Arrange 
+                const includeTags = 'tag1'
+                const expectedUrl = `${api}activities/months?includeTags=${includeTags}&excludeTags=undefined`;
+                const expected = { _id: 'mockTaskId' };
+                mockFetchApiResponse(fetchApiDataSpy, expected);
+
+                // Act
+                const actual = await fetchAllMonthTasks(includeTags);
+
+                // Assert
+                expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
+                expect(actual).toEqual(expected);
+            });
+            it('should fetch months when includeTags are, but exclude tags are not, passed in', async () => {
+                // Arrange 
+                const includeTags = 'tag1'
+                const excludeTags = 'tag2'
+                const expectedUrl = `${api}activities/months?includeTags=${includeTags}&excludeTags=${excludeTags}`;
+                const expected = { _id: 'mockTaskId' };
+                mockFetchApiResponse(fetchApiDataSpy, expected);
+
+                // Act
+                const actual = await fetchAllMonthTasks(includeTags, excludeTags);
 
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})

@@ -15,25 +15,20 @@ type DateIncludeExcludeTagsLoaderTypes<E> = (date?: string | null, includeTags?:
 export const fetchTasks: LoaderTypes<Task[]> = async () => await fetchApiData(`${api}tasks`, {});
 export const fetchTask: StringLoaderTypes<Task> = async (index) => await fetchApiData(`${api}task/${index}`, {});
 export const fetchTasksTitles: LoaderTypes<Task[]> = async () => await fetchApiData(`${api}tasks-titles`, {});
-export const fetchTodaysActivities: DateIncludeExcludeTagsLoaderTypes<AggregateActivity> = async (date, includeTags, excludeTags) => {
+export const fetchTodaysActivities: DateIncludeExcludeTagsLoaderTypes<AggregateActivity> = async (date, includeTags, excludeTags) =>
+    await fetchApiData(`${api}activities/today${createQueryParams(date, includeTags, excludeTags)}`, {});
+export const createQueryParams = (date?: string | null, includeTags?: string | null, excludeTags?: string | null) => {
     if (date && includeTags && excludeTags) {
-        return await fetchApiData(`${api}activities/today?date=${date}&includeTags=${includeTags}&excludeTags=${excludeTags}`, {})
+        return `?date=${date}&includeTags=${includeTags}&excludeTags=${excludeTags}`;
     } else if (date && includeTags) {
-        return await fetchApiData(`${api}activities/today?date=${date}&includeTags=${includeTags}`, {})
+        return `?date=${date}&includeTags=${includeTags}`;
     } else if (date) {
-        return await fetchApiData(`${api}activities/today?date=${date}`, {})
+        return `?date=${date}`;
     }
-    return await fetchApiData(`${api}activities/today`, {})
-}
+    return '';
+};
 export const fetchAllDayTasks: IncludeExcludeTagsLoaderTypes<AggregateActivity> = async (includeTags, excludeTags) => {
-    if (includeTags && excludeTags) {
-        return await fetchApiData(`${api}activities/all?includeTags=${includeTags}&excludeTags=${excludeTags}`, {})
-    } else if (includeTags) {
-        return await fetchApiData(`${api}activities/all?includeTags=${includeTags}`, {})
-    } else if (excludeTags) {
-        return await fetchApiData(`${api}activities/all?excludeTags=${excludeTags}`, {})
-    }
-    return await fetchApiData(`${api}activities/all`, {})
+    return await fetchApiData(`${api}activities/all${createQueryParams(null, includeTags, excludeTags)}`, {})
 }
 export const fetchAllMonthTasks: IncludeExcludeTagsLoaderTypes<AggregateActivity> = async (includeTags, excludeTags) =>
     await fetchApiData<any>(`${api}activities/months?includeTags=${includeTags}&excludeTags=${excludeTags}`, {})
