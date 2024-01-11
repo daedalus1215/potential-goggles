@@ -5,7 +5,7 @@ import '@testing-library/jest-dom'
 
 // target
 import DateTimeListView from '../DateTimeListView';
-import { TaskFixture } from '@/dataFixtures/TaskFixture';
+import { taskFixture } from '@/dataFixtures/taskFixture';
 
 // mocks
 jest.mock('../DateTimeItem', () => ({
@@ -18,7 +18,7 @@ jest.mock('@/hooks/useExpandedContext', () => ({
 describe('DateTimeListView.test.tsx', () => {
     it('should render with DateTimeItem', () => {
         // Arrange & Act
-        const target = render(<DateTimeListView task={TaskFixture} />);
+        const target = render(<DateTimeListView task={taskFixture} />);
 
         // Assert
         expect(target.queryByTestId('DateTimeItem')).toBeInTheDocument();

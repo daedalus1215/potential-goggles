@@ -1,8 +1,10 @@
 import * as fetchApiData from "@/utils/fetchApiData";
-import { addQuestionMarkIfRequired, createQueryParams, fetchAllMonthTasks, fetchTag, fetchTags, fetchTask, fetchTasks, fetchTasksTitles, fetchTodaysActivities, taskLoader, tasksLoader } from "../loaders";
+import { addQuestionMarkIfRequired, createQueryParams, dateTimeLoader, fetchAllMonthTasks, fetchTag, fetchTags, fetchTask, fetchTasks, fetchTasksTitles, fetchTodaysActivities, taskLoader, tasksLoader } from "../loaders";
 import { api } from '@/config.json';
 import { LoaderFunctionArgs } from "react-router-dom";
 import { mockFetchApiResponse } from "@/testUtils/mockFetchApiResponse";
+import { taskFixture } from "@/dataFixtures/taskFixture";
+import { createRequest } from "@/testUtils/createRequest";
 
 describe('client/src/actionsAndLoaders/loaders.ts', () => {
     describe('loaders', () => {
@@ -272,7 +274,25 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 expect(actual).toEqual(expected);
             });
         });
-        //@TODO: next: dateTimeLoader
+        describe('dateTimeLoader', () => {
+            describe('with a taskId', () => {
+                it('should fetch and return dateTime with an id equal to the taskId  ', async () => {
+                    // Arrange 
+                    const expected = taskFixture();
+                    const taskId = expected._id;
+                    const expectedUrl = `${api}task/${taskId}`
+                    mockFetchApiResponse(fetchApiDataSpy, expected);
+                    const lody: LoaderFunctionArgs = createRequest(undefined, undefined, {taskId});
+
+                    // Act
+                    const actual = await dateTimeLoader(lody);
+
+                    // Assert
+                    expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
+                    expect(actual).toEqual(expected);
+                });
+            });
+        });
         describe('addQuestionMarkIfRequired', () => {
             it('should return with a "?" if none given', () => {
                 // Arrange
