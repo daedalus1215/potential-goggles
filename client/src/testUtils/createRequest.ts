@@ -1,55 +1,48 @@
-import { LoaderFunctionArgs, Params } from "react-router-dom";
+import { LoaderFunctionArgs } from "react-router-dom";
 import { api } from '@/config.json';
 
-type CreateRequestType = (
+type CheckRequest = (
     formSetup?: { [key: string]: string },
     url?: string,
     params?: { [key: string]: string }
-) => Promise<LoaderFunctionArgs>;
+) => LoaderFunctionArgs;
 
-export const createRequest: CreateRequestType = async (
-    formSetup?: { [key: string]: string },
-    url?: string,
-    params?: { [key: string]: string }
-) => {
+export const createRequest: CheckRequest = (formSetup, url, parameters) => {
     const postUrl = `${api}${url}`;
-    const baseRequest: LoaderFunctionArgs = createBaseRequest(params);
+    const baseRequest: LoaderFunctionArgs = createBaseRequest();
+    const params = parameters ? parameters : {};
 
-    const formData = (): FormData => {
+    if (!formSetup) {
+        return ({
+            ...baseRequest,
+            request: {
+                ...baseRequest.request,
+                url: postUrl,
+            },
+            params
+        });
+    }
+
+    const formData = () => {
         const form = new FormData();
         Object.entries(formSetup || {}).forEach(([key, value]) => {
             form.append(key, value);
         });
-        return form;
+        return Promise.resolve(form);
     };
 
-
-    // If no formSetup is provided, return the request directly
-    if (!formSetup) {
-        return {
-            ...baseRequest,
-            request: {
-                ...baseRequest.request,
-                url: postUrl,
-            },
-        };
-    }
-
-    // Otherwise, return a promise that resolves to the request object
-    return new Promise<LoaderFunctionArgs>((resolve) => {
-        resolve({
-            ...baseRequest,
-            request: {
-                ...baseRequest.request,
-                url: postUrl,
-                formData,
-                params: { ...params },
-            },
-        });
+    return ({
+        ...baseRequest,
+        request: {
+            ...baseRequest.request,
+            url: postUrl,
+            formData,
+        },
+        params
     });
 };
 
-const createBaseRequest: (params?: { [key: string]: string }) => LoaderFunctionArgs = (params = {}) => ({
+const createBaseRequest: () => LoaderFunctionArgs = (params = {}) => ({
     request: {
         url: `${api}`,
         cache: "default",
@@ -122,14 +115,15 @@ const createBaseRequest: (params?: { [key: string]: string }) => LoaderFunctionA
         blob: function (): Promise<Blob> {
             throw new Error("Function not implemented.");
         },
-
         json: function (): Promise<any> {
             throw new Error("Function not implemented.");
         },
         text: function (): Promise<string> {
             throw new Error("Function not implemented.");
         },
-        params
+        formData: function (): Promise<FormData> {
+            throw new Error("Function not implemented.");
+        }
     },
-    params
+    params: {}
 });

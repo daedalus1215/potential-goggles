@@ -8,16 +8,17 @@ describe('src/components/TaskListView/__test__/formatTimeContractAndCustomer.tes
   describe('formatTimeContractAndCustomer', () => {
     it('should return a formatted task in preperation of saving into the json file', () => {
       // Arrange
+      const task = taskFixture();
       const expectedTaskWithProject = {
-        ...taskFixture,
-        time: displayMsInFractionalHourFormat(taskFixture.time),
+        ...task,
+        time: displayMsInFractionalHourFormat(task.time),
         // contract: ProjectFixture[2].contract,
         // customer: ProjectFixture[2].customer
       };
 
       // Act
       const actualTaskWithProject = formatTimeContractAndCustomer(
-        taskFixture,
+        task,
         ProjectFixture
       );
 

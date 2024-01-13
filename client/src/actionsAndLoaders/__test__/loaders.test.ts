@@ -278,14 +278,14 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
             describe('with a taskId', () => {
                 it('should fetch and return dateTime with an id equal to the taskId  ', async () => {
                     // Arrange 
-                    const expected = taskFixture();
-                    const taskId = expected._id;
+                    const task = taskFixture();
+                    const taskId = task.taskId;
                     const expectedUrl = `${api}task/${taskId}`
-                    mockFetchApiResponse(fetchApiDataSpy, expected);
-                    const lody: LoaderFunctionArgs = createRequest(undefined, undefined, {taskId});
+                    const expected = { taskId, dateTime: task.dateTimes[0] }
+                    mockFetchApiResponse(fetchApiDataSpy, task);
 
                     // Act
-                    const actual = await dateTimeLoader(lody);
+                    const actual = await dateTimeLoader(createRequest(undefined, undefined, { taskId, dateTimeId: task.dateTimes[0].id }));
 
                     // Assert
                     expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
