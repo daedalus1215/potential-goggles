@@ -1,9 +1,10 @@
-import { Task } from "@/interfaces";
+import { Task,ProperTask } from "@/interfaces";
 import { randomDate, randomNumber, randomString } from "@/testUtils/randomUtils";
 
-type TaskType = () => Task;
+type TaskType = () => ProperTask;
+
 export const taskFixture: TaskType = () => ({
-    _id: randomString(),
+    taskId: randomString(),
     title: randomString(),
     description: randomString(),
     projectId: randomNumber(),

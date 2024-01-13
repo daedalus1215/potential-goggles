@@ -73,7 +73,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
         });
 
         describe('#deleteTask', () => {
-            it('should delete task and redirect user to home page', async () => {
+            it('should delete task and redirect user to home page', () => {
                 // Arrange
                 const mockDate = 'mockingDate';
                 const mockProjectId = 'mockProjectId';
@@ -90,7 +90,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
                 mockRedirect(redirect, expectedTask);
 
                 // Act
-                const actual = await updateTaskAction(createRequest({
+                const actual = updateTaskAction(createRequest({
                     formId: FORMS.deleteTask,
                     id: mockId,
                     description: mockDescription,
