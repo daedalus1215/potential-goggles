@@ -5,7 +5,7 @@ describe('RequestToTaskDto', () => {
         // Arrange
         const request = {
             body: {
-                taskId: 1,
+                _id: 1,
                 date: 'newDate',
                 WorkUnit:[
                     {
@@ -16,7 +16,7 @@ describe('RequestToTaskDto', () => {
             }
         };
         const expected = {
-            id: request.body.taskId,
+            id: request.body._id,
             date: request.body.date,
             description: request.body.WorkUnit[0].description,
             contractId: request.body.WorkUnit[0].contractId,

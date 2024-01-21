@@ -4,7 +4,7 @@ import { getTitle } from '../../../../../utils/getTitle.mjs';
 //@TODO: Need to UT these conditionals
 export default (doc) => {
     const task = {};
-    task.taskId = doc.taskId;
+    task._id = doc._id;
     task.description = doc?.description || '';
     task.tags = doc?.tags || [];
     task.date = doc?.date || '';
@@ -22,7 +22,7 @@ export default (doc) => {
         .sort((a, b) => b.date.getTime() - a.date.getTime())
         .map(dateTime => {
             const date = dateTime.date;
-            const id = dateTime.taskId;
+            const id = dateTime._id;
             const time = millisToMinutesAndSeconds(dateTime.time);
             return { id, date, time };
         })

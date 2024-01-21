@@ -11,7 +11,7 @@ describe('server/application/requestHandlers/tasks/__test__/getTaskByIdAction.te
     it('should call TaskService.fetchTaskById() and return in res.jsonp()', async () => {
       // Arrange
       const resSpy = { jsonp: jest.fn() };
-      const expected = [{ taskId: 1 }];
+      const expected = [{ _id: 1 }];
       const request = { params: { id: 'id' } }
       apiResponse.mockImplementation(() => resSpy);
       TaskService.fetchTaskById = jest.fn().mockImplementation(() => expected);
@@ -30,7 +30,7 @@ describe('server/application/requestHandlers/tasks/__test__/getTaskByIdAction.te
     it('should call pass an error object to res.jsonp', async () => {
       // Arrange
       const resSpy = { jsonp: jest.fn() };
-      const expected = [{ taskId: 1 }];
+      const expected = [{ _id: 1 }];
       const expectedError = {"error": "Need Id"};
       const request = {}
       apiResponse.mockImplementation(() => resSpy);

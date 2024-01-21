@@ -2,10 +2,9 @@ import TaskModel from "../../../../infrastructure/models/TaskModel.mjs";
 import { inclusivelyFilter } from "../../../../utils/inclusivelyFilter.mjs";
 import { exclusivelyFilter } from "../../../../utils/exclusivelyFilter.mjs";
 import { formatMonth } from '../../../../utils/getDate.mjs'
-import EntityToDto from "./FetchTaskByIdRepository/EntityToDto.mjs";
 
 export const fetchAllMonthTasks = async (includeTags, excludeTags) => {
-    const tasks = await TaskModel.find().map(task => EntityToDto(task));
+    const tasks = await TaskModel.find();
     const results = {};
     const tagsWithoutExcluded = exclusivelyFilter(tasks.filter(task => task?.date), excludeTags);
     const includedAndExcludedTags = inclusivelyFilter(tagsWithoutExcluded, includeTags);

@@ -20,7 +20,7 @@ describe('updateTask', () => {
         const actual = await updateTask(dto, resSpy);
         
         // Assert
-        expect(Task.findOne).toBeCalledWith({ taskId: 1 }, assembleSpy);
+        expect(Task.findOne).toBeCalledWith({ _id: 1 }, assembleSpy);
         expect(assembleAndSave).toBeCalledWith(dto, resSpy);
         expect(actual).toEqual(expected);
     });

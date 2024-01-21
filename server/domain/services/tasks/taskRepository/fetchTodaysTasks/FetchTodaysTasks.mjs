@@ -21,7 +21,7 @@ export const FetchTodaysTasks = async (includeTags, excludeTags, reqDate) => {
     const aggActivities = {
         activities: inclusivelyFilter(exclusivelyFilter(newTasks, excludeTags), includeTags)
             .map((task) => ({
-                taskId: task?.taskId ?? 'stubAnId',
+                _id: task?._id ?? 'stubAnId',
                 title: task?.title ?? 'no title',
                 date: task.date,
                 totalTimeToday: task.time

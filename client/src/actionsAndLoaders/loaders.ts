@@ -1,7 +1,7 @@
 import { api } from '@/config.json';
 import fetchApiData from "@/utils/fetchApiData";
 import type { LoaderFunctionArgs } from "@remix-run/router";
-import { AggregateActivity, ProperTask, Tag, Task, TypedResponse } from '../interfaces';
+import { AggregateActivity, Tag, Task, TypedResponse } from '../interfaces';
 import { formatDate } from '@/utils/formatters/formatDate';
 
 // Loaders = GET \\ 
@@ -13,7 +13,7 @@ type DateIncludeExcludeTagsLoaderTypes<E> = (date?: string | null, includeTags?:
 
 // fetch
 export const fetchTasks: LoaderTypes<Task[]> = async () => await fetchApiData(`${api}tasks`, {});
-export const fetchTask: StringLoaderTypes<ProperTask> = async (index) => await fetchApiData(`${api}task/${index}`, {});
+export const fetchTask: StringLoaderTypes<Task> = async (index) => await fetchApiData(`${api}task/${index}`, {});
 export const fetchTasksTitles: LoaderTypes<Task[]> = async () => await fetchApiData(`${api}tasks-titles`, {});
 export const fetchTodaysActivities: DateIncludeExcludeTagsLoaderTypes<AggregateActivity> = async (date, includeTags, excludeTags) =>
     await fetchApiData(`${api}activities/today${createQueryParams(date, includeTags, excludeTags)}`, {});

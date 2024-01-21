@@ -21,12 +21,12 @@ describe('server/infrastructure/repositories/tags/__test__/TagRepository.test.js
       it('should call Tag.deleteOne', () => {
         // Arrange
         const tag = {
-          taskId: 1,
+          _id: 1,
         };
         const { deleteTag } = TagRepository;
 
         // Act
-        deleteTag(tag.taskId, res);
+        deleteTag(tag._id, res);
 
         // Assert
         expect(hydrateAndResponse).toHaveBeenNthCalledWith(1, res);
@@ -67,8 +67,8 @@ describe('server/infrastructure/repositories/tags/__test__/TagRepository.test.js
         // Assert
         expect(hydrateAndResponse).toHaveBeenNthCalledWith(1, res);
         expect(Tag.findOneAndUpdate).toHaveBeenNthCalledWith(1,
-          { taskId: dto.id },
-          { "$set": { "taskId": 1, description, name } },
+          { _id: dto.id },
+          { "$set": { "_id": 1, description, name } },
           { "new": true },
           hydrate);
       });

@@ -9,7 +9,7 @@ import { DELETE, FORMS, PUT } from '@/utils/constants';
 
 export const newTaskAction: ActionInterface<any> = async () => {
     const response = await fetchApiData<Task>(`${api}task`, { method: 'POST', });
-    return redirect(`task/${response.taskId}`);
+    return redirect(`task/${response._id}`);
 }
 export const updateTaskAction: ActionInterface<any> = async ({ request }) => {
     const formData = await request.formData()
@@ -17,12 +17,12 @@ export const updateTaskAction: ActionInterface<any> = async ({ request }) => {
     switch (formId) {
         case FORMS.updateTask:
             const prepareAndSendTask = async (updates: any) => {
-                const { taskId, description, projectId, tags } = updates;
+                const { _id, description, projectId, tags } = updates;
                 const dateFormatted = convertDateTimeToLocalTime(new Date());
                 return await fetchApiData(`${api}task`, {
                     method: PUT,
                     body: {
-                        taskId,
+                        _id,
                         date: dateFormatted,
                         WorkUnit: [
                             {
@@ -36,7 +36,7 @@ export const updateTaskAction: ActionInterface<any> = async ({ request }) => {
                 })
             };
             return prepareAndSendTask({
-                taskId: formData.get('id'),
+                _id: formData.get('id'),
                 description: formData.get('description'),
                 projectId: formData.get('projectId') ?? 0,
                 tags: formData.get('tags') ?? 0,
@@ -64,7 +64,7 @@ export const updateTagAction: ActionInterface<any> = async ({ request }) => {
             await fetchApiData(`${api}tag/${id}`, {
                 method: PUT,
                 body: {
-                    taskId: id,
+                    _id: id,
                     description: formData.get('description') ?? '',
                     name: formData.get('name') ?? ''
                 }
@@ -82,7 +82,7 @@ export const createDateTime: ActionInterface<any> = async ({ request }) => {
     const taskId = formData.get('taskId');
     const task = await fetchApiData<DateTimeTaskResponse>(`${api}task/${taskId}/dateTime`, { method: 'POST' })
     if (task?.time?.length > 0) {
-        return redirect(`/task/${taskId}/date-time/edit/${task.time[task.time.length - 1].taskId}`);
+        return redirect(`/task/${taskId}/date-time/edit/${task.time[task.time.length - 1]._id}`);
     }
     return task;
 }

@@ -8,14 +8,14 @@ import { useListenForSave, useSmallScreenSize } from '@/hooks';
 
 import styles from './TaskPage.module.css';
 
-const FORMtaskId = "taskForm";
+const FORM_ID = "taskForm";
 
 const TaskPage: React.FC = () => {
     const { task, options } = useLoaderData() as any;
     const descRef = useRef(null);
     const navigate = useNavigate();
     const isSmallScreen = useSmallScreenSize();
-    useListenForSave(FORMtaskId);
+    useListenForSave(FORM_ID);
 
     if (!task) {
         throw new Response("", {
@@ -33,9 +33,9 @@ const TaskPage: React.FC = () => {
                     <>
                         <IconButton
                             icon="bi bi-clock"
-                            form={FORMtaskId}
+                            form={FORM_ID}
                             onClick={() => {
-                                navigate(`/task/${task.taskId}/date-time`);
+                                navigate(`/task/${task._id}/date-time`);
                             }} />
 
                         <Form
@@ -46,7 +46,7 @@ const TaskPage: React.FC = () => {
                                 }
                             }}>
                             <input type="hidden" name="formId" value="deleteTask" />
-                            <input type="hidden" name="id" value={task.taskId} />
+                            <input type="hidden" name="id" value={task._id} />
                             <IconButton
                                 icon="bi bi-trash"
                                 type="submit"
@@ -55,23 +55,23 @@ const TaskPage: React.FC = () => {
                         <IconButton
                             icon="bi bi-save"
                             category={Category.info}
-                            form={FORMtaskId}
+                            form={FORM_ID}
                         />
                     </>
                 </TopBar>
             </div>
             <Form
-                id={FORMtaskId}
-                name={FORMtaskId}
+                id={FORM_ID}
+                name={FORM_ID}
                 method="post"
-                action={`/task/${task.taskId}`}
+                action={`/task/${task._id}`}
                 className={cn({ [styles.form]: isSmallScreen })}>
-                <input type="hidden" name="id" value={task.taskId} />
+                <input type="hidden" name="id" value={task._id} />
                 <input type="hidden" name="formId" value="updateTask" />
                 {/* Need to make this multi select */}
                 <select name="tags">
                     {options?.map((tag: any) => <option
-                        key={tag.taskId}
+                        key={tag._id}
                         id={tag.name}
                         value={tag.name}
                         selected={tag.selected}>
