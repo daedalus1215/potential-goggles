@@ -16,7 +16,7 @@ describe('server/infrastructure/repositories/tasks/Repositories/FetchTaskByIdRep
             ];
 
             const expected = {
-                _id: id,
+                taskId: id,
                 contractId,
                 date,
                 dateTimes: [
@@ -37,19 +37,19 @@ describe('server/infrastructure/repositories/tasks/Repositories/FetchTaskByIdRep
             }
 
             const doc = {
-                _id: id,
+                taskId: id,
                 description,
                 tags,
                 date,
                 contractId,
                 time: [
                     {
-                        _id: 1,
+                        taskId: 1,
                         date: '01/01/1010',
                         time: 6000
                     },
                     {
-                        _id: 2,
+                        taskId: 2,
                         date: '02/02/2020',
                         time: 6000
                     }

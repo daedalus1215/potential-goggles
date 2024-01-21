@@ -2,7 +2,7 @@ import TaskModel from "../../../../../infrastructure/models/TaskModel.mjs";
 import minutesToMilliseconds from "../../../../../utils/millisecondConversions/minutesToMilliseconds.mjs";
 
 const CreateDateTimeRepository = async (taskId) => {
-    const task = await TaskModel.findOne({ _id: taskId });
+    const task = await TaskModel.findOne({ taskId: taskId });
     const { time } = task;
     time.push({
         date: new Date(),

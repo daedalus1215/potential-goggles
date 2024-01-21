@@ -28,8 +28,8 @@ const TagePage: React.FC = () => {
                     <ul className={styles.DateTimeListView}>
                         {tags.map((tag: TagInterface) => {
                             return <Tag 
-                            key={tag._id} 
-                            _id={tag._id} 
+                            key={tag.taskId} 
+                            taskId={tag.taskId} 
                             name={tag.name} 
                             classNames={styles.content}/>
                         })}

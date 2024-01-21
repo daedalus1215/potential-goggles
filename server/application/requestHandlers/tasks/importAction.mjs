@@ -3,7 +3,7 @@ import TaskModel from "../../../infrastructure/models/TaskModel.mjs";
 import hydrateAndResponse from "../../../utils/hydrators/hydrateAndResponse.mjs";
 
 const doesTagExist = (tag) => {
-    if (TagService.fetchTagById(tag._id, getTag).error) {
+    if (TagService.fetchTagById(tag.taskId, getTag).error) {
         return false;
     }
 

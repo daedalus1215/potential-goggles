@@ -10,7 +10,7 @@ describe('server/infrastructure/repositories/tasks/Repositories/__test__/FetchAl
 
         it('should return expected task and invoke Task.find with hydrate', async () => {
             // Arrange
-            const tasks = {item: [{ _id: 1 }, { _id: 2 }], sort: jest.fn().mockImplementation(() => tasks)};
+            const tasks = {item: [{ taskId: 1 }, { taskId: 2 }], sort: jest.fn().mockImplementation(() => tasks)};
             TaskModel.find = jest.fn().mockImplementation(() => tasks);
 
             // Act

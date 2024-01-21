@@ -9,14 +9,14 @@ describe('server/application/requestHandler/tasks/__test__/UpdateDateTimeAction.
     describe('UpdateDateTimeAction', () => {
         it('should return updated task with the updated date and time', () => {
             // Arrange
-            const dateTime = { _id: 'dateTimeID' };
+            const dateTime = { taskId: 'dateTimeID' };
             const req = {
                 params: { taskId: 'taskId' },
                 body: dateTime
             };
             const res = jest.fn();
             const expected = {
-                _id: 'taskId',
+                taskId: 'taskId',
                 dateTime
             };
             const responder = jest.fn();
@@ -27,7 +27,7 @@ describe('server/application/requestHandler/tasks/__test__/UpdateDateTimeAction.
             UpdateDateTimeAction(req, res);
 
             // Assert
-            expect(TaskService.updateDateTimeOfTask).toBeCalledWith(expected._id, dateTime);
+            expect(TaskService.updateDateTimeOfTask).toBeCalledWith(expected.taskId, dateTime);
             expect(responder).toBeCalledWith(expected);
         });
     });

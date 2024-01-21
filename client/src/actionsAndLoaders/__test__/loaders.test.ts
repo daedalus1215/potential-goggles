@@ -19,7 +19,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
             it('should invoke fetchApiData with expected url once', async () => {
                 // Arrange
                 const expectedUrl = `${api}tasks`;
-                const expected = { _id: 'mockTaskId' };
+                const expected = { taskId: 'mockTaskId' };
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
@@ -35,7 +35,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 // Arrange 
                 const argument = "1";
                 const expectedUrl = `${api}task/${argument}`
-                const expected = { _id: 'mockTaskId' };
+                const expected = { taskId: 'mockTaskId' };
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
@@ -50,7 +50,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
             it('should fetch title of tasks', async () => {
                 // Arrange 
                 const expectedUrl = `${api}tasks-titles`
-                const expected = { _id: 'mockTaskId' };
+                const expected = { taskId: 'mockTaskId' };
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
@@ -113,7 +113,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
             it('should fetch title of tasks when no arguments passed in', async () => {
                 // Arrange 
                 const expectedUrl = `${api}activities/today`
-                const expected = { _id: 'mockTaskId' };
+                const expected = { taskId: 'mockTaskId' };
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
@@ -127,7 +127,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 // Arrange 
                 const date = '2023-12-12';
                 const expectedUrl = `${api}activities/today?date=${date}`
-                const expected = { _id: 'mockTaskId' };
+                const expected = { taskId: 'mockTaskId' };
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
@@ -142,7 +142,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 const date = '2023-12-12';
                 const includeTags = 'tag1'
                 const expectedUrl = `${api}activities/today?date=${date}&includeTags=${includeTags}`;
-                const expected = { _id: 'mockTaskId' };
+                const expected = { taskId: 'mockTaskId' };
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
@@ -158,7 +158,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 const includeTags = 'tag2';
                 const excludeTags = 'tag4';
                 const expectedUrl = `${api}activities/today?date=${date}&includeTags=${includeTags}&excludeTags=${excludeTags}`;
-                const expected = { _id: 'mockTaskId' };
+                const expected = { taskId: 'mockTaskId' };
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
@@ -173,7 +173,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
             it('should fetch months when includeTags and excludeTags not passed in', async () => {
                 // Arrange 
                 const expectedUrl = `${api}activities/months?includeTags=undefined&excludeTags=undefined`
-                const expected = { _id: 'mockTaskId' };
+                const expected = { taskId: 'mockTaskId' };
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
@@ -187,7 +187,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 // Arrange 
                 const includeTags = 'tag1'
                 const expectedUrl = `${api}activities/months?includeTags=${includeTags}&excludeTags=undefined`;
-                const expected = { _id: 'mockTaskId' };
+                const expected = { taskId: 'mockTaskId' };
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
@@ -202,7 +202,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 const includeTags = 'tag1'
                 const excludeTags = 'tag2'
                 const expectedUrl = `${api}activities/months?includeTags=${includeTags}&excludeTags=${excludeTags}`;
-                const expected = { _id: 'mockTaskId' };
+                const expected = { taskId: 'mockTaskId' };
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
@@ -232,7 +232,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
             it('should fetch all tags', async () => {
                 // Arrange 
                 const expectedUrl = `${api}tags`
-                const expected = [{ _id: 'mockTagId' }];
+                const expected = [{ taskId: 'mockTagId' }];
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
@@ -248,7 +248,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 // Arrange
                 const params = {} as LoaderFunctionArgs;
                 const expectedUrl = `${api}task/`;
-                const expected = { _id: 'mockTaskId' };
+                const expected = { taskId: 'mockTaskId' };
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
@@ -263,7 +263,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
             it('should invoke fetchApiSpy with expected url and no argument, when no argument passed in', async () => {
                 // Arrange
                 const expectedUrl = `${api}tasks`;
-                const expected = { _id: 'mockTaskId' };
+                const expected = { taskId: 'mockTaskId' };
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act

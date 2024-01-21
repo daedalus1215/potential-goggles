@@ -59,10 +59,10 @@ const Sidebar: React.FC<props> = ({ classNames, tasks, q, selectedId, isExpanded
             {tasks.length ? (
                 <ul className={cn(styles.taskListView, { [styles.isExpanded]: isExpanded }, classNames)}>
                     {tasks.map((task: any) => (
-                        <li key={task._id} className={cn(styles.taskItemContainer, classNames)}>
+                        <li key={task.taskId} className={cn(styles.taskItemContainer, classNames)}>
                             <NavLink
                                 key={task.id}
-                                to={`task/${task._id}`}
+                                to={`task/${task.taskId}`}
                                 onClick={() => {
                                     const stricterTypeRef = searchRef as { current?: { value?: '' } };
                                     // clear the search 
@@ -78,7 +78,7 @@ const Sidebar: React.FC<props> = ({ classNames, tasks, q, selectedId, isExpanded
                                 {task?.title ? <>{task.title}</> : <i>No Name</i>}{' '}
                             </NavLink>
                             <div className={styles.borderContainer}>
-                                <div className={cn(styles.underBorder, { [styles.underBorderSelected]: task._id === selectedId })} />
+                                <div className={cn(styles.underBorder, { [styles.underBorderSelected]: task.taskId === selectedId })} />
                             </div>
                         </li>
                     ))}

@@ -4,7 +4,7 @@ const FetchAllTaskTitlesRepository = async () => {
     const tasks = await TaskModel.find().sort('-date');
     return tasks
         .map((task) => ({
-            _id: task?._id ?? 'stubAnId',
+            taskId: task?.taskId ?? 'stubAnId',
             title: task?.title ?? 'no title'
         }));
 

@@ -4,7 +4,7 @@ export type EntityLabelOption = {
 }
 
 export type EntityNameOption = {
-  _id: string | number;
+  taskId: string | number;
   name: string;
 }
 
@@ -18,7 +18,7 @@ type ReturnedOption = {
 const selectNormalizer = (options: CombinedOptions[]): ReturnedOption[] | null => {
   if (Array.isArray(options)) {
     return options.map((d) => ({
-      value: (d as EntityNameOption)._id || (d as EntityLabelOption).value,
+      value: (d as EntityNameOption).taskId || (d as EntityLabelOption).value,
       label: (d as EntityNameOption).name || (d as EntityLabelOption).label,
     }));
   }

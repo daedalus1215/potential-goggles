@@ -3,12 +3,12 @@ import minutesToMilliseconds from "../../../../../utils/millisecondConversions/m
 
 
 const UpdateDateTimeRepository = async (taskId, dateTime) => {
-    const task = await TaskModel.findOne({ _id: taskId });
+    const task = await TaskModel.findOne({ taskId: taskId });
 
     const dateTimes = task.time.map((dateTimeFromDb) => {
-        if (dateTimeFromDb._id == dateTime.id) {
+        if (dateTimeFromDb.taskId == dateTime.id) {
             return {
-                _id: dateTimeFromDb._id,
+                taskId: dateTimeFromDb.taskId,
                 date: dateTime.date,
                 time: minutesToMilliseconds(dateTime.time),
             };

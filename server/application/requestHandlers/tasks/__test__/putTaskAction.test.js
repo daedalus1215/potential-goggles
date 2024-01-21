@@ -1,6 +1,6 @@
 const TaskService = require("../../../../domain/services/tasks/TaskService");
 const jsonResponse = require("../../apiResponse");
-const { PUT_TASK_BY_ID_RESPONSE } = require("../../reduxTypes");
+const { PUT_TASK_BYtaskId_RESPONSE } = require("../../reduxTypes");
 const RequestToTaskDto = require("../assemblers/RequestToTaskDto");
 const putTaskAction = require("../putTaskAction");
 
@@ -21,7 +21,7 @@ describe('putTaskAction', () => {
         putTaskAction(req, resSpy);
 
         // Assert
-        expect(jsonResponse).toHaveBeenNthCalledWith(1, resSpy, PUT_TASK_BY_ID_RESPONSE);
+        expect(jsonResponse).toHaveBeenNthCalledWith(1, resSpy, PUT_TASK_BYtaskId_RESPONSE);
         expect(RequestToTaskDto).toBeCalledWith(req);
         expect(TaskService.updateTask).toBeCalledWith(incomingDto, resSpy);
     });

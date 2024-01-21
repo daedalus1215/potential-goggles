@@ -7,12 +7,12 @@ import { Form, useLoaderData } from 'react-router-dom';
 
 import styles from './EditTagPage.module.css';
 
-const FORM_ID = "tagForm";
+const FORMtaskId = "tagForm";
 
 const EditTagePage: React.FC = () => {
     const tag = useLoaderData() as Tag;
     const descRef = useRef(null);
-    useListenForSave(FORM_ID);
+    useListenForSave(FORMtaskId);
 
     if (!tag) {
         throw new Response("", {
@@ -34,7 +34,7 @@ const EditTagePage: React.FC = () => {
                             }
                         }}>
                             <input type="hidden" name="formId" value="deleteTag" />
-                            <input type="hidden" name="id" value={tag._id} />
+                            <input type="hidden" name="id" value={tag.taskId} />
                             <IconButton
                                 icon="bi bi-trash"
                                 type="submit"
@@ -45,11 +45,11 @@ const EditTagePage: React.FC = () => {
             </div>
 
             <Form
-                id={FORM_ID}
-                name={FORM_ID}
+                id={FORMtaskId}
+                name={FORMtaskId}
                 method="put"
                 className={styles.form}>
-                <input type="hidden" name="id" value={tag._id} />
+                <input type="hidden" name="id" value={tag.taskId} />
                 <input type="hidden" name="formId" value="updateTag" />
                 <input type="text" name="name" defaultValue={tag.name} />
 

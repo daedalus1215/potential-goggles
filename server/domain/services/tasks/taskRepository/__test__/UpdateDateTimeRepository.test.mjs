@@ -14,14 +14,14 @@ describe('server/infrastructure/repositories/tasks/repositories/__test__/UpdateD
             const taskId = 'taskId';
             const dateTime = { id: 'dateId', minutes: 1000, date: 'some date' };
             const task = {
-                _id: taskId,
+                taskId: taskId,
                 time: [{
-                    _id: 'dateId',
+                    taskId: 'dateId',
                     date: 'date will be replaced with the task coming in',
                     time: 'time will be replaced with the task coming in'
                 },
                 {
-                    _id: 'not a matching id',
+                    taskId: 'not a matching id',
                     date: 'this wont change',
                     time: 'this wont change'
                 }],
@@ -30,12 +30,12 @@ describe('server/infrastructure/repositories/tasks/repositories/__test__/UpdateD
             TaskModel.findOne = jest.fn().mockImplementation(() => task);
             minutesToMilliseconds.mockImplementation(() => 100);
             const expected = [{
-                _id: dateTime.id,
+                taskId: dateTime.id,
                 time: 100,
                 date: dateTime.date
             },
             {
-                _id: 'not a matching id',
+                taskId: 'not a matching id',
                 date: 'this wont change',
                 time: 'this wont change'
             }];
@@ -44,7 +44,7 @@ describe('server/infrastructure/repositories/tasks/repositories/__test__/UpdateD
             const waiting = await UpdateDateTimeRepository(taskId, dateTime);
 
             // Assert
-            expect(TaskModel.findOne).toBeCalledWith({ _id: taskId });
+            expect(TaskModel.findOne).toBeCalledWith({ taskId: taskId });
             expect(minutesToMilliseconds).toBeCalledWith(dateTime.time);
 
             expect(task.time).toEqual(expected);

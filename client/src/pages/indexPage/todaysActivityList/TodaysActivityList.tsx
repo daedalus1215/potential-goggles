@@ -19,10 +19,10 @@ const TodaysActivityList: React.FC<props> = ({ aggregate }) => {
         <div className={styles.TodaysActivityList}>
             {aggregate.activities.map((activity: TodaysActivity) => {
                 return <div
-                    key={activity._id}
+                    key={activity.taskId}
                     className={styles.activity}
                     onClick={() => {
-                        navigate(`/task/${activity._id}`);
+                        navigate(`/task/${activity.taskId}`);
                     }}>
                     <span><>{activity.title} - {displayMsInFractionalHourFormat(activity.totalTimeToday)}</></span>
                 </div>

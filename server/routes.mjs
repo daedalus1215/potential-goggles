@@ -29,7 +29,7 @@ const routes = (app) => {
     app.get('/api/tasks-titles', getAllTaskTitlesAction);
     app.get('/api/task/:id', getTaskByIdAction);
     app.post('/api/task/', [
-        body('_id').isString().trim().escape(),
+        body('taskId').isString().trim().escape(),
         body('WorkUnit[0].description').isString().trim().escape(),
         body('date').custom((value) => {
             const pattern = new RegExp(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
@@ -44,7 +44,7 @@ const routes = (app) => {
     );
     app.put('/api/task',
         [
-            body('_id').isString().trim().escape(),
+            body('taskId').isString().trim().escape(),
             body('WorkUnit[0].description').isString().trim(),
             body('date').custom((value) => {
                 const pattern = new RegExp(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);

@@ -10,7 +10,7 @@ describe('server/application/requestHandlers/tasks/__test__/getAllTasksAction.te
       const response = {
         jsonp: jest.fn(),
       };
-      const tasks = [{ _id: 1 }];
+      const tasks = [{ taskId: 1 }];
 
       TaskService.fetchAllTasks = jest.fn().mockImplementation(() => tasks);
       jest.spyOn(TaskService, 'fetchAllTasks');
