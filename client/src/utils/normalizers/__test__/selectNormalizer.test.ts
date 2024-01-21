@@ -2,11 +2,11 @@ import selectNormalizer, { EntityLabelOption, EntityNameOption } from '../select
 
 describe('src/utils/__test__/selectNormalizer.test.js', () => {
   describe('selectNormalizer', () => {
-    it("should return 'value' and 'label' instead of '_id' and 'name' are present", () => {
+    it("should return 'value' and 'label' instead of 'taskId' and 'name' are present", () => {
       // Arrange
       const object: EntityNameOption[] = [
-        { _id: 1, name: 'name 1' },
-        { _id: 2, name: 'name 2' }
+        { taskId: 1, name: 'name 1' },
+        { taskId: 2, name: 'name 2' }
       ];
       const expected = [ 
         { value: 1, label: 'name 1' },

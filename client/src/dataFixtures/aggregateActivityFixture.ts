@@ -3,7 +3,7 @@ import { dateTimeFixture } from "./dateTimeFixture";
 
 export const aggregateActivityFixture = () => ({
     activities: [{
-        _id: randomString(),
+        taskId: randomString(),
         title: randomString(),
         date: randomDate(),
         totalTimeToday: randomNumber(),

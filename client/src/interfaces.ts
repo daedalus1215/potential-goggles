@@ -34,7 +34,7 @@ export interface Contact {
 export interface DateTime { id: string, date: string, time: string }
 
 export interface Task {
-    _id: string;
+    taskId: string;
     title?: string;
     description: string;
     projectId: number;
@@ -57,7 +57,7 @@ export interface ProperTask {
 
 //@TODO: Declare a Checkbox Tag here
 export interface Tag {
-    _id: string;
+    taskId: string;
     name: string;
     description: string;
 }
@@ -68,7 +68,7 @@ export interface AggregateActivity {
 }
 
 export interface TodaysActivity {
-    _id: string;
+    taskId: string;
     title: string;
     date: Date,
     totalTimeToday: number;
@@ -90,7 +90,7 @@ export interface TypedResponse<T = any> extends Response {
 
 export type DateTimeTaskResponse = {
     tags: Tag[];
-    _id: string;
+    taskId: string;
     time: DateTimeDateTime[];
     contractId: number;
     description: string;
@@ -99,7 +99,7 @@ export type DateTimeTaskResponse = {
 }
 
 export type DateTimeDateTime = {
-    _id: string;
+    taskId: string;
     date: string;
     time: number;
 }

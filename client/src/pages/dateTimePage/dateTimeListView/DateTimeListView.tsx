@@ -1,13 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Task } from '@/interfaces';
+import { ProperTask } from '@/interfaces';
 import DateTimeItem from './DateTimeItem';
 import useExpandedContext from '@/hooks/useExpandedContext';
 
 import styles from './DateTimeListView.module.css';
 
 interface DateTimeListViewProp {
-  task: Task
+  task: ProperTask
 }
 
 export const DateTimeListView: React.FC<DateTimeListViewProp> = ({ task }) => {
@@ -16,7 +16,7 @@ export const DateTimeListView: React.FC<DateTimeListViewProp> = ({ task }) => {
     <div className={classNames(styles.grid, { [styles.isExpanded]: isExpanded })}>
       {task.dateTimes?.map((dateTime) => <DateTimeItem
         dateTime={dateTime}
-        taskId={task._id}
+        taskId={task.taskId}
         key={dateTime.id + dateTime.time}
       />
       )}

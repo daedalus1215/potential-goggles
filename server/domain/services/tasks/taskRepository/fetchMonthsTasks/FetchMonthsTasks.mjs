@@ -11,7 +11,7 @@ export const FetchMonthsTasks = async (tags) => {
     const aggActivities = {
         activities: tasksFilteredByTags
             .map((task) => ({
-                _id: task?._id ?? 'stubAnId',
+                taskId: task?.taskId ?? 'stubAnId',
                 title: task?.title ?? 'no title',
                 date: task.date,
                 totalTimeToday: task.time

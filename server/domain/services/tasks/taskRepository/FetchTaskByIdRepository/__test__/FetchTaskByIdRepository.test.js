@@ -10,7 +10,7 @@ describe('server/infrastructure/repositories/tasks/Repositories/__test__/FetchTa
         it('should invoke Task.findById and then convert the returned entity into a dto', async () => {
             // Arrange
             const id = 'id';
-            const tasks = { _id: 1 };
+            const tasks = { taskId: 1 };
             Task.findById = jest.fn().mockImplementation(() => tasks);
             EntityToDto.mockImplementation(() => tasks);
 

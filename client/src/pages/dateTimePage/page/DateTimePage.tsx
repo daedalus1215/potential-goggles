@@ -1,13 +1,13 @@
 import React from 'react';
 import { Form, useLoaderData } from 'react-router-dom';
-import { Task } from '@/interfaces';
+import { ProperTask } from '@/interfaces';
 import { TopBar, BackButton, AddButton } from '@/components';
 import DateTimeListView from '../dateTimeListView/DateTimeListView';
 
 import styles from './DateTimePage.module.css';
 
 const DateTimePage: React.FC = () => {
-  const task = useLoaderData() as Task;
+  const task = useLoaderData() as ProperTask;
 
   if (!task) {
     throw new Response("", {
@@ -20,10 +20,10 @@ const DateTimePage: React.FC = () => {
       <h2 className={styles.h2}>{task.title}</h2>
       <TopBar>
         <>
-          <BackButton path={`/task/${task._id}`} />
+          <BackButton path={`/task/${task.taskId}`} />
           <Form
             method='post'>
-            <input type="hidden" name="taskId" value={task._id} />
+            <input type="hidden" name="taskId" value={task.taskId} />
             <AddButton />
           </Form>
         </>
