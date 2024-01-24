@@ -4,7 +4,7 @@ import { getTitle } from '../../../../../utils/getTitle.mjs';
 //@TODO: Need to UT these conditionals
 export default (doc) => {
     const task = {};
-    task._id = doc._id;
+    task.taskId = doc._id;
     task.description = doc?.description || '';
     task.tags = doc?.tags || [];
     task.date = doc?.date || '';
