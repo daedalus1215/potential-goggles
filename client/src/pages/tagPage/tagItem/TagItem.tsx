@@ -3,19 +3,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 interface props {
-    taskId: string;
+    _id: string;
     name: string;
     classNames: string;
 }
 
-const TagItem: React.FC<props> = ({ taskId, name, classNames }) => {
-    const rippleClick = useRippleEffectById(taskId, () => {});
+const TagItem: React.FC<props> = ({ _id, name, classNames }) => {
+    const rippleClick = useRippleEffectById(_id, () => {});
 
     return <Link
-        to={`/tag/${taskId}`}
-        id={taskId}
+        to={`/tag/${_id}`}
+        id={_id}
         className={classNames}
-        key={taskId}
+        key={_id}
         onClick={rippleClick}
         data-testid="DateTimeItem">
         <span>{name}</span>
