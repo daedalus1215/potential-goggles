@@ -9,7 +9,6 @@ import styles from './TagPage.module.css';
 
 const TagePage: React.FC = () => {
     const tags = useLoaderData() as TagInterface[];
-
     if (!tags) {
         throw new Response("", {
             status: 404,
@@ -27,9 +26,9 @@ const TagePage: React.FC = () => {
 
                     <ul className={styles.DateTimeListView}>
                         {tags.map((tag: TagInterface) => {
-                            return <Tag 
-                            key={tag.taskId} 
-                            taskId={tag.taskId} 
+                            return <Tag
+                            _id={tag._id} 
+                            key={tag._id} 
                             name={tag.name} 
                             classNames={styles.content}/>
                         })}

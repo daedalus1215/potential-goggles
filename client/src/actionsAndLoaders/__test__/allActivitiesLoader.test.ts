@@ -24,7 +24,6 @@ describe('allActivitiesLoader', () => {
         it('should invoke appropriate fetchers and returns null for queryDate, queryExcludeTags, and queryIncludeTags', async () => {
             // Arrange
             const request = createRequest();
-            console.log('request11', request)
             const allActivities: AggregateActivity = aggregateActivityFixture();
             const todaysActivities: AggregateActivity = aggregateActivityFixture();
             const expectedAllMonthTasks: AggregateActivity = aggregateActivityFixture();
