@@ -1,7 +1,7 @@
-import React, { Suspense, useRef } from "react";
+import React, { Suspense, useRef, useState } from "react";
 import ms from 'pretty-ms';
 import cn from "classnames";
-import { Form, useLoaderData, useNavigate } from "react-router-dom";
+import { Form, useLoaderData, useNavigate, useSubmit } from "react-router-dom";
 import { TextAreaAdapter, IconButton, TopBar } from "@/components";
 import { Category } from "@/components/button/Button";
 import { useListenForSave, useSmallScreenSize } from '@/hooks';
@@ -12,11 +12,12 @@ const FORM_ID = "taskForm";
 
 const TaskPage: React.FC = () => {
     const { task, options } = useLoaderData() as any;
-    const descRef = useRef(null);
+    const [value, onChange] = useState(task?.description ?? '');
     const navigate = useNavigate();
     const isSmallScreen = useSmallScreenSize();
     useListenForSave(FORM_ID);
 
+    console.log('yes', value)
     if (!task) {
         throw new Response("", {
             status: 404,
@@ -59,7 +60,6 @@ const TaskPage: React.FC = () => {
                         />
                     </>
                 </TopBar>
-            </div>
             <Form
                 id={FORM_ID}
                 name={FORM_ID}
@@ -71,17 +71,19 @@ const TaskPage: React.FC = () => {
                 {/* Need to make this multi select */}
                 <select name="tags">
                     {options?.map((tag: any) => <option
-                        key={tag.taskId}
+                        key={tag._id}
                         id={tag.name}
                         value={tag.name}
                         selected={tag.selected}>
                         {tag.name}
                     </option>)}
                 </select>
-                    <TextAreaAdapter reference={descRef} value={task.description} />
+                {/* @TODO: Clean this up!! */}
+                <input type="hidden" name="description" id="description" value={value} key={task.taskId} />
+                <TextAreaAdapter  value={value} onChange={onChange} reference={task.taskId} key={task.taskId}/>
             </Form>
         </div>
-    );
+        </div>);
 };
 
 export default TaskPage;

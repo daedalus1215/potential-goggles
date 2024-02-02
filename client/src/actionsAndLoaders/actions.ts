@@ -14,10 +14,12 @@ export const newTaskAction: ActionInterface<any> = async () => {
 export const updateTaskAction: ActionInterface<any> = async ({ request }) => {
     const formData = await request.formData()
     const formId = formData.get('formId') as formIds;
+    console.log('cheese', formData.get("cheese"))
     switch (formId) {
         case FORMS.updateTask:
             const prepareAndSendTask = async (updates: any) => {
                 const { _id, description, projectId, tags } = updates;
+                console.log('updates', updates)
                 const dateFormatted = convertDateTimeToLocalTime(new Date());
                 return await fetchApiData(`${api}task`, {
                     method: PUT,
@@ -57,7 +59,10 @@ export const updateTagAction: ActionInterface<any> = async ({ request }) => {
     const formData = await request.formData()
     const formId = formData.get('formId') as formIds;
     const id = formData.get('id');
-
+    console.log('id', id)
+    console.log('formData', formData)
+    const description = formData.get('description') ?? '';
+    console.log('desc', description)
     //@TODO: Could of done this over the verbs in the form.
     switch (formId) {
         case FORMS.updateTag:
@@ -65,7 +70,7 @@ export const updateTagAction: ActionInterface<any> = async ({ request }) => {
                 method: PUT,
                 body: {
                     _id: id,
-                    description: formData.get('description') ?? '',
+                    description: description,
                     name: formData.get('name') ?? ''
                 }
             });
