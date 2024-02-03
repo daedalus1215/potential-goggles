@@ -8,4 +8,7 @@ export default {
     '^.+\\.tsx?$': 'ts-jest',
     '^.+\\.css$': 'jest-css-modules-transform',
   },
+  transformIgnorePatterns: [
+    "node_modules/*"
+  ]
 };

@@ -1,7 +1,7 @@
 import { Task } from '@/interfaces';
 import formatTimeContractAndCustomer from '../formatTimeContractAndCustomer';
 import { displayMsInFractionalHourFormat } from '@/utils';
-import { taskFixture } from '@/dataFixtures/taskFixture';
+import { taskFixture } from '@/dataFixtures/taskFixtures';
 import { ProjectFixture } from '@/dataFixtures/ProjectFixture';
 
 describe('src/components/TaskListView/__test__/formatTimeContractAndCustomer.test.js', () => {

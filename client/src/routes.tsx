@@ -48,7 +48,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                     path: "task/:taskId",
                     loader: taskAndTagLoader,
                     element: <TaskPage />,
-                    action: updateTaskAction,
                   },
                   {
                     path: "task/:taskId/date-time",
