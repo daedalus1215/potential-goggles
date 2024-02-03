@@ -47,7 +47,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
                                 tags: mockTags,
                                 time: 0
                             }],
-                        taskId: mockId,
+                        _id: mockId,
                         date: mockDate
                     },
                     method: PUT
@@ -84,7 +84,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
                 const expectedBody = {
                     method: DELETE
                 };
-                const expectedTask = { taskId: mockId };
+                const expectedTask = { _id: mockId };
     
                 mockFetchApiResponse(fetchApiDataSpy, {})
                 mockRedirect(redirect, expectedTask);
@@ -96,7 +96,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
                     description: mockDescription,
                     projectId: mockProjectId,
                     tags: mockTags
-                })as unknown as LoaderFunctionArgs);
+                }) as unknown as LoaderFunctionArgs);
     
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
@@ -146,7 +146,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
             it('should update a tag and then redirect to the tags page', async () => {
                 // Arrange
                 const id = 'mockId';
-                const expectedBody = { "body": { "taskId": id, "description": "", "name": "" }, "method": "PUT" };
+                const expectedBody = { "body": { "_id": id, "description": "", "name": "" }, "method": "PUT" };
                 const expectedUrl = `${api}tag/${id}`;
 
                 const expectedResponse = { tag: 'tagMockId' };
@@ -210,7 +210,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
             const taskId = 'mockTaskId';
             const expectedUrl = `${api}task/${taskId}/dateTime`;
             const expectedBody = { method: 'POST' };
-            fetchApiDataSpy.mockReturnValueOnce({ time: [{ taskId: 'mockId1' }, { taskId: 'mockId2' }] });
+            fetchApiDataSpy.mockReturnValueOnce({ time: [{ _id: 'mockId1' }, { _id: 'mockId2' }] });
             const expectedTask = { time: [{ taskId: 'mockId3' }, { taskId: 'mockId4' }] };
             mockRedirect(redirect, expectedTask);
 
