@@ -3,7 +3,7 @@ import { addQuestionMarkIfRequired, createQueryParams, dateTimeLoader, fetchAllM
 import { api } from '@/config.json';
 import { LoaderFunctionArgs } from "react-router-dom";
 import { mockFetchApiResponse } from "@/testUtils/mockFetchApiResponse";
-import { taskFixture } from "@/dataFixtures/taskFixture";
+import { taskFixture } from "@/dataFixtures/taskFixtures";
 import { createRequest } from "@/testUtils/createRequest";
 
 describe('client/src/actionsAndLoaders/loaders.ts', () => {

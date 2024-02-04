@@ -2,9 +2,10 @@ import React, { Suspense, useRef, useState } from "react";
 import ms from 'pretty-ms';
 import cn from "classnames";
 import { Form, useLoaderData, useNavigate, useSubmit } from "react-router-dom";
-import { TextAreaAdapter, IconButton, TopBar } from "@/components";
-import { Category } from "@/components/button/Button";
+import { TextAreaAdapter, IconButton, TopBar, SaveButton } from "@/components";
+import Button, { Category } from "@/components/button/Button";
 import { useListenForSave, useSmallScreenSize } from '@/hooks';
+import { api } from '@/config.json';
 
 import styles from './TaskPage.module.css';
 
@@ -14,6 +15,7 @@ const TaskPage: React.FC = () => {
     const { task, options } = useLoaderData() as any;
     const [value, onChange] = useState(task?.description ?? '');
     const navigate = useNavigate();
+    const submit = useSubmit();
     const isSmallScreen = useSmallScreenSize();
     useListenForSave(FORM_ID);
 
@@ -81,6 +83,17 @@ const TaskPage: React.FC = () => {
                 {/* @TODO: Clean this up!! */}
                 <input type="hidden" name="description" id="description" value={value} key={task.taskId} />
                 <TextAreaAdapter  value={value} onChange={onChange} reference={task.taskId} key={task.taskId}/>
+                <Button className={styles.left} onClick={(event, something) => {
+                    console.log('event', event)
+                    console.log('something', something)
+                    submit(
+                        { key: "value" },
+                        {
+                          method: "post",
+                          encType: "application/json",      
+                          action: `http://${api}task`,                  }
+                      )
+                }}/>
             </Form>
         </div>
         </div>);

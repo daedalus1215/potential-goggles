@@ -9,17 +9,15 @@ import { DELETE, FORMS, PUT } from '@/utils/constants';
 
 export const newTaskAction: ActionInterface<any> = async () => {
     const response = await fetchApiData<Task>(`${api}task`, { method: 'POST', });
-    return redirect(`task/${response._id}`);
+    return redirect(`task/${response.taskId}`);
 }
 export const updateTaskAction: ActionInterface<any> = async ({ request }) => {
     const formData = await request.formData()
     const formId = formData.get('formId') as formIds;
-    console.log('cheese', formData.get("cheese"))
     switch (formId) {
         case FORMS.updateTask:
             const prepareAndSendTask = async (updates: any) => {
                 const { _id, description, projectId, tags } = updates;
-                console.log('updates', updates)
                 const dateFormatted = convertDateTimeToLocalTime(new Date());
                 return await fetchApiData(`${api}task`, {
                     method: PUT,
@@ -44,6 +42,7 @@ export const updateTaskAction: ActionInterface<any> = async ({ request }) => {
                 tags: formData.get('tags') ?? 0,
             })
         case FORMS.deleteTask:
+            console.log('tyes')
             await fetchApiData(`${api}task/${formData.get('id')}`, { method: 'DELETE' });
             return redirect("/")
     }
