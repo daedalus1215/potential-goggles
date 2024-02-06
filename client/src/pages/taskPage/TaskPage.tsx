@@ -6,26 +6,34 @@ import { TextAreaAdapter, IconButton, TopBar, SaveButton } from "@/components";
 import Button, { Category } from "@/components/button/Button";
 import { useListenForSave, useSmallScreenSize } from '@/hooks';
 import { api } from '@/config.json';
-
+import { useEditor, EditorContent, FloatingMenu, BubbleMenu } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
 import styles from './TaskPage.module.css';
 
 const FORM_ID = "taskForm";
-
+// define your extension array
+const extensions = [
+    StarterKit,
+  ]
 const TaskPage: React.FC = () => {
     const { task, options } = useLoaderData() as any;
-    const [value, onChange] = useState(task?.description ?? '');
     const navigate = useNavigate();
     const submit = useSubmit();
     const isSmallScreen = useSmallScreenSize();
     useListenForSave(FORM_ID);
-
-    console.log('yes', value)
+    
+    // console.log('yes', value)
     if (!task) {
         throw new Response("", {
             status: 404,
             statusText: "Task not found!",
         });
     }
+
+    const editor = useEditor({
+        extensions,
+        content: task?.description ?? '',
+      })
     const original = (task?.time && ms(task.time, { secondsDecimalDigits: 2 })) ?? 0
     return (
         <div className="contactRight">
@@ -80,20 +88,7 @@ const TaskPage: React.FC = () => {
                         {tag.name}
                     </option>)}
                 </select>
-                {/* @TODO: Clean this up!! */}
-                <input type="hidden" name="description" id="description" value={value} key={task.taskId} />
-                <TextAreaAdapter  value={value} onChange={onChange} reference={task.taskId} key={task.taskId}/>
-                <Button className={styles.left} onClick={(event, something) => {
-                    console.log('event', event)
-                    console.log('something', something)
-                    submit(
-                        { key: "value" },
-                        {
-                          method: "post",
-                          encType: "application/json",      
-                          action: `http://${api}task`,                  }
-                      )
-                }}/>
+                <EditorContent editor={editor} />
             </Form>
         </div>
         </div>);

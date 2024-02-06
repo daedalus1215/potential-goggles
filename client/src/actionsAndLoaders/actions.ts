@@ -14,6 +14,8 @@ export const newTaskAction: ActionInterface<any> = async () => {
 export const updateTaskAction: ActionInterface<any> = async ({ request }) => {
     const formData = await request.formData()
     const formId = formData.get('formId') as formIds;
+    console.log('testing', formData.get('testing'))
+    console.log('editorClassName', formData.get('editorClassName'))
     switch (formId) {
         case FORMS.updateTask:
             const prepareAndSendTask = async (updates: any) => {
