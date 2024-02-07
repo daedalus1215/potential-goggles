@@ -1,15 +1,21 @@
-import React, { ChangeEvent, MutableRefObject, RefObject, useRef } from 'react';
-/* eslint-disable Unexpected toke*/
-import MDEditor  from "@uiw/react-md-editor";
-// No import is required in the WebPack.
-import "@uiw/react-md-editor/markdown-editor.css";
-// No import is required in the WebPack.
-import "@uiw/react-markdown-preview/markdown.css";
-
+import React, { RefObject } from 'react';
 import { useSmallScreenSize } from '@/hooks/useSmallScreenSize';
+import styles from './TextAreaAdapter.module.css';
+import cn from 'classnames';
 
-const TextAreaAdapter = ({value, onChange, reference }: {value:any, onChange:any, reference:any}) => {
-  return <MDEditor height={200} value={value} onChange={onChange} />
+type AdapterProps = {
+  reference: RefObject<HTMLTextAreaElement>;
+  value: string;
 };
+
+const TextAreaAdapter: React.FC<AdapterProps> = ({ value, reference }) => {
+  const isSmall = useSmallScreenSize();
+  return <textarea
+    ref={reference}
+    className={cn(styles.TextAreaAdapter, { [styles.TextAreaAdapterSmall]: isSmall })}
+    defaultValue={value}
+    name="description"
+  />;
+}
 
 export default TextAreaAdapter;

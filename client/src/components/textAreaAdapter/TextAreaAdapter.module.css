@@ -1,0 +1,27 @@
+.TextAreaAdapter {
+    width: 80vw;
+    height: 60vh;
+}
+
+@media only screen and (max-width: 1170px) {
+    .TextAreaAdapter {
+        width: 75vw;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .TextAreaAdapter {
+        width: 70vw;
+    }
+}
+
+@media only screen and (max-width: 787px) {
+    .TextAreaAdapter {
+        width: 65vw;
+    }
+}
+
+.TextAreaAdapterSmall {
+    width: 93vw;
+    margin: 0 10px;
+}

@@ -14,8 +14,6 @@ export const newTaskAction: ActionInterface<any> = async () => {
 export const updateTaskAction: ActionInterface<any> = async ({ request }) => {
     const formData = await request.formData()
     const formId = formData.get('formId') as formIds;
-    console.log('testing', formData.get('testing'))
-    console.log('editorClassName', formData.get('editorClassName'))
     switch (formId) {
         case FORMS.updateTask:
             const prepareAndSendTask = async (updates: any) => {
@@ -29,9 +27,9 @@ export const updateTaskAction: ActionInterface<any> = async ({ request }) => {
                         WorkUnit: [
                             {
                                 time: 0,
-                                contractId: projectId ?? 0,
+                                contractId: projectId,
                                 description,
-                                tags: tags ?? [],
+                                tags,
                             },
                         ],
                     },
@@ -39,12 +37,11 @@ export const updateTaskAction: ActionInterface<any> = async ({ request }) => {
             };
             return prepareAndSendTask({
                 _id: formData.get('id'),
-                description: formData.get('description'),
+                description: formData.get('description') ?? '',
                 projectId: formData.get('projectId') ?? 0,
-                tags: formData.get('tags') ?? 0,
+                tags: formData.get('tags') ?? [],
             })
         case FORMS.deleteTask:
-            console.log('tyes')
             await fetchApiData(`${api}task/${formData.get('id')}`, { method: 'DELETE' });
             return redirect("/")
     }

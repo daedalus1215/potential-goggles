@@ -179,9 +179,3 @@ span.ripple {
     opacity: 0;
   }
 }
-
-
-/* markdown editor */
-.w-md-editor-toolbar {
-  margin-bottom: 10px;
-}
