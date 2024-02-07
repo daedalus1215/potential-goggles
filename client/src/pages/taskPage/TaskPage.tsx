@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import ms from 'pretty-ms';
 import cn from "classnames";
 import { Form, useLoaderData, useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ const FORM_ID = "taskForm";
 const TaskPage: React.FC = () => {
     const { task, options } = useLoaderData() as any;
     const navigate = useNavigate();
+    const reference = useRef(task.taskId);
     const isSmallScreen = useSmallScreenSize();
     useListenForSave(FORM_ID);
 
@@ -81,7 +82,7 @@ const TaskPage: React.FC = () => {
                         {tag.name}
                     </option>)}
                 </select>
-                <TextAreaAdapter value={task.description} />
+                <TextAreaAdapter value={task.description} reference={reference}/>
             </Form>
         </div>
     );

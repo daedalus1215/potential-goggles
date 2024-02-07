@@ -12,6 +12,7 @@ const FORM_ID = "tagForm";
 const EditTagePage: React.FC = () => {
     const tag = useLoaderData() as Tag;
     useListenForSave(FORM_ID);
+    const reference = useRef(tag._id);
 
     if (!tag) {
         throw new Response("", {
@@ -51,7 +52,7 @@ const EditTagePage: React.FC = () => {
                 <input type="hidden" name="id" value={tag._id} />
                 <input type="hidden" name="formId" value="updateTag" />
                 <input type="text" name="name" defaultValue={tag.name} />
-                <TextAreaAdapter value={tag?.description ?? ''} />
+                <TextAreaAdapter value={tag?.description ?? ''} reference={reference}/>
                 <SaveButton className={styles.left} />
             </Form>
         </div>
