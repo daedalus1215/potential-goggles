@@ -29,6 +29,7 @@ const routes = (app) => {
     app.get('/api/tasks-titles', getAllTaskTitlesAction);
     app.get('/api/task/:id', getTaskByIdAction);
     app.post('/api/task/', [
+        //@TODO: Double check this. We are going to go with taskId I think as well.
         body('_id').isString().trim().escape(),
         body('WorkUnit[0].description').isString().trim().escape(),
         body('date').custom((value) => {

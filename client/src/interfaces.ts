@@ -102,4 +102,6 @@ export type DateTimeDateTime = {
     taskId: string;
     date: string;
     time: number;
+    //@TODO: Probably replace this with `id` or `dateTimeId`
+    _id: string;
 }

@@ -1,4 +1,4 @@
-import React, { Suspense, useRef } from "react";
+import React from "react";
 import ms from 'pretty-ms';
 import cn from "classnames";
 import { Form, useLoaderData, useNavigate } from "react-router-dom";
@@ -12,7 +12,6 @@ const FORM_ID = "taskForm";
 
 const TaskPage: React.FC = () => {
     const { task, options } = useLoaderData() as any;
-    const descRef = useRef(null);
     const navigate = useNavigate();
     const isSmallScreen = useSmallScreenSize();
     useListenForSave(FORM_ID);

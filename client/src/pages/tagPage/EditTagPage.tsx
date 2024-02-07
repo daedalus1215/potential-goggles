@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useRef } from 'react';
 import { Tag } from '@/interfaces';
 import { HomeButton, BackButton, IconButton, SaveButton, TextAreaAdapter, TopBar } from '@/components';
 import { useListenForSave } from '@/hooks';
@@ -7,12 +7,11 @@ import { Form, useLoaderData } from 'react-router-dom';
 
 import styles from './EditTagPage.module.css';
 
-const FORMtaskId = "tagForm";
+const FORM_ID = "tagForm";
 
 const EditTagePage: React.FC = () => {
     const tag = useLoaderData() as Tag;
-    const descRef = useRef(null);
-    useListenForSave(FORMtaskId);
+    useListenForSave(FORM_ID);
 
     if (!tag) {
         throw new Response("", {
@@ -34,7 +33,7 @@ const EditTagePage: React.FC = () => {
                             }
                         }}>
                             <input type="hidden" name="formId" value="deleteTag" />
-                            <input type="hidden" name="id" value={tag.taskId} />
+                            <input type="hidden" name="id" value={tag._id} />
                             <IconButton
                                 icon="bi bi-trash"
                                 type="submit"
@@ -45,15 +44,14 @@ const EditTagePage: React.FC = () => {
             </div>
 
             <Form
-                id={FORMtaskId}
-                name={FORMtaskId}
+                id={FORM_ID}
+                name={FORM_ID}
                 method="put"
                 className={styles.form}>
-                <input type="hidden" name="id" value={tag.taskId} />
+                <input type="hidden" name="id" value={tag._id} />
                 <input type="hidden" name="formId" value="updateTag" />
                 <input type="text" name="name" defaultValue={tag.name} />
-
-                <TextAreaAdapter reference={descRef} value={tag.description} />
+                <TextAreaAdapter value={tag?.description ?? ''} />
                 <SaveButton className={styles.left} />
             </Form>
         </div>

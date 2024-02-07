@@ -5,7 +5,7 @@ import '@testing-library/jest-dom'
 
 // target
 import DateTimeListView from '../DateTimeListView';
-import { taskFixture } from '@/dataFixtures/taskFixture';
+import { taskFixture } from '@/dataFixtures/taskFixtures';
 
 // mocks
 jest.mock('../DateTimeItem', () => ({

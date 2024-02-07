@@ -9,7 +9,7 @@ import { DELETE, FORMS, PUT } from '@/utils/constants';
 
 export const newTaskAction: ActionInterface<any> = async () => {
     const response = await fetchApiData<Task>(`${api}task`, { method: 'POST', });
-    return redirect(`task/${response._id}`);
+    return redirect(`task/${response.taskId}`);
 }
 export const updateTaskAction: ActionInterface<any> = async ({ request }) => {
     const formData = await request.formData()
@@ -27,9 +27,9 @@ export const updateTaskAction: ActionInterface<any> = async ({ request }) => {
                         WorkUnit: [
                             {
                                 time: 0,
-                                contractId: projectId ?? 0,
+                                contractId: projectId,
                                 description,
-                                tags: tags ?? [],
+                                tags,
                             },
                         ],
                     },
@@ -37,9 +37,9 @@ export const updateTaskAction: ActionInterface<any> = async ({ request }) => {
             };
             return prepareAndSendTask({
                 _id: formData.get('id'),
-                description: formData.get('description'),
+                description: formData.get('description') ?? '',
                 projectId: formData.get('projectId') ?? 0,
-                tags: formData.get('tags') ?? 0,
+                tags: formData.get('tags') ?? [],
             })
         case FORMS.deleteTask:
             await fetchApiData(`${api}task/${formData.get('id')}`, { method: 'DELETE' });
@@ -57,7 +57,10 @@ export const updateTagAction: ActionInterface<any> = async ({ request }) => {
     const formData = await request.formData()
     const formId = formData.get('formId') as formIds;
     const id = formData.get('id');
-
+    console.log('id', id)
+    console.log('formData', formData)
+    const description = formData.get('description') ?? '';
+    console.log('desc', description)
     //@TODO: Could of done this over the verbs in the form.
     switch (formId) {
         case FORMS.updateTag:
@@ -65,7 +68,7 @@ export const updateTagAction: ActionInterface<any> = async ({ request }) => {
                 method: PUT,
                 body: {
                     _id: id,
-                    description: formData.get('description') ?? '',
+                    description: description,
                     name: formData.get('name') ?? ''
                 }
             });
