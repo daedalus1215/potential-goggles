@@ -65,11 +65,15 @@ const TaskPage: React.FC = () => {
                 name={FORM_ID}
                 method="post"
                 action={`/task/${task.taskId}`}
-                className={cn({ [styles.form]: isSmallScreen })}>
+                className={cn(styles.form, { [styles.smallForm]: isSmallScreen })}>
                 <input type="hidden" name="id" value={task.taskId} />
                 <input type="hidden" name="formId" value="updateTask" />
                 {/* Need to make this multi select */}
-                <select name="tags">
+                <select name="tags"
+                    className={cn(styles.select, {
+                        [styles.smallSelect]: isSmallScreen,
+                        [styles.largeSelect]: !isSmallScreen
+                    })}>
                     {options?.map((tag: any) => <option
                         key={tag.taskId}
                         id={tag.name}
@@ -78,7 +82,7 @@ const TaskPage: React.FC = () => {
                         {tag.name}
                     </option>)}
                 </select>
-                    <TextAreaAdapter reference={descRef} value={task.description} />
+                <TextAreaAdapter value={task.description} />
             </Form>
         </div>
     );
