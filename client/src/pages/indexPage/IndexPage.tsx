@@ -48,20 +48,29 @@ export default function IndexPage() {
             setSelectedOptions={setExcludeTags}
           />
         </fieldset>
-        <fieldset>
-          <label>Date</label>
-          <Date
-            classNames={classNames({ [styles.isSmallScreenSize]: isSmallScreenSize })}
-            date={date}
-            setDate={setDate}
+        <div className={styles.dateSection}>
+          <fieldset>
+            {!isSmallScreenSize && <label>Date</label>}
+            <Date
+              classNames={classNames({ [styles.isSmallScreenSize]: isSmallScreenSize })}
+              date={date}
+              setDate={setDate}
+            />
+          </fieldset>
+          <LabelButton
+            classNames={classNames({ 
+              [styles.labelButtonSmall]: isSmallScreenSize,
+              [styles.labelButton]: !isSmallScreenSize,
+            })}
+            value="Filter"
+            onClick={() => navigate(`?includeTags=${includeTags}&excludeTags=${excludeTags}&date=${date}`)}
           />
-        </fieldset>
+        </div>
       </div>
-      <LabelButton value="Filter" onClick={() => navigate(`?includeTags=${includeTags}&excludeTags=${excludeTags}&date=${date}`)} />
       <div className={styles.underline}></div>
       <TodaysActivityList aggregate={todaysActivities} />
-      <YearMonthActivityGrid allActivities={monthActivities} />
-      <YearMonthActivityGrid allActivities={allActivities} />
+      {!isSmallScreenSize && <YearMonthActivityGrid allActivities={monthActivities} />}
+      {!isSmallScreenSize && <YearMonthActivityGrid allActivities={allActivities} />}
     </>
   )
 }
