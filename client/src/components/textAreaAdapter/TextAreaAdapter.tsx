@@ -11,7 +11,7 @@ type AdapterProps = {
 const TextAreaAdapter: React.FC<AdapterProps> = ({ value, reference }) => {
   const isSmall = useSmallScreenSize();
   return <textarea
-    ref={reference}
+    // ref={reference}
     className={cn(styles.TextAreaAdapter, { [styles.TextAreaAdapterSmall]: isSmall })}
     defaultValue={value}
     name="description"
