@@ -13,7 +13,7 @@ const FORM_ID = "taskForm";
 const TaskPage: React.FC = () => {
     const { task, options } = useLoaderData() as any;
     const navigate = useNavigate();
-    const reference = useRef(task.taskId);
+    const reference = useRef(null);
     const isSmallScreen = useSmallScreenSize();
     useListenForSave(FORM_ID);
 
@@ -82,11 +82,10 @@ const TaskPage: React.FC = () => {
                         {tag.name}
                     </option>)}
                 </select>
-                <TextAreaAdapter value={task.description} reference={reference}/>
+                <TextAreaAdapter value={task.description} reference={reference} key={task.taskId}/>
             </Form>
         </div>
     );
 };
 
 export default TaskPage;
-

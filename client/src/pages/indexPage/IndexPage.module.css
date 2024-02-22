@@ -18,12 +18,26 @@
     margin: auto;
 }
 
+.dateSection {
+    display: flex;
+    align-items: flex-start; 
+}
+
 .filters {
     display: flex;
 }
 
 .filtersSmall {
     flex-direction: column;
+}
+
+.labelButtonSmall {
+    height: 48px;
+}
+
+.labelButton {
+    align-self: flex-end;
+    margin-bottom: 12px;
 }
 
 .inputSmall {
