@@ -4,10 +4,9 @@ import cn from "classnames";
 import { Form, useLoaderData, useNavigate } from "react-router-dom";
 import { TextAreaAdapter, IconButton, TopBar } from "@/components";
 import { Category } from "@/components/button/Button";
-import { useListenForSave, useSmallScreenSize } from '@/hooks';
+import { useSetTitle, useListenForSave, useSmallScreenSize } from '@/hooks';
 
 import styles from './TaskPage.module.css';
-import useSetTitle from "@/hooks/useSetTitle";
 
 const FORM_ID = "taskForm";
 
