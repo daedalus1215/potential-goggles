@@ -3,6 +3,25 @@ import { FORMS } from "./utils/constants";
 
 export type formIds = keyof typeof FORMS;
 
+
+// Loaders = GET \\ 
+export type LoaderTypes<E> = () => Promise<E>;
+export type LoaderSignature<E> = ({ params, request }: LoaderFunctionArgs) => Promise<E>;
+export type StringLoaderTypes<E> = (index: string) => Promise<E>;
+
+export type dateIncludeExcludeTagsQueryParams = Partial<{
+    date: string,
+    includeTags: string,
+    excludeTags: string
+}>;
+
+export type includeExcludeTagsQueryParams = Partial<{
+    includeTags: string,
+    excludeTags: string
+}>;
+export type IncludeExcludeTagsLoaderTypes<E> = (params: includeExcludeTagsQueryParams) => Promise<E>;
+export type DateIncludeExcludeTagsLoaderTypes<E> = (params: dateIncludeExcludeTagsQueryParams) => Promise<E>;
+
 export interface Params {
     params: {
         taskId: string

@@ -67,7 +67,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 const expected = '';
 
                 // Act
-                const actual = await createQueryParams();
+                const actual = await createQueryParams({});
 
                 // Assert
                 expect(actual).toEqual(expected);
@@ -78,7 +78,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 const expected = `?date=${date}`;
 
                 // Act
-                const actual = await createQueryParams(date);
+                const actual = await createQueryParams({date});
 
                 // Assert
                 expect(actual).toEqual(expected);
@@ -90,7 +90,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 const expected = `?date=${date}&includeTags=${includeTags}`;
 
                 // Act
-                const actual = await createQueryParams(date, includeTags);
+                const actual = await createQueryParams({date, includeTags});
 
                 // Assert
                 expect(actual).toEqual(expected);
@@ -103,7 +103,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 const expected = `?date=${date}&includeTags=${includeTags}&excludeTags=${excludeTags}`;
 
                 // Act
-                const actual = await createQueryParams(date, includeTags, excludeTags);
+                const actual = await createQueryParams({date, includeTags, excludeTags});
 
                 // Assert
                 expect(actual).toEqual(expected);
@@ -117,7 +117,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
-                const actual = await fetchTodaysActivities();
+                const actual = await fetchTodaysActivities({});
 
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
@@ -131,7 +131,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
-                const actual = await fetchTodaysActivities(date);
+                const actual = await fetchTodaysActivities({date});
 
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
@@ -146,7 +146,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
-                const actual = await fetchTodaysActivities(date, includeTags);
+                const actual = await fetchTodaysActivities({date, includeTags});
 
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
@@ -162,7 +162,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
-                const actual = await fetchTodaysActivities(date, includeTags, excludeTags);
+                const actual = await fetchTodaysActivities({date, includeTags, excludeTags});
 
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
@@ -172,12 +172,12 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
         describe('fetchAllMonthTasks', () => {
             it('should fetch months when includeTags and excludeTags not passed in', async () => {
                 // Arrange 
-                const expectedUrl = `${api}activities/months?includeTags=undefined&excludeTags=undefined`
+                const expectedUrl = `${api}activities/months`
                 const expected = { taskId: 'mockTaskId' };
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
-                const actual = await fetchAllMonthTasks();
+                const actual = await fetchAllMonthTasks({});
 
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
@@ -186,12 +186,12 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
             it('should fetch months when includeTags are, but exclude tags are not, passed in', async () => {
                 // Arrange 
                 const includeTags = 'tag1'
-                const expectedUrl = `${api}activities/months?includeTags=${includeTags}&excludeTags=undefined`;
+                const expectedUrl = `${api}activities/months?includeTags=${includeTags}`;
                 const expected = { taskId: 'mockTaskId' };
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
-                const actual = await fetchAllMonthTasks(includeTags);
+                const actual = await fetchAllMonthTasks({includeTags});
 
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})
@@ -206,7 +206,7 @@ describe('client/src/actionsAndLoaders/loaders.ts', () => {
                 mockFetchApiResponse(fetchApiDataSpy, expected);
 
                 // Act
-                const actual = await fetchAllMonthTasks(includeTags, excludeTags);
+                const actual = await fetchAllMonthTasks({ includeTags, excludeTags });
 
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, {})

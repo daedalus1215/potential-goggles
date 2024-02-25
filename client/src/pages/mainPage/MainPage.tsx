@@ -17,7 +17,6 @@ import NavigateButton from '@/components/navigateButton/NavigateButton'
 const MainPage = () => {
   const { tasks, q, selectedId } = useLoaderData() as { tasks: Task[]; q: string; selectedId: string }
   const navigation = useNavigation()
-  const params = useParams();
   const navigate = useNavigate();
   const isSmallScreen = useSmallScreenSize();
   const { isExpanded, setIsExpanded } = useContext(ExpandedContext);
