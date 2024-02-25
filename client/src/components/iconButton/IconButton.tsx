@@ -17,7 +17,7 @@ interface props {
 const IconButton: React.FC<props> = ({ onClick, icon, title, className, type, category,form }) => {
 
   return (<Button
-    data-testid="icon-button"
+    testid="icon-button"
     title={title}
     type={type ?? "a"}
     category={category}
