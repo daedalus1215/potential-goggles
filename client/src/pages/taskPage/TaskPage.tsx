@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import ms from 'pretty-ms';
 import cn from "classnames";
 import { Form, useLoaderData, useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import { Category } from "@/components/button/Button";
 import { useListenForSave, useSmallScreenSize } from '@/hooks';
 
 import styles from './TaskPage.module.css';
+import useSetTitle from "@/hooks/useSetTitle";
 
 const FORM_ID = "taskForm";
 
@@ -24,6 +25,9 @@ const TaskPage: React.FC = () => {
         });
     }
     const original = (task?.time && ms(task.time, { secondsDecimalDigits: 2 })) ?? 0
+
+    useSetTitle(task.title);
+
     return (
         <div className="contactRight">
             <h2 className={styles.h2}>{task.title}</h2>
@@ -82,7 +86,7 @@ const TaskPage: React.FC = () => {
                         {tag.name}
                     </option>)}
                 </select>
-                <TextAreaAdapter value={task.description} reference={reference} key={task.taskId}/>
+                <TextAreaAdapter value={task.description} reference={reference} key={task.taskId} />
             </Form>
         </div>
     );
