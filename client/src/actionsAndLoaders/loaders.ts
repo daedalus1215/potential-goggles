@@ -103,7 +103,6 @@ export const tagLoader = async ({ params }: LoaderFunctionArgs) => {
     return tag
 }
 
-
 // loaders - search
 export const searchLoader = async ({ request, params }: LoaderFunctionArgs) => {
     const url = new URL(request.url)
