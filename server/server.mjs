@@ -7,6 +7,7 @@ import fs from 'fs';
 import path from 'path'
 import mongoose from 'mongoose';
 import fileUpload from 'express-fileupload';
+import passport from 'passport';
 import mongoSanitize from 'express-mongo-sanitize'
 // const fs = require('fs');
 // const path = require('path');
@@ -16,6 +17,7 @@ import mongoSanitize from 'express-mongo-sanitize'
 import { body } from 'express-validator';
 import serverConfig from './config.mjs';
 import routes from './routes.mjs'
+import auth from './auth.mjs';
 
 const app = express();
 
@@ -84,4 +86,11 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(bodyParser.json({ limit: '50mb', extended: true }));
 app.use(mongoSanitize());
 
-routes(app);
+app.use((err, req, res, next) => {
+  // Handle the error
+  console.error(err);
+  res.status(500).send('Internal Server Error');
+});
+
+auth(app, passport)
+routes(app, passport);

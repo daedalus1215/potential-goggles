@@ -1,4 +1,4 @@
-import TaskModel from "./models/TaskModel.mjs";
+import TaskModel from "./mongo/models/TaskModel.mjs";
 
 /**
  * 

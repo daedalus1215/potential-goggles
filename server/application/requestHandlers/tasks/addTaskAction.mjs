@@ -1,5 +1,6 @@
 import EntityToDto from "../../../domain/services/tasks/taskRepository/FetchTaskByIdRepository/EntityToDto.mjs";
-import TaskModel from "../../../infrastructure/models/TaskModel.mjs";
+import TaskModel from "../../../infrastructure/mongo/models/TaskModel.mjs";
+
 const AddTaskAction = async (req, res) => {
     const m = new TaskModel();
     m.toObject();

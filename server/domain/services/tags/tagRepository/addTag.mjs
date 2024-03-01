@@ -1,4 +1,4 @@
-import TagModel from "../../../../infrastructure/models/TagModel.mjs";
+import TagModel from "../../../../infrastructure/mongo/models/TagModel.mjs";
 
 export default async (tagDto) => {
     const tag = TagModel()  ;

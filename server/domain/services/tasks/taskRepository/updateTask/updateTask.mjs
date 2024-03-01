@@ -1,4 +1,4 @@
-import TaskModel from "../../../../../infrastructure/models/TaskModel.mjs";
+import TaskModel from "../../../../../infrastructure/mongo/models/TaskModel.mjs";
 import assembleAndSave from "./assembleAndSave.mjs";
 
 /**

@@ -31,3 +31,6 @@ export const allActivitiesLoader = async ({ request }: LoaderFunctionArgs): Prom
         queryExcludeTags: params.excludeTags
     };
 }
+
+
+

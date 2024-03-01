@@ -1,11 +1,11 @@
-import TaskModel from "../../../../../infrastructure/models/TaskModel.mjs";
+import TaskModel from "../../../../../infrastructure/mongo/models/TaskModel.mjs";
 import FetchAllTasksRepository from "../FetchAllTasksRepository.mjs";
 
 describe('server/infrastructure/repositories/tasks/Repositories/__test__/FetchAllTasksRepository.test.js', () => {
     describe('FetchAllTasksRepository', () => {
         // Arrange
         beforeEach(() => {
-            jest.mock('../../../../../infrastructure/models/TaskModel');
+            jest.mock('../../../../../infrastructure/mongo/models/TaskModel');
         });
 
         it('should return expected task and invoke Task.find with hydrate', async () => {
