@@ -1,5 +1,5 @@
 import TagService from "../../../domain/services/tags/TagService.mjs";
-import TaskModel from "../../../infrastructure/models/TaskModel.mjs";
+import TaskModel from "../../../infrastructure/mongo/models/TaskModel.mjs";
 import hydrateAndResponse from "../../../utils/hydrators/hydrateAndResponse.mjs";
 
 const doesTagExist = (tag) => {

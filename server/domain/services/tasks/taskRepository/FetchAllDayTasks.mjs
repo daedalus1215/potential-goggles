@@ -1,4 +1,4 @@
-import TaskModel from "../../../../infrastructure/models/TaskModel.mjs";
+import TaskModel from "../../../../infrastructure/mongo/models/TaskModel.mjs";
 import { exclusivelyFilter } from "../../../../utils/exclusivelyFilter.mjs";
 import { formatDate } from '../../../../utils/getDate.mjs'
 import { inclusivelyFilter } from "../../../../utils/inclusivelyFilter.mjs";
