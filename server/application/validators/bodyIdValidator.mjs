@@ -1,5 +1,5 @@
-import idValidator from "./idValidator.mjs";
+import validateId from "./rules/validateId.mjs";
 
-const bodyIdValidator = (id) => id.custom(idValidator);
+const bodyIdValidator = (id) => id.custom(validateId);
 
 export default bodyIdValidator

@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
  * @returns boolean
  * @throws
  */
-const idValidator = (value) => {
+const validateId = (value) => {
     if (!mongoose.Types.ObjectId.isValid(value)) {
         console.log('problem with id')
         throw new Error('Invalid id parameter');
@@ -14,4 +14,4 @@ const idValidator = (value) => {
     return true;
 }
 
-export default idValidator;
+export default validateId;
