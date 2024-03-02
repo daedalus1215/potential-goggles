@@ -22,14 +22,15 @@ import { getTodaysActivityAction } from './application/requestHandlers/tasks/dat
 import { getAllDayTasksAction } from './application/requestHandlers/supports/getAllDayTasksAction.mjs';
 import getAllMonthTasksAction from './application/requestHandlers/tasks/getAllMonthTasksAction.mjs';
 import getStatsForStackForRangeOfDatesAction from './application/requestHandlers/tasks/getStatsForStackForRangeOfDatesAction.mjs';
-import validateIdParam from './application/validators/validateIdParam.mjs';
+import idParamValidate from './application/validators/idParamValidate.mjs';
 import putTaskValidator from './application/validators/putTaskValidator.mjs';
+import rangeOfDatesAndTagValidator from './application/validators/rangeOfDatesAndTagParamValidate.mjs';
 
 const routes = (app, passport) => {
     // TASKS
     app.get('/api/tasks', getAllTasksAction);
     app.get('/api/tasks-titles', getAllTaskTitlesAction);
-    app.get('/api/task/:id', validateIdParam, getTaskByIdAction);
+    app.get('/api/task/:id', idParamValidate, getTaskByIdAction);
     app.post('/api/task/', putTaskValidator(), addTaskAction);
     app.put('/api/task', putTaskValidator(), putTaskAction);
     app.delete('/api/task/:id', deleteTaskByIdAction);
@@ -46,7 +47,7 @@ const routes = (app, passport) => {
     app.get('/api/activities/today', getTodaysActivityAction)
     app.get('/api/activities/all', getAllDayTasksAction)
     app.get('/api/activities/months', getAllMonthTasksAction);
-    app.get('/api/stack-graph', getStatsForStackForRangeOfDatesAction);
+    app.get('/api/stack-graph', rangeOfDatesAndTagValidator, getStatsForStackForRangeOfDatesAction);
 
     // TAGS
     app.get('/api/tags', getAllTagsAction);
