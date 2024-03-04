@@ -1,7 +1,7 @@
 import log4js from 'log4js';
 
 log4js.configure({
-  appenders: { error: { type: 'file', filename: 'error.log' } },
+  appenders: { error: { type: 'file', filename: 'application/logs/error.log' } },
   categories: { default: { appenders: ['error'], level: 'error' } },
 });
 
