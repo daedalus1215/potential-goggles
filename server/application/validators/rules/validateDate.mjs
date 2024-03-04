@@ -1,3 +1,4 @@
+import HttpError from "../../constants/HttpError.mjs";
 
 /**
  * 
@@ -5,15 +6,14 @@
  * @returns 
  */
 const validateDate = (value) => {
-    console.log('value', value)
-    if (value === undefined || value === null) {
-        return true;
+    if (!value) {
+        return;
     }
     const pattern = new RegExp(/\d{4}-\d{2}-\d{2}/);
     if (!pattern.test(value)) {
-        throw new Error('Required format: YYYY-MM-DD');
+        return new HttpError(400, 'Required format: YYYY-MM-DD');
     }
-    return true;
+    return;
 }
 
 export default validateDate;

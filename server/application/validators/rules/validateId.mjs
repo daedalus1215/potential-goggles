@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import HttpError from '../../constants/HttpError.mjs';
 
 /**
  * 
@@ -8,10 +9,9 @@ import mongoose from 'mongoose';
  */
 const validateId = (value) => {
     if (!mongoose.Types.ObjectId.isValid(value)) {
-        console.log('problem with id')
-        throw new Error('Invalid id parameter');
+        return new HttpError(404, 'Error with id');
     }
-    return true;
+    return;
 }
 
 export default validateId;

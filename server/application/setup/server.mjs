@@ -14,10 +14,10 @@ import mongoSanitize from 'express-mongo-sanitize'
 // const mongoose = require('mongoose');
 // const fileupload = require("express-fileupload");
 // const mongoSanitize = require('express-mongo-sanitize');
-import { body } from 'express-validator';
-import serverConfig from './config.mjs';
+import serverConfig from '../../config.mjs';
 import routes from './routes.mjs'
 import auth from './auth.mjs';
+import errorHandler from './errorHandler.mjs';
 
 const app = express();
 
@@ -58,7 +58,7 @@ app.listen(serverConfig.serverPort, serverConfig.address, () => {
 
 // log all requests to access.log
 app.use(morgan('common', {
-  stream: fs.createWriteStream(path.join('', 'access.log'), { flags: 'a' })
+  stream: fs.createWriteStream(path.join('application/logs/', 'access.log'), { flags: 'a' })
 }));
 
 app.use((req, res, next) => {
@@ -86,11 +86,6 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(bodyParser.json({ limit: '50mb', extended: true }));
 app.use(mongoSanitize());
 
-app.use((err, req, res, next) => {
-  // Handle the error
-  console.error(err);
-  res.status(500).send('Internal Server Error');
-});
-
 auth(app, passport)
 routes(app, passport);
+app.use(errorHandler);
