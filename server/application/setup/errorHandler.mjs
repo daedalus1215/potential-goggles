@@ -13,7 +13,6 @@ const errorHandler = (err, req, res, next) => {
   }
 
   logger.error({ error: message, stack });
-  console.log('yeaaa')
   res.status(statusCode).jsonp({ error: message });
 };
 
