@@ -1,10 +1,11 @@
 import { millisToMinutesAndSeconds } from '../../../../../utils/millisecondConversions/millisToMinutesAndSeconds.mjs';
 import { getTitle } from '../../../../../utils/getTitle.mjs';
+import HttpError from '../../../../../application/constants/HttpError.mjs';
 
 //@TODO: Need to UT these conditionals
 export default (doc) => {
     if (!doc) {
-        return doc;
+        return new HttpError(404, "Not Found");
     }
     const task = {};
     task.taskId = doc._id;
