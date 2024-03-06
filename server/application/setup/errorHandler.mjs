@@ -1,7 +1,7 @@
 import logger from "../../infrastructure/logger.mjs";
 import HttpError from "../constants/HttpError.mjs";
 
-const errorHandler = (err, req, res, next) => {
+const errorHandler = (err, req, res) => {
   let statusCode = 500;
   let message = 'Internal Server Error';
   let stack = '';
