@@ -28,7 +28,7 @@ import rangeOfDatesAndTagValidator from '../validators/rangeOfDatesAndTagParamVa
 
 const routes = (app, passport) => {
     // TASKS
-    app.get('/api/tasks', getAllTasksAction);
+    app.get('/api/tasks', idParamValidate, getAllTasksAction);
     app.get('/api/tasks-titles', getAllTaskTitlesAction);
     app.get('/api/task/:id', idParamValidate, getTaskByIdAction);
     app.post('/api/task/', putTaskValidator(), addTaskAction);
