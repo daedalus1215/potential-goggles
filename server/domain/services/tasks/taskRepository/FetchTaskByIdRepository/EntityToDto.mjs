@@ -3,6 +3,9 @@ import { getTitle } from '../../../../../utils/getTitle.mjs';
 
 //@TODO: Need to UT these conditionals
 export default (doc) => {
+    if (!doc) {
+        return doc;
+    }
     const task = {};
     task.taskId = doc._id;
     task.description = doc?.description || '';
