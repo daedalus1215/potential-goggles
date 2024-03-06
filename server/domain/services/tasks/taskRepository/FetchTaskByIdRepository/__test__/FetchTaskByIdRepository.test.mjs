@@ -1,8 +1,8 @@
-const FetchTaskByIdRepository = require('../FetchTaskByIdRepository');
-const Task = require('../../../../../models/TaskModel');
-const EntityToDto = require('../EntityToDto');
+import FetchTaskByIdRepository from '../FetchTaskByIdRepository';
+import EntityToDto from '../EntityToDto';
+import TaskModel from '../../../../../../infrastructure/mongo/models/TaskModel';
 
-jest.mock('../../../../../models/TaskModel');
+jest.mock('../../../../../../infrastructure/mongo/models/TaskModel');
 jest.mock('../EntityToDto');
 
 describe('server/infrastructure/repositories/tasks/Repositories/__test__/FetchTaskByIdRepository.test.js', () => {
@@ -11,7 +11,7 @@ describe('server/infrastructure/repositories/tasks/Repositories/__test__/FetchTa
             // Arrange
             const id = 'id';
             const tasks = { taskId: 1 };
-            Task.findById = jest.fn().mockImplementation(() => tasks);
+            TaskModel.findById = jest.fn().mockImplementation(() => tasks);
             EntityToDto.mockImplementation(() => tasks);
 
             // Act
@@ -19,7 +19,7 @@ describe('server/infrastructure/repositories/tasks/Repositories/__test__/FetchTa
 
             // Assert
             expect(actual).toEqual(tasks);
-            expect(Task.findById).toBeCalledWith(id);
+            expect(TaskModel.findById).toBeCalledWith(id);
         });
     });
 });
