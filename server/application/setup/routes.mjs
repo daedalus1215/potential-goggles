@@ -29,7 +29,7 @@ const routes = (app, passport) => {
     app.get('/api/tasks', getAllTasksAction);
     app.get('/api/tasks-titles', getAllTaskTitlesAction);
     app.get('/api/task/:id', idParamValidate, getTaskByIdAction);
-    app.post('/api/task/', addTaskAction);
+    app.post('/api/task/', putTaskValidator(), addTaskAction);
     app.put('/api/task', putTaskValidator(), putTaskAction);
     app.delete('/api/task/:id', deleteTaskByIdAction);
     app.delete('/api/tasks', deleteAllTaskAction);
