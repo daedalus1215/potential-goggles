@@ -1,7 +1,4 @@
-import { body } from 'express-validator';
-
 // TASK ACTION imports
-import getAllTasksAction from '../requestHandlers/tasks/getAllTasksAction.mjs';
 import getAllTaskTitlesAction from '../requestHandlers/tasks/getAllTaskTitlesAction.mjs';
 import getTaskByIdAction from '../requestHandlers/tasks/getTaskByIdAction.mjs';
 import putTaskAction from '../requestHandlers/tasks/putTaskAction.mjs';
@@ -24,11 +21,12 @@ import getAllMonthTasksAction from '../requestHandlers/tasks/getAllMonthTasksAct
 import getStatsForStackForRangeOfDatesAction from '../requestHandlers/tasks/getStatsForStackForRangeOfDatesAction.mjs';
 import idParamValidate from '../validators/idParamValidate.mjs';
 import putTaskValidator from '../validators/putTaskValidator.mjs';
-import rangeOfDatesAndTagValidator from '../validators/rangeOfDatesAndTagParamValidate.mjs';
+import rangeOfDatesAndTagParamValidate from '../validators/rangeOfDatesAndTagParamValidate.mjs';
+import getAllTasksAction from '../requestHandlers/tasks/getAllTasksAction.mjs';
 
 const routes = (app, passport) => {
     // TASKS
-    app.get('/api/tasks', idParamValidate, getAllTasksAction);
+    app.get('/api/tasks', getAllTasksAction);
     app.get('/api/tasks-titles', getAllTaskTitlesAction);
     app.get('/api/task/:id', idParamValidate, getTaskByIdAction);
     app.post('/api/task/', putTaskValidator(), addTaskAction);
@@ -47,7 +45,7 @@ const routes = (app, passport) => {
     app.get('/api/activities/today', getTodaysActivityAction)
     app.get('/api/activities/all', getAllDayTasksAction)
     app.get('/api/activities/months', getAllMonthTasksAction);
-    app.get('/api/stack-graph', rangeOfDatesAndTagValidator, getStatsForStackForRangeOfDatesAction);
+    app.get('/api/stack-graph', rangeOfDatesAndTagParamValidate, getStatsForStackForRangeOfDatesAction);
 
     // TAGS
     app.get('/api/tags', getAllTagsAction);
