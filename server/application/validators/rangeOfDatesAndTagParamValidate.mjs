@@ -1,7 +1,7 @@
 import HttpError from "../constants/HttpError.mjs";
 import validateDate from "./rules/validateDate.mjs";
 
-const rangeOfDatesAndTagValidator = (req, res, next) => {
+const rangeOfDatesAndTagParamValidate = (req, res, next) => {
     const { date, days, includeTags, excludeTags } = req.query;
 
     const eDays = validateDays(days);
@@ -46,4 +46,4 @@ const validateStringList = (tags) => {
     return;
 };
 
-export default rangeOfDatesAndTagValidator;
+export default rangeOfDatesAndTagParamValidate;

@@ -1,4 +1,3 @@
-import HttpError from '../constants/HttpError.mjs';
 import validateId from './rules/validateId.mjs';
 
 const idParamValidate = (req, res, next) => {
