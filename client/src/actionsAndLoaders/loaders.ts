@@ -107,7 +107,8 @@ export const tagLoader = async ({ params }: LoaderFunctionArgs) => {
 export const searchLoader = async ({ request, params }: LoaderFunctionArgs) => {
     const url = new URL(request.url)
     const q = url.searchParams.get('q') as string
-    const results = (await fetch(`${api}tasks-titles?title=${q}`)) as TypedResponse<Task[]>
+    const titleApi = q ? `${api}tasks-titles?title=${q}` : `${api}tasks-titles`;
+    const results = (await fetch(titleApi)) as TypedResponse<Task[]>
     if (!results.ok) throw new Error('Something went wrong!')
     const tasks = await results.json();
     // const tasks = await selectSearchResult(results, q);

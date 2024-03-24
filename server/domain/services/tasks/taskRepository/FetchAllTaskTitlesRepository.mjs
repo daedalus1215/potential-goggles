@@ -7,8 +7,8 @@ const FetchAllTaskTitlesRepository = async (title) => {
     const formattedName = title?.toLowerCase();
     return tasks
         .filter((task) => {
-            if (formattedName) {
-                return task?.title?.toLowerCase().includes(formattedName);
+            if (title) {
+                return task?.title?.toLowerCase().includes(formattedName) ?? false;
             }
 
             return true;
