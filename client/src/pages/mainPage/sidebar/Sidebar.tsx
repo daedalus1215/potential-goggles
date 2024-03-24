@@ -18,7 +18,6 @@ type props = {
 const Sidebar: React.FC<props> = ({ classNames, tasks, q, selectedId, isExpanded, setIsExpanded }) => {
     const submit = useSubmit()
     const isSmallScreenSize = useSmallScreenSize();
-
     const searchRef: RefObject<HTMLInputElement> = useRef<string>('');
 
     useEffect(() => {
@@ -85,7 +84,7 @@ const Sidebar: React.FC<props> = ({ classNames, tasks, q, selectedId, isExpanded
                 </ul>
             ) : (
                 <p>
-                    <i>No contacts</i>
+                    <i>No Notes</i>
                 </p>
             )}
             {/* </nav> */}

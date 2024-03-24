@@ -1,11 +1,21 @@
 import TaskModel from "../../../../infrastructure/mongo/models/TaskModel.mjs";
+import { truncateString } from "../../../../utils/truncateString.mjs";
 
-const FetchAllTaskTitlesRepository = async () => {
-    const tasks = await TaskModel.find().sort('-date');
+const FetchAllTaskTitlesRepository = async (title) => {
+    const tasks = await TaskModel.find();
+    tasks.sort((a, b) => b.date - a.date); // Sort tasks by date in descending order
+    const formattedName = title?.toLowerCase();
     return tasks
+        .filter((task) => {
+            if (formattedName) {
+                return task?.title?.toLowerCase().includes(formattedName);
+            }
+
+            return true;
+        })
         .map((task) => ({
             _id: task?._id ?? 'stubAnId',
-            title: task?.title ?? 'no title'
+            title: (task.title !== undefined) ? truncateString(task.title, 21) : 'no title'
         }));
 
 };
