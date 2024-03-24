@@ -57,10 +57,7 @@ export const updateTagAction: ActionInterface<any> = async ({ request }) => {
     const formData = await request.formData()
     const formId = formData.get('formId') as formIds;
     const id = formData.get('id');
-    console.log('id', id)
-    console.log('formData', formData)
     const description = formData.get('description') ?? '';
-    console.log('desc', description)
     //@TODO: Could of done this over the verbs in the form.
     switch (formId) {
         case FORMS.updateTag:

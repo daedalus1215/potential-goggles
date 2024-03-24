@@ -14,10 +14,10 @@ export const fetchTodaysActivities: DateIncludeExcludeTagsLoaderTypes<AggregateA
 export const createQueryParams = (params: dateIncludeExcludeTagsQueryParams): string => {
     const queryParams = [];
 
-    if (params.date&& params.date != undefined) {
+    if (params.date && params.date != undefined) {
         queryParams.push(`date=${encodeURIComponent(params.date)}`);
     }
-    if (params.includeTags&& params.includeTags != undefined) {
+    if (params.includeTags && params.includeTags != undefined) {
         queryParams.push(`includeTags=${encodeURIComponent(params.includeTags)}`);
     }
     if (params.excludeTags && params.excludeTags != undefined) {
@@ -107,10 +107,11 @@ export const tagLoader = async ({ params }: LoaderFunctionArgs) => {
 export const searchLoader = async ({ request, params }: LoaderFunctionArgs) => {
     const url = new URL(request.url)
     const q = url.searchParams.get('q') as string
-    const results = (await fetch(`${api}tasks-titles`)) as TypedResponse<Task[]>
-    const tasks = await selectSearchResult(results, q);
-    const selectedId = params.id;
-
+    const results = (await fetch(`${api}tasks-titles?title=${q}`)) as TypedResponse<Task[]>
+    if (!results.ok) throw new Error('Something went wrong!')
+    const tasks = await results.json();
+    // const tasks = await selectSearchResult(results, q);
+    const selectedId = params.id;    
     return { tasks, q, selectedId }
 }
 
