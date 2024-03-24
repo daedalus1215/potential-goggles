@@ -6,7 +6,6 @@ import { fetchTasks } from '@/actionsAndLoaders/loaders';
 const DownloadButton: React.FC = () => <IconButton
   category='primary2nd'
   onClick={async () => {
-    console.log('called!')
     const tasks = await fetchTasks();
     return writeJsonFile(tasks)
   }}

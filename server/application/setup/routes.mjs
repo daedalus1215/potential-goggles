@@ -1,5 +1,5 @@
 // TASK ACTION imports
-import getAllTaskTitlesAction from '../requestHandlers/tasks/getAllTaskTitlesAction.mjs';
+import FetchAllTaskTitlesAction from '../requestHandlers/tasks/fetchAllTaskTitlesAction.mjs';
 import getTaskByIdAction from '../requestHandlers/tasks/getTaskByIdAction.mjs';
 import putTaskAction from '../requestHandlers/tasks/putTaskAction.mjs';
 import getAllTagsAction from '../requestHandlers/tags/getAllTagsAction.mjs';
@@ -27,7 +27,7 @@ import getAllTasksAction from '../requestHandlers/tasks/getAllTasksAction.mjs';
 const routes = (app, passport) => {
     // TASKS
     app.get('/api/tasks', getAllTasksAction);
-    app.get('/api/tasks-titles', getAllTaskTitlesAction);
+    app.get('/api/tasks-titles', FetchAllTaskTitlesAction);
     app.get('/api/task/:id', idParamValidate, getTaskByIdAction);
     app.post('/api/task/', putTaskValidator(), addTaskAction);
     app.put('/api/task', putTaskValidator(), putTaskAction);
