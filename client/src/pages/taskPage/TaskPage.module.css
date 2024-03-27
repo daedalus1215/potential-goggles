@@ -15,12 +15,19 @@
 }
 
 .title {
-    background-color: #272E3F;
+    background-color: #fcfdff;
     border: none;
     width: 80%;
     border-radius: 0;
     margin: 0 10px;
 }
+
+/* @TODO: probably do more of this across the entire app */
+@media (prefers-color-scheme: dark) {
+    .title {
+        background-color: #272E3F;
+    }
+  }
 
 .select {
     width: 80%;

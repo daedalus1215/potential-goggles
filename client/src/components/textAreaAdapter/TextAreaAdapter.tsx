@@ -1,5 +1,7 @@
 import React, { RefObject } from 'react';
-import { DefaultEditor } from 'react-simple-wysiwyg';
+import cn from 'classnames';
+import { useSmallScreenSize } from '@/hooks/useSmallScreenSize';
+import styles from './TextAreaAdapter.module.css';
 
 type AdapterProps = {
   setValue: (e: any) => void;
@@ -7,13 +9,13 @@ type AdapterProps = {
 };
 
 const TextAreaAdapter: React.FC<AdapterProps> = ({ value, setValue }) => {
-  return <>
-    <input type="hidden" name="description" value={value} />
-    <DefaultEditor
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-    />
-  </>
+  const isSmall = useSmallScreenSize();
+  return <textarea
+    className={cn(styles.TextAreaAdapter, { [styles.TextAreaAdapterSmall]: isSmall })}
+    value={value}
+    onChange={e => setValue(e.target.value)}
+    name="description"
+  />;
 }
 
 export default TextAreaAdapter;

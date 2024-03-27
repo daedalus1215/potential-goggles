@@ -40,7 +40,7 @@ const TaskPage: React.FC = () => {
     useSetTitle(task.title);
     return (
         <div>
-            {/* TODO: Abstract this into a section component */}
+            {/* TODO: Abstract this into a section */}
             <div >
                 <TopBar>
                     <>
