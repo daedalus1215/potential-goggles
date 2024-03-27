@@ -17,7 +17,7 @@ export const updateTaskAction: ActionInterface<any> = async ({ request }) => {
     switch (formId) {
         case FORMS.updateTask:
             const prepareAndSendTask = async (updates: any) => {
-                const { _id, description, projectId, tags } = updates;
+                const { _id, description, projectId, tags, title } = updates;
                 const dateFormatted = convertDateTimeToLocalTime(new Date());
                 return await fetchApiData(`${api}task`, {
                     method: PUT,
@@ -30,6 +30,7 @@ export const updateTaskAction: ActionInterface<any> = async ({ request }) => {
                                 contractId: projectId,
                                 description,
                                 tags,
+                                title
                             },
                         ],
                     },
@@ -40,6 +41,7 @@ export const updateTaskAction: ActionInterface<any> = async ({ request }) => {
                 description: formData.get('description') ?? '',
                 projectId: formData.get('projectId') ?? 0,
                 tags: formData.get('tags') ?? [],
+                title: formData.get('title'),
             })
         case FORMS.deleteTask:
             await fetchApiData(`${api}task/${formData.get('id')}`, { method: 'DELETE' });

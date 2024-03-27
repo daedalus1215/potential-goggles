@@ -56,7 +56,7 @@ export interface Task {
     taskId: string;
     title?: string;
     description: string;
-    projectId: number;
+    projectId: string;
     time: number;
     favorite?: boolean;
     dateTimes: DateTime[];
@@ -67,7 +67,7 @@ export interface ProperTask {
     taskId: string;
     title?: string;
     description: string;
-    projectId: number;
+    projectId: string;
     time: number;
     favorite?: boolean;
     dateTimes: DateTime[];

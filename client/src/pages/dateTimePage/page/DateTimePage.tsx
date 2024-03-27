@@ -15,7 +15,7 @@ const DateTimePage: React.FC = () => {
       statusText: "Task not found!",
     });
   }
-  return (<div className='contactRight'>
+  return (<div>
     <div className={styles.header}>
       <h2 className={styles.h2}>{task.title}</h2>
       <TopBar>

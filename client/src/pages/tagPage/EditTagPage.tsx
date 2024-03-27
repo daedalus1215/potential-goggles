@@ -21,7 +21,7 @@ const EditTagePage: React.FC = () => {
         });
     }
     return (
-        <div className="contactRight">
+        <div >
             <HomeButton />
             <h2 className={styles.h2}>{tag.name}</h2>
             <div className="contactButtons">

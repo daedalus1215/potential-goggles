@@ -1,19 +1,31 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ms from 'pretty-ms';
 import cn from "classnames";
 import { Form, useLoaderData, useNavigate } from "react-router-dom";
-import { TextAreaAdapter, IconButton, TopBar } from "@/components";
+import { IconButton, TextAreaAdapter, TopBar } from "@/components";
 import { Category } from "@/components/button/Button";
 import { useSetTitle, useListenForSave, useSmallScreenSize } from '@/hooks';
 
 import styles from './TaskPage.module.css';
+import DefaultEditor from "react-simple-wysiwyg";
 
 const FORM_ID = "taskForm";
 
 const TaskPage: React.FC = () => {
     const { task, options } = useLoaderData() as any;
+    const [description, setDescription] = useState<string>(task.description);
+    const [title, setTitle] = useState<string>(task.title);
+
+    // We must do this be cause description was not getting reset in the editor.
+    useEffect(() => {
+        setDescription(task.description);
+    }, [task.description]);
+    useEffect(() => {
+        setTitle(task.title);
+    }, [task.title]);
+
     const navigate = useNavigate();
-    const reference = useRef(null);
+    const reference = useRef(task.taskId);
     const isSmallScreen = useSmallScreenSize();
     useListenForSave(FORM_ID);
 
@@ -26,12 +38,10 @@ const TaskPage: React.FC = () => {
     const original = (task?.time && ms(task.time, { secondsDecimalDigits: 2 })) ?? 0
 
     useSetTitle(task.title);
-
     return (
-        <div className="contactRight">
-            <h2 className={styles.h2}>{task.title}</h2>
-            <div className="contactButtons">
-                <div data-test-id="fractionHour">{`Hours: ${original}`}</div>
+        <div>
+            {/* TODO: Abstract this into a section component */}
+            <div >
                 <TopBar>
                     <>
                         <IconButton
@@ -72,6 +82,14 @@ const TaskPage: React.FC = () => {
                 <input type="hidden" name="id" value={task.taskId} />
                 <input type="hidden" name="formId" value="updateTask" />
                 {/* Need to make this multi select */}
+                <h1><input
+                    className={styles.title}
+                    form={FORM_ID}
+                    name="title"
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                /></h1>
                 <select name="tags"
                     className={cn(styles.select, {
                         [styles.smallSelect]: isSmallScreen,
@@ -85,7 +103,8 @@ const TaskPage: React.FC = () => {
                         {tag.name}
                     </option>)}
                 </select>
-                <TextAreaAdapter value={task.description} reference={reference} key={task.taskId} />
+                <div data-test-id="fractionHour" className={styles.timeDisplay}>{`Hours: ${original}`}</div>
+                <TextAreaAdapter value={description} setValue={setDescription} />
             </Form>
         </div>
     );

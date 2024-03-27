@@ -1,28 +1,39 @@
-.dateTimeButton {
-    color: white;
+.trashButton {
+    margin-left: 1em;
+    background-color: #FF2E2E;
+}
+.trashButton:hover {
+    background-color: #FF7979;
 }
 
 .form {
     display: flex;
     flex-direction: column;
 }
-
 .smallForm {
     width: 100vw;
 }
 
-.select {
-    margin: 10px 0;
+.title {
+    background-color: #272E3F;
+    border: none;
+    width: 80%;
+    border-radius: 0;
+    margin: 0 10px;
 }
 
+.select {
+    width: 80%;
+    margin: 0 10px;
+}
 .smallSelect {
     margin: 10px;
 }
-
 .largeSelect {
     width: 200px;
 }
 
+/* @TODO: Look into abstracting this out */
 .input {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -42,22 +53,4 @@
 .input:hover {
     background: linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
     background-color: #34CACA;
-}
-
-.deleteForm {
-    display: inline;
-}
-
-.trashButton {
-    margin-left: 1em;
-    background-color: #FF2E2E;
-}
-
-.trashButton:hover {
-    background-color: #FF7979;
-}
-
-.left {
-    float: left;
-    margin-top: 1em;
 }

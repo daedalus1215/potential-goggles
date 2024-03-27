@@ -9,7 +9,7 @@ const RequestToTaskDto = request => {
         description: request.body.WorkUnit[0].description,
         date: request.body.date,
         contractId: request.body.WorkUnit[0].contractId,
-        
+        title: request.body.WorkUnit[0].title,
         tags: request.body.WorkUnit[0].tags,
         time: request.body.WorkUnit[0].time
     }
