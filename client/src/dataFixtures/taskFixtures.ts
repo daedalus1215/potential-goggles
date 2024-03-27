@@ -5,9 +5,9 @@ type TaskType = () => ProperTask;
 
 export const taskFixture: TaskType = () => ({
     taskId: randomString(),
-    title: randomString(),
+    title: randomString() as string,
     description: randomString(),
-    projectId: randomNumber(),
+    projectId: randomNumber().toString(),
     time: randomNumber(),
     favorite: true,
     dateTimes: [{ id: randomString(), time: randomNumber().toString(), date: randomDate().toString() }],

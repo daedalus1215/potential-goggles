@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ms from 'pretty-ms';
 import cn from "classnames";
 import { Form, useLoaderData, useNavigate } from "react-router-dom";
-import { TextAreaAdapter, IconButton, TopBar } from "@/components";
+import { IconButton, TextAreaAdapter, TopBar } from "@/components";
 import { Category } from "@/components/button/Button";
 import { useSetTitle, useListenForSave, useSmallScreenSize } from '@/hooks';
 
@@ -38,12 +38,10 @@ const TaskPage: React.FC = () => {
     const original = (task?.time && ms(task.time, { secondsDecimalDigits: 2 })) ?? 0
 
     useSetTitle(task.title);
-    // console.log('description', description)
     return (
-        <div className="contactRight">
-            <h2 className={styles.h2}><input type="text" value={title} onChange={(e) => setTitle(e.target.value)} /></h2>
-            <div className="contactButtons">
-                <div data-test-id="fractionHour">{`Hours: ${original}`}</div>
+        <div>
+            {/* TODO: Abstract this into a section component */}
+            <div >
                 <TopBar>
                     <>
                         <IconButton
@@ -84,6 +82,14 @@ const TaskPage: React.FC = () => {
                 <input type="hidden" name="id" value={task.taskId} />
                 <input type="hidden" name="formId" value="updateTask" />
                 {/* Need to make this multi select */}
+                <h1><input
+                    className={styles.title}
+                    form={FORM_ID}
+                    name="title"
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                /></h1>
                 <select name="tags"
                     className={cn(styles.select, {
                         [styles.smallSelect]: isSmallScreen,
@@ -97,15 +103,8 @@ const TaskPage: React.FC = () => {
                         {tag.name}
                     </option>)}
                 </select>
-                <input type="hidden" name="description" value={description} ref={reference} />
-                <DefaultEditor
-                    // className={cn(styles.TextAreaAdapter, { [styles.TextAreaAdapterSmall]: isSmall })}
-                    name={task.taskId}
-                    id={task.taskId}
-                    value={description}
-                    key={task.taskId}
-                    onChange={(e) => setDescription(e.target.value)}
-                />
+                <div data-test-id="fractionHour" className={styles.timeDisplay}>{`Hours: ${original}`}</div>
+                <TextAreaAdapter value={description} setValue={setDescription} />
             </Form>
         </div>
     );

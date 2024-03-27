@@ -7,6 +7,7 @@ import { DELETE, FORMS, POST, PUT } from "@/utils/constants";
 import * as fetchApiData from "@/utils/fetchApiData";
 import { LoaderFunctionArgs, redirect } from "react-router-dom";
 import * as convertDateTimeToLocalTime from '@/utils/formatters/convertDateTimeToLocalTime'
+import { taskFixture } from "@/dataFixtures/taskFixtures";
 
 
 jest.mock('react-router-dom', () => ({
@@ -32,40 +33,37 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
         describe('#updateTask', () => {
             it('should update task and return the updated task response', async () => {
                 // Arrange
+                const { dateTimes, projectId, description, tags, taskId, title } = taskFixture();
                 const expectedUrl = `${api}task`;
-                const mockDate = 'mockingDate';
-                const mockProjectId = 'mockProjectId';
-                const mockDescription = 'mockDescription';
-                const mockTags = 'mockTags';
-                const mockId = 'mockId';
                 const expectedBody = {
                     body: {
                         WorkUnit: [
                             {
-                                contractId: mockProjectId,
-                                description: mockDescription,
-                                tags: mockTags,
-                                time: 0
+                                contractId: projectId,
+                                description: description,
+                                tags: tags[0],
+                                time: 0,
+                                title
                             }],
-                        _id: mockId,
-                        date: mockDate
+                        _id: taskId,
+                        date: dateTimes
                     },
                     method: PUT
                 };
-                const expectedTask = { taskId: mockId };
-    
-                mockFetchApiResponse(fetchApiDataSpy, expectedTask)
-                convertDateTimeToLocalTimeSpy.mockReturnValueOnce(mockDate);
+                const expectedTask = { taskId };
 
+                mockFetchApiResponse(fetchApiDataSpy, expectedTask)
+                convertDateTimeToLocalTimeSpy.mockReturnValueOnce(dateTimes);
                 // Act
                 const actual = await updateTaskAction(createRequest({
                     formId: FORMS.updateTask,
-                    id: mockId,
-                    description: mockDescription,
-                    projectId: mockProjectId,
-                    tags: mockTags
+                    id: taskId,
+                    description,
+                    projectId: projectId,
+                    tags: tags[0],
+                    title: title as string
                 }) as unknown as LoaderFunctionArgs);
-    
+
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
                 expect(actual).toEqual(expectedTask);
@@ -73,31 +71,28 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
         });
 
         describe('#deleteTask', () => {
-            it('should delete task and redirect user to home page', () => {
+            it('should delete task and redirect user to home page', async () => {
                 // Arrange
-                const mockDate = 'mockingDate';
-                const mockProjectId = 'mockProjectId';
-                const mockDescription = 'mockDescription';
-                const mockTags = 'mockTags';
-                const mockId = 'mockId';
-                const expectedUrl = `${api}task/${mockId}`;
+                const { projectId, description, tags, taskId, title } = taskFixture();
+                const expectedUrl = `${api}task/${taskId}`;
                 const expectedBody = {
                     method: DELETE
                 };
-                const expectedTask = { _id: mockId };
-    
+                const expectedTask = { _id: taskId, title: title };
+
                 mockFetchApiResponse(fetchApiDataSpy, {})
                 mockRedirect(redirect, expectedTask);
 
                 // Act
-                const actual = updateTaskAction(createRequest({
+                const actual = await updateTaskAction(createRequest({
                     formId: FORMS.deleteTask,
-                    id: mockId,
-                    description: mockDescription,
-                    projectId: mockProjectId,
-                    tags: mockTags
+                    id: taskId,
+                    description: description,
+                    projectId: projectId,
+                    tags: tags[0],
+                    title: title as string
                 }) as unknown as LoaderFunctionArgs);
-    
+
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
                 expect(actual).toEqual(expectedTask);
@@ -108,15 +103,15 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
     describe('#newTaskAction', () => {
         it('should create new task and redirect to that task when response returns with an taskId', async () => {
             // Arrange
+            const { taskId } = taskFixture();
             const expectedUrl = `${api}task`
             const requestParams = { "method": POST };
-            const mockId = 'mockId';
-            const mockReturn = { taskId: mockId };
+            const mockReturn = { taskId };
             mockFetchApiResponse(fetchApiDataSpy, mockReturn)
             mockRedirect(redirect, mockReturn);
 
             // Act
-            const actual = await newTaskAction(createRequest()as unknown as LoaderFunctionArgs);
+            const actual = await newTaskAction(createRequest() as unknown as LoaderFunctionArgs);
 
             // Assert
             expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, requestParams)
@@ -133,7 +128,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
             mockFetchApiResponse(fetchApiDataSpy, expected)
 
             // Act
-            const actual = await createTag(createRequest()as unknown as LoaderFunctionArgs);
+            const actual = await createTag(createRequest() as unknown as LoaderFunctionArgs);
 
             // Assert
             expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody)
@@ -157,7 +152,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
                 const actual = await updateTagAction(createRequest({
                     formId: FORMS.updateTag,
                     id,
-                })as unknown as LoaderFunctionArgs)
+                }) as unknown as LoaderFunctionArgs)
 
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody)
@@ -180,7 +175,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
                 const actual = await updateTagAction(createRequest({
                     formId: FORMS.deleteTag,
                     id,
-                })as unknown as LoaderFunctionArgs)
+                }) as unknown as LoaderFunctionArgs)
 
                 // Assert
                 expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody)
@@ -199,7 +194,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
             mockFetchApiResponse(fetchApiDataSpy, { time: [] })
 
             // Act
-            const actual = await createDateTime(createRequest({ taskId })as unknown as LoaderFunctionArgs);
+            const actual = await createDateTime(createRequest({ taskId }) as unknown as LoaderFunctionArgs);
 
             // Assert
             expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
@@ -215,7 +210,7 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
             mockRedirect(redirect, expectedTask);
 
             // Act
-            const actual = await createDateTime(createRequest({ taskId })as unknown as LoaderFunctionArgs);
+            const actual = await createDateTime(createRequest({ taskId }) as unknown as LoaderFunctionArgs);
 
             // Assert
             expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
@@ -227,12 +222,10 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
     describe('#updateDateTime', () => {
         it('should invoke fetchApiData with expected url and body. Body should have minutes passed in', async () => {
             // Arrange
-            const mockTaskId = 'mockTaskId';
-            const mockId = 'mockId';
-            const mockDate = 'mockDate';
+            const { dateTimes,taskId } = taskFixture();
             const mockMinutes = 'mockMinutes';
-            const expectedUrl = `${api}task/${mockTaskId}/dateTime/${mockId}`;
-            const expectedBody = { "body": { "date": mockDate, id: mockId, "time": mockMinutes }, "method": "PUT" };
+            const expectedUrl = `${api}task/${taskId}/dateTime/${dateTimes[0].id}`;
+            const expectedBody = { "body": { "date": dateTimes[0].date, id: dateTimes[0].id, "time": mockMinutes }, "method": "PUT" };
             mockFetchApiResponse(fetchApiDataSpy, jest.fn())
 
             const expectedTask = { time: [{ taskId: 'mockId3' }, { taskId: 'mockId4' }] };
@@ -240,25 +233,24 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
 
             // Act
             const actual = await updateDateTime(createRequest({
-                'id': mockId,
-                'taskId': mockTaskId,
-                'date': mockDate,
-                'minutes': mockMinutes
-            })as unknown as LoaderFunctionArgs);
+                id: dateTimes[0].id,
+                taskId: taskId,
+                date: dateTimes[0].date,
+                minutes: mockMinutes
+            }) as unknown as LoaderFunctionArgs);
 
             // Assert
-            expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
-            expect(redirect).toHaveBeenNthCalledWith(1, `/task/${mockTaskId}`)
+            expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl,expectedBody);
+            expect(redirect).toHaveBeenNthCalledWith(1, `/task/${taskId}`)
             expect(actual).toEqual(expectedTask)
         });
 
         it('should invoke fetchApiData with expected url and body. Body should have minutes "00", since minutes are not set', async () => {
             // Arrange
-            const mockTaskId = 'mockTaskId';
-            const mockId = 'mockId';
-            const mockDate = 'mockDate';
-            const expectedUrl = `${api}task/${mockTaskId}/dateTime/${mockId}`;
-            const expectedBody = { "body": { "date": mockDate, id: mockId, "time": '00' }, "method": "PUT" };
+            const { dateTimes,taskId } = taskFixture();
+            const {id, date} = dateTimes[0];
+            const expectedUrl = `${api}task/${taskId}/dateTime/${id}`;
+            const expectedBody = { "body": { date, id, "time": '00' }, "method": "PUT" };
             mockFetchApiResponse(fetchApiDataSpy, jest.fn())
 
             const expectedTask = { time: [{ taskId: 'mockId3' }, { taskId: 'mockId4' }] };
@@ -266,14 +258,14 @@ describe('client/src/actionsAndLoaders/__test__/actions.test.ts', () => {
 
             // Act
             const actual = await updateDateTime(createRequest({
-                'id': mockId,
-                'taskId': mockTaskId,
-                'date': mockDate
+                id,
+                taskId,
+                date 
             }) as unknown as LoaderFunctionArgs);
 
             // Assert
             expect(fetchApiDataSpy).toHaveBeenNthCalledWith(1, expectedUrl, expectedBody);
-            expect(redirect).toHaveBeenNthCalledWith(1, `/task/${mockTaskId}`);
+            expect(redirect).toHaveBeenNthCalledWith(1, `/task/${taskId}`);
             expect(actual).toEqual(expectedTask);
         });
     });

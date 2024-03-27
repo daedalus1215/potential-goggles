@@ -17,7 +17,7 @@ const TagePage: React.FC = () => {
     }
 
     return (
-        <div className='contactRight'>
+        <div>
             <TopBar />
             <div className={styles.page}>
                 <Form
@@ -27,10 +27,10 @@ const TagePage: React.FC = () => {
                     <ul className={styles.DateTimeListView}>
                         {tags.map((tag: TagInterface) => {
                             return <Tag
-                            _id={tag._id} 
-                            key={tag._id} 
-                            name={tag.name} 
-                            classNames={styles.content}/>
+                                _id={tag._id}
+                                key={tag._id}
+                                name={tag.name}
+                                classNames={styles.content} />
                         })}
                     </ul>
                 </Form>

@@ -1,33 +1,19 @@
 import React, { RefObject } from 'react';
-import cn from 'classnames';
 import { DefaultEditor } from 'react-simple-wysiwyg';
-import { useSmallScreenSize } from '@/hooks/useSmallScreenSize';
-import styles from './TextAreaAdapter.module.css';
 
 type AdapterProps = {
-  // reference: RefObject<HTMLTextAreaElement>;
-  id:string;
-  setDescription: (e:any) => void;
+  setValue: (e: any) => void;
   value: string;
 };
 
-const TextAreaAdapter: React.FC<AdapterProps> = ({ value, setDescription, id }) => {
-  const isSmall = useSmallScreenSize();
-
-  return <DefaultEditor
-    className={cn(styles.TextAreaAdapter, { [styles.TextAreaAdapterSmall]: isSmall })}
-    name={id}
-    id={id}
-    value={value}
-    onChange={(e) => setDescription( e.target.value)}
-  />
-
-  return <textarea
-    // ref={reference}
-    className={cn(styles.TextAreaAdapter, { [styles.TextAreaAdapterSmall]: isSmall })}
-    defaultValue={value}
-    name="description"
-  />;
+const TextAreaAdapter: React.FC<AdapterProps> = ({ value, setValue }) => {
+  return <>
+    <input type="hidden" name="description" value={value} />
+    <DefaultEditor
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+    />
+  </>
 }
 
 export default TextAreaAdapter;

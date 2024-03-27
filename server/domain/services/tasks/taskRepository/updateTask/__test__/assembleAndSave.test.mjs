@@ -1,22 +1,24 @@
-const assembleAndSave = require("../assembleAndSave");
-let sumExistingTime = require("../sumExistingTime");
+import assembleAndSave from "../assembleAndSave.mjs";
+import sumExistingTime from "../sumExistingTime.mjs";
 
 jest.mock("../sumExistingTime");
 
 describe('assembleAndSave', () => {
     it('should assemble doc and invoke save', () => {
         // Arrange
+        const date = new Date();
         const dto = {
             id: 'dtoID',
             time: 20,
             description: 'description',
-            date: 'date',
+            date,
             contractId: 'contractId',
-            tags: 'tags'
+            tags: 'tags',
+            title: 'a title!',
         };
         const resSpy = jest.fn();
         const existingTime = 10;
-        sumExistingTime = jest.fn().mockImplementationOnce(() => existingTime);
+        sumExistingTime.mockImplementationOnce(() => existingTime);
         const doc = {};
         doc.time = [1];
         doc.save = jest.fn();
@@ -24,7 +26,7 @@ describe('assembleAndSave', () => {
         const expected = {
             ...dto,
             save: doc.save,
-            time: [1, { date: 'date', time: 10 }],
+            time: [1, { date, time: 10 }],
         }
         delete expected.id;
 

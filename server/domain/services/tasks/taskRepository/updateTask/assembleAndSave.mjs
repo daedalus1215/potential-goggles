@@ -19,8 +19,6 @@ const assembleAndSave = (dto) => async (err, doc) => {
         ];
     }
 
-    // @TODO: SPIKE
-    //@TODO: END SPIKE
     doc.description = dto.description;
     doc.date = new Date();
     doc.contractId = dto.contractId;

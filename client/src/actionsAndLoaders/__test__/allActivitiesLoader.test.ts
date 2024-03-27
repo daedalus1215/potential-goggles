@@ -31,10 +31,7 @@ describe('allActivitiesLoader', () => {
             const expected = {
                 allActivities: allActivities,
                 monthActivities: expectedAllMonthTasks,
-                options: [undefined,],
-                queryDate: null,
-                queryExcludeTags: null,
-                queryIncludeTags: null,
+                options: [undefined],
                 tags,
                 todaysActivities: todaysActivities,
             };
@@ -61,10 +58,8 @@ describe('allActivitiesLoader', () => {
             const expected = {
                 allActivities: allActivities,
                 monthActivities: expectedAllMonthTasks,
-                options: [undefined,],
+                options: [undefined],
                 queryDate: '2023-09-14',
-                queryExcludeTags: null,
-                queryIncludeTags: null,
                 tags,
                 todaysActivities: todaysActivities,
             };
@@ -91,9 +86,8 @@ describe('allActivitiesLoader', () => {
             const expected = {
                 allActivities: allActivities,
                 monthActivities: expectedAllMonthTasks,
-                options: [undefined,],
+                options: [undefined],
                 queryDate: '2023-09-14',
-                queryExcludeTags: null,
                 queryIncludeTags: 'includeMeTag',
                 tags,
                 todaysActivities: todaysActivities,
