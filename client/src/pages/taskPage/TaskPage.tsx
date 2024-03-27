@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ms from 'pretty-ms';
 import cn from "classnames";
 import { Form, useLoaderData, useNavigate } from "react-router-dom";
@@ -7,13 +7,25 @@ import { Category } from "@/components/button/Button";
 import { useSetTitle, useListenForSave, useSmallScreenSize } from '@/hooks';
 
 import styles from './TaskPage.module.css';
+import DefaultEditor from "react-simple-wysiwyg";
 
 const FORM_ID = "taskForm";
 
 const TaskPage: React.FC = () => {
     const { task, options } = useLoaderData() as any;
+    const [description, setDescription] = useState<string>(task.description);
+    const [title, setTitle] = useState<string>(task.title);
+
+    // We must do this be cause description was not getting reset in the editor.
+    useEffect(() => {
+        setDescription(task.description);
+    }, [task.description]);
+    useEffect(() => {
+        setTitle(task.title);
+    }, [task.title]);
+
     const navigate = useNavigate();
-    const reference = useRef(null);
+    const reference = useRef(task.taskId);
     const isSmallScreen = useSmallScreenSize();
     useListenForSave(FORM_ID);
 
@@ -26,10 +38,10 @@ const TaskPage: React.FC = () => {
     const original = (task?.time && ms(task.time, { secondsDecimalDigits: 2 })) ?? 0
 
     useSetTitle(task.title);
-
+    // console.log('description', description)
     return (
         <div className="contactRight">
-            <h2 className={styles.h2}>{task.title}</h2>
+            <h2 className={styles.h2}><input type="text" value={title} onChange={(e) => setTitle(e.target.value)} /></h2>
             <div className="contactButtons">
                 <div data-test-id="fractionHour">{`Hours: ${original}`}</div>
                 <TopBar>
@@ -85,7 +97,15 @@ const TaskPage: React.FC = () => {
                         {tag.name}
                     </option>)}
                 </select>
-                <TextAreaAdapter value={task.description} reference={reference} key={task.taskId} />
+                <input type="hidden" name="description" value={description} ref={reference} />
+                <DefaultEditor
+                    // className={cn(styles.TextAreaAdapter, { [styles.TextAreaAdapterSmall]: isSmall })}
+                    name={task.taskId}
+                    id={task.taskId}
+                    value={description}
+                    key={task.taskId}
+                    onChange={(e) => setDescription(e.target.value)}
+                />
             </Form>
         </div>
     );

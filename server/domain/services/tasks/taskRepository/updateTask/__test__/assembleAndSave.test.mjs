@@ -1,5 +1,5 @@
 const assembleAndSave = require("../assembleAndSave");
-const sumExistingTime = require("../sumExistingTime");
+let sumExistingTime = require("../sumExistingTime");
 
 jest.mock("../sumExistingTime");
 
@@ -16,7 +16,7 @@ describe('assembleAndSave', () => {
         };
         const resSpy = jest.fn();
         const existingTime = 10;
-        sumExistingTime.mockImplementationOnce(() => existingTime);
+        sumExistingTime = jest.fn().mockImplementationOnce(() => existingTime);
         const doc = {};
         doc.time = [1];
         doc.save = jest.fn();

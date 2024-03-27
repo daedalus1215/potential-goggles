@@ -35,6 +35,7 @@ export const updateTaskAction: ActionInterface<any> = async ({ request }) => {
                     },
                 })
             };
+            console.log('formData', formData)
             return prepareAndSendTask({
                 _id: formData.get('id'),
                 description: formData.get('description') ?? '',

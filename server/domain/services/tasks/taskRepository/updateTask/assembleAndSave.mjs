@@ -1,6 +1,5 @@
 import EntityToDto from "../FetchTaskByIdRepository/EntityToDto.mjs";
 import sumExistingTime from "./sumExistingTime.mjs";
-import striptags from 'striptags';
 
 const assembleAndSave = (dto) => async (err, doc) => {
     if (err) throw err;
@@ -26,7 +25,9 @@ const assembleAndSave = (dto) => async (err, doc) => {
     doc.date = new Date();
     doc.contractId = dto.contractId;
     doc.tags = dto.tags;
-    doc.title = striptags(dto.description.split("</p>")[0].split("<p>")[1]);
+    
+    //@TODO: 3/27/24 - I just added this. I am moving over to adding title in the test and front end.
+    doc.title = dto.title
     const savedTask = await doc.save();
     return EntityToDto(savedTask);
 };
