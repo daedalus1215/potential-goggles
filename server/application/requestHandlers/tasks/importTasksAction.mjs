@@ -1,4 +1,3 @@
-import TagService from "../../../domain/services/tags/TagService.mjs";
 import { addTagByName } from "../../../domain/services/tags/tagRepository/addTagByName.mjs";
 import TaskModel from "../../../infrastructure/mongo/models/TaskModel.mjs";
 import hydrateAndResponse from "../../../utils/hydrators/hydrateAndResponse.mjs";
@@ -16,12 +15,12 @@ const assembleTask = (task) => {
     saveableTask.title = task?.title
         ?? (task?.description
             ? striptags(doc.description.split("</p>")[0]?.split("<p>")[1])
-            : '')
+            : '');
 
     return saveableTask;
 };
 
-export const importAction = (req, res) => {
+export const importTasksAction = (req, res) => {
     const tasks = [...req.body];
     const tags = new Set(tasks.flatMap(task => task.tags));
 

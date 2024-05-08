@@ -14,7 +14,7 @@ const Modal: React.FC<ModalProp> = ({ children, setIsShowing }) => {
         <Button
           className={styles.closeButton}
           onClick={() => setIsShowing(false)}
-          value="X"
+          value="X" 
         />
         {children && children}
       </div>

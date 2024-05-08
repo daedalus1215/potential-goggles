@@ -1,13 +1,12 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import fetchApiData from "@/utils/fetchApiData";
 import { api } from '@/config.json';
 
 import styles from './DropZone.module.css'
 
-const DropZone = ({ onClick }: any) => {
+const TaskDropZone: React.FC = () => {
     // const { setSuccessFlashMessage } = useFlashMessageContext();
-
     const onDrop = useCallback((acceptedFiles: any) => {
         const reader = new FileReader() as any;
 
@@ -22,8 +21,9 @@ const DropZone = ({ onClick }: any) => {
         /* eslint-disable-next-line react-hooks/exhaustive-deps */
     }, []);
 
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+    const { getRootProps, isDragActive } = useDropzone({ onDrop });
     const getRooterProps = getRootProps;
+    console.log(getRootProps)
 
     return <div {...getRooterProps()} className={styles.innerModalContent}>
         <input {...getRooterProps()} className={styles.innerContainer} />
@@ -35,4 +35,4 @@ const DropZone = ({ onClick }: any) => {
     </div>
 };
 
-export default DropZone;
+export default TaskDropZone;

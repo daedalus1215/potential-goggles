@@ -7,9 +7,12 @@ import addTaskAction from '../requestHandlers/tasks/addTaskAction.mjs';
 import deleteTaskByIdAction from '../requestHandlers/tasks/deleteTaskByIdAction.mjs';
 import deleteAllTaskAction from '../requestHandlers/tasks/deleteAllTaskAction.mjs';
 // TASK > IMPORT ACTION imports
-import { importAction } from '../requestHandlers/tasks/importAction.mjs';
+import { importTasksAction } from '../requestHandlers/tasks/importTasksAction.mjs';
+// TASK > DATE TIME ACTION imports
 import { updateDateTimeAction } from '../requestHandlers/tasks/dateTime/updateDateTimeAction.mjs';
 import { postDateTimeAction } from '../requestHandlers/tasks/dateTime/postDateTimeAction.mjs';
+// TASK > TAG ACTION imports
+import { importTagAction } from '../requestHandlers/tags/importTagAction.mjs';
 // TAG ACTION imports
 import { deleteTagAction } from '../requestHandlers/tags/deleteTagAction.mjs';
 import { addTagAction } from '../requestHandlers/tags/eddTagAction.mjs';
@@ -35,7 +38,8 @@ const routes = (app, passport) => {
     app.delete('/api/tasks', deleteAllTaskAction);
 
     // TASKS > IMPORT
-    app.post('/api/import', importAction);
+    app.post('/api/import', importTasksAction);
+    app.post('/api/import-tags', importTagAction);
 
     // TASKS > DATE TIME
     app.put('/api/task/:taskId/dateTime/:id', updateDateTimeAction);
