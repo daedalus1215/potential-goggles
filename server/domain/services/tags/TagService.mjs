@@ -1,5 +1,6 @@
 import TagRepository from "./tagRepository/TagRepository.mjs";
 import addTag from "./tagRepository/addTag.mjs";
+import { addTagByName } from "./tagRepository/addTagByName.mjs";
 import fetchAllTags from "./tagRepository/fetchAllTags.mjs";
 
 const TagService = {
@@ -9,6 +10,7 @@ const TagService = {
   deleteTag: (tagId, res) =>
     TagRepository.deleteTag(tagId, res),
   addTag: (dto) => addTag(dto),
+  addTagByName: (tagName) => addTagByName(tagName),
   updateTag: (tagDto) =>
     TagRepository.updateTag(tagDto)
 };

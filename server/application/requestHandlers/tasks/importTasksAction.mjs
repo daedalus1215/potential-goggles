@@ -1,18 +1,8 @@
-import TagService from "../../../domain/services/tags/TagService.mjs";
+import { addTagByName } from "../../../domain/services/tags/tagRepository/addTagByName.mjs";
 import TaskModel from "../../../infrastructure/mongo/models/TaskModel.mjs";
 import hydrateAndResponse from "../../../utils/hydrators/hydrateAndResponse.mjs";
 
-const doesTagExist = (tag) => {
-    if (TagService.fetchTagById(tag._id, getTag).error) {
-        return false;
-    }
-
-    return true;
-};
-
-const getTag = (items) => items.items;
-
-
+//@TODO: Do we need this? Do we not have this else where?
 const assembleTask = (task) => {
     const saveableTask = new TaskModel();
 
@@ -25,23 +15,17 @@ const assembleTask = (task) => {
     saveableTask.title = task?.title
         ?? (task?.description
             ? striptags(doc.description.split("</p>")[0]?.split("<p>")[1])
-            : '')
+            : '');
 
     return saveableTask;
 };
 
+export const importTasksAction = (req, res) => {
+    const tasks = [...req.body];
+    const tags = new Set(tasks.flatMap(task => task.tags));
 
-export const importAction = (req, res) => {
-    [...req.body].map(taskDto => {
-        taskDto?.tags.map(tag => {
-            if (!doesTagExist(tag)) {
-                TagService.addTag(tag, getTag);
-            }
-        });
-
-        const saveableTask = assembleTask(taskDto);
-        return saveableTask.save(hydrateAndResponse);
-    });
+    tasks.forEach(taskDto => assembleTask(taskDto).save(hydrateAndResponse));
+    tags.forEach(tagName => addTagByName(tagName))
 
     res.jsonp({ ok: true });
 };
