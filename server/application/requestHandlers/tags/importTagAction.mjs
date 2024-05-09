@@ -1,8 +1,6 @@
-import { addTagByName } from "../../../domain/services/tags/tagRepository/addTagByName.mjs";
+import TagService from "../../../domain/services/tags/TagService.mjs";
 
-export const importTagAction = (req, res) => {
-    const tasks = [...req.body];
-    const tags = new Set(tasks.flatMap(task => task.tags));
-    tags.forEach(tagName => addTagByName(tagName))
+export const importTagAction = async (req, res) => {
+    await TagService.importTags([...req.body]);
     res.jsonp({ ok: true });
 }
