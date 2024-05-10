@@ -19,7 +19,7 @@ const Favorite: React.FC<FavoriteProps> = ({ contact: task }) => {
     const favorite = task?.favorite ?? false;
     return (
         <fetcher.Form method="post" className="favoriteForm">
-            <button
+            <ButtonWrapper
                 name="favorite"
                 className="favorite"
                 value={favorite ? "false" : "true"}

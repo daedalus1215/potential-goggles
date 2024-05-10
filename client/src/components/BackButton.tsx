@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from './button/Button';
+import ButtonWrapper from './button/Button';
 import IconButton from './iconButton/IconButton';
 
 type props = {

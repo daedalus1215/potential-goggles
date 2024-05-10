@@ -14,6 +14,9 @@
   },
   "proxy": "http://localhost:3001",
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.17",
     "@tanstack/react-query": "^4.22.3",
     "@tanstack/react-query-devtools": "^4.22.3",
     "@testing-library/jest-dom": "^6.1.3",

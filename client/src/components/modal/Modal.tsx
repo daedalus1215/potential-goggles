@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@/components';
+import { ButtonWrapper } from '@/components';
 import styles from './Modal.module.css';
 
 interface ModalProp {
@@ -11,7 +11,7 @@ const Modal: React.FC<ModalProp> = ({ children, setIsShowing }) => {
   return (
     <div className={styles.modal}>
       <div className={styles.modalContent}>
-        <Button
+        <ButtonWrapperWrapper
           className={styles.closeButton}
           onClick={() => setIsShowing(false)}
           value="X" 

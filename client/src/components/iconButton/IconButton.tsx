@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 
 import styles from './IconButton.module.css';
-import { Button } from '..';
+import { ButtonWrapper } from '..';
 import { Category } from '../button/Button';
 
 interface props {
@@ -14,9 +14,9 @@ interface props {
   form?: string;
   category?: keyof typeof Category
 }
-const IconButton: React.FC<props> = ({ onClick, icon, title, className, type, category,form }) => {
+const IconButton: React.FC<props> = ({ onClick, icon, title, className, type, category, form }) => {
 
-  return (<Button
+  return (<ButtonWrapper
     testid="icon-button"
     title={title}
     type={type ?? "a"}
@@ -27,7 +27,7 @@ const IconButton: React.FC<props> = ({ onClick, icon, title, className, type, ca
     <i className={cn(icon, styles.icon)}></i>
     {title && <span className={styles.title}>{title}</span>}
 
-  </Button>
+  </ButtonWrapper>
   );
 };
 

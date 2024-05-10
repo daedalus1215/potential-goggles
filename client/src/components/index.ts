@@ -1,4 +1,4 @@
-export { default as Button } from './button/Button';
+export { default as ButtonWrapper } from './button/Button';
 export { default as SaveButton } from './saveButton/SaveButton';
 export { default as TextAreaAdapter } from './textAreaAdapter/TextAreaAdapter';
 export { default as TagButton } from './tagButton/TagButton';

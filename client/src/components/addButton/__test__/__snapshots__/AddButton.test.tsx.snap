@@ -5,7 +5,7 @@ exports[`src/components/addButton/__test__/AddButton.test.tsx AddButton should b
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <button
+      <ButtonWrapper
         class="baseBtn submit"
         data-testid="AddButton"
       >
@@ -14,7 +14,7 @@ exports[`src/components/addButton/__test__/AddButton.test.tsx AddButton should b
     </div>
   </body>,
   "container": <div>
-    <button
+    <ButtonWrapper
       class="baseBtn submit"
       data-testid="AddButton"
     >

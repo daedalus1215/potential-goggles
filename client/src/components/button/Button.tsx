@@ -1,7 +1,7 @@
 import React, { MouseEventHandler } from 'react';
 import cn from 'classnames';
 import useRippleEffect from './useRippleEffect/useRippleEffect';
-
+import Button from '@mui/material/Button';
 import styles from './Button.module.css';
 
 export const Category = {
@@ -25,7 +25,7 @@ interface ButtonProps {
   form?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ className, onClick, value, children, testid, title, type, disabled, category, ...rest }) => {
+const ButtonWrapper: React.FC<ButtonWrapperProps> = ({ className, onClick, value, children, testid, title, type, disabled, category, ...rest }) => {
   const clickCallback = useRippleEffect('button', onClick || (() => { }));
   let categoryClass = {};
   switch (category) {
@@ -50,7 +50,7 @@ const Button: React.FC<ButtonProps> = ({ className, onClick, value, children, te
   }
 
   return (
-    <button
+    <Button
       className={cn(styles.baseBtn, className, categoryClass)}
       onClick={clickCallback}
       data-testid={testid}
@@ -58,8 +58,8 @@ const Button: React.FC<ButtonProps> = ({ className, onClick, value, children, te
       {...rest}>
       {children}
       {value}
-    </button>
+    </Button>
   );
 };
 
-export default Button;
+export default ButtonWrapper;

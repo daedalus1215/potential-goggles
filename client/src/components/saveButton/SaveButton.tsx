@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
-import Button from '../button/Button';
+import ButtonWrapper from '../button/Button';
 
 import styles from './SaveButton.module.css';
 
@@ -8,7 +8,7 @@ interface props {
     className?: string;
 }
 
-const SaveButton: React.FC<props> = ({ className }) => <Button
+const SaveButton: React.FC<props> = ({ className }) => <ButtonWrapper
     type="submit"
     className={classNames(styles.submit, className)}
     value="Save Form"

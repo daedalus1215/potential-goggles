@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`src/pages/tasks/TaskListView/ControlButtons/UploadButton/__test__/UploadButton.test.js UploadButton should display the button 1`] = `
-<button
+<ButtonWrapper
   class="baseBtn IconButton hasTitle info"
   data-testid="icon-button"
 >

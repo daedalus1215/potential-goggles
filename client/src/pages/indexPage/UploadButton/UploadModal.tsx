@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import Modal from '@/components/modal/Modal';
 import TaskDropZone from './DropZone/TaskDropZone';
-import { Button } from '@/components';
+import { ButtonWrapper } from '@/components';
 import TagDropZone from './DropZone/TagDropZone';
 
 type props = {
