@@ -7,7 +7,6 @@ import { Category } from "@/components/button/Button";
 import { useSetTitle, useListenForSave, useSmallScreenSize } from '@/hooks';
 
 import styles from './TaskPage.module.css';
-import DefaultEditor from "react-simple-wysiwyg";
 
 const FORM_ID = "taskForm";
 
@@ -95,8 +94,8 @@ const TaskPage: React.FC = () => {
                         [styles.smallSelect]: isSmallScreen,
                         [styles.largeSelect]: !isSmallScreen
                     })}>
-                    {options?.map((tag: any) => <option
-                        key={tag.taskId}
+                    {options?.map((tag: any, index:number) => <option
+                        key={index}
                         id={tag.name}
                         value={tag.name}
                         selected={tag.selected}>
