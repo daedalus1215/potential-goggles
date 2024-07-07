@@ -11,7 +11,6 @@ const UploadButton: React.FC = () => {
             category={Category.info}
             onClick={setIsModalShowing}
             icon="bi bi-cloud-upload"
-            title="Upload"
         />
         <UploadModal
             isShowing={isModalShowing}
