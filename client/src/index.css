@@ -26,13 +26,14 @@ html {
 }
 
 body {
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   place-items: center;
   /* min-width: 320px; */
   font-size: 14px;
   /* width: 100%; */
   position: relative;
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: 'Roboto'
 }
 
 li {
@@ -105,7 +106,6 @@ fieldset {
     background-color: #f9f9f9;
   }
 }
-
 
 
 ::-webkit-scrollbar {

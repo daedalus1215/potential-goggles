@@ -3,7 +3,7 @@
   margin: 0;
   height: 95vh;
   width: 0px;
-  padding: 1em;
+  /* padding: 1em; */
   display: flex;
   flex: 0;
   flex-direction: column;
@@ -32,6 +32,11 @@
   color: black;
   width: 120px;
   flex: 8;
+}
+
+.homeButtons {
+  width: 70px;
+  margin: 10px auto;
 }
 
 /* task list view */

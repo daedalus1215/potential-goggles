@@ -1,28 +1,27 @@
-import { Outlet, useNavigation, useNavigate, useLoaderData, useSubmit, Form, useParams } from 'react-router-dom'
+import { Outlet, useNavigation, useLoaderData } from 'react-router-dom'
 import cn from 'classnames'
 import { Task } from '../../interfaces'
 import Sidebar from './sidebar/Sidebar'
 import { useContext } from 'react'
-import IconButton from '@/components/iconButton/IconButton'
-
-import { Category } from '@/components/button/Button'
 import { useSmallScreenSize } from '@/hooks/useSmallScreenSize'
-import TagButton from '@/components/tagButton/TagButton'
-import HomeButton from '@/components/homeButton/HomeButton'
 import { ExpandedContext } from '@/ExpandedContext'
-
 import styles from './MainPage.module.css';
-import NavigateButton from '@/components/navigateButton/NavigateButton'
+import { NavigationBar } from '@/components/navigationBar/NavigationBar'
 
 const MainPage = () => {
   const { tasks, q, selectedId } = useLoaderData() as { tasks: Task[]; q: string; selectedId: string }
   const navigation = useNavigation()
-  const navigate = useNavigate();
   const isSmallScreen = useSmallScreenSize();
   const { isExpanded, setIsExpanded } = useContext(ExpandedContext);
   const dontShowOutlet = isSmallScreen && isExpanded;
 
   return (<>
+    {!isSmallScreen && <NavigationBar
+      dontShowOutlet={dontShowOutlet}
+      isExpanded={isExpanded}
+      setIsExpanded={setIsExpanded}
+      isSmallScreen={isSmallScreen}
+    />}
     <Sidebar
       classNames={cn({ [styles.smallScreenSidebar]: isSmallScreen })}
       tasks={tasks}
@@ -35,23 +34,12 @@ const MainPage = () => {
         [styles.loading]: navigation.state === 'loading'
       })
     }>
-      {!dontShowOutlet && (<div className={styles.homeButtons}>
-        <IconButton
-          category={Category.info}
-          icon="bi bi-card-list"
-          onClick={() => {
-            navigate('/');
-            setIsExpanded(!isExpanded)
-          }}
-        />
-        <HomeButton />
-        <Form method="post" className={styles.newForm}>
-          <input type="hidden" name="formId" value="newTask" />
-          <IconButton type="submit" icon="bi-plus-square-fill" category={Category.accent} />
-        </Form>
-        <TagButton />
-        <NavigateButton icon={'bi bi-bar-chart-fill'} url={'stats'} style={styles.bar} />
-      </div>)}
+      {isSmallScreen && <NavigationBar
+        dontShowOutlet={dontShowOutlet}
+        isExpanded={isExpanded}
+        setIsExpanded={setIsExpanded}
+        isSmallScreen={isSmallScreen}
+      />}
       {!dontShowOutlet && <Outlet />}
     </div>
   </>

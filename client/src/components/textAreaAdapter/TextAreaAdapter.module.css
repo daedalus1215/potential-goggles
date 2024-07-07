@@ -1,27 +1,32 @@
 .TextAreaAdapter {
-    width: 80vw;
+    width: 99%;
     height: 60vh;
+    background-color: #fcfdff;
+
+    border: none;
+    border-radius: 0;
+    font-family:inherit;
+    font-size: 16px;
 }
 
-@media only screen and (max-width: 1170px) {
-    .TextAreaAdapter {
-        width: 75vw;
-    }
+textarea {
+    width: 100%;
+    height: 200px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+    resize: none;
 }
 
-@media only screen and (max-width: 950px) {
+/* @TODO: probably do more of this across the entire app */
+@media (prefers-color-scheme: dark) {
     .TextAreaAdapter {
-        width: 70vw;
+        background-color: #272E3F;
+        border: 1px solid #272E3F;
     }
-}
-
-@media only screen and (max-width: 787px) {
-    .TextAreaAdapter {
-        width: 65vw;
-    }
-}
+  }
 
 .TextAreaAdapterSmall {
-    width: 93vw;
     margin: 0 10px;
 }

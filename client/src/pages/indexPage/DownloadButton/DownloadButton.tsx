@@ -10,7 +10,6 @@ const DownloadButton: React.FC = () => <IconButton
     return writeJsonFile(tasks)
   }}
   icon="bi bi-cloud-download"
-  title="Download"
 />;
 
 export default DownloadButton;

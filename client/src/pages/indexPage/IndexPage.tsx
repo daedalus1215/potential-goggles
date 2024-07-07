@@ -24,10 +24,6 @@ export default function IndexPage() {
   return (
     <>
       <div className={styles.underline}></div>
-      <div className={classNames(styles.row, { [styles.isSmallScreenSize]: isSmallScreenSize })}>
-        <UploadButton />
-        <DownloadButton />
-      </div>
       <div className={styles.underline}></div>
       <div className={classNames(styles.filters, { [styles.filtersSmall]: isSmallScreenSize })}>
         <fieldset>
